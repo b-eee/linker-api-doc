@@ -127,7 +127,7 @@ Hexalinkでは、データベースの各データを「アイテム」と呼び
 |31|POST|/api/v0/items/:item-id/actions/:action-id|アクションを実行|アクションID|成功／エラー|-|
 |33|POST|/api/v0/datastores/:datastore-id/items/new|新規アイテムの作成|データストアID|JSON|✓|
 |34|GET|/api/v0/datastores/:datastore-id/items/:item-id/histories|履歴を取得|アイテムID|JSON|-|
-|67|POST|/api/v0/datastores/:datastore-id/items/histories|-|コメント履歴を登録|アイテムID|null|-
+|67|POST|/api/v0/datastores/:datastore-id/items/histories|コメント履歴を登録|アイテムID|null|-|
 
 ### データインポート関連API
 |No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
