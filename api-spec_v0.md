@@ -1292,62 +1292,43 @@ GET https://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/fields
 }
 ```
 
-
 ## データインポート関連API
 ### データインポート
 CSVファイルを指定して、データストアデータを更新します。新規・更新・削除が可能です。
-- キーフィールドに同値が存在する場合は更新され、存在しない場合は新規で登録されます。
+- キーフィールドに指定したフィールドに同値が存在する場合は更新され、存在しない場合は新規で登録されます。
+- replace_all(bool) またはappend(bool)オプションをtrue とすると、一括インポート
 - CSV内に削除フィールド（項目名を`_delete_`とする）を用意し、削除するItemには`true`または`1`を指定すると、該当Itemは削除されます。
 - ステータスを意味するフィールドは、CSVのヘッダー名を`_status_`として、データにはステータス名(status_idではありません)を指定します。
 #### Method
 POST
 #### Request Format
 ```
-/api/v0/datastores/:datastore-id/import
+/api/v0/applications/:project-id/datastores/:datastore-id/import
 ```
 #### Params
 ```
-datastore-id    : データストアID
+project-id    : アプリケーションID(画面から指定したアプリケーションID、または、p_id)
+datastore-id    : データストアID(画面から指定したデータストアID、または、d_id)
 ```
 `Content-Type : multipart/form-data`
 ```
-datastore_id        : データストアID  
 filename            : インポートデータファイル名
-key_field_displayid : インポート先データストアのキー項目
 file                ： インポートファイル
+key_field_displayid : インポート先データストアのキー項目として利用するフィールドIDを指定します（この列をキーとして更新をかけます）
+replace_all         ： true | false  指定されたCSVでデータを初期化（すべてのデータを削除して、新規追加されます）
+append              ： true | false  指定されたCSVデータを既存のデータに追加します。別途、`条件を指定して削除API`と順番に実行することでデータを差分削除＆追加インポートが可能です。
+overwrite_autonumber： true | false  インポート先の自動採番項目が初期化されてゼロスタートされてインポートされます。
 ```
-
 #### Request Sample
 ```
-POST https://api.xxx.com/api/v0/datastores/59bf3a310e2479145baba476/import
-```
-- CSVファイル名：./testcsv/importapi/test.csv
-- CSVファイルイメージ：
-```
-タイトル,_status_
-import1,ステータス１
-import2,ステータス２
+POST https://api.xxx.com/api/v0/applications/APP-ID/datastores/DATABASE-ID/import
 ```
 
-#### Response Sample
-結果（成功の場合は、処理IDが返る）
-```JSON
-{"temp_datastore_id":"59706031bc29a9afa46b59eb"}
+ CSVファイルイメージ  (CSVヘッダ行には、画面で登録したフィールドIDを指定します)
 ```
-エラー発生時
-```JSON
-{
-  "errors": [
-    {
-      "Description": "specified status does not exist statuses:[XXXX]",
-      "Line": 2
-    },
-    {
-      "Description": "key field is not set",
-      "Line": 3
-    }
-  ]
-}
+TITLE,_status_,Field1,No,_delete_
+import1,ステータス１,A,001,0
+import2,ステータス２,B,002,0
 ```
 
 
