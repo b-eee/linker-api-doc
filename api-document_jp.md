@@ -128,7 +128,11 @@ Hexalinkでは、データベースの各データを「アイテム」と呼び
 |33|POST|/api/v0/datastores/:datastore-id/items/new|新規アイテムの作成|データストアID|JSON|✓|
 |34|GET|/api/v0/datastores/:datastore-id/items/:item-id/histories|履歴を取得|アイテムID|JSON|-|
 
-
+### データインポート関連API
+|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
+|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
+|16|データインポート|POST|/api/v0/applications/:project-id/datastores/:datastore-id/import|✗|CSVデータのインポート|CSVデータ(multipart)、ほか|処理ID(:id)|-
+|17|　|GET|/api/v0/datastores/:datastore-id/import/:id|✗|CSVインポートの結果取得|処理ID(:id)|処理結果JSON|-
 
 ### 添付ファイル関連API
 
@@ -2887,6 +2891,88 @@ GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/59ad2d8
         }
     ],
     "unread": 0
+}
+```
+
+## データインポート関連API
+### データインポート
+CSVファイルを指定して、データストアデータを更新します。新規・更新・削除が可能です。
+- キーフィールドに指定したフィールドに同値が存在する場合は更新され、存在しない場合は新規で登録されます。
+- replace_all(bool) またはappend(bool)オプションをtrue とすると、一括インポート
+- CSV内に削除フィールド（項目名を`_delete_`とする）を用意し、削除するItemには`true`または`1`を指定すると、該当Itemは削除されます。
+- ステータスを意味するフィールドは、CSVのヘッダー名を`_status_`として、データにはステータス名(status_idではありません)を指定します。
+#### Method
+POST
+#### Request Format
+```
+/api/v0/applications/:project-id/datastores/:datastore-id/import
+```
+#### Params
+```
+project-id    : アプリケーションID(画面から指定したアプリケーションID、または、p_id)
+datastore-id    : データストアID(画面から指定したデータストアID、または、d_id)
+```
+`Content-Type : multipart/form-data`
+```
+filename            : インポートデータファイル名
+file                ： インポートファイル
+key_field_displayid : インポート先データストアのキー項目として利用するフィールドIDを指定します（この列をキーとして更新をかけます）
+replace_all         ： false | true  指定されたCSVでデータを初期化（すべてのデータを削除して、新規追加されます）
+append              ： false | true  指定されたCSVデータを既存のデータに追加します。別途、`条件を指定して削除API`と順番に実行することでデータを差分削除＆追加インポートが可能です。
+overwrite_autonumber： false | true  インポート先の自動採番項目が初期化されてゼロスタートされてインポートされます。
+validate            ： true | false  インポート時、データチェックを省略する。
+```
+#### Request Sample
+```
+POST https://api.xxx.com/api/v0/applications/APP-ID/datastores/DATABASE-ID/import
+```
+
+ CSVファイルイメージ  
+ - CSVヘッダ行には、画面から指定したフィールドIDを指定します
+ - `key_field_displayid` 更新利用時は、キーフィールドと更新対象フィールド以外の列を省略したCSVを利用できます。（データベース内のすべてのフィールドを含む必要はありません）
+```
+TITLE,_status_,Field1,No,_delete_
+import1,ステータス１,A,001,0
+import2,ステータス２,B,002,0
+```
+
+
+### データインポート結果の取得
+データインポートの処理結果を取得する
+#### Method
+GET
+#### Request Format
+```
+/api/v0/datastores/:datastore-id/import/:temp-datastore-id
+```
+#### Params
+```
+temp-datastore-id  :  インポート処理時の結果ID
+```
+#### Request Sample
+```
+GET https://api.xxx.com/api/v0/datastores/59bf3a310e2479145baba476/import/59706031bc29a9afa46b59eb
+```
+
+#### Response Sample
+成功時
+```
+なし
+```
+
+エラー時
+```JSON
+{
+  "errors": [
+    {
+      "description": "Insert ERROR",
+      "line": 2
+    },
+    {
+      "description": "Update ERROR",
+      "line": 3
+    }
+  ]
 }
 ```
 
