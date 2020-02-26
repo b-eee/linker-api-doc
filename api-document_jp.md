@@ -127,6 +127,7 @@ Hexalinkでは、データベースの各データを「アイテム」と呼び
 |31|POST|/api/v0/items/:item-id/actions/:action-id|アクションを実行|アクションID|成功／エラー|-|
 |33|POST|/api/v0/datastores/:datastore-id/items/new|新規アイテムの作成|データストアID|JSON|✓|
 |34|GET|/api/v0/datastores/:datastore-id/items/:item-id/histories|履歴を取得|アイテムID|JSON|-|
+|67|POST|/api/v0/datastores/:datastore-id/items/histories|-|コメント履歴を登録|アイテムID|null|-
 
 ### データインポート関連API
 |No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
@@ -2892,6 +2893,41 @@ GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/59ad2d8
     ],
     "unread": 0
 }
+```
+
+#### コメント履歴の登録
+データアイテムに対する履歴を登録します
+##### Method
+POST
+##### Request Format
+```
+/api/v0/datastores/:datastore-id/items/histories
+```
+##### URL Params
+```
+  "datastore-id": データベースID（d_id）
+```
+##### Post Params
+```
+  "project_id": アプリケーションID（p_id）
+  "item_id": データアイテムID(i_id)
+  "comment" : 登録したいコメント
+```
+##### Request Sample
+```
+POST https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/histories
+```
+```
+{
+	"project_id": "5e5366474e128951e40b288b",
+	"item_id": "5e53712e4e128936e84a623f",
+	"comment" : "text..."
+}
+
+```
+##### Response Sample
+```JSON
+null
 ```
 
 ## データインポート関連API

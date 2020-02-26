@@ -56,6 +56,7 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 |33|　|POST|/api/v0/items/:item-id/new-actions/:action-id|✗|新規作成アクションを実行(廃止予定)|アクションID|成功／エラー|-
 |34|　|POST|/api/v0/datastores/:datastore-id/items/new|-|新規アイテムの作成|データストアID|JSON|✓
 |35|　|GET|/api/v0/datastores/:datastore-id/items/:item-id/histories|-|履歴を取得|アイテムID|JSON|-
+|67|　|POST|/api/v0/datastores/:datastore-id/items/:item-id/histories|-|コメント履歴を登録|アイテムID|JSON|-
 |36|　|GET|/api/v0/files/:file-id|-|添付ファイルデータを取得|ファイルID|該当ファイルデータ（バイナリデータ）|-
 |37|データレポート|GET|/api/v0/applications/:project-id/reports/:report-id|-|レポートデータの取得|-|JSON|✓
 |38|　|GET|/api/v0/applications/:project-id/reports/:report-id/conditions|-|レポートの検索条件を取得|-|JSON|✓
@@ -3052,6 +3053,41 @@ GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/59ad2d8
     ],
     "unread": 0
 }
+```
+
+#### コメント履歴の登録
+データアイテムに対する履歴を登録します
+##### Method
+POST
+##### Request Format
+```
+/api/v0/datastores/:datastore-id/items/histories
+```
+##### URL Params
+```
+  "datastore-id": データベースID（d_id）
+```
+##### Post Params
+```
+  "project_id": アプリケーションID（p_id）
+  "item_id": データアイテムID(i_id)
+  "comment" : 登録したいコメント
+```
+##### Request Sample
+```
+POST https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/histories
+```
+```
+{
+	"project_id": "5e5366474e128951e40b288b",
+	"item_id": "5e53712e4e128936e84a623f",
+	"comment" : "text..."
+}
+
+```
+##### Response Sample
+```JSON
+null
 ```
 
 
