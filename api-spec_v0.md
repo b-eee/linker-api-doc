@@ -1315,16 +1315,19 @@ datastore-id    : データストアID(画面から指定したデータスト�
 filename            : インポートデータファイル名
 file                ： インポートファイル
 key_field_displayid : インポート先データストアのキー項目として利用するフィールドIDを指定します（この列をキーとして更新をかけます）
-replace_all         ： true | false  指定されたCSVでデータを初期化（すべてのデータを削除して、新規追加されます）
-append              ： true | false  指定されたCSVデータを既存のデータに追加します。別途、`条件を指定して削除API`と順番に実行することでデータを差分削除＆追加インポートが可能です。
-overwrite_autonumber： true | false  インポート先の自動採番項目が初期化されてゼロスタートされてインポートされます。
+replace_all         ： false | true  指定されたCSVでデータを初期化（すべてのデータを削除して、新規追加されます）
+append              ： false | true  指定されたCSVデータを既存のデータに追加します。別途、`条件を指定して削除API`と順番に実行することでデータを差分削除＆追加インポートが可能です。
+overwrite_autonumber： false | true  インポート先の自動採番項目が初期化されてゼロスタートされてインポートされます。
+validate            ： true | false  インポート時、データチェックを省略する。
 ```
 #### Request Sample
 ```
 POST https://api.xxx.com/api/v0/applications/APP-ID/datastores/DATABASE-ID/import
 ```
 
- CSVファイルイメージ  (CSVヘッダ行には、画面で登録したフィールドIDを指定します)
+ CSVファイルイメージ  
+ - CSVヘッダ行には、画面から指定したフィールドIDを指定します
+ - `key_field_displayid` 更新利用時は、キーフィールドと更新対象フィールド以外の列を省略したCSVを利用できます。（データベース内のすべてのフィールドを含む必要はありません）
 ```
 TITLE,_status_,Field1,No,_delete_
 import1,ステータス１,A,001,0
