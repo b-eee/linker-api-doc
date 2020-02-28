@@ -1334,7 +1334,13 @@ TITLE,_status_,Field1,No,_delete_
 import1,ステータス１,A,001,0
 import2,ステータス２,B,002,0
 ```
-
+#### Response Sample
+```JSON
+{
+    "stream_id": "saXjPYrkoJULrJTXHystqbXBqmUkILVbbBxvyXNsiJXKUdcROfTQOwGwCo6nqkwDDGjnUeiPtdkjkDeqgjquUOmcl0B6aM9q2V5526y2Xn3XmPZFsBSrooAwqTSAjWYr",
+    "temp_datastore_id": "5e58aa0fe4ecac3bd828aead"
+}
+```
 
 ### データインポート結果の取得
 データインポートの処理結果を取得する
@@ -1576,6 +1582,21 @@ datastore-id    : データストアID（Hexalink画面から入力したIDを�
 ```
 POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items/new
 ```
+#### Params
+（例）
+`Content-Type : application/json`
+```JSON
+{
+  "item": {
+      "5e5889aae4ecac8ba4e10d18": "aaaa",
+      "5e5889aae4ecac8ba4e10d26": 222,
+      "a_id": "5e5889ace4ecac8ba4e10d32",
+      "d_id": "5e5889aae4ecac8ba4e10d17",
+      "p_id": "5e588978e4ecac8ba4e10c6c"
+  }
+}
+```
+
 #### Response Sample
 ```JSON
 {
