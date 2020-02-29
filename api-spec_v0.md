@@ -1334,6 +1334,14 @@ TITLE,_status_,Field1,No,_delete_
 import1,ステータス１,A,001,0
 import2,ステータス２,B,002,0
 ```
+#### Response Sample
+```
+{
+  temp_datastore_id : データインポート結果の取得で利用できるID
+  stream_id : インポート経過をSubscribeするためのID　
+}
+```
+- Subscribe仕様については、このドキュメントには記載していない（現在、ドキュメント準備中）
 
 
 ### データインポート結果の取得
@@ -1422,6 +1430,27 @@ sort_order      : 昇順の場合"asc" 降順の場合"desc"
   "sort_order": "asc"
 }
 ```
+
+- 日付フィールドの場合、 `search_value` の一番目の値がFrom、2番目の値がToを意味します。
+- どちらかにnullを指定すると、From～、To～といった検索が可能となります。
+- 値に `"TODAY"`という文字列を入れると、本日～といった検索が可能です。（以下、サンプル）
+```
+{
+  "conditions": [
+    {
+      "id": "58bbaa27fbfcba773851339f",
+      "data_type": "text",
+      "search_value": [
+        "TODAY",
+        null
+      ],
+    }
+  ],
+  "page": 1,
+  "per_page": 100
+}
+```
+
 #### Request Sample
 ```
 POST https://api.xxx.com/api/v0/datastores/58bbaa27fbfcba6098746061/items/search
