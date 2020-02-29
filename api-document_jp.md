@@ -1433,6 +1433,27 @@ sort_order      : 昇順の場合"asc" 降順の場合"desc"
   "sort_order": "asc"
 }
 ```
+
+- 日付フィールドの場合、 `search_value` の一番目の値がFrom、2番目の値がToを意味します。
+- どちらかにnullを指定すると、From～、To～といった検索が可能となります。
+- 値に `"TODAY"`という文字列を入れると、本日～といった検索が可能です。（以下、サンプル）
+```
+{
+  "conditions": [
+    {
+      "id": "58bbaa27fbfcba773851339f",
+      "data_type": "text",
+      "search_value": [
+        "TODAY",
+        null
+      ],
+    }
+  ],
+  "page": 1,
+  "per_page": 100
+}
+```
+
 ##### Request Sample
 ```
 POST https://api.xxx.com/api/v0/applications/5c6363d984f4be7de0350445/datastores/DATABASEID/items/search
@@ -2986,13 +3007,18 @@ TITLE,_status_,Field1,No,_delete_
 import1,ステータス１,A,001,0
 import2,ステータス２,B,002,0
 ```
-#### Response Sample
+#### Response
 ```JSON
 {
-    "stream_id": "saXjPYrkoJULrJTXHystqbXBqmUkILVbbBxvyXNsiJXKUdcROfTQOwGwCo6nqkwDDGjnUeiPtdkjkDeqgjquUOmcl0B6aM9q2V5526y2Xn3XmPZFsBSrooAwqTSAjWYr",
-    "temp_datastore_id": "5e58aa0fe4ecac3bd828aead"
+    "temp_datastore_id": "5e58aa0fe4ecac3bd828aead",
+    "stream_id": "saXjPYrkoJULrJTXHystqbXBqmUkILVbbBxvyXNsiJXKUdcROfTQOwGwCo6nqkwDDGjnUeiPtdkjkDeqgjquUOmcl0B6aM9q2V5526y2Xn3XmPZFsBSrooAwqTSAjWYr"
 }
 ```
+```
+temp_datastore_id : データインポート結果の取得で利用できるID
+stream_id : インポート経過をSubscribeするためのID　
+```
+- Subscribe仕様については、このドキュメントには記載していない（現在、ドキュメント準備中）
 
 ### データインポート結果の取得
 データインポートの処理結果を取得する
