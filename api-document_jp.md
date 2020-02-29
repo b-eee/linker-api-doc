@@ -1433,6 +1433,27 @@ sort_order      : 昇順の場合"asc" 降順の場合"desc"
   "sort_order": "asc"
 }
 ```
+
+- 日付フィールドの場合、 `search_value` の一番目の値がFrom、2番目の値がToを意味します。
+- どちらかにnullを指定すると、From～、To～といった検索が可能となります。
+- 値に `"TODAY"`という文字列を入れると、本日～といった検索が可能です。（以下、サンプル）
+```
+{
+  "conditions": [
+    {
+      "id": "58bbaa27fbfcba773851339f",
+      "data_type": "text",
+      "search_value": [
+        "TODAY",
+        null
+      ],
+    }
+  ],
+  "page": 1,
+  "per_page": 100
+}
+```
+
 ##### Request Sample
 ```
 POST https://api.xxx.com/api/v0/applications/5c6363d984f4be7de0350445/datastores/DATABASEID/items/search
