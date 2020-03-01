@@ -1582,17 +1582,15 @@ datastore-id    : データストアID（Hexalink画面から入力したIDを�
 ```
 POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items/new
 ```
-#### Params
+#### Post Payload
 （例）
 `Content-Type : application/json`
 ```JSON
 {
   "item": {
-      "5e5889aae4ecac8ba4e10d18": "aaaa",
-      "5e5889aae4ecac8ba4e10d26": 222,
-      "a_id": "5e5889ace4ecac8ba4e10d32",
-      "d_id": "5e5889aae4ecac8ba4e10d17",
-      "p_id": "5e588978e4ecac8ba4e10c6c"
+      "field_id": "登録データ",
+      "title": "タイトル",
+      "assignee": "担当者",
   }
 }
 ```
