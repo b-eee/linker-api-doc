@@ -1518,6 +1518,19 @@ datastore-id    : データストアID（Hexalink画面から入力したIDを�
 ```
 POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items/new
 ```
+#### Post Payload
+（例）
+`Content-Type : application/json`
+```JSON
+{
+  "item": {
+      "field_id": "登録データ",
+      "title": "タイトル",
+      "assignee": "担当者",
+  }
+}
+```
+
 ##### Response Sample
 ```JSON
 {
@@ -2992,13 +3005,16 @@ TITLE,_status_,Field1,No,_delete_
 import1,ステータス１,A,001,0
 import2,ステータス２,B,002,0
 ```
-
-#### Response Sample
-```
+#### Response
+```JSON
 {
-  temp_datastore_id : データインポート結果の取得で利用できるID
-  stream_id : インポート経過をSubscribeするためのID　
+    "temp_datastore_id": "5e58aa0fe4ecac3bd828aead",
+    "stream_id": "saXjPYrkoJULrJTXHystqbXBqmUkILVbbBxvyXNsiJXKUdcROfTQOwGwCo6nqkwDDGjnUeiPtdkjkDeqgjquUOmcl0B6aM9q2V5526y2Xn3XmPZFsBSrooAwqTSAjWYr"
 }
+```
+```
+temp_datastore_id : データインポート結果の取得で利用できるID
+stream_id : インポート経過をSubscribeするためのID　
 ```
 - Subscribe仕様については、このドキュメントには記載していない（現在、ドキュメント準備中）
 
