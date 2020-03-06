@@ -1681,7 +1681,7 @@ null
 ### アイテムの削除
 指定したアイテムを削除します（Hexalink画面から入力したIDを指定）
 #### Method
-POST
+DELETE
 #### Request Format
 ```
 /api/v0/applications/:app-id/datastores/:datastore-id/items/delete/:item-id
@@ -1694,7 +1694,7 @@ item-id         : 対象アイテムのID
 ```
 #### Request Sample
 ```
-POST http://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/items/delete/5d4c058baa39555618ac9e8b
+DELETE http://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/items/delete/5d4c058baa39555618ac9e8b
 ```
 #### Response Sample
 ```JSON
@@ -1708,7 +1708,7 @@ POST http://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/items/de
 ### 条件を指定してアイテムを削除
 検索条件を指定して、条件にマッチしたアイテムを削除します
 #### Method
-POST
+DELETE
 #### Request Format
 ```
 /api/v0/applications/:app-id/datastores/:datastore-id/items/delete
@@ -1736,7 +1736,7 @@ datastore-id    : データストアID（Hexalink画面から入力したIDを�
 
 #### Request Sample
 ```
-POST http://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/items/delete
+DELETE http://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/items/delete
 ```
 #### Response Sample
 ```JSON
