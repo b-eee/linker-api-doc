@@ -1434,9 +1434,9 @@ sort_order      : 昇順の場合"asc" 降順の場合"desc"
 }
 ```
 
-- 日付フィールドの場合、 `search_value` の一番目の値がFrom、2番目の値がToを意味します。
+- 日付型、時刻型、数値型フィールドの場合、 `search_value` の一番目の値がFrom、2番目の値がToを意味します。
 - どちらかにnullを指定すると、From～、To～といった検索が可能となります。
-- 値に `"TODAY"`という文字列を入れると、本日～といった検索が可能です。（以下、サンプル）
+- 日付型の場合、値に `"TODAY"`という文字列を入れると、本日～といった検索が可能です。（以下、サンプル）
 ```
 {
   "conditions": [
@@ -1602,9 +1602,16 @@ app-id      : アプリケーションID（Hexalink画面から入力したIDを
 datastore-id    : データストアID（Hexalink画面から入力したIDを指定）
 item-id         : 対象アイテムのID
 ```
+##### Payload
+```
+{}
+```
 ##### Request Sample
 ```
 DELETE http://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/items/delete/5d4c058baa39555618ac9e8b
+
+Payload (空のJSONを指定する必要があります)
+{}
 ```
 ##### Response Sample
 ```JSON
