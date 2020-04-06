@@ -1679,6 +1679,7 @@ Post パラメーターの例
             "value": [ "58bbaa27fbfcba6098746061", "596e2327fbfcbab8283dde09"]  // checkbox type
         }
     ],
+    "groups_to_publish":["画面グループID", "システムのグループID"],　　//アイテム更新時にグループロールを付与する、画面グループIDを使用する場合はuse_display_idをtrueにする、画面グループIDを使う場合は全て画面グループIDに統一する、システムのグループIDの場合全てそれに統一する　現在のユーザーの所持しているユーザーロールを元にロール付与出来るか判断。例：グループツリー下層から上層にグループを付与できない　warningが返される。上層から下層に向けては付与可能。
     "use_display_id" : true,
     "is_force_update": true
 }
