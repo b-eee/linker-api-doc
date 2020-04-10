@@ -4021,7 +4021,16 @@ GET https://api.xxx.com/api/v0/users/registration/confirm?sdafasdfasdfadsffdsafa
 
 ##### Response Sample
 ```
-無
+{
+    "user": {
+        "confirmation_id": "sdafasdfasdfadsffdsafasdf",  //上記の確認ID
+        "confirmed": bool, //true =既に誰かが確認済み,false=まだ確認されていない
+        "email": "hogehoge@gmail.com", //初期登録されたemail
+        "id": "5e8ffd39d4b3e00006344d1e",//mongodb object_id
+        "isElapsed": bool,//true =使用期限切れ, false=まで使用できる
+        "username": "登録されたユーザー名"
+    }
+}
 ```
 
 #### ユーザーの初期登録、パスワード登録
