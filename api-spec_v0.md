@@ -1679,6 +1679,7 @@ Post パラメーターの例
             "value": [ "58bbaa27fbfcba6098746061", "596e2327fbfcbab8283dde09"]  // checkbox type
         }
     ],
+    "groups_to_publish":["画面グループID", "システムのグループID"],　　//アイテム更新時にグループロールを付与する、画面グループIDを使用する場合はuse_display_idをtrueにする、画面グループIDを使う場合は全て画面グループIDに統一する、システムのグループID(g_id)の場合全てそれに統一する　現在のユーザーの所持しているユーザーロールを元にロール付与出来るか判断。例：グループツリー下層から上層にグループを付与できない　warningが返される。上層から下層に向けては付与可能。
     "use_display_id" : true,
     "is_force_update": true
 }
@@ -4020,7 +4021,16 @@ GET https://api.xxx.com/api/v0/users/registration/confirm?sdafasdfasdfadsffdsafa
 
 ##### Response Sample
 ```
-無
+{
+    "user": {
+        "confirmation_id": "sdafasdfasdfadsffdsafasdf",  //上記の確認ID
+        "confirmed": bool, //true =既に誰かが確認済み,false=まだ確認されていない
+        "email": "hogehoge@gmail.com", //初期登録されたemail
+        "id": "5e8ffd39d4b3e00006344d1e",//システム内部のuser_id
+        "isElapsed": bool,//true =使用期限切れ, false=まで使用できる
+        "username": "登録されたユーザー名"
+    }
+}
 ```
 
 #### ユーザーの初期登録、パスワード登録
@@ -4208,6 +4218,53 @@ PUT https://api.xxx.com/api/v0/userinfo
 ##### Response Sample
 ```
 {"error": null //エラーの有無}
+```
+
+#### ユーザーの関連情報取得
+tokenで指定されたユーザーに関連した情報取得
+##### Method
+GET
+##### Request Format
+```
+/api/v0/userinfo
+```
+##### Params
+
+##### Request Sample
+```
+GET https://api.xxx.com/api/v0/userinfo
+```
+
+##### Response Sample
+```JSON
+{
+    "u_id": "現在のユーザ",
+    "username": "ユーザー名",
+    "email": "現在のユーザーのemailアドレス",
+    "profile_pic": "ユーザーのプロファイル画像の保存先",
+    "current_workspace_id": "現在使用しているワークスペースのID",
+    "is_ws_admin": true,   //(bool このユーザーにワークスペースのアドミン権限が付与されているかどうか, trueはアドミン権限有り)
+    "user_roles": [
+      {
+        "r_id": "システム内部のロールID",
+        "role_name": "ロール名ID１",
+        "role_id": "画面で入力されたロールID",
+        "p_id": "プロジェクトID1",
+        "application_id": "アプリケーションID",
+        "application_name": "アプリケーション名",
+        "application_display_order": 0
+      },
+      {
+        "r_id": "5e3ac99c393da500077068b0",
+        "role_name": "部長",
+        "role_id": "Manager1",
+        "p_id": "5e015f03285ab60007442e5e",
+        "application_id": "xxSystem",
+        "application_name": "バツバツシステム",
+        "application_display_order": 0
+      }
+  ]
+}
 ```
 
 #### ユーザーをインポート
