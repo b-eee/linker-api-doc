@@ -842,7 +842,16 @@ GET https://api.xxx.com/api/v0/users/registration/confirm?sdafasdfasdfadsffdsafa
 
 ##### Response Sample
 ```
-無
+{
+    "user": {
+        "confirmation_id": "sdafasdfasdfadsffdsafasdf",  //上記の確認ID
+        "confirmed": bool, //true =既に誰かが確認済み,false=まだ確認されていない
+        "email": "hogehoge@gmail.com", //初期登録されたemail
+        "id": "5e8ffd39d4b3e00006344d1e",//システム内部のuser_id
+        "isElapsed": bool,//true =使用期限切れ, false=まで使用できる
+        "username": "登録されたユーザー名"
+    }
+}
 ```
 
 #### ユーザーの初期登録、パスワード登録
@@ -1520,6 +1529,9 @@ POST https://api.xxx.com/api/v0/applications/5c6363d984f4be7de0350445/datastores
     "totalItems": 2
 }
 ```
+
+
+
 
 #### 新規アイテムを作成（DisplayIDの利用）
 新規アイテムを作成します（Hexalink画面から入力したIDを指定）
