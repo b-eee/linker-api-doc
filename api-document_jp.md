@@ -833,11 +833,11 @@ GET
 ```
 ##### Params
 ```Qury Params
-id:sdafasdfasdfadsffdsafasdf //必須　ユーザー初期登録シーケンスのconfirmation_id
+id : sdafasdfasdfadsffdsafasdf //必須　ユーザー初期登録シーケンスのconfirmation_id
 ```
 ##### Request Sample
 ```
-GET https://api.xxx.com/api/v0/users/registration/confirm?sdafasdfasdfadsffdsafasdf
+GET https://api.xxx.com/api/v0/users/registration/confirm?id=sdafasdfasdfadsffdsafasdf
 ```
 
 ##### Response Sample
