@@ -3022,10 +3022,13 @@ action-id    : 新規作成アクションID
 `Content-Type : application/json`
 ```
 {
-  "datastore_id": "59ad2d890e247927638e7619",
   "item": {
-      "id": "value" // フィールドID: 値
-  }
+    "項目ID1": "作成アイテム項目の値１",
+    "項目ID2": "作成アイテム項目の値２"
+	  },
+      "project_id": "プロジェクトID",
+	    "datastore_id": "データベースID",
+	    "use_display_id": true //use_display_idがtrueの場合routeの中のアクション含み全IDが画面IDを使用する使用falseの場合システムIDを使用する
 }
 ```
 
