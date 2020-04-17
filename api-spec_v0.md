@@ -3032,15 +3032,46 @@ action-id    : 新規作成アクションID
 }
 ```
 
-#### Request Sample
+#### Request Sample1
 ```
-POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/5a2671ec0e24794c979fa5b1
+POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/アクションID
+```
+```
+{
+  "item": {
+    "Locaton": "北極",
+    "weather": "雪"
+	  },
+    "project_id": "アプリケーションID",
+	  "datastore_id": "データベースD",
+	  "use_display_id": true
+}
 ```
 #### Response Sample
 ```
 null
 ```
 
+#### Request Sample2
+```
+POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/5e99e6a8aeae8e9af01ec366
+```
+
+```
+{
+  "item": {
+    "5e99e2e3aeae8e9af01ec35b": "北極",
+    "5e99e690aeae8e9af01ec363": "雪"
+	  },
+    "project_id": "5e99e696aeae8e9af01ec364",
+	  "datastore_id": "5e99e69caeae8e9af01ec365",
+	  "use_display_id": false
+}
+```
+#### Response Sample2
+```
+null
+```
 
 ### Itemの新規作成
 新規Itemを作成する
