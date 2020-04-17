@@ -1,8 +1,8 @@
-Hexalink APIの解説
+Hexabase APIの解説
 ==================
 
-## 本ドキュメントの目的
-本ドキュメントは、Hexalinkプラットホームを外部から利用するAPIについて説明しています。
+# 本ドキュメントの目的
+本ドキュメントは、Hexabaseプラットホームを外部から利用するAPIについて説明しています。
 
 
 ## バージョン
@@ -11,11 +11,10 @@ Hexalink APIの解説
 Version 0
 ```
 
-## 事前準備
+# 事前準備
 
-- HexalinkプラットホームのベースURIを確認します。ベースURIは、テナントごとに異なります
-- Hexalinkプラットホームでユーザー登録します
-
+- HexabaseプラットホームのベースURIを確認します。ベースURIは、テナントごとに異なります
+- Hexabaseプラットホームでユーザー登録します
 
 ## APIトークンの取得
 
@@ -27,136 +26,191 @@ Version 0
 Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(発行したトークン)
 ```
 
-## API一覧
+# API一覧
 
 - 画面入力ID(display_id)に対応しているAPIは、app-id, datastore-id, field-id として、画面から入力したIDを指定することが可能です。
 
 
-### 認証関連API
+## 認証関連API
 
 本APIを使用するには、最初にログインAPIを実行して、トークンを取得します
 
-|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
-|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
-|1|POST|/api/v0/login|ログイン|メールアドレス|JSON|-|
-|60|POST|/api/v0/users/logout|ログアウト| トークン|JSON|-|
+### ログイン関連API
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|1|[Login](#Login)|ログイン|POST|/api/v0/login|システムへログインする|v0|-|
+|60|[Logout](#Logout)|ログアウト|POST|/api/v0/users/logout|システムからログアウトする|v0|-|
 
-### ワークスペース関連API
+## ワークスペース関連API
 
-「ワークスペース」は、Hexalinkのアプリケーションをまとめる領域です。業務の種類や内容に合わせてワークスペースを用意して、複数の業務アプリケーションをまとめておきます。
+「ワークスペース」は、Hexabaseのアプリケーションをまとめる領域です。業務の種類や内容に合わせてワークスペースを用意して、複数の業務アプリケーションをまとめておきます。
 
-|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
-|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
-|2|GET|/api/v0/workspaces|ワークスペース一覧を取得|-|JSON|-|
-|3|POST|/api/v0/workspaces/:workspace-id/select|ワークスペースを選択|ワークスペースID|-|-|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|2|[WorkspaceList](#WorkspaceList)|ワークスペース一覧|GET|/api/v0/workspaces|ワークスペースの一覧を取得する|v0|-|
+|3|[SelectWorkspace](#SelectWorkspace)|ワークスペース選択|POST|/api/v0/workspaces/:workspace-id/select|現在ワークスペースを選択する|v0|-|
 
-### グループ関連API
+## グループ関連API
 
-「グループ」は、ユーザーを役割りに応じてまとめる機能です。
+「グループ」は、ワークスペース内に１つツリー構造で存在するし、ユーザーを役割りに応じてまとめる機能です。グループへロールを付与することもできます。
 
-|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
-|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
-|4|GET|/api/v0/grouptree|ワークスペース内のグループ情報を取得|-|ツリー型JSON|-|
-|49|GET|/api/v0/groups/:group-id|指定したグループ情報とその配下のグループ一覧を取得|-|JSON|-|
-|44|GET|/api/v0/groups|グループツリー一覧取得|グループ名、ID、子グループ|JSON|-|
-|45|POST|/api/v0/groups/:parent-group-id|新規でグループを指定グループ配下に作成|アクセスキー、グループID|JSON|-|
-|5|POST|/api/v0/groups|グループを作成|グループ名、ID|成功／エラー|-|
-|6|PUT|/api/v0/groups/:group-id|グループを更新|グループ名、ID|成功／エラー|-|
-|7|DELETE|/api/v0/groups/:group-id|グループを削除|-|成功／エラー|-|
-|63|POST|/api/v0/grouproles/:group-id|グループにひも付くロールの洗い変えをする|-|成功／エラー|-|
-|64|PUT|/api/v0/grouproles/:group-id|グループにロールを追加する|-|成功／エラー|-|
+### グループ一覧の取得
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|49|[GetGroup](#GetGroup)|グループ情報取得|GET|/api/v0/groups/:group-id|指定したグループ情報とその配下のグループ一覧を取得|v0|-|
+|4|[GetGroupTree](#GetGroupTree)|グループツリー情報取得|GET|/api/v0/grouptree|ワークスペース内のグループ情報をJSONツリー形式で取得|v0|-|
 
-### ユーザー関連API
+### グループの登録、変更、削除
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|5|[CreateGroup](#CreateGroup)|新規グループ作成|POST|/api/v0/groups/:parent-group-id|指定グループ配下に新規でグループを作成|v0|-|
+|44|[CreateTopGroup](#CreateTopGroup)|新規グループ作成(第1階層)|POST|/api/v0/workspaces/:workspace-id/groups|第1階層に新規グループを作成|v0|-|
+|6|[UpdateGroup](#UpdateGroup)|グループ更新|PUT|/api/v0/groups/:group-id|指定したグループ情報を更新する|v0|-|
+|7|[DeleteGroup](#DeleteGroup)|グループ削除|DELETE|/api/v0/groups/:group-id|指定したグループを削除する|v0|-|
 
-|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
-|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
-|10|GET|/api/v0/users/all/g/:group-id|ユーザー一覧の取得|グループID|JSON|-|
+### グループへのロール設定
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|63|[UpdateGroupRoles](#UpdateGroupRoles)|グループロール更新|POST|/api/v0/grouproles/:group-id|グループにひも付くロールをすべて削除し、新規付与（洗い変え）する|v0|-|
+|64|[AddGroupRoles](#AddGroupRoles)|グループロール追加|PUT|/api/v0/grouproles/:group-id|グループにロールを追加する|v0|-|
+
+---
+## ユーザー関連API
+
+### ユーザー一覧の取得
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |46|GET|/api/v0/groups/:group-id/users|指定されたグループのユーザー一覧の取得|グループID|JSON|-|
 |43|GET|/api/v0/userinfo|ユーザーの関連情報取得|ユーザーID|JSON|-|
+|50|GET|/api/v0/workspaces/:workspace-id/users|指定されたワークスペースのユーザー一覧の取得|ワークスペースID|JSON|-|
+|10|GET|/api/v0/users/all/g/:group-id|ワークスペース内全ユーザー一覧の取得|グループID|JSON|-|
+
+### ユーザーの追加、削除
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |47|POST|/api/v0/users|グループに新規ユーザーを作成|ユーザーID|JSON|-|
 |51|DELETE|/api/v0/users|グループからユーザーを削除|グループID、ユーザーID|成功／エラー|-|
-|50|GET|/api/v0/workspaces/:workspace-id/users|指定されたワークスペースのユーザー一覧の取得|ワークスペースID|JSON|-|
+
+### ユーザー招待～初期登録
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |52|POST|/api/v0/userinvite|ユーザーを招待|ユーザーメール、ドメイン|JSON|-|
 |53|POST|/api/v0/users/registration|ユーザーの初期登録開始|ユーザー登録情報|JSON|-|
 |54|GET|/api/v0/users/registration/confirm|ユーザーの初期登録の確認|無|JSON|-|
 |55|POST|/api/v0/users/registration/confirm|ユーザーの初期登録、パスワード登録|無|JSON|-|
+
+### パスワード変更、ユーザー情報更新
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |56|POST|/api/v0/users/password/forgot|ログイン前、パスワード初期化 開始|登録されているemailの有無|JSON|-|
-|57|PUT|/api/v0/users/password/forgot|ログイン前、パスワード初期化 パスワードを変更|パスワードが変更される|JSON|-|
+|57|PUT|/api/v0/users/password/forgot|ログイン前、パスワード初期化 パスワードを変更|　|JSON|-|
 |58|GET|/api/v0/users/password/validate|ログイン前、パスワード初期化　パスワー変更状態の確認|更新時刻の状態取得|JSON|-|
 |59|PUT|/api/v0/users/password|ログイン後、パスワード変更|変更成功の有無|JSON|-|
 |61|PUT|/api/v0/userinfo|ユーザー名、情報の更新|email, ユーザー名、画像|JSON|-|
+
+### ユーザーへのロール設定
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |65|POST|/api/v0/applications/:project-id/userroles|ユーザーにアプリケーションのロールを付与する|ロールID、ユーザーID|JSON|-|
 |66|DELETE|/api/v0/applications/:project-id/userroles|ユーザーからアプリケーションのロールを外す|ロールID、ユーザーID|JSON|-|
 
-### アプリケーション関連API
+### CSVデータによるユーザー一括登録
 
-Hexalinkでは、「アプリケーション」ごとに、データベース・データレポート・ダッシュボードなどをまとめています。新しくワークプレースを作成すると「新しいアプリケーション」という名前のアプリケーションが作成されています。
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|9|POST|/api/v0/userimport|ユーザーをCSVで一括インポート|CSVデータ(multipart)、ほか|JSON|-|
 
-|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
-|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
+## アプリケーション関連API
+
+Hexabaseでは、「アプリケーション」ごとに、データベース・データレポート・ダッシュボードなどをまとめています。新しくワークプレースを作成すると「新しいアプリケーション」という名前のアプリケーションが作成されています。
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |11|GET|/api/v0/workspaces/:workspace-id/applications|アプリケーション一覧の取得|ワークスペースID|JSON|-|
-
-
 
 ### フィールド関連API
 
-Hexalinkでは、「アイテム」のカラムを「フィールド」または「画面項目」と呼びます。
+Hexabaseでは、「アイテム」のカラムを「フィールド」または「画面項目」と呼びます。
 
-|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
-|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
-|15|GET|/api/v0/applications/:app-id/datastores/:datastore-id/fields|フィールド一覧を取得|データストアID|JSON|✓|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|15|GET|/api/v0/applications/:app-id/datastores/:datastore-id/fields|フィールド一覧を取得|データストアID(d_id or display_id)|JSON|✓|
+|14|GET|/api/v0/datastores/:datastore-id/fields|フィールド一覧を取得|データストアID(d_id)|JSON|-|
 
+## アイテム関連API
 
-### アイテム関連API
+Hexabaseでは、データベースの各データを「アイテム」と呼びます。表の横１行がアイテムになります。一般的なRDBのレコードに相当します。
 
-Hexalinkでは、データベースの各データを「アイテム」と呼びます。表の横１行がアイテムになります。一般的なRDBのレコードに相当します。
+### アイテムの検索、登録、更新、削除
 
-|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
-|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |19|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/search|アイテム一覧を取得|検索条件|JSON|✓|
 |20|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/new|新規アイテムを作成|新規登録データ|JSON|✓|
 |21|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/edit/:item-id|アイテムを編集|更新データ|JSON|✓|
 |22|DELETE|/api/v0/applications/:app-id/datastores/:datastore-id/items/delete/:item-id|アイテムを削除|-|JSON|✓|
 |23|DELETE|/api/v0/applications/:app-id/datastores/:datastore-id/items/delete|条件を指定してアイテムを削除|検索条件|JSON|✓|
-|24|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/addlink/:item-id|関連アイテムとのリンクを追加|-|JSON|✓|
-|25|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/updatelink/:item-id|関連アイテムとのリンクを更新|-|JSON|✓|
-|26|DELETE|/api/v0/applications/:app-id/datastores/:datastore-id/items/dellink/:item-id|関連アイテムとのリンクを削除|-|JSON|✓|
-|27|GET|/api/v0/datastores/:datastore-id/items/:item-id|アイテムの詳細情報、アクションリストを取得|アイテムID|JSON|-|
-|62|POST|/api/v0/applications/:project-id/datastores/:datastore-id/items/action/:action-id|指定アクションを実行する|アイテム更新|JSON|✓|
-|28|GET|/api/v0/datastores/:datastore-id/items/:item-id/links/:linked-datastore-id"|アイテムに関連するアイテム一覧を取得|アイテムID,関連先データベースID|JSON|-|
-|31|POST|/api/v0/items/:item-id/actions/:action-id|アクションを実行|アクションID|成功／エラー|-|
-|33|POST|/api/v0/datastores/:datastore-id/items/new|新規アイテムの作成|データストアID|JSON|✓|
-|34|GET|/api/v0/datastores/:datastore-id/items/:item-id/histories|履歴を取得|アイテムID|JSON|-|
-|67|POST|/api/v0/datastores/:datastore-id/items/histories|コメント履歴を登録|アイテムID|null|-|
 
-### データインポート関連API
-|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
-|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
-|16|データインポート|POST|/api/v0/applications/:project-id/datastores/:datastore-id/import|✗|CSVデータのインポート|CSVデータ(multipart)、ほか|処理ID(:id)|-
-|17|　|GET|/api/v0/datastores/:datastore-id/import/:id|✗|CSVインポートの結果取得|処理ID(:id)|処理結果JSON|-
+### アイテム詳細、アクション関連
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|27|GET|/api/v0/datastores/:datastore-id/items/:item-id|アイテムの詳細情報、アクションリストを取得|アイテムID|JSON|-|
+|13|GET|/api/v0/datastores/:datastore-id/actions/:action-id/fields|アクションで利用可能なフィールド情報を取得する|アクションID|JSON|-|
+|62|POST|/api/v0/applications/:project-id/datastores/:datastore-id/items/action/:action-id|指定アクションを実行する|アイテム更新|JSON|✓|
+|31|POST|/api/v0/items/:item-id/actions/:action-id|アクションを実行|アクションID|成功／エラー|-|
+|12|GET|/api/v0/datastores/:datastore-id/new-action|新規アイテム作成アクション一覧を取得|データストアID|JSON|-|
+|48|POST|/api/v0/datastores/:datastore-id/items/create-id|新規アイテム作成用のaction_idを取得|データストアID|JSON|-|
+|33|POST|/api/v0/items/:item-id/new-actions/:action-id|action_idを指定して、新規作成アクションを実行(No.69の後に実行)|アクションID|成功／エラー|-|
 
 ### 添付ファイル関連API
 
-|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
-|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |29|POST|/api/v0/items/:item-id/fields/:field-id/attachments|添付ファイルフィールドにファイルをアップロード|-|file_id|-|
 |30|DELETE|/api/v0/items/:item-id/fields/:field-id/attachments/:attachment-id|添付ファイルフィールドのファイルを削除|添付ファイルID|成功／エラー|-|
 |35|GET|/api/v0/files/:file-id|添付ファイルデータを取得|ファイルID|該当ファイルデータ（バイナリデータ）|-|
 
 
-### データレポート関連API
+### アイテムの関連
 
-|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
-|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|28|GET|/api/v0/datastores/:datastore-id/items/:item-id/links/:linked-datastore-id"|アイテムに関連するアイテム一覧を取得|アイテムID,関連先データベースID|JSON|-|
+|24|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/addlink/:item-id|関連アイテムとのリンクを追加|-|JSON|✓|
+|25|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/updatelink/:item-id|関連アイテムとのリンクを更新|-|JSON|✓|
+|26|DELETE|/api/v0/applications/:app-id/datastores/:datastore-id/items/dellink/:item-id|関連アイテムとのリンクを削除|-|JSON|✓|
+
+### アイテムの履歴
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|34|GET|/api/v0/datastores/:datastore-id/items/:item-id/histories|履歴を取得|アイテムID|JSON|-|
+|45|POST|/api/v0/datastores/:datastore-id/items/histories|コメント履歴を登録|アイテムID|null|-|
+
+## CSVデータインポート関連API
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|16|POST|/api/v0/applications/:project-id/datastores/:datastore-id/import|CSVデータのインポート|CSVデータ(multipart)、ほか|処理ID(:id)|✓|
+|17|GET|/api/v0/datastores/:datastore-id/import/:id|CSVインポートの結果取得|処理ID(:id)|処理結果JSON|-|
+
+## データレポート関連API
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |37|GET|/api/v0/applications/:project-id/reports/:report-id|レポートデータの取得|-|JSON|✓|
 |38|GET|/api/v0/applications/:project-id/reports/:report-id/conditions|レポートの検索条件を取得|-|JSON|✓|
 |39|POST|/api/v0/applications/:project-id/reports/:report-id/filter|条件を指定してレポートデータを取得|検索条件|JSON|✓|
 
 
-### チャート(ダッシュボード)関連API
+## チャート(ダッシュボード)関連API
 
-|No    |Method  |URI  |目的|主なパラメータ|結果|画面入力ID(display_id)への対応|
-|:---------:|:----------|:-------|:------|:-----|:------------|:-----|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |40|GET|/api/v0/applications/:project-id/charts/:chart-id|チャートデータの取得|-|JSON|✓|
 |41|GET|/api/v0/applications/:project-id/charts/:chart-id/conditions|チャートの検索条件を取得|-|JSON|✓|
 |42|POST|/api/v0/applications/:project-id/charts/:chart-id/filter|条件を指定してチャートデータを取得|検索条件|JSON|✓|
@@ -164,14 +218,17 @@ Hexalinkでは、データベースの各データを「アイテム」と呼び
 
 
 
-## API仕様詳細
+# API仕様詳細
 
-### 認証関連API
+## 認証関連API
 
 本APIを使用するには、最初にログインAPIを実行して、トークンを取得します
 
-#### ログイン
-Hexalinkにログインして、トークンを取得します
+---
+### Login
+ログイン
+##### Description
+Hexabaseにログインして、トークンを取得します
 ##### Method
 POST
 ##### Request Format
@@ -182,7 +239,7 @@ POST
 `Content-Type : application/json`
 ```JSON
 {
-  "email": "Hexalinkに登録してあるユーザーのメールアドレス",
+  "email": "Hexabaseに登録してあるユーザーのメールアドレス",
   "password": "パスワード"
 }
 ```
@@ -196,8 +253,10 @@ POST https://api.xxx.com/api/v0/login
     "token": "xxxxxxxxx"
 }
 ```
-
-#### ログアウト
+---
+### Logout 
+ログアウト
+##### Description
 トークンを使用しログアウトを行う
 ##### Method
 POST
@@ -219,11 +278,14 @@ POST https://api.xxx.com/api/v0/users/logout
 無
 ```
 
-### ワークスペース関連API
+## ワークスペース関連API
 
-「ワークスペース」は、Hexalinkのアプリケーションをまとめる領域です。業務の種類や内容に合わせてワークスペースを用意して、複数の業務アプリケーションをまとめておきます。
+「ワークスペース」は、Hexabaseのアプリケーションをまとめる領域です。業務の種類や内容に合わせてワークスペースを用意して、複数の業務アプリケーションをまとめておきます。
 
-#### ワークスペース一覧
+---
+#### WorkspaceList
+ワークスペース一覧
+##### Description
 ワークスペースの一覧を取得します
 ##### Method
 GET
@@ -263,7 +325,10 @@ GET https://api.xxx.com/api/v0/workspaces
     ]
 }
 ```
-#### ワークスペースの選択
+---
+#### SelectWorkspace
+ワークスペース選択
+##### Description
 利用したいワークスペースを選択します
 ##### Method
 POST
@@ -284,11 +349,83 @@ POST https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/select
 null
 ```
 
-### グループ関連API
+## グループ関連API
 
 「グループ」は、ユーザーを役割に応じてまとめる機能です。
 
-#### グループ情報を取得
+---
+### GetGroup
+グループ情報取得
+##### Description
+指定したグループ情報とその配下のグループ一覧を取得
+
+##### Method
+GET
+##### Request Format
+```
+/api/v0/groups/:group-id
+```
+- `:group-id` は省略可。省略すると、TOPグループの情報を返す。
+
+##### Params
+
+`Content-Type : application/json`
+
+##### Request Sample
+```
+POST https://api.xxx.com/api/v0/groups
+```
+##### Response Sample
+```JSON
+{
+    "error": "",
+    "group": {
+        "g_id": "親グループID",
+        "group_id": "親グループのDISPLAY_ID",
+        "name": "親グループ名",
+        "index": 0　//("親グループ位置")
+    },
+    "children": [], //("配下グループのグループID")
+    "count": 0 //（"親グループの配下数"）
+}
+```
+
+##### Request Sample2
+```
+POST https://api.xxx.com/api/v0/groups/5c5fd6c084f4be2574e2bcb2
+```
+##### Response Sample2
+```JSON
+{
+    "error": "",
+    "group": {
+        "g_id": "親グループID",
+        "group_id": "親グループのDISPLAY_ID",
+        "name": "親グループ名",
+        "index": 0 //("親グループ位置")
+    },
+    "children": [
+        {
+            "g_id": "配下グループID",
+            "group_id": "配下グループのDISPLAY_ID",
+            "name": "配下グループ名,　例：事業部A2",
+            "index": 0 //("配下グループ位置")
+        },
+        {
+            "g_id": "配下グループID",
+            "group_id": "配下グループのDISPLAY_ID",
+            "name": "配下グループ名,　例：事業部A2",
+            "index": 1//("配下グループ位置")
+        }
+    ],
+    "count": 2 //（"親グループの配下数"
+}
+```
+
+---
+### GetGroupTree
+グループツリー情報取得
+##### Description
 ワークスペース内のグループをツリー形式のJSONにて取得します
 
 ##### Method
@@ -382,70 +519,12 @@ GET https://api.xxx.com/api/v0/grouptree
     ]
 }
 ```
-#### 指定したグループ情報とその配下のグループ一覧を取得
 
-##### Method
-GET
-##### Request Format
-```
-/api/v0/groups/:group-id
-```
-##### Params
-
-`Content-Type : application/json`
-
-##### Request Sample
-```
-POST https://api.xxx.com/api/v0/groups
-```
-##### Response Sample
-```JSON
-{
-    "error": "",
-    "group": {
-        "g_id": "親グループID",
-        "group_id": "親グループのDISPLAY_ID",
-        "name": "親グループ名",
-        "index": 0　//("親グループ位置")
-    },
-    "children": [], //("配下グループのグループID")
-    "count": 0 //（"親グループの配下数"）
-}
-```
-
-##### Request Sample2
-```
-POST https://api.xxx.com/api/v0/groups/5c5fd6c084f4be2574e2bcb2
-```
-##### Response Sample2
-```JSON
-{
-    "error": "",
-    "group": {
-        "g_id": "親グループID",
-        "group_id": "親グループのDISPLAY_ID",
-        "name": "親グループ名",
-        "index": 0 //("親グループ位置")
-    },
-    "children": [
-        {
-            "g_id": "配下グループID",
-            "group_id": "配下グループのDISPLAY_ID",
-            "name": "配下グループ名,　例：事業部A2",
-            "index": 0 //("配下グループ位置")
-        },
-        {
-            "g_id": "配下グループID",
-            "group_id": "配下グループのDISPLAY_ID",
-            "name": "配下グループ名,　例：事業部A2",
-            "index": 1//("配下グループ位置")
-        }
-    ],
-    "count": 2 //（"親グループの配下数"
-}
-```
-
-#### 新規でグループを指定グループ配下に作成
+---
+### CreateGroup
+新規グループ作成
+##### Description
+新規でグループを指定したグループの配下に作成する
 
 ##### Method
 POST
@@ -483,8 +562,12 @@ POST https://api.xxx.com/api/v0/groups/:parent-group-id
 }
 ```
 
-#### グループの登録
-新しいグループを登録します。登録したグループをツリーの直下に配置します
+---
+#### CreateTopGroup
+新規グループ作成(第1階層)
+##### Description
+グループの第1階層に、新しいグループを登録します。登録したグループは、ツリーの直下に配置されます。
+
 ##### Method
 POST
 ##### Request Format
@@ -519,10 +602,10 @@ POST https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/groups
     }
 }
 ```
-
-
-
-#### グループの更新
+---
+#### UpdateGroup
+グループの更新
+##### Description
 指定したグループ名を更新します。
 ##### Method
 PUT
@@ -550,8 +633,10 @@ PUT https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/groups/59bf3b
 ```
 null
 ```
-
-#### グループを削除
+---
+#### DeleteGroup
+グループを削除
+##### Description
 指定したグループ名を削除します
 ##### Method
 DELETE
@@ -578,8 +663,11 @@ DELETE https://api.xxx.com/api/v0/groups/59bf3b300e24791418da1aa1
 ```
 null
 ```
-
-#### グループにひも付くロールの洗い変えをする
+---
+#### UpdateGroupRoles
+グループロール更新
+##### Description
+グループにひも付くロールをすべて削除し、新規付与（洗い変え）する
 
 ##### Method
 POST
@@ -612,7 +700,11 @@ POST https://api.xxx.com/api/v0/grouproles/:group-id
 ```
 {} //空のオブジェクトが返ってくる
 ```
-#### グループにロールを追加する
+---
+#### AddGroupRoles
+グループロール追加
+##### Description
+グループにロールを追加する（既存ロールは削除されない）
 
 ##### Method
 PUT
@@ -1237,7 +1329,7 @@ POST https://api.xxx.com/api/v0/userinvite
 
 ### アプリケーション関連API
 
-Hexalinkでは、「アプリケーション」ごとに、データベース・データレポート・ダッシュボードなどをまとめています。新しくワークプレースを作成すると「新しいアプリケーション」という名前のアプリケーションが作成されています。
+Hexabaseでは、「アプリケーション」ごとに、データベース・データレポート・ダッシュボードなどをまとめています。新しくワークプレースを作成すると「新しいアプリケーション」という名前のアプリケーションが作成されています。
 
 #### アプリケーション一覧の取得
 指定ワークスペース配下のアプリケーション（データストア含む）の一覧を取得します
@@ -1275,7 +1367,7 @@ GET https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/applications
 
 ### フィールド関連API
 
-Hexalinkでは、「アイテム」のカラムを「フィールド」または「画面項目」と呼びます。
+Hexabaseでは、「アイテム」のカラムを「フィールド」または「画面項目」と呼びます。
 
 #### フィールド一覧（DisplayIDを利用）
 利用可能なフィールドの一覧を取得します（DisplayIDを利用）
@@ -1287,8 +1379,8 @@ GET
 ```
 ##### Params
 ```
-app-id  : アプリケーションID（Hexalink画面から入力したIDを指定）
-datastore-id    : データストアID（Hexalink画面から入力したID）
+app-id  : アプリケーションID（Hexabase画面から入力したIDを指定）
+datastore-id    : データストアID（Hexabase画面から入力したID）
 ```
 
 ##### Request Sample
@@ -1420,7 +1512,7 @@ GET https://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/fields
 
 ### アイテム関連API
 
-Hexalinkでは、データベースの各データを「アイテム」と呼びます。表の横１行がアイテムになります。一般的なRDBのレコードに相当します。
+Hexabaseでは、データベースの各データを「アイテム」と呼びます。表の横１行がアイテムになります。一般的なRDBのレコードに相当します。
 
 #### アイテム一覧の取得（DisplayIDの利用）
 アイテムの一覧を取得します
@@ -1432,8 +1524,8 @@ POST
 ```
 ##### Params
 ```
-app-id      : アプリケーションID（Hexalink画面から入力したIDを指定）
-datastore-id    : データストアID（Hexalink画面から入力したIDを指定）
+app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
 ```
 ```
 conditions      : 検索条件を指定
@@ -1449,7 +1541,7 @@ sort_order      : 昇順の場合"asc" 降順の場合"desc"
 {
   "conditions": [
     {
-      "id": "FIELD_ID", // Hexalink画面で入力したIDを指定
+      "id": "FIELD_ID", // Hexabase画面で入力したIDを指定
       "search_value": [
         "fa"
       ],
@@ -1458,7 +1550,7 @@ sort_order      : 昇順の場合"asc" 降順の場合"desc"
   ],
   "page": 1,
   "per_page": 100,
-  "sort_field_id": "FIELD_ID", // Hexalink画面で入力したIDを指定
+  "sort_field_id": "FIELD_ID", // Hexabase画面で入力したIDを指定
   "sort_order": "asc"
 }
 ```
@@ -1534,7 +1626,7 @@ POST https://api.xxx.com/api/v0/applications/5c6363d984f4be7de0350445/datastores
 
 
 #### 新規アイテムを作成（DisplayIDの利用）
-新規アイテムを作成します（Hexalink画面から入力したIDを指定）
+新規アイテムを作成します（Hexabase画面から入力したIDを指定）
 ##### Method
 POST
 ##### Request Format
@@ -1543,8 +1635,8 @@ POST
 ```
 ##### Params
 ```
-app-id      : アプリケーションID（Hexalink画面から入力したIDを指定）
-datastore-id    : データストアID（Hexalink画面から入力したIDを指定）
+app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
 ```
 ##### Request Sample
 ```
@@ -1573,7 +1665,7 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
 ```
 
 #### アイテムの編集（DisplayIDの利用）
-指定したアイテムを更新します（Hexalink画面から入力したIDを指定）
+指定したアイテムを更新します（Hexabase画面から入力したIDを指定）
 ##### Method
 POST
 ##### Request Format
@@ -1582,8 +1674,8 @@ POST
 ```
 ##### Params
 ```
-app-id      : アプリケーションID（Hexalink画面から入力したIDを指定）
-datastore-id    : データストアID（Hexalink画面から入力したIDを指定）
+app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
 item-id         : 対象アイテムのID
 ```
 Post パラメーターの例
@@ -1622,7 +1714,7 @@ null
 ```
 
 #### アイテムの削除（DisplayIDの利用）
-指定したアイテムを削除します（Hexalink画面から入力したIDを指定）
+指定したアイテムを削除します（Hexabase画面から入力したIDを指定）
 ##### Method
 DELETE
 ##### Request Format
@@ -1631,8 +1723,8 @@ DELETE
 ```
 ##### Params
 ```
-app-id      : アプリケーションID（Hexalink画面から入力したIDを指定）
-datastore-id    : データストアID（Hexalink画面から入力したIDを指定）
+app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
 item-id         : 対象アイテムのID
 ```
 ##### Payload
@@ -1665,8 +1757,8 @@ DELETE
 ```
 ##### Params
 ```
-app-id      : アプリケーションID（Hexalink画面から入力したIDを指定）
-datastore-id    : データストアID（Hexalink画面から入力したIDを指定）
+app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
 ```
 
 `Content-Type : application/json`
@@ -1706,8 +1798,8 @@ POST
 ```
 ##### Params
 ```
-app-id      : アプリケーションID（Hexalink画面から入力したIDを指定）
-datastore-id    : データストアID（Hexalink画面から入力したIDを指定）
+app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
 item-id         : 対象アイテムのID
 ```
 Post パラメーターの例
@@ -1737,8 +1829,8 @@ POST
 ```
 ##### Params
 ```
-app-id          : アプリケーションID（Hexalink画面から入力したIDを指定）
-datastore-id    : データストアID（Hexalink画面から入力したIDを指定）
+app-id          : アプリケーションID（Hexabase画面から入力したIDを指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
 item-id         : 対象アイテムのID
 ```
 Post パラメーターの例
@@ -1770,8 +1862,8 @@ POST
 ```
 ##### Params
 ```
-app-id      : アプリケーションID（Hexalink画面から入力したIDを指定）
-datastore-id    : データストアID（Hexalink画面から入力したIDを指定）
+app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
 item-id         : 対象アイテムのID
 ```
 Post パラメーターの例
