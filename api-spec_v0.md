@@ -3017,27 +3017,61 @@ POST
 #### Params
 ```
 item-id      : アイテムID
-action-id    : 新規作成アクションID
+action-id    : 新規作成アクションID（Payload内の`use_display_id`がtrueの場合、画面ID(設定で指定したID)を使用。falseの場合システム内部のID(a_id)を使用。
 ```
 `Content-Type : application/json`
 ```
 {
-  "datastore_id": "59ad2d890e247927638e7619",
   "item": {
-      "id": "value" // フィールドID: 値
-  }
+    "項目ID1": "作成アイテム項目の値１",
+    "項目ID2": "作成アイテム項目の値２"
+    },
+  "project_id": "プロジェクトID",
+  "datastore_id": "データベースID",
+  "use_display_id": true or false //trueの場合、item内の項目IDに画面IDを使用する。falseの場合システム内部のFieldID(f_id)を使用する。指定しない場合、デフォルトはfalse。
 }
 ```
 
-#### Request Sample
+#### Request Sample1
 ```
-POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/5a2671ec0e24794c979fa5b1
+POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/アクションID
+```
+```
+{
+  "item": {
+    "Locaton": "北極",
+    "weather": "雪"
+  },
+  "project_id": "アプリケーションID",
+  "datastore_id": "データベースD",
+  "use_display_id": true
+}
 ```
 #### Response Sample
 ```
 null
 ```
 
+#### Request Sample2
+```
+POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/5e99e6a8aeae8e9af01ec366
+```
+
+```
+{
+  "item": {
+    "5e99e2e3aeae8e9af01ec35b": "北極",
+    "5e99e690aeae8e9af01ec363": "雪"
+  },
+  "project_id": "5e99e696aeae8e9af01ec364",
+  "datastore_id": "5e99e69caeae8e9af01ec365",
+  "use_display_id": false
+}
+```
+#### Response Sample2
+```
+null
+```
 
 ### Itemの新規作成
 新規Itemを作成する
