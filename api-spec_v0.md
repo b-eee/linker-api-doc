@@ -3041,10 +3041,10 @@ POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/ア�
   "item": {
     "Locaton": "北極",
     "weather": "雪"
-	  },
-    "project_id": "アプリケーションID",
-	  "datastore_id": "データベースD",
-	  "use_display_id": true
+  },
+  "project_id": "アプリケーションID",
+  "datastore_id": "データベースD",
+  "use_display_id": true
 }
 ```
 #### Response Sample
@@ -3062,10 +3062,10 @@ POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/5e99e
   "item": {
     "5e99e2e3aeae8e9af01ec35b": "北極",
     "5e99e690aeae8e9af01ec363": "雪"
-	  },
-    "project_id": "5e99e696aeae8e9af01ec364",
-	  "datastore_id": "5e99e69caeae8e9af01ec365",
-	  "use_display_id": false
+  },
+  "project_id": "5e99e696aeae8e9af01ec364",
+  "datastore_id": "5e99e69caeae8e9af01ec365",
+  "use_display_id": false
 }
 ```
 #### Response Sample2
