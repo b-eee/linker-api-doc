@@ -3017,7 +3017,7 @@ POST
 #### Params
 ```
 item-id      : アイテムID
-action-id    : 新規作成アクションID
+action-id    : 新規作成アクションID（Payload内の`use_display_id`がtrueの場合、画面ID(設定で指定したID)を使用。falseの場合システム内部のID(a_id)を使用。
 ```
 `Content-Type : application/json`
 ```
@@ -3025,10 +3025,10 @@ action-id    : 新規作成アクションID
   "item": {
     "項目ID1": "作成アイテム項目の値１",
     "項目ID2": "作成アイテム項目の値２"
-	  },
-      "project_id": "プロジェクトID",
-	    "datastore_id": "データベースID",
-	    "use_display_id": true //use_display_idがtrueの場合routeの中のアクション含み全IDが画面IDを使用する使用falseの場合システムIDを使用する
+    },
+  "project_id": "プロジェクトID",
+  "datastore_id": "データベースID",
+  "use_display_id": true or false //trueの場合、item内の項目IDに画面IDを使用する。falseの場合システム内部のFieldID(f_id)を使用する。指定しない場合、デフォルトはfalse。
 }
 ```
 
