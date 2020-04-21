@@ -26,17 +26,20 @@ Version 0
 Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(発行したトークン)
 ```
 
+# 用語の説明
+
+#### 画面ID(display_id)
+- 画面ID(display_id)とは、Hexabase設定画面から指定可能なIDのことを指します。
+- 画面ID(display_id)に対応しているAPIは、app-id, datastore-id, field-id など、URLやPayloadの一部に画面から入力したIDを指定することが可能です。
+
 # API一覧
-
-- 画面入力ID(display_id)に対応しているAPIは、app-id, datastore-id, field-id として、画面から入力したIDを指定することが可能です。
-
 
 ## 認証関連API
 
 本APIを使用するには、最初にログインAPIを実行して、トークンを取得します
 
 ### ログイン関連API
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |1|[Login](#Login)|ログイン|POST|/api/v0/login|システムへログインする|v0|-|
 |60|[Logout](#Logout)|ログアウト|POST|/api/v0/users/logout|システムからログアウトする|v0|-|
@@ -45,7 +48,7 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 
 「ワークスペース」は、Hexabaseのアプリケーションをまとめる領域です。業務の種類や内容に合わせてワークスペースを用意して、複数の業務アプリケーションをまとめておきます。
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |2|[WorkspaceList](#WorkspaceList)|ワークスペース一覧|GET|/api/v0/workspaces|ワークスペースの一覧を取得する|v0|-|
 |3|[SelectWorkspace](#SelectWorkspace)|ワークスペース選択|POST|/api/v0/workspaces/:workspace-id/select|現在ワークスペースを選択する|v0|-|
@@ -55,13 +58,13 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 「グループ」は、ワークスペース内に１つツリー構造で存在するし、ユーザーを役割りに応じてまとめる機能です。グループへロールを付与することもできます。
 
 ### グループ一覧の取得
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |49|[GetGroup](#GetGroup)|グループ情報取得|GET|/api/v0/groups/:group-id|指定したグループ情報とその配下のグループ一覧を取得|v0|-|
 |4|[GetGroupTree](#GetGroupTree)|グループツリー情報取得|GET|/api/v0/grouptree|ワークスペース内のグループ情報をJSONツリー形式で取得|v0|-|
 
 ### グループの登録、変更、削除
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |5|[CreateGroup](#CreateGroup)|新規グループ作成|POST|/api/v0/groups/:parent-group-id|指定グループ配下に新規でグループを作成|v0|-|
 |44|[CreateTopGroup](#CreateTopGroup)|新規グループ作成(第1階層)|POST|/api/v0/workspaces/:workspace-id/groups|第1階層に新規グループを作成|v0|-|
@@ -69,76 +72,86 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 |7|[DeleteGroup](#DeleteGroup)|グループ削除|DELETE|/api/v0/groups/:group-id|指定したグループを削除する|v0|-|
 
 ### グループへのロール設定
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
 |63|[UpdateGroupRoles](#UpdateGroupRoles)|グループロール更新|POST|/api/v0/grouproles/:group-id|グループにひも付くロールをすべて削除し、新規付与（洗い変え）する|v0|-|
 |64|[AddGroupRoles](#AddGroupRoles)|グループロール追加|PUT|/api/v0/grouproles/:group-id|グループにロールを追加する|v0|-|
 
 ---
 ## ユーザー関連API
+「ユーザー」はEmailアドレスをIDとした、ログイン可能なアカウントです。必ずワークスペース内のいずれかのグループに属します。Hexabaseへユーザーを追加するには、グループへユーザーを登録した後に、ワークスペースへ招待する必要があります。
 
-### ユーザー一覧の取得
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+### ログインユーザー情報
+ログインしているユーザーに関する情報を取得します。
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|46|GET|/api/v0/groups/:group-id/users|指定されたグループのユーザー一覧の取得|グループID|JSON|-|
-|43|GET|/api/v0/userinfo|ユーザーの関連情報取得|ユーザーID|JSON|-|
-|50|GET|/api/v0/workspaces/:workspace-id/users|指定されたワークスペースのユーザー一覧の取得|ワークスペースID|JSON|-|
-|10|GET|/api/v0/users/all/g/:group-id|ワークスペース内全ユーザー一覧の取得|グループID|JSON|-|
+|43|[GetUserInfo](#GetUserInfo)|ユーザー情報取得|GET|/api/v0/userinfo|ユーザーの関連情報取得|v0|-|
+|61|[UpdateUserInfo](#UpdateUserInfo)|ユーザー情報更新|PUT|/api/v0/userinfo|ユーザー名、情報の更新|v0|-|
+
+### パスワード変更
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|56|[ResetPassword](#ResetPassword)|パスワード初期化リクエスト|POST|/api/v0/users/password/forgot|ログイン前、パスワード初期化 開始|v0|-|
+|57|[SetNewPassword](#SetNewPassword)|パスワード再登録|PUT|/api/v0/users/password/forgot|ログイン前、パスワード初期化 パスワードを変更|v0|-|
+|58|[ValidatePassword](#ValidatePassword)|パスワード変更確認|GET|/api/v0/users/password/validate|ログイン前、パスワード初期化　パスワー変更状態の確認|v0|-|
+|59|[SetPassword](#SetPassword)|パスワード変更登録|PUT|/api/v0/users/password|ログイン後、パスワード変更|v0|-|
+
+### ユーザー一覧
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|46|[GetUsersInGroup](#GetUsersInGroup)|グループ内ユーザー取得|GET|/api/v0/groups/:group-id/users|指定されたグループのユーザー一覧の取得|v0|-|
+|50|[GetUsersInWorkspace](#GetUsersInWorkspace)|グループ内ユーザー取得|GET|/api/v0/workspaces/:workspace-id/users|指定されたワークスペースのユーザー一覧の取得|(old)|-|
+|10|[GetAllUsersInWorkspace](#GetAllUsersInWorkspace)|ワークスペース全ユーザー取得|GET|/api/v0/users/all/g/:group-id|ワークスペース内全ユーザー一覧の取得|v0|-|
 
 ### ユーザーの追加、削除
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|47|POST|/api/v0/users|グループに新規ユーザーを作成|ユーザーID|JSON|-|
-|51|DELETE|/api/v0/users|グループからユーザーを削除|グループID、ユーザーID|成功／エラー|-|
+|47|[AddUser](#AddUser)|ユーザー追加|POST|/api/v0/users|グループに新規ユーザーを作成|v0|-|
+|51|[RemoveUser](#RemoveUser)|ユーザー削除|DELETE|/api/v0/users|グループからユーザーを削除|v0|-|
 
-### ユーザー招待～初期登録
+### ユーザーの招待～初期登録
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+ユーザーをワークスペースへ招待するには、登録されたユーザーに対して招待メールを送信([UserInvite](#UserInvite))します。 受け取ったメールに含まれるリンクをクリックすることでユーザー登録の確認ページへ遷移させます。遷移先画面では確認ID(ConfirmID)をもとにユーザー情報を取得([ConfirmRegistration](#ConfirmRegistration))し、ユーザー情報を登録する([RegisterUser](#RegisterUser))ことではじめてユーザーが作成されます。
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|52|POST|/api/v0/userinvite|ユーザーを招待|ユーザーメール、ドメイン|JSON|-|
-|53|POST|/api/v0/users/registration|ユーザーの初期登録開始|ユーザー登録情報|JSON|-|
-|54|GET|/api/v0/users/registration/confirm|ユーザーの初期登録の確認|無|JSON|-|
-|55|POST|/api/v0/users/registration/confirm|ユーザーの初期登録、パスワード登録|無|JSON|-|
-
-### パスワード変更、ユーザー情報更新
-
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
-|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|56|POST|/api/v0/users/password/forgot|ログイン前、パスワード初期化 開始|登録されているemailの有無|JSON|-|
-|57|PUT|/api/v0/users/password/forgot|ログイン前、パスワード初期化 パスワードを変更|　|JSON|-|
-|58|GET|/api/v0/users/password/validate|ログイン前、パスワード初期化　パスワー変更状態の確認|更新時刻の状態取得|JSON|-|
-|59|PUT|/api/v0/users/password|ログイン後、パスワード変更|変更成功の有無|JSON|-|
-|61|PUT|/api/v0/userinfo|ユーザー名、情報の更新|email, ユーザー名、画像|JSON|-|
+|52|[UserInvite](#UserInvite)|ユーザー招待|POST|/api/v0/userinvite|ユーザーを招待|v0|-|
+|53|[UserRegistration](#UserRegistration)|初回ユーザー登録|POST|/api/v0/users/registration|ユーザーの初期登録用リクエスト|v0|-|
+|54|[ConfirmRegistration](#ConfirmRegistration)|ユーザー情報確認|GET|/api/v0/users/registration/confirm|ConfirmIDからユーザーの初期登録情報の確認|v0|-|
+|55|[RegisterUser](#RegisterUser)|ユーザー初期登録|POST|/api/v0/users/registration/confirm|ユーザーの初期登録、パスワード登録|v0|-|
 
 ### ユーザーへのロール設定
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|65|POST|/api/v0/applications/:project-id/userroles|ユーザーにアプリケーションのロールを付与する|ロールID、ユーザーID|JSON|-|
-|66|DELETE|/api/v0/applications/:project-id/userroles|ユーザーからアプリケーションのロールを外す|ロールID、ユーザーID|JSON|-|
+|65|[AddRoleToUser](#AddRoleToUser)|ユーザーへロール付与|POST|/api/v0/applications/:project-id/userroles|ユーザーにアプリケーションのロールを付与する|v0|-|
+|66|[RemoveRoleFromUser](#RemoveRoleFromUser)|ユーザからロールを削除|DELETE|/api/v0/applications/:project-id/userroles|ユーザーからアプリケーションのロールを外す|v0|-|
 
 ### CSVデータによるユーザー一括登録
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|9|POST|/api/v0/userimport|ユーザーをCSVで一括インポート|CSVデータ(multipart)、ほか|JSON|-|
+|9|[UserImport](#UserImport)||POST|/api/v0/userimport|ユーザーをCSVで一括インポート|α版|-|
+
 
 ## アプリケーション関連API
 
-Hexabaseでは、「アプリケーション」ごとに、データベース・データレポート・ダッシュボードなどをまとめています。新しくワークプレースを作成すると「新しいアプリケーション」という名前のアプリケーションが作成されています。
+Hexabaseでは、「アプリケーション」ごとに、データベース・データレポート・ダッシュボードなどをまとめています。新しくワークプレースを作成すると「新しいアプリケーション」という名前のアプリケーションが作成されています。<br>
+アプリケーション内には複数のデータベース（データテーブル）が存在します。
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|11|GET|/api/v0/workspaces/:workspace-id/applications|アプリケーション一覧の取得|ワークスペースID|JSON|-|
+|11|[GetApplicationsAndDatastores](#GetApplicationsAndDatastores)|アプリケーションとデータベース一覧|GET|/api/v0/workspaces/:workspace-id/applications|アプリケーション一覧のとデータストア一覧を取得|v0|-|
 
 ### フィールド関連API
 
 Hexabaseでは、「アイテム」のカラムを「フィールド」または「画面項目」と呼びます。
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|15|GET|/api/v0/applications/:app-id/datastores/:datastore-id/fields|フィールド一覧を取得|データストアID(d_id or display_id)|JSON|✓|
-|14|GET|/api/v0/datastores/:datastore-id/fields|フィールド一覧を取得|データストアID(d_id)|JSON|-|
+|15|[GetDatastoreFields](#GetDatastoreFields)|フィールド一覧|GET|/api/v0/applications/:app-id/datastores/:datastore-id/fields|フィールド一覧を取得|v0|✓|
 
 ## アイテム関連API
 
@@ -146,74 +159,75 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 
 ### アイテムの検索、登録、更新、削除
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|19|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/search|アイテム一覧を取得|検索条件|JSON|✓|
-|20|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/new|新規アイテムを作成|新規登録データ|JSON|✓|
-|21|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/edit/:item-id|アイテムを編集|更新データ|JSON|✓|
-|22|DELETE|/api/v0/applications/:app-id/datastores/:datastore-id/items/delete/:item-id|アイテムを削除|-|JSON|✓|
-|23|DELETE|/api/v0/applications/:app-id/datastores/:datastore-id/items/delete|条件を指定してアイテムを削除|検索条件|JSON|✓|
-
-### アイテム詳細、アクション関連
-
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
-|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|27|GET|/api/v0/datastores/:datastore-id/items/:item-id|アイテムの詳細情報、アクションリストを取得|アイテムID|JSON|-|
-|13|GET|/api/v0/datastores/:datastore-id/actions/:action-id/fields|アクションで利用可能なフィールド情報を取得する|アクションID|JSON|-|
-|62|POST|/api/v0/applications/:project-id/datastores/:datastore-id/items/action/:action-id|指定アクションを実行する|アイテム更新|JSON|✓|
-|31|POST|/api/v0/items/:item-id/actions/:action-id|アクションを実行|アクションID|成功／エラー|-|
-|12|GET|/api/v0/datastores/:datastore-id/new-action|新規アイテム作成アクション一覧を取得|データストアID|JSON|-|
-|48|POST|/api/v0/datastores/:datastore-id/items/create-id|新規アイテム作成用のaction_idを取得|データストアID|JSON|-|
-|33|POST|/api/v0/items/:item-id/new-actions/:action-id|action_idを指定して、新規作成アクションを実行(No.69の後に実行)|アクションID|成功／エラー|-|
+|19|[ItemList](#ItemList)|アイテム一覧| POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/search|アイテム一覧を取得|v0|✓|
+|20|[CreateItem](#CreateItem)|アイテム新規登録|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/new|新規アイテムを作成する|v0|✓|
+|21|[UpdateItem](#UpdateItem)|アイテム更新|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/edit/:item-id|アイテムを編集する|v0|✓|
+|22|[DeleteItem](#DeleteItem)|アイテム削除|DELETE|/api/v0/applications/:app-id/datastores/:datastore-id/items/delete/:item-id|１アイテムを削除する|v0|✓|
+|23|[DeleteItemByConditions](#DeleteItemByConditions)|条件指定してアイテム削除|DELETE|/api/v0/applications/:app-id/datastores/:datastore-id/items/delete|条件を指定してアイテムを一括削除する|v0|✓|
+|12|[GetNewActionMenu](#GetNewActionMenu)|新規登録アクションの一覧|GET|/api/v0/datastores/:datastore-id/new-action|新規アイテム作成アクション一覧を取得|v0|-|
+|48|[CreateItemID](#CreateItemID)|新規アイテムID取得|POST|/api/v0/datastores/:datastore-id/items/create-id|新規アイテム作成用のaction_idを取得|v0|-|
+|33|[CreateItemWithItemID](#CreateItemWithItemID)|item_idを指定して新規アイテムを作成|POST|/api/v0/items/:item-id/new-actions/:action-id|action_idを指定して、新規作成アクションを実行(No.69の後に実行)|v0|-|
 
 ### 添付ファイル関連API
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|29|POST|/api/v0/items/:item-id/fields/:field-id/attachments|添付ファイルフィールドにファイルをアップロード|-|file_id|-|
-|30|DELETE|/api/v0/items/:item-id/fields/:field-id/attachments/:attachment-id|添付ファイルフィールドのファイルを削除|添付ファイルID|成功／エラー|-|
-|35|GET|/api/v0/files/:file-id|添付ファイルデータを取得|ファイルID|該当ファイルデータ（バイナリデータ）|-|
+|29|[UploadFile](#UploadFile)|添付ファイルUpload|POST|/api/v0/items/:item-id/fields/:field-id/attachments|添付ファイルフィールドにファイルをアップロード|v0|-|
+|30|[DeleteFile](#DeleteFile)|添付ファイル削除|DELETE|/api/v0/items/:item-id/fields/:field-id/attachments/:attachment-id|添付ファイルフィールドのファイルを削除|v0|-|
+|35|[GetFile](#GetFile)|ファイルデータの取得|GET|/api/v0/files/:file-id|添付ファイルデータを取得|v0|-|
+
+
+### アイテム詳細、アクション関連
+
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
+|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
+|27|[GetItemDetails](#GetItemDetails)|アイテム詳細|GET|/api/v0/datastores/:datastore-id/items/:item-id|アイテムの詳細情報、アクションリストを取得|v0|-|
+|13|[GetActionFields](#GetActionFields)|アクション登録フォーム取得|GET|/api/v0/datastores/:datastore-id/actions/:action-id/fields|アクションで利用可能なフィールド情報を取得する|v0|-|
+|62|[ExecuteAction](#ExecuteAction)|アクションの実行|POST|/api/v0/applications/:project-id/datastores/:datastore-id/items/action/:action-id|指定アクションを実行する|v0|✓|
+|31|[ExecuteActionByActionID](#ExecuteActionByActionID)|アクションの実行|POST|/api/v0/items/:item-id/actions/:action-id|アクションを実行|v0|-|
 
 
 ### アイテムの関連
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|28|GET|/api/v0/datastores/:datastore-id/items/:item-id/links/:linked-datastore-id"|アイテムに関連するアイテム一覧を取得|アイテムID,関連先データベースID|JSON|-|
-|24|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/addlink/:item-id|関連アイテムとのリンクを追加|-|JSON|✓|
-|25|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/updatelink/:item-id|関連アイテムとのリンクを更新|-|JSON|✓|
-|26|DELETE|/api/v0/applications/:app-id/datastores/:datastore-id/items/dellink/:item-id|関連アイテムとのリンクを削除|-|JSON|✓|
+|28|[GetLinkedItems](#GetLinkedItems)|関連アイテム取得|GET|/api/v0/datastores/:datastore-id/items/:item-id/links/:linked-datastore-id"|アイテムに関連するアイテム一覧を取得|v0|-|
+|24|[AddItemLink](#AddItemLink)|アイテムリンク作成|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/addlink/:item-id|関連アイテムとのリンクを追加|v0|✓|
+|25|[UpdateItemLink](#UpdateItemLink)|アイテムリンク更新|POST|/api/v0/applications/:app-id/datastores/:datastore-id/items/updatelink/:item-id|関連アイテムとのリンクを更新|v0|✓|
+|26|[DeleteItemLink](#DeleteItemLink)|アイテムリンク削除|DELETE|/api/v0/applications/:app-id/datastores/:datastore-id/items/dellink/:item-id|関連アイテムとのリンクを削除|v0|✓|
 
 ### アイテムの履歴
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|34|GET|/api/v0/datastores/:datastore-id/items/:item-id/histories|履歴を取得|アイテムID|JSON|-|
-|45|POST|/api/v0/datastores/:datastore-id/items/histories|コメント履歴を登録|アイテムID|null|-|
+|34|[GetItemHistories](#GetItemHistories)|アイテム履歴取得|GET|/api/v0/datastores/:datastore-id/items/:item-id/histories|履歴を取得|v0|-|
+|45|[PostItemComment](#PostItemComment)|アイテムコメント投稿|POST|/api/v0/datastores/:datastore-id/items/histories|コメント履歴を登録|v0|-|
 
 ## CSVデータインポート関連API
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|16|POST|/api/v0/applications/:project-id/datastores/:datastore-id/import|CSVデータのインポート|CSVデータ(multipart)、ほか|処理ID(:id)|✓|
-|17|GET|/api/v0/datastores/:datastore-id/import/:id|CSVインポートの結果取得|処理ID(:id)|処理結果JSON|-|
+|16|[ImportItems](#ImportItems)|アイテムCSVインポート|POST|/api/v0/applications/:project-id/datastores/:datastore-id/import|CSVデータをデータベースへインポート|v0|✓|
+|17|[GetImportResults](#GetImportResults)|インポート結果取得|GET|/api/v0/datastores/:datastore-id/import/:id|CSVインポートの結果取得|v0|-|
 
 ## データレポート関連API
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|37|GET|/api/v0/applications/:project-id/reports/:report-id|レポートデータの取得|-|JSON|✓|
-|38|GET|/api/v0/applications/:project-id/reports/:report-id/conditions|レポートの検索条件を取得|-|JSON|✓|
-|39|POST|/api/v0/applications/:project-id/reports/:report-id/filter|条件を指定してレポートデータを取得|検索条件|JSON|✓|
+|37|[GetReportData](#GetReportData)|データレポート取得|GET|/api/v0/applications/:project-id/reports/:report-id|レポートデータの取得|v0|✓|
+|38|[GetReportConditions](#GetReportConditions)|データレポート検索条件取得|GET|/api/v0/applications/:project-id/reports/:report-id/conditions|レポートの検索条件を取得|v0|✓|
+|39|[GetReportDataByConditions](#GetReportDataByConditions)|条件指定してデータレポート取得|POST|/api/v0/applications/:project-id/reports/:report-id/filter|条件を指定してレポートデータを取得|v0|✓|
 
 
 ## チャート(ダッシュボード)関連API
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面入力ID(display_id)への対応|
+|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|40|GET|/api/v0/applications/:project-id/charts/:chart-id|チャートデータの取得|-|JSON|✓|
-|41|GET|/api/v0/applications/:project-id/charts/:chart-id/conditions|チャートの検索条件を取得|-|JSON|✓|
-|42|POST|/api/v0/applications/:project-id/charts/:chart-id/filter|条件を指定してチャートデータを取得|検索条件|JSON|✓|
+|40|[GetChartData](#GetChartData)|チャートデータ取得|GET|/api/v0/applications/:project-id/charts/:chart-id|チャートデータの取得|v0|✓|
+|41|[GetChartConditions](#GetChartConditions)|チャート検索条件取得|GET|/api/v0/applications/:project-id/charts/:chart-id/conditions|チャートの検索条件を取得|v0|✓|
+|42|[GetChartDataByConditions](#GetChartDataByConditions)|条件指定してチャートデータ取得|POST|/api/v0/applications/:project-id/charts/:chart-id/filter|条件を指定してチャートデータを取得|v0|✓|
 
 
 
@@ -231,11 +245,11 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 Hexabaseにログインして、トークンを取得します
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/login
 ```
-##### Params
+##### Payload
 `Content-Type : application/json`
 ```JSON
 {
@@ -243,7 +257,7 @@ POST
   "password": "パスワード"
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/login
 ```
@@ -260,16 +274,16 @@ POST https://api.xxx.com/api/v0/login
 トークンを使用しログアウトを行う
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/users/logout
 ```
-##### Params
+##### Payload
 `Content-Type : application/json`
 ```
 無
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/users/logout
 ```
@@ -289,7 +303,7 @@ POST https://api.xxx.com/api/v0/users/logout
 ワークスペースの一覧を取得します
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/workspaces
 ```
@@ -297,7 +311,7 @@ GET
 ```
 特になし
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/workspaces
 ```
@@ -332,15 +346,15 @@ GET https://api.xxx.com/api/v0/workspaces
 利用したいワークスペースを選択します
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/workspaces/:workspace-id/select
 ```
-##### Params
+##### URL Params
 ```
 workspace-id    : ワークスペースID
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/select
 ```
@@ -361,7 +375,7 @@ null
 
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/groups/:group-id
 ```
@@ -371,7 +385,7 @@ GET
 
 `Content-Type : application/json`
 
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/groups
 ```
@@ -430,7 +444,7 @@ POST https://api.xxx.com/api/v0/groups/5c5fd6c084f4be2574e2bcb2
 
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/grouptree
 ```
@@ -438,7 +452,7 @@ GET
 ```
 特になし
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/grouptree
 ```
@@ -528,11 +542,11 @@ GET https://api.xxx.com/api/v0/grouptree
 
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/groups/:parent-group-id
 ```
-##### Params
+##### Payload
 
 `Content-Type : application/json`
 ```JSON
@@ -541,7 +555,7 @@ POST
   "parent-group-id": "必須　グループ配下を指定してグループを作成"
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/groups/:parent-group-id
 ```
@@ -570,11 +584,11 @@ POST https://api.xxx.com/api/v0/groups/:parent-group-id
 
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/workspaces/:workspace-id/groups
 ```
-##### Params
+##### URL Params
 ```
 workspace-id    : ワークスペースID
 ```
@@ -585,7 +599,7 @@ workspace-id    : ワークスペースID
   "display_id": "グループを識別するID（組織コードなど）"
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/groups
 ```
@@ -609,11 +623,11 @@ POST https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/groups
 指定したグループ名を更新します。
 ##### Method
 PUT
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/groups/:group-id
 ```
-##### Params
+##### URL Params
 ```
 workspace-id    : ワークスペースID
 group-id        : グループID
@@ -625,7 +639,7 @@ group-id        : グループID
   "display_id": "グループを識別するID（組織コードなど）"
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 PUT https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/groups/59bf3b300e24791418da1aa1
 ```
@@ -640,11 +654,11 @@ null
 指定したグループ名を削除します
 ##### Method
 DELETE
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/groups/:group-id
 ```
-##### Params
+##### URL Params
 ```
 group-id        : グループID
 ```
@@ -655,7 +669,7 @@ group-id        : グループID
   "group-id": "グループを識別するID（組織コードなど）"
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 DELETE https://api.xxx.com/api/v0/groups/59bf3b300e24791418da1aa1
 ```
@@ -671,11 +685,11 @@ null
 
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/grouproles/:group-id
 ```
-##### Params
+##### Payload
 `Content-Type : application/json`
 ```JSON
 {
@@ -692,7 +706,7 @@ POST
   ]
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/grouproles/:group-id
 ```
@@ -708,12 +722,11 @@ POST https://api.xxx.com/api/v0/grouproles/:group-id
 
 ##### Method
 PUT
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/grouproles/:group-id
 ```
-##### Params
-URL Param
+##### URL Params
 ```
 group-id :  グループID
 ```
@@ -734,7 +747,7 @@ group-id :  グループID
   ]
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 PUT https://api.xxx.com/api/v0/grouproles/:group-id
 ```
@@ -743,60 +756,23 @@ PUT https://api.xxx.com/api/v0/grouproles/:group-id
 {} //空のオブジェクトが返ってくる
 ```
 
+---
 ### ユーザー関連API
 
-#### 指定されたグループのユーザー一覧の取得
-指定されたグループのユーザー一覧を取得する
-##### Method
-GET
-##### Request Format
-```
-/api/v0/users/api/v0/groups/:group-id/users
-```
-##### Params
-URL Param
-```
-group-id :  グループID
-```
-`Query Param`
-```
-recursive        : bool  //複数ユーザー取得
-```
-##### Request Sample
-```
-GET https://api.xxx.com/api/v0/groups/5df9d7d7aeae8e2fa894e324/users
-```
+#### GetUserInfo
+ユーザーの関連情報取得
 
-##### Response Sample
-
-```JSON
-{
-    "members": [
-        {
-            "u_id": "ユーザーID",
-            "username": "ユーザー名",
-            "email": "ユーザーのemail",
-            "profile_pic": "https://storage.googleapis.com/linker/pub/default.png", //("画像のストレージ領域")
-            "confirmed": true, //("bool, このユーザーが確認済みかどうか")
-            "email_sent": true,//("bool, このユーザーにemailが送られたかどうか")
-            "is_sv": true //("bool, このユーザーがスーパバイザー型かどうか、true=supervisorである")
-        } //("ユーザー毎にオブジェクトが返される")
-    ],
-    "count": 1//("int、このグループ内部にいるユーザー数")
-}
-```
-
-#### ユーザーの関連情報取得
+##### Description
 tokenで指定されたユーザーに関連した情報取得
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/userinfo
 ```
 ##### Params
 
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/userinfo
 ```
@@ -832,16 +808,94 @@ GET https://api.xxx.com/api/v0/userinfo
   ]
 }
 ```
+---
+#### UpdateUserInfo
+ユーザー名、情報の更新
 
-#### グループに新規ユーザーを作成
+##### Description
+ユーザーの名前、画像を更新する
+##### Method
+PUT
+##### Request URL Format
+```
+/api/v0/userinfo
+```
+##### Payload
+```JSON
+{
+  "email":"ユーザのemail",　//必須
+  "username":"ユーザー名",　
+  "user_id":"ユーザーID",　//必須
+}
+
+```
+##### Request URL Sample
+```
+PUT https://api.xxx.com/api/v0/userinfo
+```
+
+##### Response Sample
+```
+{"error": null //エラーの有無}
+```
+
+---
+#### GetUsersInGroup
+指定されたグループのユーザー一覧の取得
+
+##### Description
+指定されたグループのユーザー一覧を取得する
+##### Method
+GET
+##### Request URL Format
+```
+/api/v0/users/api/v0/groups/:group-id/users
+```
+##### URL Params
+```
+group-id :  グループID
+```
+`Query Param`
+```
+recursive        : bool  //複数ユーザー取得
+```
+##### Request URL Sample
+```
+GET https://api.xxx.com/api/v0/groups/5df9d7d7aeae8e2fa894e324/users
+```
+
+##### Response Sample
+
+```JSON
+{
+    "members": [
+        {
+            "u_id": "ユーザーID",
+            "username": "ユーザー名",
+            "email": "ユーザーのemail",
+            "profile_pic": "https://storage.googleapis.com/linker/pub/default.png", //("画像のストレージ領域")
+            "confirmed": true, //("bool, このユーザーが確認済みかどうか")
+            "email_sent": true,//("bool, このユーザーにemailが送られたかどうか")
+            "is_sv": true //("bool, このユーザーがスーパバイザー型かどうか、true=supervisorである")
+        } //("ユーザー毎にオブジェクトが返される")
+    ],
+    "count": 1//("int、このグループ内部にいるユーザー数")
+}
+```
+
+---
+#### AddUser
+グループに新規ユーザーを作成
+
+##### Description
 指定されたグループに新規ユーザーを作成する
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/users
 ```
-##### Params
+##### Payload
 `Content-Type : application/json`
 ```JSON
 {
@@ -851,7 +905,7 @@ POST
   "username": "グループに追加したいユーザー名"
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/users
 ```
@@ -876,15 +930,19 @@ POST https://api.xxx.com/api/v0/users
 }
 ```
 
-#### ユーザーの初期登録開始
-ユーザーの初期登録開始、指定ユーザーのメールに登録リンク送信
+#### UserRegistration
+初回ユーザー登録
+
+##### Description
+ログイン前のユーザーの初期登録開始。LandingPage等で最もはじめのユーザーを登録する場合に利用する。指定ユーザーのメールに登録リンクを送信する。
+
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/users/registration
 ```
-##### Params
+##### Payload
 ```JSON
 {
   "email":"メールを送信したい対象 例:test@gmail.com", //必須
@@ -900,7 +958,7 @@ POST
     }
 　}
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/users/registration
 ```
@@ -913,13 +971,16 @@ POST https://api.xxx.com/api/v0/users/registration
   "status": 200
 }
 ```
+---
+#### ConfirmRegistration
+ユーザーの初期登録の確認
 
-#### ユーザーの初期登録の確認
-ユーザーの初期登録の確認、確認情報を確認済みにする
+##### Description
+ユーザーの初期登録用のメールに添付されたURLから、ユーザーを確認し、確認情報を確認済みにする
 
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/users/registration/confirm
 ```
@@ -927,7 +988,7 @@ GET
 ```Qury Params
 id : sdafasdfasdfadsffdsafasdf //必須　ユーザー初期登録シーケンスのconfirmation_id
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/users/registration/confirm?id=sdafasdfasdfadsffdsafasdf
 ```
@@ -945,16 +1006,20 @@ GET https://api.xxx.com/api/v0/users/registration/confirm?id=sdafasdfasdfadsffds
     }
 }
 ```
+---
+#### RegisterUser
+ユーザーの初期登録
 
-#### ユーザーの初期登録、パスワード登録
-ユーザーの初期登録、パスワード登録
+##### Description
+ユーザーを初期登録する。パスワード設定に加え、そのユーザー固有の情報をMap形式で登録することができる。
+
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/users/registration/confirm
 ```
-##### Params
+##### Payload
 ```JSON
 {
   "confirmation_id":"確認用のID", //必須
@@ -964,7 +1029,7 @@ POST
   "password": "設定するパスワード",　// 必須
   "additional_info":{"自由入力フィールド1":"自由入力された値1","自由入力フィールド2":"自由入力された値2"}
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/users/registration/confirm
 ```
@@ -976,23 +1041,28 @@ POST https://api.xxx.com/api/v0/users/registration/confirm
 　"token": "ログイン用アクセストークン取得　例：dfgsdfsdfsdgfafas213dfdc2"
 }
 ```
+---
+#### ResetPassword
+パスワード初期化リクエスト
 
-#### ログイン前、パスワード初期化 開始
-ログインしていない状態でのパスワード初期化処理を開始する, emailを送信する
+##### Description
+ログインしていない状態で、パスワード初期化処理を依頼する。該当メールアドレスが存在した場合に、パスワード変更URLを送信する。
+
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/users/password/forgot
 ```
-##### Params
+##### Payload
 ```JSON
 {
   "email":"パスワードをリセットしたいユーザーのemail",　//必須
   "host":"例：https://stg.xxxxxx.com" //必須
+
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/password/forgot
 ```
@@ -1004,15 +1074,19 @@ POST https://api.xxx.com/api/v0/password/forgot
 }
 ```
 
-#### ログイン前、パスワード初期化 パスワードを変更する
-ログインしていない状態でのパスワードを変更する、前提条件として変更用のパスワード初期化用のIDが必要
+---
+#### SetNewPassword
+パスワード再登録
+
+##### Description
+ログインしていない状態でのパスワードを変更する。前提条件として変更用のパスワード初期化用のIDが必要
 ##### Method
 PUT 
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/users/password/forgot
 ```
-##### Params
+##### Payload
 ```JSON
 {
   "new_password":"必須　新規作成パスワード　例：test",
@@ -1020,29 +1094,34 @@ PUT
   "id":"必須　パスワード初期化開始のapi送信後にemailのリンク内部に埋め込まれた情報をここに入れる"
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 PUT https://api.xxx.com/api/v0/users/password/forgot
 ```
 
 ##### Response Sample
 ```
-無
+なし
 ```
 
-#### ログイン前、パスワード初期化　パスワー変更状態の確認
-ログインしていない状態でのパスワード変更状態の確認
+---
+#### ValidatePassword
+パスワード変更状態の確認
+
+##### Description
+ログインしていない状態でのパスワード変更後、ユーザー状態に関する情報を取得する。
+
 ##### Method
 GET 
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/users/password/validate
 ```
 ##### Params
 ```Query Params
-id: laskdhoifvoasdijflasmdlm //必須　emailで取得されたid情報
+id: laskdhoifvoasdijflasmdlm //必須　emailに送信されたid情報
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/users/password/validate
 ```
@@ -1057,16 +1136,19 @@ GET https://api.xxx.com/api/v0/users/password/validate
  "updated_at": "2020-01-07T13:31:20.961Z"　// パスワード更新日
 }
 ```
+---
+#### SetPassword
+ログイン後、パスワード変更
 
-#### ログイン後、パスワード変更
+##### Description
 ログインしているユーザーのパスワードを変更する
 ##### Method
 PUT
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/users/password
 ```
-##### Params
+##### Payload
 ```JSON
 {
   "confirm_password":"必須　新しいパスワードの確認 //入力内容はnew_paswordと同じで有る必要が有る",
@@ -1074,7 +1156,7 @@ PUT
   "old_password":"必須　今まで使用していたパスワード"
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 PUT https://api.xxx.com/api/v0/users/password
 ```
@@ -1086,43 +1168,21 @@ PUT https://api.xxx.com/api/v0/users/password
 }
 ```
 
-#### ユーザー名、情報の更新
-ユーザーの名、画像を更新する
-##### Method
-PUT
-##### Request Format
-```
-/api/v0/userinfo
-```
-##### Params
-```JSON
-{
-  "email":"ユーザのemail",　//必須
-  "username":"ユーザー名",　
-  "user_id":"ユーザーID",　//必須
-}
 
-```
-##### Request Sample
-```
-PUT https://api.xxx.com/api/v0/userinfo
-```
+---
+#### AddRoleToUser
+ユーザーへロール付与
 
-##### Response Sample
-```
-{"error": null //エラーの有無}
-```
-
-#### ユーザーにアプリケーションのロールを付与する
+##### Description
+ユーザーにアプリケーションのロールを付与する
 
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:project-id/userroles
 ```
-##### Params
-URL Params
+##### URL Params
 ```
 project-id: アプリケーション表示ID
 ```
@@ -1133,7 +1193,7 @@ project-id: アプリケーション表示ID
     "role_id": "ロール表示ID" 
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/applications/:project-id/userroles
 ```
@@ -1151,16 +1211,21 @@ Status 403
 }
 ```
 
-#### ユーザーからアプリケーションのロールを外す
+---
+
+#### RemoveRoleFromUser
+ユーザからロールを削除
+
+##### Description
+ユーザーからアプリケーションのロールを外す
 
 ##### Method
 DELETE
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:project-id/userroles
 ```
-##### Params
-URL Params
+##### URL Params
 ```
 project-id: アプリケーション表示ID
 ```
@@ -1171,7 +1236,7 @@ project-id: アプリケーション表示ID
     "role_id": "ロール表示ID" 
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 DELETE https://api.xxx.com/api/v0/applications/:project-id/userroles
 ```
@@ -1188,25 +1253,60 @@ Status 403
     "message": "No privileges to the Application"//ユーザーのプロジェクト権限を外す権限が無い
 }
 ```
+---
 
+#### UserImport
+ユーザーをインポート
 
+##### Description
+指定されたグループにユーザーをインポートする
 
-#### ワークスペースのユーザー一覧の取得
+##### Method
+POST
+##### Request URL Format
+
+/api/v0/userimport
+```
+##### Payload
+`Content-Type : application/form-data`
+```JSON
+{
+  "current_workspace_id":"ユーザーをインポートする対象のワークスペースID", //必須
+  "filename":"インポートする目的のCSVファイル名",　//必須 
+  "file":"バイナリー型CSVファイル　, CSV ファイルのヘッダーはEmail, UserName,	Password,	GroupDisplayIDs,	RoleDisplayIDs,	IsDelete
+" //必須
+}
+```
+##### Request Sample
+```
+POST https://api.xxx.com/api/v0/userimport
+```
+
+##### Response Sample
+```JSON
+{"error":null}
+```
+
+---
+#### GetUsersInWorkspace
+ワークスペースのユーザー一覧の取得
+
+##### Description
 指定されたワークスペースのユーザー一覧の取得する
 
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 
 /api/v0/workspaces/:workspace-id/users
 ```
-##### Params
+##### URL Params
 ```
 workspace-id :  ワークスペースID
 admin_only : 管理者のみを返すためのブール値
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/workspaces/5d8b44adef2261640ab04ef6/users?admin_only=true
 ```
@@ -1247,13 +1347,88 @@ GET https://api.xxx.com/api/v0/workspaces/5d8b44adef2261640ab04ef6/users?admin_o
 }
 ```
 
-#### グループからユーザーを削除
+
+#### GetAllUsersInWorkspace
+ワークスペース全ユーザー取得
+
+##### Description
+指定グループ配下のユーザー全員のデータを取得する
+
+#### Method
+GET
+
+#### Request URL
+```
+/api/v0/users/all/g/:group-id
+```
+#### Params
+```
+group-id :  グループID
+```
+#### Request Sample
+```
+GET https://api.xxx.com/api/v0/users/all/g/582b26d8fb90a15e0c24ad81
+```
+
+#### Response Sample
+```JSON
+{
+    "members": [
+        {
+            "confirmed": false,
+            "email": "hi__12@b-eee.com",
+            "email_sent": false,
+            "profile_pics": [
+                {
+                    "mediaLink": "https://storage.googleapis.com/linker/pub/default.png"
+                }
+            ],
+            "u_id": "58a29e35bf400ddced9fede3",
+            "username": "hi__12"
+        },
+        {
+            "confirmed": false,
+            "email": "hi__13@b-eee.com",
+            "email_sent": false,
+            "profile_pics": [
+                {
+                    "mediaLink": "https://storage.googleapis.com/linker/pub/default.png"
+                }
+            ],
+            "u_id": "58a29e36bf400ddced9fede4",
+            "username": "hi__13"
+        },
+        :
+        :(省略)
+        :
+        {
+            "confirmed": false,
+            "email": "test22@b-eee.com",
+            "email_sent": false,
+            "profile_pics": [
+                {
+                    "mediaLink": "https://storage.googleapis.com/linker/pub/default.png"
+                }
+            ],
+            "u_id": "58466a7afb90a1024d298306",
+            "username": "test222"
+        }
+    ],
+    "totalMembers": 10
+}
+```
+
+---
+#### RemoveUser
+グループからユーザーを削除
+
+##### Description
 グループからユーザーを削除する
 
 ##### Method
 DELETE
 
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/users
 ```
@@ -1268,7 +1443,7 @@ DELETE
 }
 ```
 
-##### Request Sample
+##### Request URL Sample
 ```
 DELETE https://api.xxx.com/api/v0/users
 ```
@@ -1280,18 +1455,22 @@ DELETE https://api.xxx.com/api/v0/users
 }
 ```
 
-#### ユーザーを招待
+---
+#### UserInvite
+ユーザーを招待
+
+##### Description
 ユーザーを招待する
 
 ##### Method
 POST
 
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/userinvite
 ```
 
-##### Params
+##### Payload
 `Content-Type : application/json`
 ```JSON
 {
@@ -1308,7 +1487,7 @@ POST
 }
 ```
 
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/userinvite
 ```
@@ -1331,20 +1510,24 @@ POST https://api.xxx.com/api/v0/userinvite
 
 Hexabaseでは、「アプリケーション」ごとに、データベース・データレポート・ダッシュボードなどをまとめています。新しくワークプレースを作成すると「新しいアプリケーション」という名前のアプリケーションが作成されています。
 
-#### アプリケーション一覧の取得
+#### GetApplicationsAndDatastores
+アプリケーション一覧、データストア一覧の取得
+
+##### Description
 指定ワークスペース配下のアプリケーション（データストア含む）の一覧を取得します
+
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/workspaces/:workspace-id/applications
 ```
-##### Params
+##### URL Params
 ```
 workspace-id    : ワークスペースID
 ```
 
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/applications
 ```
@@ -1364,26 +1547,29 @@ GET https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/applications
 }
 ```
 
-
 ### フィールド関連API
 
 Hexabaseでは、「アイテム」のカラムを「フィールド」または「画面項目」と呼びます。
 
-#### フィールド一覧（DisplayIDを利用）
+#### GetDatastoreFields
+フィールド一覧（DisplayIDを利用）
+
+##### Description
 利用可能なフィールドの一覧を取得します（DisplayIDを利用）
+
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:app-id/datastores/:datastore-id/fields
 ```
-##### Params
+##### URL Params
 ```
 app-id  : アプリケーションID（Hexabase画面から入力したIDを指定）
 datastore-id    : データストアID（Hexabase画面から入力したID）
 ```
 
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/fields
 ```
@@ -1510,23 +1696,32 @@ GET https://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/fields
 }
 ```
 
+
+
+---
 ### アイテム関連API
 
 Hexabaseでは、データベースの各データを「アイテム」と呼びます。表の横１行がアイテムになります。一般的なRDBのレコードに相当します。
 
-#### アイテム一覧の取得（DisplayIDの利用）
+#### ItemList
+アイテム一覧の取得（DisplayIDの利用）
+
+##### Description
 アイテムの一覧を取得します
+
 ##### Method
 POST
-##### Request Format
+
+##### Request URL Format
 ```
 /api/v0/applications/:app-id/datastores/:datastore-id/items/search
 ```
-##### Params
+##### URL Params
 ```
 app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
 datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
 ```
+##### Payload
 ```
 conditions      : 検索条件を指定
 page            : ページ数
@@ -1575,7 +1770,7 @@ sort_order      : 昇順の場合"asc" 降順の場合"desc"
 }
 ```
 
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/applications/5c6363d984f4be7de0350445/datastores/DATABASEID/items/search
 ```
@@ -1624,25 +1819,28 @@ POST https://api.xxx.com/api/v0/applications/5c6363d984f4be7de0350445/datastores
 
 
 
+---
+#### CreateItem
+新規アイテムを作成（DisplayIDの利用）
 
-#### 新規アイテムを作成（DisplayIDの利用）
+##### Description
 新規アイテムを作成します（Hexabase画面から入力したIDを指定）
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:app-id/datastores/:datastore-id/items/new
 ```
-##### Params
+##### URL Params
 ```
 app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
 datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items/new
 ```
-#### Post Payload
+#### Payload
 （例）
 `Content-Type : application/json`
 ```JSON
@@ -1663,19 +1861,22 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
     "item_id": "5a2647410e24792d87451e34"
 }
 ```
+---
+#### UpdateItem
+アイテムの編集（DisplayIDの利用）
 
-#### アイテムの編集（DisplayIDの利用）
+##### Description
 指定したアイテムを更新します（Hexabase画面から入力したIDを指定）
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:app-id/datastores/:datastore-id/items/edit/:item-id
 ```
-##### Params
+##### URL Params
 ```
-app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
-datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
+app-id          : アプリケーションID（Hexabase画面から入力したIDまたは内部ID[p_id]を指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDまたは内部ID[d_id]を指定）
 item-id         : 対象アイテムのID
 ```
 Post パラメーターの例
@@ -1704,7 +1905,7 @@ Post パラメーターの例
 }
 ```
 
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items/edit/5d4c058baa39555618ac9e8b
 ```
@@ -1712,26 +1913,30 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
 ```
 null
 ```
+---
+#### DeleteItem
+アイテムの削除（DisplayIDの利用）
 
-#### アイテムの削除（DisplayIDの利用）
+##### Description
 指定したアイテムを削除します（Hexabase画面から入力したIDを指定）
 ##### Method
 DELETE
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:app-id/datastores/:datastore-id/items/delete/:item-id
 ```
-##### Params
+##### URL Params
 ```
-app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
-datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
+app-id          : アプリケーションID（Hexabase画面から入力したIDまたは内部ID[p_id]を指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDまたは内部ID[d_id]を指定）
 item-id         : 対象アイテムのID
 ```
 ##### Payload
+空のJSON `{}`を指定する必要があります
 ```
 {}
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 DELETE http://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/items/delete/5d4c058baa39555618ac9e8b
 
@@ -1746,19 +1951,22 @@ Payload (空のJSONを指定する必要があります)
     "item_id": "5a2647410e24792d87451e34"
 }
 ```
+---
+#### DeleteItemByConditions
+条件を指定してアイテムを削除（DisplayIDの利用）
 
-#### 条件を指定してアイテムを削除（DisplayIDの利用）
+##### Description
 検索条件を指定して、条件にマッチしたアイテムを削除します
 ##### Method
 DELETE
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:app-id/datastores/:datastore-id/items/delete
 ```
-##### Params
+##### URL Params
 ```
-app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
-datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
+app-id          : アプリケーションID（Hexabase画面から入力したIDまたは内部ID[p_id]を指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDまたは内部ID[d_id]を指定）
 ```
 
 `Content-Type : application/json`
@@ -1776,7 +1984,7 @@ datastore-id    : データストアID（Hexabase画面から入力したIDを�
 }
 ```
 
-##### Request Sample
+##### Request URL Sample
 ```
 DELETE http://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/items/delete
 ```
@@ -1787,30 +1995,33 @@ DELETE http://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/items/
 }
 ```
 
+---
+#### AddItemLink
+関連アイテムとのリンクを追加（DisplayIDの利用）
 
-#### 関連アイテムとのリンクを追加（DisplayIDの利用）
+##### Description
 関連アイテムとのリンクを追加します
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:app-id/datastores/:datastore-id/items/addlink/:item-id
 ```
-##### Params
+##### URL Params
 ```
-app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
-datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
+app-id          : アプリケーションID（Hexabase画面から入力したIDまたは内部ID[p_id]を指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDまたは内部ID[d_id]を指定）
 item-id         : 対象アイテムのID
 ```
-Post パラメーターの例
+##### Payload 
 ```
 {
-	"link_datastore_id": "DATABASE_2",
-	"link_item_id": "5d4c055eaa39555618ac9e6a"
+	"link_datastore_id": "DATABASE_2",  // データストアID（Hexabase画面から入力したIDを指定）
+	"link_item_id": "5d4c055eaa39555618ac9e6a" // 追加するアイテムID
 }
 ```
 
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/items/addlink/5d4c058baa39555618ac9e8b
 ```
@@ -1818,32 +2029,35 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/items
 ```
 null
 ```
+---
+#### UpdateItemLink
+関連アイテムとのリンクを更新
 
-#### 関連アイテムとのリンクを更新
+##### Description
 関連アイテムとのリンクを更新します
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:app-id/datastores/:datastore-id/items/updatelink/:item-id
 ```
-##### Params
+##### URL Params
 ```
-app-id          : アプリケーションID（Hexabase画面から入力したIDを指定）
-datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
+app-id          : アプリケーションID（Hexabase画面から入力したIDまたは内部ID[p_id]を指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDまたは内部ID[d_id]を指定）
 item-id         : 対象アイテムのID
 ```
-Post パラメーターの例
+##### Payload 
 ```
 {
-  "old_link_datastore_id": "DATABASE_2",
-  "old_link_item_id": "5db16351ef2261da6f3b3560",
-  "new_link_datastore_id": "DATABASE_2",
-  "new_link_item_id": "5db16351ef2261da6f3b356b"
+  "old_link_datastore_id": "DATABASE_2",　// 更新するリンク先データストアID
+  "old_link_item_id": "5db16351ef2261da6f3b3560",　// 更新するリンク先アイテムID
+  "new_link_datastore_id": "DATABASE_2",　// 追加するデータストアID
+  "new_link_item_id": "5db16351ef2261da6f3b356b"　// 追加するアイテムID
 }
 ```
 
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/items/updatelink/5d4c058baa39555618ac9e8b
 ```
@@ -1851,29 +2065,32 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/items
 ```
 null
 ```
+---
+#### DeleteItemLink
+関連アイテムとのリンクを削除（DisplayIDの利用）
 
-#### 関連アイテムとのリンクを削除（DisplayIDの利用）
+##### Description
 関連アイテムとのリンクを削除します
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:app-id/datastores/:datastore-id/items/dellink/:item-id
 ```
-##### Params
+##### URL Params
 ```
-app-id      : アプリケーションID（Hexabase画面から入力したIDを指定）
-datastore-id    : データストアID（Hexabase画面から入力したIDを指定）
+app-id          : アプリケーションID（Hexabase画面から入力したIDまたは内部ID[p_id]を指定）
+datastore-id    : データストアID（Hexabase画面から入力したIDまたは内部ID[d_id]を指定）
 item-id         : 対象アイテムのID
 ```
-Post パラメーターの例
+##### Payload 
 ```
 {
 	"link_datastore_id": "DATABASE_2",
 	"link_item_id": "5d4c055eaa39555618ac9e6a"
 }
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST http://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/items/dellink/5d4c058baa39555618ac9e8b
 ```
@@ -1886,11 +2103,11 @@ null
 指定アクションを実行し、アイテム更新、コメントの追記
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
 ```
-##### Params
+##### Payload
 `Content-Type : application/json`
 ```JSON
 {"changes":
@@ -1906,8 +2123,7 @@ POST
   "rev_no":8　//現在のrevison番号
 }
 ```
-##### Request Sample
-```
+##### Request URL Sample
 GET https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
 
 ##### Response Sample
@@ -1915,20 +2131,24 @@ GET https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-i
 null
 ```
 
-#### アイテムの詳細情報、アクションリストを取得
+---
+#### GetItemDetails
+アイテムの詳細情報、アクションリストを取得
+
+##### Description
 指定したアイテムの情報（フィールド、ステータス、アクションなど）を取得します
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/datastores/:datastore-id/items/:item-id
 ```
-##### Params
+##### URL Params
 ```
 datastore-id  :  データストアID
 item-id  :  アイテムのID
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/58cd1e5bfbfcba2ebcaf0b1e
 ```
@@ -2035,23 +2255,335 @@ GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/58cd1e5
     ]
 }
 ```
+---
+### GetActionFields
+アクションフィールド情報
 
+#### Description
+アクションで利用可能なフィールド情報を取得する
+#### Method
+GET
+#### Request Format
+```
+/api/v0/datastores/:datastore-id/actions/:action-id/fields
+```
+#### URL Params
+```
+datastore-id    : データストアID
+action-id       : アクションID
+```
 
-#### アイテムに関連するアイテム一覧を取得
+#### Request URL Sample
+```
+GET https://api.xxx.com/api/v0/datastores/59bf42550e2479186a6c6c70/5a2671ec0e24794c979fa5b1/fields
+```
+
+#### Response Sample
+```JSON
+{
+    "action": {
+        "action_id": "5a2671ec0e24794c979fa5b1",
+        "display_order": 3,
+        "description": "",
+        "crud_type": "2",
+        "next_status_id": "5a2671eb0e24794c979fa5ab"
+    },
+    "action_fields": {
+        "5a2671eb0e24794c979fa5a9": {
+            "field_id": "5a2671eb0e24794c979fa5a9",
+            "name": "タイトル",
+            "display_id": "Fld-U2WtgeXa",
+            "dataType": "text",
+            "search": true,
+            "show_list": false,
+            "as_title": true,
+            "status": false,
+            "fieldIndex": 0,
+            "title_order": 1,
+            "full_text": false,
+            "unique": false,
+            "min_value": "",
+            "max_value": ""
+        },
+        "5a2671eb0e24794c979fa5aa": {
+            "field_id": "5a2671eb0e24794c979fa5aa",
+            "name": "ステータス",
+            "display_id": "Fld-cTsftJE1",
+            "dataType": "status",
+            "search": true,
+            "show_list": true,
+            "as_title": false,
+            "status": true,
+            "fieldIndex": 1,
+            "title_order": 0,
+            "full_text": false,
+            "unique": false,
+            "min_value": "",
+            "max_value": ""
+        },
+        "5a2672080e24794c979fa5b4": {
+            "field_id": "5a2672080e24794c979fa5b4",
+            "name": "選択肢1",
+            "display_id": "Fld-oQmo4lvb",
+            "dataType": "select",
+            "search": true,
+            "show_list": true,
+            "as_title": false,
+            "status": false,
+            "fieldIndex": 0,
+            "title_order": 0,
+            "full_text": false,
+            "unique": false,
+            "min_value": "",
+            "max_value": "",
+            "options": [
+                {
+                    "option_id": "ba280b86-fa91-4ab5-acf7-4c6d2445ffc7",
+                    "sort_id": 0,
+                    "value": "選択1",
+                    "enabled": true
+                },
+                {
+                  "option_id": "c742f7f6-0339-4240-a1ea-66543fc504ca",
+                  "sort_id": 1,
+                  "value": "選択2",
+                  "enabled": true
+                }
+            ]
+        },
+        "5a26722e0e24794c979fa5b6": {
+            "field_id": "5a26722e0e24794c979fa5b6",
+            "name": "数値1",
+            "display_id": "Fld-BCgyvxUw",
+            "dataType": "number",
+            "search": true,
+            "show_list": true,
+            "as_title": false,
+            "status": false,
+            "fieldIndex": 0,
+            "title_order": 0,
+            "full_text": false,
+            "unique": false,
+            "min_value": "1",
+            "max_value": "10"
+        },
+        "5a26724e0e24794c979fa5b7": {
+            "field_id": "5a26724e0e24794c979fa5b7",
+            "name": "ユーザ1",
+            "display_id": "Fld-mZbgboDW",
+            "dataType": "users",
+            "search": true,
+            "show_list": true,
+            "as_title": false,
+            "status": false,
+            "fieldIndex": 0,
+            "title_order": 0,
+            "full_text": false,
+            "unique": false,
+            "min_value": "",
+            "max_value": ""
+        },
+        "5a2672880e24794c979fa5b8": {
+            "field_id": "5a2672880e24794c979fa5b8",
+            "name": "データストア参照1",
+            "display_id": "Fld-2CtMZFCM",
+            "dataType": "dslookup",
+            "search": false,
+            "show_list": true,
+            "as_title": false,
+            "status": false,
+            "fieldIndex": 0,
+            "title_order": 0,
+            "full_text": false,
+            "unique": false,
+            "min_value": "",
+            "max_value": ""
+            },
+        "5a2672970e24794c979fa5b9": {
+            "field_id": "5a2672970e24794c979fa5b9",
+            "name": "自動採番1",
+            "display_id": "Fld-v8f4OWuI",
+            "dataType": "autonum",
+            "search": true,
+            "show_list": true,
+            "as_title": false,
+            "status": false,
+            "fieldIndex": 0,
+            "title_order": 0,
+            "full_text": true,
+            "unique": false,
+            "min_value": "",
+            "max_value": ""
+        },
+        "5a2673740e24794c979fa5bf": {
+            "field_id": "5a2673740e24794c979fa5bf",
+            "name": "添付ファイル1",
+            "display_id": "Fld-WLZo8vwy",
+            "dataType": "file",
+            "search": false,
+            "show_list": false,
+            "as_title": false,
+            "status": false,
+            "fieldIndex": 0,
+            "title_order": 0,
+            "full_text": true,
+            "unique": false,
+            "min_value": "",
+            "max_value": ""
+        }
+    },
+    "action_field_settings": {
+        "5a2671eb0e24794c979fa5a9": {
+            "action_id": "5a2671ec0e24794c979fa5b1",
+            "field_id": "5a2671eb0e24794c979fa5a9",
+            "show": true,
+            "update": true,
+            "mandatory": false
+        },
+        "5a2671eb0e24794c979fa5aa": {
+            "action_id": "5a2671ec0e24794c979fa5b1",
+            "field_id": "5a2671eb0e24794c979fa5aa",
+            "show": true,
+            "update": true,
+            "mandatory": false
+        },
+        "5a2672080e24794c979fa5b4": {
+            "action_id": "",
+            "field_id": "5a2672080e24794c979fa5b4",
+            "show": true,
+            "update": true,
+            "mandatory": false
+        },
+        "5a26722e0e24794c979fa5b6": {
+            "action_id": "",
+            "field_id": "5a26722e0e24794c979fa5b6",
+            "show": true,
+            "update": true,
+            "mandatory": false
+        },
+        "5a26724e0e24794c979fa5b7": {
+            "action_id": "",
+            "field_id": "5a26724e0e24794c979fa5b7",
+            "show": true,
+            "update": true,
+            "mandatory": false
+        },
+        "5a2672880e24794c979fa5b8": {
+            "action_id": "",
+            "field_id": "5a2672880e24794c979fa5b8",
+            "show": true,
+            "update": true,
+            "mandatory": false
+        },
+        "5a2672970e24794c979fa5b9": {
+            "action_id": "",
+            "field_id": "5a2672970e24794c979fa5b9",
+            "show": true,
+            "update": true,
+            "mandatory": false
+        },
+        "5a2673740e24794c979fa5bf": {
+            "action_id": "",
+            "field_id": "5a2673740e24794c979fa5bf",
+            "show": true,
+            "update": true,
+            "mandatory": false
+        }
+    }
+}
+```
+---
+
+#### ExecuteAction
+指定アクションを実行する
+
+##### Description
+指定アクションを実行し、アイテム更新、コメントの追記
+##### Method
+POST
+##### Request Format
+```
+/api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
+```
+##### Params
+`Content-Type : application/json`
+```JSON
+{"changes":
+  [
+    {
+      "datatype":"multi",//使用しているフィールド型
+      "id":"5e256923aeae8e212cb2e03b",　//filedID 
+      "value":"更新値"} 
+  ],
+    "history":{
+      "comment":"コメント例"
+  },
+  "rev_no":8　//現在のrevison番号
+}
+```
+##### Request Sample
+```
+GET https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
+
+##### Response Sample
+```
+null
+```
+
+#### グループにひも付くロールの洗い変えをする
+
+##### Method
+POST
+##### Request Format
+```
+/api/v0/grouproles/:group-id
+```
+##### Params
+`Content-Type : application/json`
+```JSON
+{
+  "group_roles":
+  [
+    {
+      "app_id":"アプリケーションディスプレイＩＤ-１",
+      "role_id":"ロールディスプレイID-1"
+    },
+    {
+      "app_id":"アプリケーションデイスプレイＩＤ-２",
+      "role_id":"ロールディスプレイID-2"
+    }
+  ]
+}
+```
+##### Request Sample
+```
+POST https://api.xxx.com/api/v0/grouproles/:group-id
+```
+##### Response Sample
+```
+{} //空のオブジェクトが返ってくる
+```
+
+---
+#### GetLinkedItems
+アイテムに関連するアイテム一覧を取得
+
+##### Description
 指定したアイテムに関連するアイテム一覧と、関連先のデータベース情報（フィールド、アクションなど）を取得します
+
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/datastores/:datastore-id/items/:item-id/links/:linked-datastore-id
 ```
-##### Params
+##### URL Params
 ```
 datastore-id : 関連元のデータストアID
 item-id  :  アイテムのID
 linked-datastore-id  :  関連先のデータストアID
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/items/58cd1e5bfbfcba2ebcaf0b1e/links/58cbf6cbfbfcba78dc71228d
 ```
@@ -2914,19 +3446,25 @@ GET https://api.xxx.com/api/v0/items/58cd1e5bfbfcba2ebcaf0b1e/links/58cbf6cbfbfc
 }
 ```
 
-#### アクション実行
+---
+#### ExecuteActionByActionID
+アクション実行
+
+##### Description
 アクションを実行します
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/items/:item-id/actions/:action-id
 ```
-##### Params
+##### URL Params
 ```
 item-id      : アイテムID
 action-id    : アクションID
 ```
+
+##### Payload
 `Content-Type : application/json`
 ```
 {
@@ -2958,15 +3496,15 @@ action-id    : アクションID
   ]
 }
 ```
-- rev_noは排他チェックに利用している。/api/v0/datastores/:datastore-id/items/searchで返されるrev_noを指定。指定したrev_noとデータベース内のrev_noが異なる場合は、エラーとなる。
-- rev_noのエラーチェックをせず、強制的にデータ更新を行う場合は、 `is_force_update` フラグを `true` にして実行する。その場合はrev_noのフィールドは不要。
+- rev_noは排他チェックに利用している。/api/v0/datastores/:datastore-id/items/searchで返されるrev_noを指定。指定したrev_noとデータベース内のrev_noが異なる場合は、エラーとなる。（排他制御）
+- rev_noのエラーチェックをせず、強制的にデータ更新を行う場合は、 `is_force_update` フラグを `true` にして実行する。その場合はrev_noのフィールドは指定不要。最後に更新されたデータで上書きされる。
 - フィールドのデータタイプがユーザータイプ、添付ファイルタイプの場合、valueにはそれぞれuser_id、file_id の配列を指定する
 - フィールドのデータタイプが日付の場合、以下のフォーマットで指定する  
     yyyy-mm-ddThh:mm:ss.SSSZ (.SSSは省略可)  
     TZ間に指定する時刻は、UTC時刻を指定  
     例) 2018年1月11日を指定する場合、"2018-01-10T15:00:00.000Z"
 
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/actions/5a2671ec0e24794c979fa5b1
 ```
@@ -2974,50 +3512,163 @@ POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/actions/5a2671ec0
 ```
 null
 ```
+---
+### GetNewActionMenu
+新規作成アクションメニュー一覧
 
-#### アイテムの新規作成
-新規アイテムを作成します
+##### Description
+ログインユーザーが利用可能な`新規作成アクション`の一覧を取得します。<br>
+利用シーンとしては、一覧画面等に配置される「新規作成」ボタン押下時等にCallして、ユーザーが利用可能な新規作成アクションのメニューを表示する際に利用します。<br>
+通常新規作成メニューは１つですが、Hexabaseでは複数の新規作成アクションを設定することができます。
+
 ##### Method
-POST
-##### Request Format
+GET
+##### Request URL Format
 ```
-/api/v0/applications/:application-id/datastores/:datastore-id/items/new
+/api/v0/datastores/:datastore-id/new-action
 ```
-##### Params
+##### URL Params
 ```
-application-id : アプリケーションID
-datastore-id : データベースID
-```
-`Content-Type : application/json`
-```
-{
-    "item": {
-        "CLIENT_NAME": "sample data",  // フィールドID: 値
-        "FROM_DATE": "2019-08-14T15:00:00.000Z",
-        "OPTIONS": "5d4c058baa39555618ac9e97"
-    },
-    "use_display_id" : true // true: 画面から入力したIDを使用する
-}
+datastore-id    : データストアID
 ```
 
 ##### Request Sample
 ```
-POST https://api.xxx.com/applications/APPNAME/datastores/RESERVES/items/new
+GET https://api.xxx.com/api/v0/datastores/59bf42550e2479186a6c6c70/new-action
 ```
+
 ##### Response Sample
-```
+```JSON
 {
-    "error": null,
-    "history_id": "5d42d79eaa395517ccf118d9",
-    "item_id": "5d42d79daa395517ccf118d7"
+    "actions": [
+        {
+            "action_id": "5a2502f00e24792b67887200",  // アクションID
+            "display_order": 2,  // メニューの表示順。HexabaseのActionメニューのソート順
+            "crud_type": "1",  // 常に1（新規登録）が返る
+            "next_status_id": "5a2502f00e24792b678871f8"   //アクション実行後、遷移するステータスID
+        }
+    ]
 }
 ```
 
-#### 履歴取得
-履歴を取得します
+---
+### CreateItemID
+新規アイテムID取得
+
+##### Description
+新規アイテムの入力フォームを表示する際に、あらかじめアイテムIDを取得する際に利用します。<br>
+取得したアイテムIDは、アイテム登録前に添付ファイルのアップロードすることが必要な場合に利用します。<br>
+このAPIで取得したitem_idは、[PostNewAction](#PostNewAction) APIで新規アイテムを登録する際に利用します。
+
+##### Method
+POST
+##### Request URL Format
+```
+/api/v0/datastores/:datastore-id/items/create-id
+```
+##### URL Params
+```
+datastore-id    : データストアID
+```
+##### Request Sample
+```
+POST https://api.xxx.com/api/v0/datastores/58bbaa27fbfcba6098746061/items/create-id
+```
+##### Response Sample
+```JSON
+{
+    "item_id": "5a2647410e24792d87451e34"
+}
+```
+
+---
+### CreateItemWithItemID
+item_idを指定して新規アイテムを作成
+
+##### Description
+item_idを指定して新規アイテムを作成します。<br>
+このAPIは、`アイテム登録前`に`添付ファイルのアップロードが必要`な場合で利用します。<br>
+新規に添付ファイルを持ったアイテムを作成するためには、あらかじめ添付ファイルの登録が必要です。添付ファイルの登録にはitem_idが必要なため、item_idを取得した後に添付ファイルを登録し、変換されたfile_idを指定して、このAPIでアイテムを新規作成します。item_idは、[CreateItemID](#CreateItemID) APIを利用して事前に取得できます。
+
+##### Method
+POST
+
+##### Request URL Format
+```
+/api/v0/items/:item-id/new-actions/:action-id
+```
+
+##### URL Params
+```
+item-id      : アイテムID
+action-id    : 新規作成アクションID（Payload内の`use_display_id`がtrueの場合、画面ID(設定で指定したID)を使用。falseの場合システム内部のID(a_id)を使用。
+```
+
+##### Payload
+`Content-Type : application/json`
+```
+{
+  "item": {
+    "項目ID1": "作成アイテム項目の値１",
+    "項目ID2": "作成アイテム項目の値２"
+    },
+  "project_id": "プロジェクトID",
+  "datastore_id": "データベースID",
+  "use_display_id": true or false //trueの場合、item内の項目IDに画面IDを使用する。falseの場合システム内部のFieldID(f_id)を使用する。指定しない場合、デフォルトはfalse。
+}
+```
+
+#### Request Sample1
+```
+POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/アクションID
+```
+```
+{
+  "item": {
+    "Locaton": "北極",
+    "weather": "雪"
+  },
+  "project_id": "アプリケーションID",
+  "datastore_id": "データベースD",
+  "use_display_id": true
+}
+```
+#### Response Sample
+```
+null
+```
+
+#### Request Sample2
+```
+POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/5e99e6a8aeae8e9af01ec366
+```
+
+```
+{
+  "item": {
+    "5e99e2e3aeae8e9af01ec35b": "北極",
+    "5e99e690aeae8e9af01ec363": "雪"
+  },
+  "project_id": "5e99e696aeae8e9af01ec364",
+  "datastore_id": "5e99e69caeae8e9af01ec365",
+  "use_display_id": false
+}
+```
+#### Response Sample2
+```
+null
+```
+
+---
+#### GetItemHistories
+履歴取得
+
+##### Description
+コメントやアクション実行の履歴を取得します
+
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/datastores/:datastore-id/items/:item-id/histories
 ```
@@ -3025,7 +3676,7 @@ GET
 ```
 なし
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/59ad2d8a0e247927638e761a/histories
 ```
@@ -3060,18 +3711,22 @@ GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/59ad2d8
     "unread": 0
 }
 ```
+---
+#### PostItemComment
+コメント登録
 
-#### コメント履歴の登録
-データアイテムに対する履歴を登録します
+##### Description
+アイテムにコメントを投稿します。コメントはアイテムの履歴へ投稿され、[GetItemHistories](#GetItemHistories)で取得できます。
+
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/datastores/:datastore-id/items/histories
 ```
 ##### URL Params
 ```
-  "datastore-id": データベースID（d_id）
+  "datastore-id": データベースID（システム内部ID d_id）
 ```
 ##### Post Params
 ```
@@ -3079,7 +3734,7 @@ POST
   "item_id": データアイテムID(i_id)
   "comment" : 登録したいコメント
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/histories
 ```
@@ -3095,21 +3750,28 @@ POST https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/histor
 ```JSON
 null
 ```
-
+---
 ## データインポート関連API
-### データインポート
-CSVファイルを指定して、データストアデータを更新します。新規・更新・削除が可能です。
+
+### ImportItems
+CSVデータインポート
+
+##### Description
+CSVファイルを指定して、データベース(datastore)を更新します。新規・更新・削除が可能です。
 - キーフィールドに指定したフィールドに同値が存在する場合は更新され、存在しない場合は新規で登録されます。
-- replace_all(bool) またはappend(bool)オプションをtrue とすると、一括インポート
-- CSV内に削除フィールド（項目名を`_delete_`とする）を用意し、削除するItemには`true`または`1`を指定すると、該当Itemは削除されます。
-- ステータスを意味するフィールドは、CSVのヘッダー名を`_status_`として、データにはステータス名(status_idではありません)を指定します。
-#### Method
+- replace_all(bool) オプションをtrue とすると、全データを削除し、指定したCSVデータで新規登録（洗い替え）します。指定しない場合に比べて高速に処理が可能です。
+- append(bool)オプションをtrue とすると、既存データを残したまま、指定したCSVデータを追加登録します。指定しない場合に比べて高速に処理が可能です。
+- CSV内に削除フィールド（項目名を`_delete_`とする）を用意し、削除するItemには`true`または`1`を指定すると、該当Itemが削除されます。
+- CSV内のステータスを意味するフィールドは、CSVのヘッダー名を`_status_`として、データにはステータス名(status_idではありません)を指定します。
+- CSV内に公開グループ指定フィールド（項目名を`_group_id_`とする）を用意し、CSVデータにHexabaseで画面から定義された`グループID`を指定すると、該当Itemが指定したグループへ公開されます。（グループアクセスキーが付与される）
+
+##### Method
 POST
-#### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:project-id/datastores/:datastore-id/import
 ```
-#### Params
+##### URL Params
 ```
 project-id    : アプリケーションID(画面から指定したアプリケーションID、または、p_id)
 datastore-id    : データストアID(画面から指定したデータストアID、または、d_id)
@@ -3124,7 +3786,7 @@ append              ： false | true  指定されたCSVデータを既存のデ
 overwrite_autonumber： false | true  インポート先の自動採番項目が初期化されてゼロスタートされてインポートされます。
 validate            ： true | false  インポート時、データチェックを省略する。
 ```
-#### Request Sample
+##### Request Sample
 ```
 POST https://api.xxx.com/api/v0/applications/APP-ID/datastores/DATABASE-ID/import
 ```
@@ -3137,7 +3799,7 @@ TITLE,_status_,Field1,No,_delete_
 import1,ステータス１,A,001,0
 import2,ステータス２,B,002,0
 ```
-#### Response
+##### Response
 ```JSON
 {
     "temp_datastore_id": "5e58aa0fe4ecac3bd828aead",
@@ -3150,24 +3812,28 @@ stream_id : インポート経過をSubscribeするためのID　
 ```
 - Subscribe仕様については、このドキュメントには記載していない（現在、ドキュメント準備中）
 
-### データインポート結果の取得
+---
+### GetImportResults
+データインポート結果の取得
+
+##### Description
 データインポートの処理結果を取得する
-#### Method
+##### Method
 GET
-#### Request Format
+##### Request Format
 ```
 /api/v0/datastores/:datastore-id/import/:temp-datastore-id
 ```
-#### Params
+##### Params
 ```
 temp-datastore-id  :  インポート処理時の結果ID
 ```
-#### Request Sample
+##### Request Sample
 ```
 GET https://api.xxx.com/api/v0/datastores/59bf3a310e2479145baba476/import/59706031bc29a9afa46b59eb
 ```
 
-#### Response Sample
+##### Response Sample
 成功時
 ```
 なし
@@ -3189,22 +3855,27 @@ GET https://api.xxx.com/api/v0/datastores/59bf3a310e2479145baba476/import/597060
 }
 ```
 
-
+---
 ### 添付ファイル関連API
 
-アイテムには、「添付ファイル」フィールドにより、ファイルを添付できます。
+１つのアイテムには「添付ファイル」フィールドを複数持つことができ、１つの添付ファイルフィールドには、複数個の添付ファイルを登録できます。
 
-#### 添付ファイルフィールドにアップロード
+---
+#### UploadFile
+添付ファイルフィールドにFileをアップロード
+
+##### Description
 添付ファイルフィールドにファイルをアップロードします
 - アップロードされたファイルはStorageに保存されますが、Itemへは登録されません。
-- 該当Itemへ登録するためには、Responseにふくまれる`file_id`を使って、アクション実行APIをcallする必要があります。
+- 該当Itemへ登録するためには、Responseにふくまれる`file_id`を使って、アクション実行API（[CreateItemWithItemID](#CreateItemWithItemID)や[ExecuteAction](#ExecuteAction)など）をcallする必要があります。
+
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/items/:item-id/fields/:field-id/attachments
 ```
-##### Params
+##### URL Params
 ```
 item-id          : アイテムID
 field-id         : フィールドID
@@ -3216,7 +3887,7 @@ datastore_id     : データストアID
 filename         : 添付ファイル名
 file             : 添付ファイル
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/items/59ad2d8a0e247927638e761a/fields/58cc9253fbfcba88307142d1/attachments
 ```
@@ -3230,11 +3901,16 @@ POST https://api.xxx.com/api/v0/items/59ad2d8a0e247927638e761a/fields/58cc9253fb
 }
 ```
 
-#### 添付ファイルの削除
+---
+#### DeleteFile
+添付ファイルの削除
+
+##### Description
 添付ファイルフィールドのファイルを削除します
+
 ##### Method
 DELETE
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/items/:item-id/fields/:field-id/attachments/:attachment-id
 ```
@@ -3242,7 +3918,7 @@ DELETE
 ```
 なし
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 DELETE https://api.xxx.com/api/v0/items/59ad2d8a0e247927638e761a/fields/58cc9253fbfcba88307142d1/attachments/59af720c0e247958c7011a88
 ```
@@ -3250,21 +3926,24 @@ DELETE https://api.xxx.com/api/v0/items/59ad2d8a0e247927638e761a/fields/58cc9253
 ```
 null
 ```
+---
+#### GetFile
+添付ファイルデータの取得
 
-#### 添付ファイルデータの取得
+##### Description
 添付ファイルデータをダウンロードします
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/files/:file-id
 ```
-##### Params
+##### URL Params
 ```
 file-id    : ファイルID
 ```
 
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/files/5a43c3c4fbfcba5c7443d037
 ```
@@ -3274,17 +3953,22 @@ GET https://api.xxx.com/api/v0/files/5a43c3c4fbfcba5c7443d037
 (省略）※該当ファイルのバイナリデータをダウンロード
 ```
 
-
+---
 ### データレポート関連API
+Hexabaseでは複数のデータテーブル（データベース=Datastore）を結合、集計して、データレポートというViewを作成することができます。<br>
+作成したデータレポートのデータをAPIを利用して取得できます。
 
+---
+#### GetReportData
+レポートデータの取得
 
-#### レポートデータの取得
+##### Description
 データレポートの結果を取得する
 
 ##### Method
 GET
 
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:project-id/reports/:report-id
 ```
@@ -3292,7 +3976,7 @@ GET
 ```
 特になし
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
 ```
@@ -3691,12 +4375,15 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
 }
 ```
 
+---
+#### GetReportConditions
+レポートの検索条件を取得
 
-#### レポートの検索条件を取得
+##### Description
 データレポートの検索条件を取得する（検索条件ダイアログ等、表示用）
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:project-id/reports/:report-id/conditions
 ```
@@ -3704,7 +4391,7 @@ GET
 ```
 特になし
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
 ```
@@ -3801,22 +4488,26 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
 ]
 ```
 
-#### 条件を指定してレポートデータを取得
+---
+#### GetReportDataByConditions
+条件を指定してレポートデータを取得
+
+##### Description
 条件を指定してレポートデータを取得する
 
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:project-id/reports/:report-id/filter
 ```
-##### Params
+##### Payload
 ```
 conditions -  検索条件を指定
  			"rpf_id":/conditions APIで返されるレポートフィールドIDを指定,
 			"search_value": 検索条件を配列で指定（サンプルを参照） ※アイテム一覧の指定と同様、フィールドタイプごとに指定内容が異なる
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
 
@@ -3835,16 +4526,21 @@ POST https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
 ※ （省略） 形式は、データレポート取得サンプルと同様
 ```
 
-### チャート（ダッシュボード）関連API
+---
+## チャート（ダッシュボード）関連API
 
 ダッシュボード用グラフデータを取得します
 
-#### チャートデータの取得
+---
+#### GetChartData
+チャートデータの取得
+
+##### Description
 チャートデータを取得する
 
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:project-id/charts/:chart-id
 ```
@@ -3852,7 +4548,7 @@ GET
 ```
 特になし
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/applications/APP_ID/charts/CHART_ID
 ```
@@ -3962,13 +4658,16 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/charts/CHART_ID
 }
 ```
 
+---
+#### GetChartConditions
+チャートの検索条件を取得
 
-#### チャートの検索条件を取得
+##### Description
 チャートを絞り込むための検索条件を取得する（検索条件ダイアログ等、表示用）
 
 ##### Method
 GET
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:project-id/charts/:chart-id/conditions
 ```
@@ -3976,7 +4675,7 @@ GET
 ```
 特になし
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/applications/APP_ID/charts/CHART_ID/conditions
 ```
@@ -4005,22 +4704,26 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/charts/CHART_ID/conditions
 ]
 ```
 
-#### 条件を指定してチャートデータを取得
+---
+#### GetChartDataByConditions
+条件を指定してチャートデータを取得
+
+##### Description
 条件を指定してレポートデータを取得する
 
 ##### Method
 POST
-##### Request Format
+##### Request URL Format
 ```
 /api/v0/applications/:project-id/reports/:report-id/filter
 ```
-##### Params
+##### Payload
 ```
 conditions -  検索条件を指定
  			"rpf_id":/conditions APIで返されるレポートフィールドIDを指定,
 			"search_value": 検索条件を配列で指定（サンプルを参照） ※アイテム一覧の指定と同様、フィールドタイプごとに指定内容が異なる
 ```
-##### Request Sample
+##### Request URL Sample
 ```
 POST https://api.xxx.com/api/v0/applications/APP_ID/charts/CHART_ID/conditions
 
