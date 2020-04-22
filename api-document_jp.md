@@ -382,10 +382,6 @@ GET
 ```
 - `:group-id` は省略可。省略すると、TOPグループの情報を返す。
 
-##### Params
-
-`Content-Type : application/json`
-
 ##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/groups
