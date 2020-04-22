@@ -66,7 +66,7 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 ### グループの登録、変更、削除
 |No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
 |:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|5|[CreateGroup](#CreateGroup)|新規グループ作成|POST|/api/v0/groups/:parent-group-id|指定グループ配下に新規でグループを作成|v0|-|
+|5|[CreateGroup](#CreateGroup)|新規グループ作成|POST|/api/v0/workspaces/:workspace-id/groups/:parent-group-id|指定グループ配下に新規でグループを作成|v0|-|
 |44|[CreateTopGroup](#CreateTopGroup)|新規グループ作成(第1階層)|POST|/api/v0/workspaces/:workspace-id/groups|第1階層に新規グループを作成|v0|-|
 |6|[UpdateGroup](#UpdateGroup)|グループ更新|PUT|/api/v0/groups/:group-id|指定したグループ情報を更新する|v0|-|
 |7|[DeleteGroup](#DeleteGroup)|グループ削除|DELETE|/api/v0/groups/:group-id|指定したグループを削除する|v0|-|
@@ -541,20 +541,24 @@ GET https://api.xxx.com/api/v0/grouptree
 POST
 ##### Request URL Format
 ```
-/api/v0/groups/:parent-group-id
+/api/v0/workspaces/:workspace-id/groups/:parent-group-id
+```
+##### URL Params
+```
+"workspace-id": "必須　ワークスペースを指定してグループを作成",
+"parent-group-id": "必須　指定したグループの配下に新規グループを作成"
 ```
 ##### Payload
-
 `Content-Type : application/json`
 ```JSON
 {
-  "workspace-id": "必須　ワークスペース配下を指定してグループを作成",
-  "parent-group-id": "必須　グループ配下を指定してグループを作成"
+  "name" : "グループ名",  // 必須
+  "display_id": "グループID"　 // 必須
 }
 ```
 ##### Request URL Sample
 ```
-POST https://api.xxx.com/api/v0/groups/:parent-group-id
+POST https://api.xxx.com/api/v0/workspaces/:workspace-id/groups/:parent-group-id
 ```
 ##### Response Sample
 ```JSON
@@ -623,7 +627,7 @@ POST https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/groups
 PUT
 ##### Request URL Format
 ```
-/api/v0/groups/:group-id
+/api/v0/workspaces/:workspace-id/groups/:group-id
 ```
 ##### URL Params
 ```
