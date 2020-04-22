@@ -289,7 +289,7 @@ POST https://api.xxx.com/api/v0/users/logout
 ```
 ##### Response Sample
 ```
-無
+null
 ```
 ---
 ## ワークスペース関連API
@@ -388,7 +388,7 @@ GET
 
 ##### Request URL Sample
 ```
-POST https://api.xxx.com/api/v0/groups
+GET https://api.xxx.com/api/v0/groups
 ```
 ##### Response Sample
 ```JSON
@@ -407,7 +407,7 @@ POST https://api.xxx.com/api/v0/groups
 
 ##### Request Sample2
 ```
-POST https://api.xxx.com/api/v0/groups/5c5fd6c084f4be2574e2bcb2
+GET https://api.xxx.com/api/v0/groups/5c5fd6c084f4be2574e2bcb2
 ```
 ##### Response Sample2
 ```JSON
@@ -593,6 +593,7 @@ POST
 ```
 workspace-id    : ワークスペースID
 ```
+##### Payload
 `Content-Type : application/json`
 ```JSON
 {
@@ -1193,7 +1194,7 @@ POST
 ```
 project-id: アプリケーション表示ID
 ```
-
+##### Payload
 ```JSON
 {
     "user_id": "ロールを付加したい対象のユーザーID",
@@ -1270,9 +1271,8 @@ Status 403
 ##### Method
 POST
 ##### Request URL Format
-
 /api/v0/userimport
-```
+
 ##### Payload
 `Content-Type : application/form-data`
 ```JSON
@@ -1891,7 +1891,7 @@ app-id          : アプリケーションID（Hexabase画面から入力したI
 datastore-id    : データストアID（Hexabase画面から入力したIDまたは内部ID[d_id]を指定）
 item-id         : 対象アイテムのID
 ```
-Post パラメーターの例
+##### Payload
 ```
 {
     "history": {
@@ -2489,7 +2489,7 @@ POST
 ```
 /api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
 ```
-##### Params
+##### Payload
 `Content-Type : application/json`
 ```JSON
 {"changes":
@@ -2507,7 +2507,7 @@ POST
 ```
 ##### Request Sample
 ```
-GET https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
+POST https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
 ```
 ##### Response Sample
 ```
@@ -3680,11 +3680,13 @@ POST
 ```
   "datastore-id": データベースID（システム内部ID d_id）
 ```
-##### Post Params
+##### Payload
 ```
-  "project_id": アプリケーションID（p_id）
-  "item_id": データアイテムID(i_id)
+{
+  "project_id": アプリケーションID（p_id）,
+  "item_id": データアイテムID(i_id),
   "comment" : 登録したいコメント
+}
 ```
 ##### Request URL Sample
 ```
