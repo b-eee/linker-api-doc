@@ -649,7 +649,7 @@ PUT https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/groups/59bf3b
 null
 ```
 ---
-#### DeleteGroup
+### DeleteGroup
 グループを削除
 ##### Description
 指定したグループ名を削除します
@@ -977,7 +977,7 @@ POST https://api.xxx.com/api/v0/users/registration
 }
 ```
 ---
-#### ConfirmRegistration
+### ConfirmRegistration
 ユーザーの初期登録の確認
 
 ##### Description
@@ -1048,7 +1048,7 @@ POST https://api.xxx.com/api/v0/users/registration/confirm
 }
 ```
 ---
-#### ResetPassword
+### ResetPassword
 パスワード初期化リクエスト
 
 ##### Description
@@ -1111,7 +1111,7 @@ PUT https://api.xxx.com/api/v0/users/password/forgot
 ```
 
 ---
-#### ValidatePassword
+### ValidatePassword
 パスワード変更状態の確認
 
 ##### Description
@@ -1294,7 +1294,7 @@ POST https://api.xxx.com/api/v0/userimport
 ```
 
 ---
-#### GetUsersInWorkspace
+### GetUsersInWorkspace
 ワークスペースのユーザー一覧の取得
 
 ##### Description
@@ -1360,23 +1360,23 @@ GET https://api.xxx.com/api/v0/workspaces/5d8b44adef2261640ab04ef6/users?admin_o
 ##### Description
 指定グループ配下のユーザー全員のデータを取得する
 
-#### Method
+##### Method
 GET
 
-#### Request URL
+##### Request URL
 ```
 /api/v0/users/all/g/:group-id
 ```
-#### Params
+##### Params
 ```
 group-id :  グループID
 ```
-#### Request Sample
+##### Request Sample
 ```
 GET https://api.xxx.com/api/v0/users/all/g/582b26d8fb90a15e0c24ad81
 ```
 
-#### Response Sample
+##### Response Sample
 ```JSON
 {
     "members": [
@@ -1851,7 +1851,7 @@ datastore-id    : データストアID（Hexabase画面から入力したIDを�
 ```
 POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items/new
 ```
-#### Payload
+##### Payload
 （例）
 `Content-Type : application/json`
 ```JSON
@@ -1926,7 +1926,7 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
 null
 ```
 ---
-#### DeleteItem
+### DeleteItem
 アイテムの削除（DisplayIDの利用）
 
 ##### Description
@@ -2042,8 +2042,9 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/items
 ```
 null
 ```
+
 ---
-#### UpdateItemLink
+### UpdateItemLink
 関連アイテムとのリンクを更新
 
 ##### Description
@@ -2078,8 +2079,9 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/items
 ```
 null
 ```
+
 ---
-#### DeleteItemLink
+### DeleteItemLink
 関連アイテムとのリンクを削除（DisplayIDの利用）
 
 ##### Description
@@ -2241,26 +2243,26 @@ GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/58cd1e5
 ### GetActionFields
 アクションフィールド情報
 
-#### Description
+##### Description
 アクションで利用可能なフィールド情報を取得する
-#### Method
+##### Method
 GET
-#### Request Format
+##### Request Format
 ```
 /api/v0/datastores/:datastore-id/actions/:action-id/fields
 ```
-#### URL Params
+##### URL Params
 ```
 datastore-id    : データストアID
 action-id       : アクションID
 ```
 
-#### Request URL Sample
+##### Request URL Sample
 ```
 GET https://api.xxx.com/api/v0/datastores/59bf42550e2479186a6c6c70/5a2671ec0e24794c979fa5b1/fields
 ```
 
-#### Response Sample
+##### Response Sample
 ```JSON
 {
     "action": {
@@ -2506,45 +2508,12 @@ POST
 ##### Request Sample
 ```
 GET https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
-
+```
 ##### Response Sample
 ```
 null
 ```
 
-#### グループにひも付くロールの洗い変えをする
-
-##### Method
-POST
-##### Request Format
-```
-/api/v0/grouproles/:group-id
-```
-##### Params
-`Content-Type : application/json`
-```JSON
-{
-  "group_roles":
-  [
-    {
-      "app_id":"アプリケーションディスプレイＩＤ-１",
-      "role_id":"ロールディスプレイID-1"
-    },
-    {
-      "app_id":"アプリケーションデイスプレイＩＤ-２",
-      "role_id":"ロールディスプレイID-2"
-    }
-  ]
-}
-```
-##### Request Sample
-```
-POST https://api.xxx.com/api/v0/grouproles/:group-id
-```
-##### Response Sample
-```
-{} //空のオブジェクトが返ってくる
-```
 
 ---
 ### GetLinkedItems
@@ -3600,7 +3569,7 @@ action-id    : 新規作成アクションID（Payload内の`use_display_id`がt
 }
 ```
 
-#### Request Sample1
+##### Request Sample1
 ```
 POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/アクションID
 ```
@@ -3615,12 +3584,12 @@ POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/ア�
   "use_display_id": true
 }
 ```
-#### Response Sample
+##### Response Sample
 ```
 null
 ```
 
-#### Request Sample2
+##### Request Sample2
 ```
 POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/5e99e6a8aeae8e9af01ec366
 ```
@@ -3636,7 +3605,7 @@ POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/5e99e
   "use_display_id": false
 }
 ```
-#### Response Sample2
+##### Response Sample2
 ```
 null
 ```
