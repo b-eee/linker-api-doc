@@ -1753,7 +1753,8 @@ sort_order      : 昇順の場合"asc" 降順の場合"desc"
   "page": 1,
   "per_page": 100,
   "sort_field_id": "FIELD_ID", // Hexabase画面で入力したIDを指定
-  "sort_order": "asc"
+  "sort_order": "asc",
+  "include_links" : true, // true or false.  trueの場合、取得結果に各Itemに関連するi_idの配列を含める
 }
 ```
 
