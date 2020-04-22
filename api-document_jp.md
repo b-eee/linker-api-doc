@@ -2099,38 +2099,6 @@ POST http://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/items/
 null
 ```
 
-#### 指定アクションを実行する
-指定アクションを実行し、アイテム更新、コメントの追記
-##### Method
-POST
-##### Request URL Format
-```
-/api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
-```
-##### Payload
-`Content-Type : application/json`
-```JSON
-{"changes":
-  [
-    {
-      "datatype":"multi",//使用しているフィールド型
-      "id":"5e256923aeae8e212cb2e03b",　//filedID 
-      "value":"更新値"} 
-  ],
-    "history":{
-      "comment":"コメント例"
-  },
-  "rev_no":8　//現在のrevison番号
-}
-```
-##### Request URL Sample
-GET https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
-
-##### Response Sample
-```
-null
-```
-
 ---
 #### GetItemDetails
 アイテムの詳細情報、アクションリストを取得
