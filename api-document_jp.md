@@ -291,13 +291,13 @@ POST https://api.xxx.com/api/v0/users/logout
 ```
 無
 ```
-
+---
 ## ワークスペース関連API
 
 「ワークスペース」は、Hexabaseのアプリケーションをまとめる領域です。業務の種類や内容に合わせてワークスペースを用意して、複数の業務アプリケーションをまとめておきます。
 
 ---
-#### WorkspaceList
+### WorkspaceList
 ワークスペース一覧
 ##### Description
 ワークスペースの一覧を取得します
@@ -340,7 +340,7 @@ GET https://api.xxx.com/api/v0/workspaces
 }
 ```
 ---
-#### SelectWorkspace
+### SelectWorkspace
 ワークスペース選択
 ##### Description
 利用したいワークスペースを選択します
@@ -363,6 +363,7 @@ POST https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/select
 null
 ```
 
+---
 ## グループ関連API
 
 「グループ」は、ユーザーを役割に応じてまとめる機能です。
@@ -577,7 +578,7 @@ POST https://api.xxx.com/api/v0/groups/:parent-group-id
 ```
 
 ---
-#### CreateTopGroup
+### CreateTopGroup
 新規グループ作成(第1階層)
 ##### Description
 グループの第1階層に、新しいグループを登録します。登録したグループは、ツリーの直下に配置されます。
@@ -617,7 +618,7 @@ POST https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/groups
 }
 ```
 ---
-#### UpdateGroup
+### UpdateGroup
 グループの更新
 ##### Description
 指定したグループ名を更新します。
@@ -678,7 +679,7 @@ DELETE https://api.xxx.com/api/v0/groups/59bf3b300e24791418da1aa1
 null
 ```
 ---
-#### UpdateGroupRoles
+### UpdateGroupRoles
 グループロール更新
 ##### Description
 グループにひも付くロールをすべて削除し、新規付与（洗い変え）する
@@ -714,8 +715,9 @@ POST https://api.xxx.com/api/v0/grouproles/:group-id
 ```
 {} //空のオブジェクトが返ってくる
 ```
+
 ---
-#### AddGroupRoles
+### AddGroupRoles
 グループロール追加
 ##### Description
 グループにロールを追加する（既存ロールは削除されない）
@@ -757,9 +759,10 @@ PUT https://api.xxx.com/api/v0/grouproles/:group-id
 ```
 
 ---
-### ユーザー関連API
+## ユーザー関連API
 
-#### GetUserInfo
+---
+### GetUserInfo
 ユーザーの関連情報取得
 
 ##### Description
@@ -808,8 +811,9 @@ GET https://api.xxx.com/api/v0/userinfo
   ]
 }
 ```
+
 ---
-#### UpdateUserInfo
+### UpdateUserInfo
 ユーザー名、情報の更新
 
 ##### Description
@@ -840,7 +844,7 @@ PUT https://api.xxx.com/api/v0/userinfo
 ```
 
 ---
-#### GetUsersInGroup
+### GetUsersInGroup
 指定されたグループのユーザー一覧の取得
 
 ##### Description
@@ -884,7 +888,7 @@ GET https://api.xxx.com/api/v0/groups/5df9d7d7aeae8e2fa894e324/users
 ```
 
 ---
-#### AddUser
+### AddUser
 グループに新規ユーザーを作成
 
 ##### Description
@@ -930,7 +934,8 @@ POST https://api.xxx.com/api/v0/users
 }
 ```
 
-#### UserRegistration
+---
+### UserRegistration
 初回ユーザー登録
 
 ##### Description
@@ -1006,8 +1011,9 @@ GET https://api.xxx.com/api/v0/users/registration/confirm?id=sdafasdfasdfadsffds
     }
 }
 ```
+
 ---
-#### RegisterUser
+### RegisterUser
 ユーザーの初期登録
 
 ##### Description
@@ -1075,7 +1081,7 @@ POST https://api.xxx.com/api/v0/password/forgot
 ```
 
 ---
-#### SetNewPassword
+### SetNewPassword
 パスワード再登録
 
 ##### Description
@@ -1136,8 +1142,9 @@ GET https://api.xxx.com/api/v0/users/password/validate
  "updated_at": "2020-01-07T13:31:20.961Z"　// パスワード更新日
 }
 ```
+
 ---
-#### SetPassword
+### SetPassword
 ログイン後、パスワード変更
 
 ##### Description
@@ -1170,7 +1177,7 @@ PUT https://api.xxx.com/api/v0/users/password
 
 
 ---
-#### AddRoleToUser
+### AddRoleToUser
 ユーザーへロール付与
 
 ##### Description
@@ -1212,8 +1219,7 @@ Status 403
 ```
 
 ---
-
-#### RemoveRoleFromUser
+### RemoveRoleFromUser
 ユーザからロールを削除
 
 ##### Description
@@ -1253,9 +1259,9 @@ Status 403
     "message": "No privileges to the Application"//ユーザーのプロジェクト権限を外す権限が無い
 }
 ```
----
 
-#### UserImport
+---
+### UserImport
 ユーザーをインポート
 
 ##### Description
@@ -1347,8 +1353,8 @@ GET https://api.xxx.com/api/v0/workspaces/5d8b44adef2261640ab04ef6/users?admin_o
 }
 ```
 
-
-#### GetAllUsersInWorkspace
+---
+### GetAllUsersInWorkspace
 ワークスペース全ユーザー取得
 
 ##### Description
@@ -1419,7 +1425,7 @@ GET https://api.xxx.com/api/v0/users/all/g/582b26d8fb90a15e0c24ad81
 ```
 
 ---
-#### RemoveUser
+### RemoveUser
 グループからユーザーを削除
 
 ##### Description
@@ -1456,7 +1462,7 @@ DELETE https://api.xxx.com/api/v0/users
 ```
 
 ---
-#### UserInvite
+### UserInvite
 ユーザーを招待
 
 ##### Description
@@ -1506,11 +1512,13 @@ POST https://api.xxx.com/api/v0/userinvite
 ]
 ```
 
-### アプリケーション関連API
+---
+## アプリケーション関連API
 
 Hexabaseでは、「アプリケーション」ごとに、データベース・データレポート・ダッシュボードなどをまとめています。新しくワークプレースを作成すると「新しいアプリケーション」という名前のアプリケーションが作成されています。
 
-#### GetApplicationsAndDatastores
+---
+### GetApplicationsAndDatastores
 アプリケーション一覧、データストア一覧の取得
 
 ##### Description
@@ -1547,11 +1555,13 @@ GET https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/applications
 }
 ```
 
-### フィールド関連API
+---
+## フィールド関連API
 
 Hexabaseでは、「アイテム」のカラムを「フィールド」または「画面項目」と呼びます。
 
-#### GetDatastoreFields
+---
+### GetDatastoreFields
 フィールド一覧（DisplayIDを利用）
 
 ##### Description
@@ -1699,11 +1709,12 @@ GET https://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/fields
 
 
 ---
-### アイテム関連API
+## アイテム関連API
 
 Hexabaseでは、データベースの各データを「アイテム」と呼びます。表の横１行がアイテムになります。一般的なRDBのレコードに相当します。
 
-#### ItemList
+---
+### ItemList
 アイテム一覧の取得（DisplayIDの利用）
 
 ##### Description
@@ -1820,7 +1831,7 @@ POST https://api.xxx.com/api/v0/applications/5c6363d984f4be7de0350445/datastores
 
 
 ---
-#### CreateItem
+### CreateItem
 新規アイテムを作成（DisplayIDの利用）
 
 ##### Description
@@ -1861,8 +1872,9 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
     "item_id": "5a2647410e24792d87451e34"
 }
 ```
+
 ---
-#### UpdateItem
+### UpdateItem
 アイテムの編集（DisplayIDの利用）
 
 ##### Description
@@ -1951,8 +1963,9 @@ Payload (空のJSONを指定する必要があります)
     "item_id": "5a2647410e24792d87451e34"
 }
 ```
+
 ---
-#### DeleteItemByConditions
+### DeleteItemByConditions
 条件を指定してアイテムを削除（DisplayIDの利用）
 
 ##### Description
@@ -1996,7 +2009,7 @@ DELETE http://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/items/
 ```
 
 ---
-#### AddItemLink
+### AddItemLink
 関連アイテムとのリンクを追加（DisplayIDの利用）
 
 ##### Description
@@ -2100,7 +2113,7 @@ null
 ```
 
 ---
-#### GetItemDetails
+### GetItemDetails
 アイテムの詳細情報、アクションリストを取得
 
 ##### Description
@@ -2223,6 +2236,7 @@ GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/58cd1e5
     ]
 }
 ```
+
 ---
 ### GetActionFields
 アクションフィールド情報
@@ -2460,9 +2474,9 @@ GET https://api.xxx.com/api/v0/datastores/59bf42550e2479186a6c6c70/5a2671ec0e247
     }
 }
 ```
----
 
-#### ExecuteAction
+---
+### ExecuteAction
 指定アクションを実行する
 
 ##### Description
@@ -2533,7 +2547,7 @@ POST https://api.xxx.com/api/v0/grouproles/:group-id
 ```
 
 ---
-#### GetLinkedItems
+### GetLinkedItems
 アイテムに関連するアイテム一覧を取得
 
 ##### Description
@@ -3415,7 +3429,7 @@ GET https://api.xxx.com/api/v0/items/58cd1e5bfbfcba2ebcaf0b1e/links/58cbf6cbfbfc
 ```
 
 ---
-#### ExecuteActionByActionID
+### ExecuteActionByActionID
 アクション実行
 
 ##### Description
@@ -3628,7 +3642,7 @@ null
 ```
 
 ---
-#### GetItemHistories
+### GetItemHistories
 履歴取得
 
 ##### Description
@@ -3679,8 +3693,9 @@ GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/59ad2d8
     "unread": 0
 }
 ```
+
 ---
-#### PostItemComment
+### PostItemComment
 コメント登録
 
 ##### Description
@@ -3721,6 +3736,7 @@ null
 ---
 ## データインポート関連API
 
+---
 ### ImportItems
 CSVデータインポート
 
@@ -3824,12 +3840,12 @@ GET https://api.xxx.com/api/v0/datastores/59bf3a310e2479145baba476/import/597060
 ```
 
 ---
-### 添付ファイル関連API
+## 添付ファイル関連API
 
 １つのアイテムには「添付ファイル」フィールドを複数持つことができ、１つの添付ファイルフィールドには、複数個の添付ファイルを登録できます。
 
 ---
-#### UploadFile
+### UploadFile
 添付ファイルフィールドにFileをアップロード
 
 ##### Description
@@ -3870,7 +3886,7 @@ POST https://api.xxx.com/api/v0/items/59ad2d8a0e247927638e761a/fields/58cc9253fb
 ```
 
 ---
-#### DeleteFile
+### DeleteFile
 添付ファイルの削除
 
 ##### Description
@@ -3894,8 +3910,9 @@ DELETE https://api.xxx.com/api/v0/items/59ad2d8a0e247927638e761a/fields/58cc9253
 ```
 null
 ```
+
 ---
-#### GetFile
+### GetFile
 添付ファイルデータの取得
 
 ##### Description
@@ -3922,12 +3939,12 @@ GET https://api.xxx.com/api/v0/files/5a43c3c4fbfcba5c7443d037
 ```
 
 ---
-### データレポート関連API
+## データレポート関連API
 Hexabaseでは複数のデータテーブル（データベース=Datastore）を結合、集計して、データレポートというViewを作成することができます。<br>
 作成したデータレポートのデータをAPIを利用して取得できます。
 
 ---
-#### GetReportData
+### GetReportData
 レポートデータの取得
 
 ##### Description
@@ -4344,7 +4361,7 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
 ```
 
 ---
-#### GetReportConditions
+### GetReportConditions
 レポートの検索条件を取得
 
 ##### Description
@@ -4457,7 +4474,7 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
 ```
 
 ---
-#### GetReportDataByConditions
+### GetReportDataByConditions
 条件を指定してレポートデータを取得
 
 ##### Description
@@ -4500,7 +4517,7 @@ POST https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
 ダッシュボード用グラフデータを取得します
 
 ---
-#### GetChartData
+### GetChartData
 チャートデータの取得
 
 ##### Description
@@ -4627,7 +4644,7 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/charts/CHART_ID
 ```
 
 ---
-#### GetChartConditions
+### GetChartConditions
 チャートの検索条件を取得
 
 ##### Description
@@ -4673,7 +4690,7 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/charts/CHART_ID/conditions
 ```
 
 ---
-#### GetChartDataByConditions
+### GetChartDataByConditions
 条件を指定してチャートデータを取得
 
 ##### Description
