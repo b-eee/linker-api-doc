@@ -541,13 +541,10 @@ GET https://api.xxx.com/api/v0/grouptree
 POST
 ##### Request URL Format
 ```
-/api/v0/workspaces/:workspace-id/groups/:parent-group-id
-または
 /api/v0/groups/:parent-group-id
 ```
 ##### URL Params
 ```
-"workspace-id": 省略可能　グループを作成するワークスペースを指定する。省略した場合は、現在選択されているワークスペースへ作成する。
 "parent-group-id": 必須　指定したグループの配下に新規グループを作成
 ```
 ##### Payload
@@ -560,10 +557,6 @@ POST
 ```
 ##### Request URL Sample
 ```
-POST https://api.xxx.com/api/v0/workspaces/:workspace-id/groups/:parent-group-id
-
-or
-
 POST https://api.xxx.com/api/v0/groups/:parent-group-id
 ```
 ##### Response Sample
