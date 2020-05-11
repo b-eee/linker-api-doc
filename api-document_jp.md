@@ -3625,6 +3625,20 @@ POST https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-
     }
 }
 
+// 対象件数がmax_itemsを超えた場合、Warn出力（以下はmax_items:10と設定した例）
+{
+    "errors": [
+        {
+            "description": "the number of items has reached max_items 10",
+            "error_level": "WARN"
+        }
+    ],
+    "has_error": true,
+    "result": {
+        "matched": 15,
+        "processed": 10
+    }
+}
 
 // 対象件数が見つからない場合は、Warn出力
 {
