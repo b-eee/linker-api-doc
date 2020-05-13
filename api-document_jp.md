@@ -1,4 +1,4 @@
-# api-document\_jp
+# API Document\_jp
 
 ## Hexabase APIの解説
 
