@@ -1815,7 +1815,7 @@ conditions パラメータの指定について
         "5846636efb90a1024d29asdf"  // user_id (複数件をOR指定可能)(OR条件)
       ]
     },{
-      "id": "updated_at", // idに "updated_at" または "created_at" を指定すると、
+      "id": "updated_at", // idに "updated_at" または "created_at" を指定すると、更新日・作成日での範囲検索が可能です。
       "search_value": [
         "2020-01-24T10:42:07.880Z",
         null,                       // 指定日付以後の更新されたItemを指定
@@ -1837,7 +1837,7 @@ conditions パラメータの指定について
       "search_value": [
         "5e5f334e8250710006078dc0"   // status_id  
       ]
-
+    }
   ],
   "page": 1,
   "per_page": 100,
