@@ -187,7 +187,7 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 |13|[GetActionFields](#GetActionFields)|アクション登録フォーム取得|GET|/api/v0/datastores/:datastore-id/actions/:action-id/fields|アクションで利用可能なフィールド情報を取得する|v0|-|
 |62|[ExecuteAction](#ExecuteAction)|アクションの実行|POST|/api/v0/applications/:project-id/datastores/:datastore-id/items/action/:action-id|指定アクションを実行する|v0|✓|
 |31|[ExecuteActionByActionID](#ExecuteActionByActionID)|アクションの実行|POST|/api/v0/items/:item-id/actions/:action-id|アクションを実行|v0|-|
-|67|[ExecuteBulkAction](#ExecuteBulkAction)|条件を指定してアクションを実行|POST|/api/v0/applications/:project-id/datastores/:datastore-id/bulkaction/:action-id|指定アクションを実行する|v0.1|✓|
+|67|[ExecuteBulkAction](#ExecuteBulkAction)|条件を指定してアクションを実行|POST|/api/v0/applications/:project-id/datastores/:datastore-id/items/bulkaction/:action-id|指定アクションを実行する|v0.1|✓|
 
 ### アイテムの関連
 
@@ -3545,7 +3545,7 @@ null
 POST
 ##### Request Format
 ```
-/api/v0/applications/:project-id/datastores/:datastore-id/bulkaction/:action-id
+/api/v0/applications/:project-id/datastores/:datastore-id/items/bulkaction/:action-id
 ```
 ##### Payload
 conditions の詳細については、[conditions](#conditions)を参照
@@ -3589,7 +3589,7 @@ conditions の詳細については、[conditions](#conditions)を参照
 ```
 ##### Request Sample
 ```
-POST https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-id/bulkaction/:action-id
+POST https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-id/items/bulkaction/:action-id
 ```
 ##### Response Sample
 ```
