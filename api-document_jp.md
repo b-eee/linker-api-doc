@@ -187,7 +187,7 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 |13|[GetActionFields](#GetActionFields)|アクション登録フォーム取得|GET|/api/v0/datastores/:datastore-id/actions/:action-id/fields|アクションで利用可能なフィールド情報を取得する|v0|-|
 |62|[ExecuteAction](#ExecuteAction)|アクションの実行|POST|/api/v0/applications/:project-id/datastores/:datastore-id/items/action/:action-id|指定アクションを実行する|v0|✓|
 |31|[ExecuteActionByActionID](#ExecuteActionByActionID)|アクションの実行|POST|/api/v0/items/:item-id/actions/:action-id|アクションを実行|v0|-|
-
+|67|[ExecuteBulkAction](#ExecuteBulkAction)|条件を指定してアクションを実行|POST|/api/v0/applications/:project-id/datastores/:datastore-id/items/bulkaction/:action-id|指定アクションを実行する|v0.1|✓|
 
 ### アイテムの関連
 
@@ -1739,6 +1739,47 @@ per_page        : 検索結果の件数
 sort_field_id   : ソートするフィールドIDを指定
 sort_order      : 昇順の場合"asc" 降順の場合"desc" 
 ```
+
+##### conditions
+conditions パラメータの指定について
+- 日付型、時刻型、数値型フィールドの場合、 `search_value` の一番目の値がFrom、2番目の値がToを意味します。
+- どちらかにnullを指定すると、From～、To～といった検索が可能となります。
+- 日付型の場合、値に `"TODAY"`という文字列を入れると、本日～といった検索が可能です。
+- テキスト型または複数行テキストの場合、search_valueを"|"で区切ると、OR検索が可能です。
+- テキスト型または複数行テキストの場合、"exact_match": trueとした場合、serach_valueの配列に複数条件を指定するとOR検索となります。
+```
+"exact_match": true, // 完全一致で検索
+"search_value": [
+  "ABC|DEF",
+  "GHI", 
+  "JKL", // ABC or DEF or GHI or JKLを検索
+]
+```
+- テキスト型または複数行テキストの場合、"exact_match": falseとした場合、serach_valueの1番目の値に対して正規表現が利用可能です。例えば以下のような指定でOR検索が可能です。正規表現言語としてPCRE（Perl互換正規表現）に従います。
+```
+"exact_match": false, 
+"search_value": [
+  "ABC|DEF", // ABC または DEFを検索
+]
+```
+
+```
+{
+  "conditions": [
+    {
+      "id": "58bbaa27fbfcba773851339f", // 日付型
+      "search_value": [
+        "TODAY",
+        null
+      ],
+    },{
+      
+  ],
+  "page": 1,
+  "per_page": 100
+}
+```
+
 （例）
 
 `Content-Type : application/json`
@@ -1750,7 +1791,52 @@ sort_order      : 昇順の場合"asc" 降順の場合"desc"
       "search_value": [
         "fa"
       ],
-      "exact_match": false, // 完全一致で検索
+      "exact_match": true, // 完全一致で検索
+      "include_null": true // 空白を含む
+    },{
+      "id": "FIELD_ID2", 
+      "search_value": [
+        "value"
+      ],
+      "exact_match": false, // 部分一致で検索
+      "include_null": false // 空白を除く
+    },{
+      "id": "i_id", // idに "i_id" を指定すると、指定したItemを対象にできます
+      "search_value": [
+        "58272f4efb90a148d850qwer", // item_id
+        "5846636efb90a1024d29as12", // item_id
+        "5846636efb90a1024d29asdf"  // item_id (複数件を指定可能)(OR条件)
+      ]
+    },{
+      "id": "updated_by", // idに "updated_by" または "created_by" を指定すると、指定したユーザー(u_id)が更新、作成したItemを検索可能です。
+      "search_value": [
+        "58272f4efb90a148d850qwer", // user_id
+        "5846636efb90a1024d29as12", // user_id
+        "5846636efb90a1024d29asdf"  // user_id (複数件をOR指定可能)(OR条件)
+      ]
+    },{
+      "id": "updated_at", // idに "updated_at" または "created_at" を指定すると、更新日・作成日での範囲検索が可能です。
+      "search_value": [
+        "2020-01-24T10:42:07.880Z",
+        null,                       // 指定日付以後の更新されたItemを指定
+      ]
+    },{
+      "id": "58bbaa27fbfcba773851339f", // 日付型フィールドでは "TODAY"キーワードを指定可能
+      "search_value": [
+        "TODAY",
+        null     //本日以降のItemを対象とする
+      ],
+    },{
+      "id": "58bbaa27fbfcba773851339f", // 数値型
+      "search_value": [
+        null,
+        "100"  // 100以下の値を検索 ※数値も""で括って指定する
+      ],
+    },{
+      "id": "5e5f334e8250710006078dbd", // StatusID のフィールドID
+      "search_value": [
+        "5e5f334e8250710006078dc0"   // status_id  
+      ]
     }
   ],
   "page": 1,
@@ -1758,26 +1844,6 @@ sort_order      : 昇順の場合"asc" 降順の場合"desc"
   "sort_field_id": "FIELD_ID", // Hexabase画面で入力したIDを指定
   "sort_order": "asc",
   "include_links" : true, // true or false.  trueの場合、取得結果に各Itemに関連するi_idの配列を含める
-}
-```
-
-- 日付型、時刻型、数値型フィールドの場合、 `search_value` の一番目の値がFrom、2番目の値がToを意味します。
-- どちらかにnullを指定すると、From～、To～といった検索が可能となります。
-- 日付型の場合、値に `"TODAY"`という文字列を入れると、本日～といった検索が可能です。（以下、サンプル）
-```
-{
-  "conditions": [
-    {
-      "id": "58bbaa27fbfcba773851339f",
-      "data_type": "text",
-      "search_value": [
-        "TODAY",
-        null
-      ],
-    }
-  ],
-  "page": 1,
-  "per_page": 100
 }
 ```
 
@@ -3463,6 +3529,137 @@ POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/actions/5a2671ec0
 ```
 null
 ```
+
+---
+### ExecuteBulkAction
+条件を指定して、アクションを一括実行する
+
+##### Description
+- 指定した条件にマッチした対象アイテムに対して一斉にアクションを実行し、アイテムに更新とコメントを付与します。
+- 一括でステータスを変更するような利用シーン（一括承認、など）や、一括でフィールドの値を一斉更新する場合などで利用可能です。
+- 同時処理実行件数は デフォルトで100件です。`max_items`パラメータで最大300件まで指定が可能です。
+- `continue_proc` オプションをtrueにすると、対象が最大件数を超えた場合に最大件数まで更新をおこないます。結果JSONに含まれる`matched` = `processed`となるまでこのAPIを複数回実行することで、全件の更新が可能です。
+- このAPIで更新されたデータは常に最新のrev_noを判定して更新します。（force_updateオプション＝trueとして実行し、排他制御はされません）
+
+##### Method
+POST
+##### Request Format
+```
+/api/v0/applications/:project-id/datastores/:datastore-id/items/bulkaction/:action-id
+```
+##### Payload
+conditions の詳細については、[conditions](#conditions)を参照
+
+`Content-Type : application/json`
+```JSON
+{
+  "conditions": [
+    {
+      "id": "i_id", // i_id を指定すると、指定したItemを対象にできます
+      "search_value": [
+        "58272f4efb90a148d850qwer", // item_id
+        "5846636efb90a1024d29as12", // item_id
+        "5846636efb90a1024d29asdf"  // item_id (複数件を指定可能)
+      ]
+    },{
+      "id": "5e5f334e8250710006078dbd", // StatusID のフィールドID
+      "search_value": [
+        "5e5f334e8250710006078dc0"   // status_id  (s_id)
+      ]
+    }
+  ],
+  "changes": [　　// 変更フィールドと変更データ
+    {
+      "id": "5a26722e0e24794c979fa5b6",
+      "value": "更新データサンプル"
+    },
+    {
+      "id": "5ab84bfecce5fe5c983ea184",  // user type Fieldの場合
+      "value": [
+        "58272f4efb90a148d8508d9c", // user_id
+        "5846636efb90a1024d2982fa"  // user_id
+      ],
+    }
+  ],
+  "comment": "一括承認", // アクション実行時にアイテムへ付加するコメントメッセージ
+  "max_items": 100, // 最大の処理実行件数. デフォルトは100.　最大300件まで。10件単位で指定する（10,20,30,...300)
+  "use_display_id" : false, // 画面IDを指定 trueの場合、フィールドIDに画面IDを利用可能
+  "continue_proc": true // true: 対象アイテム件数がmax_itemsを超えた場合、max_items件まで処理を実行する。false(default): 対象がmax_itemsを超えていたらエラー（処理しない）
+}
+```
+##### Request Sample
+```
+POST https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-id/items/bulkaction/:action-id
+```
+##### Response Sample
+```
+// 成功時
+{
+    "has_error": false,
+    "result": {
+        "matched": 99,
+        "processed": 99
+    }
+}
+
+// 一部エラー時
+{
+    "errors": [
+        {
+            "description": "error occured when execute action.",
+            "error": "Error",
+            "error_level": "ERROR",
+            "reference_id": "i_id:5c6a674f84f4be1f241ff4af"
+        },
+        {
+            "description": "error occured when execute action.",
+            "error": "Error sample",
+            "error_level": "ERROR",
+            "reference_id": "i_id:5c6a674f84f4be1f241ff778"
+        }
+    ],
+    "has_error": true,
+    "result": {
+        "matched": 21,
+        "processed": 19
+    }
+}
+
+// 対象件数がmax_itemsを超えた場合、Warn出力（以下はmax_items:10と設定した例）
+{
+    "errors": [
+        {
+            "description": "the number of items has reached max_items 10",
+            "error_level": "WARN"
+        }
+    ],
+    "has_error": true,
+    "result": {
+        "matched": 15,
+        "processed": 10
+    }
+}
+
+// 対象件数が見つからない場合は、Warn出力
+{
+    "errors": [
+        {
+            "description": "target was not found.",
+            "error": "",
+            "error_level": "WARN"
+        }
+    ],
+    "has_error": false,
+    "result": {
+        "matched": 0,
+        "processed": 0
+    }
+}
+```
+
+
+
+
 ---
 ### GetNewActionMenu
 新規作成アクションメニュー一覧
