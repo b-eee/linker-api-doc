@@ -165,14 +165,6 @@ Hexabaseでは、「アイテム」のカラムを「フィールド」または
 
 Hexabaseでは、データベースの各データを「アイテム」と呼びます。表の横１行がアイテムになります。一般的なRDBのレコードに相当します。
 
-|No  |API Name |API名 |Method  |URI  |目的|version|画面ID(display_id)への対応|
-|:--:|:-----|:----------|:-------|:------|:-----|:------------|:-----|
-|27|[GetItemDetails](#GetItemDetails)|アイテム詳細|GET|/api/v0/datastores/:datastore-id/items/:item-id|アイテムの詳細情報、アクションリストを取得|v0|-|
-|13|[GetActionFields](#GetActionFields)|アクション登録フォーム取得|GET|/api/v0/datastores/:datastore-id/actions/:action-id/fields|アクションで利用可能なフィールド情報を取得する|v0|-|
-|62|[ExecuteAction](#ExecuteAction)|アクションの実行|POST|/api/v0/applications/:project-id/datastores/:datastore-id/items/action/:action-id|指定アクションを実行する|v0|✓|
-|31|[ExecuteActionByActionID](#ExecuteActionByActionID)|アクションの実行|POST|/api/v0/items/:item-id/actions/:action-id|アクションを実行|v0|-|
-|67|[ExecuteBulkAction](#ExecuteBulkAction)|条件を指定してアクションを実行|POST|/api/v0/applications/:project-id/datastores/:datastore-id/items/bulkaction/:action-id|指定アクションを実行する|v0|✓|
-
 #### アイテムの検索、登録、更新、削除
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
@@ -202,6 +194,7 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 | 13 | [GetActionFields](api-document_jp.md#GetActionFields) | アクション登録フォーム取得 | GET | /api/v0/datastores/:datastore-id/actions/:action-id/fields | アクションで利用可能なフィールド情報を取得する | v0 | - |
 | 62 | [ExecuteAction](api-document_jp.md#ExecuteAction) | アクションの実行 | POST | /api/v0/applications/:project-id/datastores/:datastore-id/items/action/:action-id | 指定アクションを実行する | v0 | ✓ |
 | 31 | [ExecuteActionByActionID](api-document_jp.md#ExecuteActionByActionID) | アクションの実行 | POST | /api/v0/items/:item-id/actions/:action-id | アクションを実行 | v0 | - |
+| 67 | [ExecuteBulkAction](#ExecuteBulkAction) | 条件を指定してアクションを実行 | POST | /api/v0/applications/:project-id/datastores/:datastore-id/items/bulkaction/:action-id | 指定アクションを実行する | v0 | ✓ |
 
 #### アイテムの関連
 
