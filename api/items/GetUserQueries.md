@@ -25,6 +25,7 @@ app-id      : アプリケーションID（Hexabase画面から入力したIDを
 **Query Params**
 
 なし
+
 **Request URL Sample**
 
 ```text
