@@ -131,13 +131,6 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 | 54 | [ConfirmRegistration](api-document_jp.md#ConfirmRegistration) | ユーザー情報確認 | GET | /api/v0/users/registration/confirm | ConfirmIDからユーザーの初期登録情報の確認 | v0 | - |
 | 55 | [RegisterUser](api-document_jp.md#RegisterUser) | ユーザー初期登録 | POST | /api/v0/users/registration/confirm | ユーザーの初期登録、パスワード登録 | v0 | - |
 
-#### ユーザーへのロール設定
-
-| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
-| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 65 | [AddRoleToUser](api-document_jp.md#AddRoleToUser) | ユーザーへロール付与 | POST | /api/v0/applications/:project-id/userroles | ユーザーにアプリケーションのロールを付与する | v0 | - |
-| 66 | [RemoveRoleFromUser](api-document_jp.md#RemoveRoleFromUser) | ユーザからロールを削除 | DELETE | /api/v0/applications/:project-id/userroles | ユーザーからアプリケーションのロールを外す | v0 | - |
-
 #### CSVデータによるユーザー一括登録
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
@@ -152,6 +145,14 @@ Hexabaseでは、「アプリケーション」ごとに、データベース・
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 11 | [GetApplicationsAndDatastores](api-document_jp.md#GetApplicationsAndDatastores) | アプリケーションとデータベース一覧 | GET | /api/v0/workspaces/:workspace-id/applications | アプリケーション一覧のとデータストア一覧を取得 | v0 | - |
+
+#### ロール関連API
+
+| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
+| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 65 | [AddRoleToUser](api-document_jp.md#AddRoleToUser) | ユーザーへロール付与 | POST | /api/v0/applications/:project-id/userroles | ユーザーにアプリケーションのロールを付与する | v0 | - |
+| 66 | [RemoveRoleFromUser](api-document_jp.md#RemoveRoleFromUser) | ユーザからロールを削除 | DELETE | /api/v0/applications/:project-id/userroles | ユーザーからアプリケーションのロールを外す | v0 | - |
+| 71 | [GetRoleUsers](api/applications/GetRoleUsers.md#GetRoleUsers) | ロールをもつユーザーの取得 | GET | /api/v0/applications/:app-id/roleusers/:role-id | 指定したロールを所有するユーザーを取得する | v0 | - |
 
 #### フィールド関連API
 
@@ -170,12 +171,15 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 19 | [ItemList](api-document_jp.md#ItemList) | アイテム一覧 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/search | アイテム一覧を取得 | v0 | ✓ |
+| 68 | [GetItemSearchConditions](api/items/GetItemSearchConditions.md#GetItemSearchConditions) | アイテム検索条件取得 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/conditions | アイテムの検索条件を取得する | v0 | ✓ |
+| 70 | [GetUserQueries](api/items/GetUserQueries.md#GetUserQueries) | よく使う一覧の取得 | GET | /api/v0/applications/:app-id/queries | ユーザーごとに記憶された検索条件一覧を返す| v0 | ✓ |
 | 20 | [CreateItem](api-document_jp.md#CreateItem) | アイテム新規登録 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/new | 新規アイテムを作成する | v0 | ✓ |
 | 21 | [UpdateItem](api-document_jp.md#UpdateItem) | アイテム更新 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/edit/:item-id | アイテムを編集する | v0 | ✓ |
 | 22 | [DeleteItem](api-document_jp.md#DeleteItem) | アイテム削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/delete/:item-id | １アイテムを削除する | v0 | ✓ |
 | 23 | [DeleteItemByConditions](api-document_jp.md#DeleteItemByConditions) | 条件指定してアイテム削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/delete | 条件を指定してアイテムを一括削除する | v0 | ✓ |
 | 12 | [GetNewActionMenu](api-document_jp.md#GetNewActionMenu) | 新規登録アクションの一覧 | GET | /api/v0/datastores/:datastore-id/new-action | 新規アイテム作成アクション一覧を取得 | v0 | - |
 | 48 | [CreateItemID](api-document_jp.md#CreateItemID) | 新規アイテムID取得 | POST | /api/v0/datastores/:datastore-id/items/create-id | 新規アイテム作成用のaction\_idを取得 | v0 | - |
+| 69 | [GetAutoNumber](api/items/GetAutoNumber.md#GetAutoNumber) | 自動採番 | POST | /api/v0/applications/:project-id/datastores/:datastore-id/fields/:field-id/autonum | アイテム登録用の番号を採番する | v0 | - |
 | 33 | [CreateItemWithItemID](api-document_jp.md#CreateItemWithItemID) | item\_idを指定して新規アイテムを作成 | POST | /api/v0/items/:item-id/new-actions/:action-id | action\_idを指定して、新規作成アクションを実行\(No.69の後に実行\) | v0 | - |
 
 #### 添付ファイル関連API
