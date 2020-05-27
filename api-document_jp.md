@@ -2248,7 +2248,45 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
       "title": "タイトル",
       "assignee": "担当者",
   }
+  "related_ds_items" : {
+      "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
+      "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
+    },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
 }
+```
+* 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
+```
+    "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
+      "RELATED_DS_1" : [
+        {
+          "edit_state" : 1,  // new
+          "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
+          "i_id" : "", // 対象アイテムID　※省略可 (省略するとデフォルトの新規アクションが新規i_idを採番する)
+          "FIELD_ID1" : "data",
+          "FIELD_ID2" : "data",
+          "FIELD_ID3" : "data",
+          "FIELD_ID4" : "data",
+        },{
+          "edit_state" : 2,  // update
+          "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
+          "FIELD_ID1" : "data",
+          "FIELD_ID2" : "data",
+        },{
+          "edit_state" : 3,  // delete
+          "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        }
+      ]
+      "RELATED_DS_2" : [ // sample 省略 ]
+      "RELATED_DS_3" : [ // sample 省略 ]
+    }
 ```
 
 **Response Sample**
@@ -2291,9 +2329,58 @@ item-id         : 対象アイテムのID
 
 ```text
 {
-    "history": {
-        "comment": "test-comment"
+    "comment": "test-comment"
+    "item": {
+        "CAR_NAME": "value": "名前のデータ", // text tyepe
+        "CAR_TYPE": "5d4c058baa39555618ac9e98", // select type
+        "OPTIONS" : [ "58bbaa27fbfcba6098746061", "596e2327fbfcbab8283dde09"],  // checkbox type
     },
+    "groups_to_publish":["画面グループID", "システムのグループID"],　// item を閲覧可能とするグループIDを指定（省略可）
+    "use_display_id" : true,  // IDに画面IDを利用。 groups_to_publishを利用する場合はtrueとする。
+    "is_force_update": true,
+    "related_ds_items" : {
+      "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
+      "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
+    },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
+}
+```
+* 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
+```
+    "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
+      "RELATED_DS_1" : [
+        {
+          "edit_state" : 1,  // new
+          "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
+          "i_id" : "", // 対象アイテムID　※省略可 (省略するとデフォルトの新規アクションが新規i_idを採番する)
+          "FIELD_ID1" : "data",
+          "FIELD_ID2" : "data",
+          "FIELD_ID3" : "data",
+          "FIELD_ID4" : "data",
+        },{
+          "edit_state" : 2,  // update
+          "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
+          "FIELD_ID1" : "data",
+          "FIELD_ID2" : "data",
+        },{
+          "edit_state" : 3,  // delete
+          "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        }
+      ]
+      "RELATED_DS_2" : [ // sample 省略 ]
+      "RELATED_DS_3" : [ // sample 省略 ]
+    }
+```
+
+* 更新用Valueは`changes` プロパティへ以下のように配列で指定することも可能です。　
+```
     "changes": [
         {
             "id": "CAR_TYPE",
@@ -2308,11 +2395,8 @@ item-id         : 対象アイテムのID
             "value": [ "58bbaa27fbfcba6098746061", "596e2327fbfcbab8283dde09"]  // checkbox type
         }
     ],
-    "groups_to_publish":["画面グループID", "システムのグループID"],　　//アイテム更新時にグループロールを付与する、画面グループIDを使用する場合はuse_display_idをtrueにする、画面グループIDを使う場合は全て画面グループIDに統一する、システムのグループID(g_id)の場合全てそれに統一する　現在のユーザーの所持しているユーザーロールを元にロール付与出来るか判断。例：グループツリー下層から上層にグループを付与できない　warningが返される。上層から下層に向けては付与可能。
-    "use_display_id" : true,
-    "is_force_update": true
-}
 ```
+アイテム更新時にグループロールを付与する、画面グループIDを使用する場合はuse_display_idをtrueにする、画面グループIDを使う場合は全て画面グループIDに統一する、システムのグループID(g_id)の場合全てそれに統一する　現在のユーザーの所持しているユーザーロールを元にロール付与出来るか判断。例：グループツリー下層から上層にグループを付与できない　warningが返される。上層から下層に向けては付与可能。
 
 **Request URL Sample**
 
@@ -2848,18 +2932,72 @@ POST
 `Content-Type : application/json`
 
 ```javascript
-{"changes":
-  [
-    {
-      "datatype":"multi",//使用しているフィールド型
-      "id":"5e256923aeae8e212cb2e03b",　//filedID 
-      "value":"更新値"} 
-  ],
-    "history":{
-      "comment":"コメント例"
+{
+  "comment": "test-comment"
+  "item": {
+      "5e256923aeae8e212cb2e03b": "value", // text tyepe
+      "58bbaa27fbfcba6098746061": "5d4c058baa39555618ac9e98", // select type
+      "58bbaa27fbfcba6098746067" : [ "58bbaa27fbfcba6098746015", "596e2327fbfcbab8283dde09"],  // checkbox type
   },
-  "rev_no":8　//現在のrevison番号
+  "rev_no":8,　//現在のrevison番号
+  "related_ds_items" : {
+      "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
+      "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
+    },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
 }
+```
+* 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
+```
+    "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
+      "RELATED_DS_1" : [
+        {
+          "edit_state" : 1,  // new
+          "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
+          "i_id" : "", // 対象アイテムID　※省略可 (省略するとデフォルトの新規アクションが新規i_idを採番する)
+          "FIELD_ID1" : "data",
+          "FIELD_ID2" : "data",
+          "FIELD_ID3" : "data",
+          "FIELD_ID4" : "data",
+        },{
+          "edit_state" : 2,  // update
+          "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
+          "FIELD_ID1" : "data",
+          "FIELD_ID2" : "data",
+        },{
+          "edit_state" : 3,  // delete
+          "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        }
+      ]
+      "RELATED_DS_2" : [ // sample 省略 ]
+      "RELATED_DS_3" : [ // sample 省略 ]
+    }
+```
+
+
+* 更新用Valueは`changes` プロパティへ配列で指定することも可能です。　
+```
+"changes": [
+    {
+      "id": "5e256923aeae8e212cb2e03b",
+      "value": "value"
+    },
+    {
+      "id": "58bbaa27fbfcba6098746061", 
+      "value": "5d4c058baa39555618ac9e98",
+    },
+    {
+      "id": "58bbaa27fbfcba6098746067",
+      "value": [ "58bbaa27fbfcba6098746015", "596e2327fbfcbab8283dde09"],  // checkbox type
+    },
+  ]
 ```
 
 **Request Sample**
@@ -2905,18 +3043,80 @@ action-id    : アクションID
 
 ```text
 {
- "rev_no":2, // "is_force_update": trueの場合、省略可能
+  "rev_no":2, // "is_force_update": trueの場合、省略可能
   "is_force_update": true, // "rev_no"を指定した場合、省略可能
-  "history": {
-    "datastore_id": "59ad2d890e247927638e7619",
-    "comment": ""
+  "datastore_id": "59ad2d890e247927638e7619",
+  "comment": "comment..."
+  "item": {
+    "5a26722e0e24794c979fa5b6": "更新データサンプル",  // field_id : 更新value
+    "5ab84bfecce5fe5c983ea184": [   // user type Fieldの場合
+        "58272f4efb90a148d8508d9c", // user_id   
+        "5846636efb90a1024d2982fa"  // user_id
+      ],
+    "5ab0c239cce5fed3a859a910": [    // attachment file type Fieldの場合
+        "5ab84c1fcce5fe5c983ea185",  // file_id
+        "5ab84c1fcce5fe5c983ea186"   // file_id
+      ]
   },
-  "changes": [
+  "related_ds_items" : {
+      "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
+      "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
+    },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
+}
+```
+* 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
+```
+    "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
+      "RELATED_DS_1" : [
+        {
+          "edit_state" : 1,  // new
+          "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
+          "i_id" : "", // 対象アイテムID　※省略可 (省略するとデフォルトの新規アクションが新規i_idを採番する)
+          "FIELD_ID1" : "data",
+          "FIELD_ID2" : "data",
+          "FIELD_ID3" : "data",
+          "FIELD_ID4" : "data",
+        },{
+          "edit_state" : 2,  // update
+          "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
+          "FIELD_ID1" : "data",
+          "FIELD_ID2" : "data",
+        },{
+          "edit_state" : 3,  // delete
+          "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        }
+      ]
+      "RELATED_DS_2" : [ // sample 省略 ]
+      "RELATED_DS_3" : [ // sample 省略 ]
+    }
+```
+
+* rev\_noは排他チェックに利用しています。/api/v0/datastores/:datastore-id/items/searchで返されるrev\_noを指定します。指定したrev\_noとデータベース内のrev\_noが異なる場合は、エラーとなります。（排他制御）
+* rev\_noのエラーチェックをせず、強制的にデータ更新を行う場合は、 `is_force_update` フラグを `true` にして実行します。その場合はrev\_noのフィールドは指定不要。最後に更新されたデータで上書きされます。
+* フィールドのデータタイプがユーザータイプ、添付ファイルタイプの場合、valueにはそれぞれuser\_id、file\_id の配列を指定します。
+* フィールドのデータタイプが日付の場合、以下のフォーマットで指定します。
+
+    yyyy-mm-ddThh:mm:ss.SSSZ \(.SSSは省略可\)  
+
+    TZ間に指定する時刻は、UTC時刻を指定  
+
+    例\) 2018年1月11日を指定する場合、"2018-01-10T15:00:00.000Z"
+* 更新用Valueは`changes` プロパティへ配列で指定することも可能です。　
+```
+"changes": [
     {
       "id": "5a26722e0e24794c979fa5b6",
       "value": "更新データサンプル"
-  },
-  {
+    },
+    {
       "id": "5ab84bfecce5fe5c983ea184",  // user type Fieldの場合
       "value": [
         "58272f4efb90a148d8508d9c", // user_id
@@ -2931,19 +3131,7 @@ action-id    : アクションID
       ],
     },
   ]
-}
 ```
-
-* rev\_noは排他チェックに利用している。/api/v0/datastores/:datastore-id/items/searchで返されるrev\_noを指定。指定したrev\_noとデータベース内のrev\_noが異なる場合は、エラーとなる。（排他制御）
-* rev\_noのエラーチェックをせず、強制的にデータ更新を行う場合は、 `is_force_update` フラグを `true` にして実行する。その場合はrev\_noのフィールドは指定不要。最後に更新されたデータで上書きされる。
-* フィールドのデータタイプがユーザータイプ、添付ファイルタイプの場合、valueにはそれぞれuser\_id、file\_id の配列を指定する
-* フィールドのデータタイプが日付の場合、以下のフォーマットで指定する  
-
-    yyyy-mm-ddThh:mm:ss.SSSZ \(.SSSは省略可\)  
-
-    TZ間に指定する時刻は、UTC時刻を指定  
-
-    例\) 2018年1月11日を指定する場合、"2018-01-10T15:00:00.000Z"
 
 **Request URL Sample**
 
@@ -2991,14 +3179,30 @@ conditions の詳細については、[conditions](#conditions)を参照
         "5846636efb90a1024d29as12", // item_id
         "5846636efb90a1024d29asdf"  // item_id (複数件を指定可能)
       ]
-    },{
+    },
+    {
       "id": "5e5f334e8250710006078dbd", // StatusID のフィールドID
       "search_value": [
         "5e5f334e8250710006078dc0"   // status_id  (s_id)
       ]
     }
   ],
-  "changes": [　　// 変更フィールドと変更データ
+  "item": {
+    "5a26722e0e24794c979fa5b6": "更新データサンプル",  // field_id : 更新value
+    "5ab84bfecce5fe5c983eb654": ["5ab84c1fcce5fe5c983ea186","5846636efb90a1024d2982fa" ], // select type Fieldの場合 選択肢ID o_id の配列を指定
+    "5ab84bfecce5fe5c983ea184": ["58272f4efb90a148d8508d9c","5ab84c1fcce5fe5c983ea999" ], // user type Fieldの場合 user_id の配列を指定
+    "5ab0c239cce5fed3a859a910": ["5ab84c1fcce5fe5c983ea185","5ab84c1fcce5fe5c983ea789" ]　// attachment file type Fieldの場合、file_idの配列を指定
+  }
+  "comment": "一括承認", // アクション実行時にアイテムへ付加するコメントメッセージ
+  "max_items": 100, // 最大の処理実行件数. デフォルトは100.　最大300件まで。10件単位で指定する（10,20,30,...300)
+  "use_display_id" : false, // 画面IDを指定 trueの場合、フィールドIDに画面IDを利用可能
+  "continue_proc": true // true: 対象アイテム件数がmax_itemsを超えた場合、max_items件まで処理を実行する。false(default): 対象がmax_itemsを超えていたらエラー（処理しない）
+}
+```
+* 更新itemの情報は、変更点のみを指定します。
+* 更新用Valueは`changes` プロパティへ配列で指定することも可能です。　
+```
+"changes": [
     {
       "id": "5a26722e0e24794c979fa5b6",
       "value": "更新データサンプル"
@@ -3009,13 +3213,15 @@ conditions の詳細については、[conditions](#conditions)を参照
         "58272f4efb90a148d8508d9c", // user_id
         "5846636efb90a1024d2982fa"  // user_id
       ],
-    }
-  ],
-  "comment": "一括承認", // アクション実行時にアイテムへ付加するコメントメッセージ
-  "max_items": 100, // 最大の処理実行件数. デフォルトは100.　最大300件まで。10件単位で指定する（10,20,30,...300)
-  "use_display_id" : false, // 画面IDを指定 trueの場合、フィールドIDに画面IDを利用可能
-  "continue_proc": true // true: 対象アイテム件数がmax_itemsを超えた場合、max_items件まで処理を実行する。false(default): 対象がmax_itemsを超えていたらエラー（処理しない）
-}
+    },
+    {
+      "id": "5ab0c239cce5fed3a859a910", // attachment file type Fieldの場合
+      "value": [
+        "5ab84c1fcce5fe5c983ea185",  // file_id
+        "5ab84c1fcce5fe5c983ea186"   // file_id
+      ],
+    },
+  ]
 ```
 
 **Request URL Sample**
