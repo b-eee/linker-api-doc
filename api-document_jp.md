@@ -211,7 +211,7 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 29 | [UploadFile](api-document_jp.md#UploadFile) | 添付ファイルUpload | POST | /api/v0/items/:item-id/fields/:field-id/attachments | 添付ファイルフィールドにファイルをアップロード | v0 | - |
-| 30 | [DeleteFile](api-document_jp.md#DeleteFile) | 添付ファイル削除 | DELETE | /api/v0/items/:item-id/fields/:field-id/attachments/:attachment-id | 添付ファイルフィールドのファイルを削除 | v0 | - |
+| 30 | [DeleteFile](api-document_jp.md#DeleteFile) | 添付ファイル削除 | DELETE | /api/v0/items/:item-id/fields/:field-id/attachments/:file-id | 添付ファイルフィールドのファイルを削除 | v0 | - |
 | 35 | [GetFile](api-document_jp.md#GetFile) | ファイルデータの取得 | GET | /api/v0/files/:file-id | 添付ファイルデータを取得 | v0 | - |
 
 #### アイテムの履歴
@@ -3797,7 +3797,7 @@ DELETE
 **Request URL Format**
 
 ```text
-/api/v0/items/:item-id/fields/:field-id/attachments/:attachment-id
+/api/v0/items/:item-id/fields/:field-id/attachments/:file-id
 ```
 
 **Params**
