@@ -2255,25 +2255,31 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
 }
 ```
 * 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
-```
+```javascript
     "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
       "RELATED_DS_1" : [
         {
-          "edit_state" : 1,  // new
+          "operation" : 1,  // new
           "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
-          "i_id" : "", // 対象アイテムID　※省略可 (省略するとデフォルトの新規アクションが新規i_idを採番する)
-          "FIELD_ID1" : "data",
-          "FIELD_ID2" : "data",
-          "FIELD_ID3" : "data",
-          "FIELD_ID4" : "data",
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID2" : "data",
+            "FIELD_ID3" : "data",
+            "FIELD_ID4" : "data",
+          },
+          "related_ds_items" : {  // related_ds_itemsをネストさせることも可能。（同一Datastoreの複数ネストさせることは不可）
+            "関連データストアID_3" : [{ },{ },{ },{ }... ] ,
+          }
         },{
-          "edit_state" : 2,  // update
+          "operation" : 2,  // update
           "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
           "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
-          "FIELD_ID1" : "data",
-          "FIELD_ID2" : "data",
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID3" : "data"
+          }
         },{
-          "edit_state" : 3,  // delete
+          "operation" : 3,  // delete
           "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
           "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
         },{
@@ -2327,7 +2333,7 @@ item-id         : 対象アイテムのID
 
 **Payload**
 
-```text
+```javascript
 {
     "comment": "test-comment"
     "item": {
@@ -2345,25 +2351,31 @@ item-id         : 対象アイテムのID
 }
 ```
 * 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
-```
+```javascript
     "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
       "RELATED_DS_1" : [
         {
-          "edit_state" : 1,  // new
+          "operation" : 1,  // new
           "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
-          "i_id" : "", // 対象アイテムID　※省略可 (省略するとデフォルトの新規アクションが新規i_idを採番する)
-          "FIELD_ID1" : "data",
-          "FIELD_ID2" : "data",
-          "FIELD_ID3" : "data",
-          "FIELD_ID4" : "data",
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID2" : "data",
+            "FIELD_ID3" : "data",
+            "FIELD_ID4" : "data",
+          },
+          "related_ds_items" : {  // related_ds_itemsをネストさせることも可能。（同一Datastoreの複数ネストさせることは不可）
+              "関連データストアID_3" : [{ },{ },{ },{ }... ] ,
+          }
         },{
-          "edit_state" : 2,  // update
+          "operation" : 2,  // update
           "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
           "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
-          "FIELD_ID1" : "data",
-          "FIELD_ID2" : "data",
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID3" : "data"
+          }
         },{
-          "edit_state" : 3,  // delete
+          "operation" : 3,  // delete
           "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
           "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
         },{
@@ -2438,10 +2450,13 @@ item-id         : 対象アイテムのID
 
 **Payload**
 
-空のJSON `{}`を指定する必要があります
+パラメータ指定しない場合でも、空のJSON `{}`を指定する必要があります
 
 ```text
-{}
+{
+  delete_linked_items : false, 
+  target_related_datastores: [ "DATASTORE_A", "DATASTORE_B", ...] // delete_linked_items: trueの場合、削除する関連データストア（同一アプリケーション内のみ指定可能です）指定しない場合はすべての関連したアイテムが削除されますので、指定することを推奨します。
+}
 ```
 
 **Request URL Sample**
@@ -2947,25 +2962,31 @@ POST
 }
 ```
 * 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
-```
+```javascript
     "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
       "RELATED_DS_1" : [
         {
-          "edit_state" : 1,  // new
+          "operation" : 1,  // new
           "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
-          "i_id" : "", // 対象アイテムID　※省略可 (省略するとデフォルトの新規アクションが新規i_idを採番する)
-          "FIELD_ID1" : "data",
-          "FIELD_ID2" : "data",
-          "FIELD_ID3" : "data",
-          "FIELD_ID4" : "data",
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID2" : "data",
+            "FIELD_ID3" : "data",
+            "FIELD_ID4" : "data",
+          },
+          "related_ds_items" : {  // related_ds_itemsをネストさせることも可能。（同一Datastoreの複数ネストさせることは不可）
+              "関連データストアID_3" : [{ },{ },{ },{ }... ] ,
+          }
         },{
-          "edit_state" : 2,  // update
+          "operation" : 2,  // update
           "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
           "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
-          "FIELD_ID1" : "data",
-          "FIELD_ID2" : "data",
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID3" : "data"
+          }
         },{
-          "edit_state" : 3,  // delete
+          "operation" : 3,  // delete
           "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
           "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
         },{
@@ -3041,7 +3062,7 @@ action-id    : アクションID
 
 `Content-Type : application/json`
 
-```text
+```javascript
 {
   "rev_no":2, // "is_force_update": trueの場合、省略可能
   "is_force_update": true, // "rev_no"を指定した場合、省略可能
@@ -3065,25 +3086,31 @@ action-id    : アクションID
 }
 ```
 * 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
-```
+```javascript
     "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
       "RELATED_DS_1" : [
         {
-          "edit_state" : 1,  // new
+          "operation" : 1,  // new
           "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
-          "i_id" : "", // 対象アイテムID　※省略可 (省略するとデフォルトの新規アクションが新規i_idを採番する)
-          "FIELD_ID1" : "data",
-          "FIELD_ID2" : "data",
-          "FIELD_ID3" : "data",
-          "FIELD_ID4" : "data",
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID2" : "data",
+            "FIELD_ID3" : "data",
+            "FIELD_ID4" : "data",
+          },
+          "related_ds_items" : {  // related_ds_itemsをネストさせることも可能。（同一Datastoreの複数ネストさせることは不可）
+            "関連データストアID_3" : [{ },{ },{ },{ }... ] ,
+          }
         },{
-          "edit_state" : 2,  // update
+          "operation" : 2,  // update
           "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
           "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
-          "FIELD_ID1" : "data",
-          "FIELD_ID2" : "data",
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID3" : "data"
+          }
         },{
-          "edit_state" : 3,  // delete
+          "operation" : 3,  // delete
           "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
           "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
         },{
