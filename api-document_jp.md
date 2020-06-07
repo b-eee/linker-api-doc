@@ -929,7 +929,9 @@ PUT https://api.xxx.com/api/v0/grouproles/:group-id
 
 **Description**
 
-tokenで指定されたユーザーに関連した情報取得
+- tokenで指定されたユーザーに関連した情報を取得する
+- user_rolesには、ユーザーが保有するロールの一覧が返る
+- user_groupsには、現在のワークスペース内でユーザーが所属するグループの一覧が返る
 
 **Method**
 
@@ -978,7 +980,24 @@ GET https://api.xxx.com/api/v0/userinfo
         "application_name": "バツバツシステム",
         "application_display_order": 0
       }
-  ]
+    ],
+    "user_groups": [
+      {
+        "g_id": "5c5fd6c084f4be2574e2bcaf",
+        "group_name": "営業１課",
+        "group_id": "1101"
+      },
+      {
+        "g_id": "5c5fd6c084f4be2574e2bcb0",
+        "group_name": "A部",
+        "group_id": "1001"
+      },
+      {
+        "g_id": "5c5fa7da84f4be4250aaee28",
+        "group_name": "全社",
+        "group_id": "1000"
+      }
+    ]
 }
 ```
 
