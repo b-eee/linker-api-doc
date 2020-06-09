@@ -2450,12 +2450,16 @@ item-id         : 対象アイテムのID
 
 **Payload**
 
-パラメータ指定しない場合でも、空のJSON `{}`を指定する必要があります
+（注意）
+- パラメータ指定しない場合でも、空のJSON `{}`を指定する必要があります
+- delete_linked_items : trueの場合は、削除対象のtarget_datastoresを指定する必要があります。
+- target_datastoresには、画面IDまたはd_idを指定可能です。孫データベースなど、関連をたどって指定可能です。
+- このAPIが削除可能な１アイテムに関連するアイテムの上限は`100件`です。100件を超えた場合、その関連アイテムは削除されません。
 
-```text
+```javascript
 {
-  delete_linked_items : false, 
-  target_related_datastores: [ "DATASTORE_A", "DATASTORE_B", ...] // delete_linked_items: trueの場合、削除する関連データストア（同一アプリケーション内のみ指定可能です）指定しない場合はすべての関連したアイテムが削除されますので、指定することを推奨します。
+  delete_linked_items : true,                                     // true : 関連したアイテムも削除
+  target_datastores: [ "DATASTORE_A", "DATASTORE_B", ...] // delete_linked_items: trueの場合、削除する関連データストアの画面ID(またはd_id)を指定します。（同一アプリケーション内のみ指定可能）注意：指定しない場合は、削除されません。
 }
 ```
 
@@ -2473,8 +2477,6 @@ Payload (空のJSONを指定する必要があります)
 ```javascript
 {
     "error": null,
-    "history_id": "5d661782aa39559a80479492",
-    "item_id": "5a2647410e24792d87451e34"
 }
 ```
 
