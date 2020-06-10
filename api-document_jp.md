@@ -2068,12 +2068,14 @@ datastore-id    : データストアID（Hexabase画面から入力したIDを�
 **Payload**
 
 ```text
-conditions      : 検索条件を指定
-page            : ページ数
-per_page        : 検索結果の件数
-sort_field_id   : ソートするフィールドIDを指定
-sort_order      : 昇順の場合"asc" 降順の場合"desc"
+conditions          : 検索条件を指定
+per_page            : 検索結果の件数
+page                : ページ数
+sort_field_id       : ソートするフィールドIDを指定
+sort_order          : 昇順の場合"asc" 降順の場合"desc"
+use_default_search  : true or false デフォルト検索条件(注)を適用する場合、trueを指定
 ```
+ (注：`デフォルト検索条件`はHexabase UIの一覧画面で、検索条件ダイアログでチェックを入れて指定します。)
 
 #### conditions
 
