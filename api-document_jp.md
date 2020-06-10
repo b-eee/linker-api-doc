@@ -1054,13 +1054,13 @@ group-id :  グループID
 `Query Param`
 
 ```text
-recursive        : bool  //複数ユーザー取得
+recursive        : bool  //グループ階層の下をたどって、所属するすべてのユーザーを取得します。
 ```
 
 **Request URL Sample**
 
 ```text
-GET https://api.xxx.com/api/v0/groups/5df9d7d7aeae8e2fa894e324/users
+GET https://api.xxx.com/api/v0/groups/5df9d7d7aeae8e2fa894e324/users?recursive=true
 ```
 
 **Response Sample**
@@ -1078,7 +1078,7 @@ GET https://api.xxx.com/api/v0/groups/5df9d7d7aeae8e2fa894e324/users
             "is_sv": true //("bool, このユーザーがスーパバイザー型かどうか、true=supervisorである")
         } //("ユーザー毎にオブジェクトが返される")
     ],
-    "count": 1//("int、このグループ内部にいるユーザー数")
+    "count": 1//("このグループ内部にいるユーザー数")
 }
 ```
 
