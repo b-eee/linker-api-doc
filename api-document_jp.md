@@ -1369,21 +1369,28 @@ GET
 
 **Params**
 
-\`\`\`Query Params id: laskdhoifvoasdijflasmdlm //必須 emailに送信されたid情報
+id : 必須 emailに送信されたid情報
 
-```text
 ##### Request URL Sample
-```
-
-GET [https://api.xxx.com/api/v0/users/password/validate](https://api.xxx.com/api/v0/users/password/validate)
 
 ```text
+GET https://api.xxx.com/api/v0/users/password/validate?id=xxxxxxxxxxxxxxxxxxxxxxxx
+```
+
 ##### Response Sample
-```
-
-{​ "\_id": "5e1484d4aeae8e202819528d", "accessed": true, // bool パスワード変更処理開始後アクセス済みかどう "created\_at": "2020-01-07T13:17:08.01Z", //パスワード作成日 "isElapsed": false, // bool パスワード変更処理の期限切れかどうか "updated\_at": "2020-01-07T13:31:20.961Z" // パスワード更新日 }
 
 ```text
+{​ 
+  "id": "5e1484d4aeae8e202819528d", 
+  "accessed": true, // bool パスワード変更処理開始後アクセス済みかどう 
+  "created_at": "2020-01-07T13:17:08.01Z", //パスワード作成日 
+  "isElapsed": false, // bool パスワード変更処理の期限切れかどうか 
+  "updated_at": "2020-01-07T13:31:20.961Z" // パスワード更新日 
+}
+```
+
+
+
 ---
 ### SetPassword
 ログイン後、パスワード変更
