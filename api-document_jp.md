@@ -131,13 +131,6 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 | 54 | [ConfirmRegistration](api-document_jp.md#ConfirmRegistration) | ユーザー情報確認 | GET | /api/v0/users/registration/confirm | ConfirmIDからユーザーの初期登録情報の確認 | v0 | - |
 | 55 | [RegisterUser](api-document_jp.md#RegisterUser) | ユーザー初期登録 | POST | /api/v0/users/registration/confirm | ユーザーの初期登録、パスワード登録 | v0 | - |
 
-#### ユーザーへのロール設定
-
-| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
-| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 65 | [AddRoleToUser](api-document_jp.md#AddRoleToUser) | ユーザーへロール付与 | POST | /api/v0/applications/:project-id/userroles | ユーザーにアプリケーションのロールを付与する | v0 | - |
-| 66 | [RemoveRoleFromUser](api-document_jp.md#RemoveRoleFromUser) | ユーザからロールを削除 | DELETE | /api/v0/applications/:project-id/userroles | ユーザーからアプリケーションのロールを外す | v0 | - |
-
 #### CSVデータによるユーザー一括登録
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
@@ -153,6 +146,14 @@ Hexabaseでは、「アプリケーション」ごとに、データベース・
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 11 | [GetApplicationsAndDatastores](api-document_jp.md#GetApplicationsAndDatastores) | アプリケーションとデータベース一覧 | GET | /api/v0/workspaces/:workspace-id/applications | アプリケーション一覧のとデータストア一覧を取得 | v0 | - |
 
+#### ロール関連API
+
+| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
+| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 65 | [AddRoleToUser](api-document_jp.md#AddRoleToUser) | ユーザーへロール付与 | POST | /api/v0/applications/:project-id/userroles | ユーザーにアプリケーションのロールを付与する | v0 | - |
+| 66 | [RemoveRoleFromUser](api-document_jp.md#RemoveRoleFromUser) | ユーザからロールを削除 | DELETE | /api/v0/applications/:project-id/userroles | ユーザーからアプリケーションのロールを外す | v0 | - |
+| 71 | [GetRoleUsers](api/applications/GetRoleUsers.md#GetRoleUsers) | ロールをもつユーザーの取得 | GET | /api/v0/applications/:app-id/roleusers/:role-id | 指定したロールを所有するユーザーを取得する | v0 | - |
+
 #### フィールド関連API
 
 Hexabaseでは、「アイテム」のカラムを「フィールド」または「画面項目」と呼びます。
@@ -165,32 +166,32 @@ Hexabaseでは、「アイテム」のカラムを「フィールド」または
 
 Hexabaseでは、データベースの各データを「アイテム」と呼びます。表の横１行がアイテムになります。一般的なRDBのレコードに相当します。
 
-#### アイテムの検索、登録、更新、削除
+#### アイテムの検索、表示
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 19 | [ItemList](api-document_jp.md#ItemList) | アイテム一覧 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/search | アイテム一覧を取得 | v0 | ✓ |
+| 68 | [GetItemSearchConditions](api/items/GetItemSearchConditions.md#GetItemSearchConditions) | アイテム検索条件取得 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/conditions | アイテムの検索条件を取得する | v0 | ✓ |
+| 70 | [GetUserQueries](api/items/GetUserQueries.md#GetUserQueries) | よく使う一覧の取得 | GET | /api/v0/applications/:app-id/queries | ユーザーごとに記憶された検索条件一覧を返す| v0 | ✓ |
+| 27 | [GetItemDetails](api/items/GetItemDetails.md#GetItemDetails) | アイテム詳細 | GET | /api/v0/applications/:project-id/datastores/:datastore-id/items/:item-id | アイテムの詳細情報、アクションリストを取得 | v0 | ✓ |
+
+#### アイテムの登録、更新、削除
+
+| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
+| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 69 | [GetAutoNumber](api/items/GetAutoNumber.md#GetAutoNumber) | 自動採番 | POST | /api/v0/applications/:project-id/datastores/:datastore-id/fields/:field-id/autonum | アイテムへ登録時に任意利用できる番号を採番する | v0 | ✓ |
 | 20 | [CreateItem](api-document_jp.md#CreateItem) | アイテム新規登録 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/new | 新規アイテムを作成する | v0 | ✓ |
 | 21 | [UpdateItem](api-document_jp.md#UpdateItem) | アイテム更新 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/edit/:item-id | アイテムを編集する | v0 | ✓ |
 | 22 | [DeleteItem](api-document_jp.md#DeleteItem) | アイテム削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/delete/:item-id | １アイテムを削除する | v0 | ✓ |
 | 23 | [DeleteItemByConditions](api-document_jp.md#DeleteItemByConditions) | 条件指定してアイテム削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/delete | 条件を指定してアイテムを一括削除する | v0 | ✓ |
+
+#### アイテムに対するアクション実行
+
+| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
+| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 12 | [GetNewActionMenu](api-document_jp.md#GetNewActionMenu) | 新規登録アクションの一覧 | GET | /api/v0/datastores/:datastore-id/new-action | 新規アイテム作成アクション一覧を取得 | v0 | - |
 | 48 | [CreateItemID](api-document_jp.md#CreateItemID) | 新規アイテムID取得 | POST | /api/v0/datastores/:datastore-id/items/create-id | 新規アイテム作成用のaction\_idを取得 | v0 | - |
 | 33 | [CreateItemWithItemID](api-document_jp.md#CreateItemWithItemID) | item\_idを指定して新規アイテムを作成 | POST | /api/v0/items/:item-id/new-actions/:action-id | action\_idを指定して、新規作成アクションを実行\(No.69の後に実行\) | v0 | - |
-
-#### 添付ファイル関連API
-
-| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
-| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 29 | [UploadFile](api-document_jp.md#UploadFile) | 添付ファイルUpload | POST | /api/v0/items/:item-id/fields/:field-id/attachments | 添付ファイルフィールドにファイルをアップロード | v0 | - |
-| 30 | [DeleteFile](api-document_jp.md#DeleteFile) | 添付ファイル削除 | DELETE | /api/v0/items/:item-id/fields/:field-id/attachments/:attachment-id | 添付ファイルフィールドのファイルを削除 | v0 | - |
-| 35 | [GetFile](api-document_jp.md#GetFile) | ファイルデータの取得 | GET | /api/v0/files/:file-id | 添付ファイルデータを取得 | v0 | - |
-
-#### アイテム詳細、アクション関連
-
-| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
-| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 27 | [GetItemDetails](api-document_jp.md#GetItemDetails) | アイテム詳細 | GET | /api/v0/datastores/:datastore-id/items/:item-id | アイテムの詳細情報、アクションリストを取得 | v0 | - |
 | 13 | [GetActionFields](api-document_jp.md#GetActionFields) | アクション登録フォーム取得 | GET | /api/v0/datastores/:datastore-id/actions/:action-id/fields | アクションで利用可能なフィールド情報を取得する | v0 | - |
 | 62 | [ExecuteAction](api-document_jp.md#ExecuteAction) | アクションの実行 | POST | /api/v0/applications/:project-id/datastores/:datastore-id/items/action/:action-id | 指定アクションを実行する | v0 | ✓ |
 | 31 | [ExecuteActionByActionID](api-document_jp.md#ExecuteActionByActionID) | アクションの実行 | POST | /api/v0/items/:item-id/actions/:action-id | アクションを実行 | v0 | - |
@@ -200,10 +201,18 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 28 | [GetLinkedItems](api-document_jp.md#GetLinkedItems) | 関連アイテム取得 | GET | /api/v0/datastores/:datastore-id/items/:item-id/links/:linked-datastore-id" | アイテムに関連するアイテム一覧を取得 | v0 | - |
+| 28 | [GetLinkedItems](api/items/GetLinkedItems.md#GetLinkedItems) | 関連アイテム取得 | GET | /api/v0/applications/:app-id/datastores/:datastore-id/items/links/:item-id | アイテムに関連するアイテム一覧を取得 | v0 | ✓ |
 | 24 | [AddItemLink](api-document_jp.md#AddItemLink) | アイテムリンク作成 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/addlink/:item-id | 関連アイテムとのリンクを追加 | v0 | ✓ |
 | 25 | [UpdateItemLink](api-document_jp.md#UpdateItemLink) | アイテムリンク更新 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/updatelink/:item-id | 関連アイテムとのリンクを更新 | v0 | ✓ |
 | 26 | [DeleteItemLink](api-document_jp.md#DeleteItemLink) | アイテムリンク削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/dellink/:item-id | 関連アイテムとのリンクを削除 | v0 | ✓ |
+
+#### 添付ファイル関連API
+
+| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
+| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 29 | [UploadFile](api-document_jp.md#UploadFile) | 添付ファイルUpload | POST | /api/v0/items/:item-id/fields/:field-id/attachments | 添付ファイルフィールドにファイルをアップロード | v0 | - |
+| 30 | [DeleteFile](api-document_jp.md#DeleteFile) | 添付ファイル削除 | DELETE | /api/v0/items/:item-id/fields/:field-id/attachments/:file-id | 添付ファイルフィールドのファイルを削除 | v0 | - |
+| 35 | [GetFile](api-document_jp.md#GetFile) | ファイルデータの取得 | GET | /api/v0/files/:file-id | 添付ファイルデータを取得 | v0 | - |
 
 #### アイテムの履歴
 
@@ -925,7 +934,9 @@ PUT https://api.xxx.com/api/v0/grouproles/:group-id
 
 **Description**
 
-tokenで指定されたユーザーに関連した情報取得
+- tokenで指定されたユーザーに関連した情報を取得する
+- user_rolesには、ユーザーが保有するロールの一覧が返る
+- user_groupsには、現在のワークスペース内でユーザーが所属するグループの一覧が返る
 
 **Method**
 
@@ -974,7 +985,24 @@ GET https://api.xxx.com/api/v0/userinfo
         "application_name": "バツバツシステム",
         "application_display_order": 0
       }
-  ]
+    ],
+    "user_groups": [
+      {
+        "g_id": "5c5fd6c084f4be2574e2bcaf",
+        "group_name": "営業１課",
+        "group_id": "1101"
+      },
+      {
+        "g_id": "5c5fd6c084f4be2574e2bcb0",
+        "group_name": "A部",
+        "group_id": "1001"
+      },
+      {
+        "g_id": "5c5fa7da84f4be4250aaee28",
+        "group_name": "全社",
+        "group_id": "1000"
+      }
+    ]
 }
 ```
 
@@ -1045,13 +1073,13 @@ group-id :  グループID
 `Query Param`
 
 ```text
-recursive        : bool  //複数ユーザー取得
+recursive        : bool  //グループ階層の下をたどって、所属するすべてのユーザーを取得します。
 ```
 
 **Request URL Sample**
 
 ```text
-GET https://api.xxx.com/api/v0/groups/5df9d7d7aeae8e2fa894e324/users
+GET https://api.xxx.com/api/v0/groups/5df9d7d7aeae8e2fa894e324/users?recursive=true
 ```
 
 **Response Sample**
@@ -1069,7 +1097,7 @@ GET https://api.xxx.com/api/v0/groups/5df9d7d7aeae8e2fa894e324/users
             "is_sv": true //("bool, このユーザーがスーパバイザー型かどうか、true=supervisorである")
         } //("ユーザー毎にオブジェクトが返される")
     ],
-    "count": 1//("int、このグループ内部にいるユーザー数")
+    "count": 1//("このグループ内部にいるユーザー数")
 }
 ```
 
@@ -1360,21 +1388,28 @@ GET
 
 **Params**
 
-\`\`\`Query Params id: laskdhoifvoasdijflasmdlm //必須 emailに送信されたid情報
+id : 必須 emailに送信されたid情報
 
-```text
 ##### Request URL Sample
-```
-
-GET [https://api.xxx.com/api/v0/users/password/validate](https://api.xxx.com/api/v0/users/password/validate)
 
 ```text
+GET https://api.xxx.com/api/v0/users/password/validate?id=xxxxxxxxxxxxxxxxxxxxxxxx
+```
+
 ##### Response Sample
-```
-
-{​ "\_id": "5e1484d4aeae8e202819528d", "accessed": true, // bool パスワード変更処理開始後アクセス済みかどう "created\_at": "2020-01-07T13:17:08.01Z", //パスワード作成日 "isElapsed": false, // bool パスワード変更処理の期限切れかどうか "updated\_at": "2020-01-07T13:31:20.961Z" // パスワード更新日 }
 
 ```text
+{​ 
+  "id": "5e1484d4aeae8e202819528d", 
+  "accessed": true, // bool パスワード変更処理開始後アクセス済みかどう 
+  "created_at": "2020-01-07T13:17:08.01Z", //パスワード作成日 
+  "isElapsed": false, // bool パスワード変更処理の期限切れかどうか 
+  "updated_at": "2020-01-07T13:31:20.961Z" // パスワード更新日 
+}
+```
+
+
+
 ---
 ### SetPassword
 ログイン後、パスワード変更
@@ -2052,12 +2087,14 @@ datastore-id    : データストアID（Hexabase画面から入力したIDを�
 **Payload**
 
 ```text
-conditions      : 検索条件を指定
-page            : ページ数
-per_page        : 検索結果の件数
-sort_field_id   : ソートするフィールドIDを指定
-sort_order      : 昇順の場合"asc" 降順の場合"desc"
+conditions          : 検索条件を指定
+per_page            : 検索結果の件数
+page                : ページ数
+sort_field_id       : ソートするフィールドIDを指定
+sort_order          : 昇順の場合"asc" 降順の場合"desc"
+use_default_search  : true or false デフォルト検索条件(注)を適用する場合、trueを指定
 ```
+ (注：`デフォルト検索条件`はHexabase UIの一覧画面で、検索条件ダイアログでチェックを入れて指定します。)
 
 #### conditions
 
@@ -2239,7 +2276,51 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
       "title": "タイトル",
       "assignee": "担当者",
   }
+  "related_ds_items" : {
+      "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
+      "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
+    },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
 }
+```
+* 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
+```javascript
+    "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
+      "RELATED_DS_1" : [
+        {
+          "operation" : 1,  // new
+          "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID2" : "data",
+            "FIELD_ID3" : "data",
+            "FIELD_ID4" : "data",
+          },
+          "related_ds_items" : {  // related_ds_itemsをネストさせることも可能。（同一Datastoreの複数ネストさせることは不可）
+            "関連データストアID_3" : [{ },{ },{ },{ }... ] ,
+          }
+        },{
+          "operation" : 2,  // update
+          "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID3" : "data"
+          }
+        },{
+          "operation" : 3,  // delete
+          "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        }
+      ]
+      "RELATED_DS_2" : [ // sample 省略 ]
+      "RELATED_DS_3" : [ // sample 省略 ]
+    }
 ```
 
 **Response Sample**
@@ -2280,11 +2361,66 @@ item-id         : 対象アイテムのID
 
 **Payload**
 
-```text
+```javascript
 {
-    "history": {
-        "comment": "test-comment"
+    "comment": "test-comment"
+    "item": {
+        "CAR_NAME": "value": "名前のデータ", // text tyepe
+        "CAR_TYPE": "5d4c058baa39555618ac9e98", // select type
+        "OPTIONS" : [ "58bbaa27fbfcba6098746061", "596e2327fbfcbab8283dde09"],  // checkbox type
     },
+    "groups_to_publish":["画面グループID", "システムのグループID"],　// item を閲覧可能とするグループIDを指定（省略可）
+    "use_display_id" : true,  // IDに画面IDを利用。 groups_to_publishを利用する場合はtrueとする。
+    "is_force_update": true,
+    "related_ds_items" : {
+      "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
+      "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
+    },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
+}
+```
+* 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
+```javascript
+    "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
+      "RELATED_DS_1" : [
+        {
+          "operation" : 1,  // new
+          "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID2" : "data",
+            "FIELD_ID3" : "data",
+            "FIELD_ID4" : "data",
+          },
+          "related_ds_items" : {  // related_ds_itemsをネストさせることも可能。（同一Datastoreの複数ネストさせることは不可）
+              "関連データストアID_3" : [{ },{ },{ },{ }... ] ,
+          }
+        },{
+          "operation" : 2,  // update
+          "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID3" : "data"
+          }
+        },{
+          "operation" : 3,  // delete
+          "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        }
+      ]
+      "RELATED_DS_2" : [ // sample 省略 ]
+      "RELATED_DS_3" : [ // sample 省略 ]
+    }
+```
+
+* 更新用Valueは`changes` プロパティへ以下のように配列で指定することも可能です。　
+```
     "changes": [
         {
             "id": "CAR_TYPE",
@@ -2299,11 +2435,8 @@ item-id         : 対象アイテムのID
             "value": [ "58bbaa27fbfcba6098746061", "596e2327fbfcbab8283dde09"]  // checkbox type
         }
     ],
-    "groups_to_publish":["画面グループID", "システムのグループID"],　　//アイテム更新時にグループロールを付与する、画面グループIDを使用する場合はuse_display_idをtrueにする、画面グループIDを使う場合は全て画面グループIDに統一する、システムのグループID(g_id)の場合全てそれに統一する　現在のユーザーの所持しているユーザーロールを元にロール付与出来るか判断。例：グループツリー下層から上層にグループを付与できない　warningが返される。上層から下層に向けては付与可能。
-    "use_display_id" : true,
-    "is_force_update": true
-}
 ```
+アイテム更新時にグループロールを付与する、画面グループIDを使用する場合はuse_display_idをtrueにする、画面グループIDを使う場合は全て画面グループIDに統一する、システムのグループID(g_id)の場合全てそれに統一する　現在のユーザーの所持しているユーザーロールを元にロール付与出来るか判断。例：グループツリー下層から上層にグループを付与できない　warningが返される。上層から下層に向けては付与可能。
 
 **Request URL Sample**
 
@@ -2345,10 +2478,17 @@ item-id         : 対象アイテムのID
 
 **Payload**
 
-空のJSON `{}`を指定する必要があります
+（注意）
+- パラメータ指定しない場合でも、空のJSON `{}`を指定する必要があります
+- delete_linked_items : trueの場合は、削除対象のtarget_datastoresを指定する必要があります。
+- target_datastoresには、画面IDまたはd_idを指定可能です。孫データベースなど、関連をたどって指定可能です。
+- このAPIが削除可能な１アイテムに関連するアイテムの上限は`100件`です。100件を超えた場合、その関連アイテムは削除されません。
 
-```text
-{}
+```javascript
+{
+  delete_linked_items : true,                                     // true : 関連したアイテムも削除
+  target_datastores: [ "DATASTORE_A", "DATASTORE_B", ...] // delete_linked_items: trueの場合、削除する関連データストアの画面ID(またはd_id)を指定します。（同一アプリケーション内のみ指定可能）注意：指定しない場合は、削除されません。
+}
 ```
 
 **Request URL Sample**
@@ -2365,8 +2505,6 @@ Payload (空のJSONを指定する必要があります)
 ```javascript
 {
     "error": null,
-    "history_id": "5d661782aa39559a80479492",
-    "item_id": "5a2647410e24792d87451e34"
 }
 ```
 
@@ -2568,140 +2706,6 @@ POST http://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/items/
 null
 ```
 
-#### GetItemDetails
-
-アイテムの詳細情報、アクションリストを取得
-
-**Description**
-
-指定したアイテムの情報（フィールド、ステータス、アクションなど）を取得します
-
-**Method**
-
-GET
-
-**Request URL Format**
-
-```text
-/api/v0/datastores/:datastore-id/items/:item-id
-```
-
-**URL Params**
-
-```text
-datastore-id  :  データストアID
-item-id  :  アイテムのID
-```
-
-**Request URL Sample**
-
-```text
-GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/58cd1e5bfbfcba2ebcaf0b1e
-```
-
-**Response Sample**
-
-```javascript
-{
-    "title": "",
-    "field_values": [
-        {
-            "field_id": "Fld-cx4MBjkE",
-            "field_name": "ファイル２",
-            "dataType": "file",
-            "value": {
-                "_id": "58ce52a5fb90a1429b958025",
-                "contentType": "text/plain; charset=utf-8",
-                "created_at": "2017-03-19T18:43:01.336+09:00",
-                "d_id": "58cbf6cbfbfcba78dc71228d",
-                "datastore_id": "58cbf6cbfbfcba78dc71228d",
-                "deleted": false,
-                "field_id": "58cc9253fbfcba88307142d1",
-                "file_id": "58ce52a5fb90a1429b958025",
-                "filename": "win7_Excelで作成.csv",
-                "filepath": "58cbf6cbfbfcba78dc71228d/58cd1e5bfbfcba2ebcaf0b1e/58cc9253fbfcba88307142d1/win7_Excelで作成.csv",
-                "i_id": "58cd1e5bfbfcba2ebcaf0b1e",
-                "item_id": "58cd1e5bfbfcba2ebcaf0b1e",
-                "mediaLink": "/download_storage/storage/v1/b/attachment-files-test/o/58cbf6cbfbfcba78dc71228d/58cd1e5bfbfcba2ebcaf0b1e/58cc9253fbfcba88307142d1/win7_Excelで作成.csv",
-                "name": "58cbf6cbfbfcba78dc71228d/58cd1e5bfbfcba2ebcaf0b1e/58cc9253fbfcba88307142d1/win7_Excelで作成.csv",
-                "p_id": "58ca3211cce5fe2e84446cd6",
-                "selfLink": "/storage/v1/b/attachment-files-test/o/58cbf6cbfbfcba78dc71228d/58cd1e5bfbfcba2ebcaf0b1e/58cc9253fbfcba88307142d1/win7_Excelで作成.csv",
-                "size": 185,
-                "timeCreated": "2017-03-19T09:43:01.178Z",
-                "updated": "2017-03-19T18:43:01.178+09:00",
-                "user_id": "58272f4efb90a148d8508d9c",
-                "w_id": "58ca3211cce5fe2e84446cd3"
-            },
-            "use_as_search": false,
-            "show_in_list": false
-        },
-        {
-            "field_id": "Fld-xV8qUygH",
-            "field_name": "タイトル",
-            "dataType": "text",
-            "value": "５５５",
-            "use_as_search": true,
-            "show_in_list": true
-        },
-        {
-            "field_id": "Fld-hN28Dy1C",
-            "field_name": "ステータス",
-            "dataType": "status",
-            "value": null,
-            "use_as_search": true,
-            "show_in_list": true
-        }
-    ],
-    "status_list": [
-        {
-            "status_id": "58cbf6cbfbfcba8244ace719",
-            "status_name": "ステータス１",
-            "sort_id": 1
-        },
-        {
-            "status_id": "58cbf6cbfbfcba8244ace718",
-            "status_name": "ステータス２",
-            "sort_id": 0
-        }
-    ],
-    "status_actions": [
-        {
-            "action_id": "58cbf6cbfbfcba8244ace722",
-            "action_name": "DEFAULTS_FOR_IMPORTER.DEFAULT_ACTION_NAME_PREVIOUS",
-            "display_order": 0,
-            "crud_type": "2",
-            "next_status_id": "58cbf6cbfbfcba8244ace719"
-        }
-    ],
-    "item_actions": [
-        {
-            "action_id": "58cbf6cbfbfcba8244ace71b",
-            "action_name": "新しいレコードを登録する",
-            "display_order": 0,
-            "description": "新規申請がめん",
-            "crud_type": "1"
-        },
-        {
-            "action_id": "58cbf6cbfbfcba8244ace71d",
-            "action_name": "DEFAULTS_FOR_IMPORTER.DEFAULT_ACTION_NAME_UPDATE",
-            "display_order": 2,
-            "crud_type": "2"
-        },
-        {
-            "action_id": "58cbf6cbfbfcba8244ace71c",
-            "action_name": "DEFAULTS_FOR_IMPORTER.DEFAULT_ACTION_NAME_DELETE",
-            "display_order": 1,
-            "crud_type": "3"
-        },
-        {
-            "action_id": "58cbf6cbfbfcba8244ace71e",
-            "action_name": "DEFAULTS_FOR_IMPORTER.DEFAULT_ACTION_NAME_COPY",
-            "display_order": 3,
-            "crud_type": "4"
-        }
-    ]
-}
-```
 
 #### GetActionFields
 
@@ -2973,18 +2977,78 @@ POST
 `Content-Type : application/json`
 
 ```javascript
-{"changes":
-  [
-    {
-      "datatype":"multi",//使用しているフィールド型
-      "id":"5e256923aeae8e212cb2e03b",　//filedID 
-      "value":"更新値"} 
-  ],
-    "history":{
-      "comment":"コメント例"
+{
+  "comment": "test-comment"
+  "item": {
+      "5e256923aeae8e212cb2e03b": "value", // text tyepe
+      "58bbaa27fbfcba6098746061": "5d4c058baa39555618ac9e98", // select type
+      "58bbaa27fbfcba6098746067" : [ "58bbaa27fbfcba6098746015", "596e2327fbfcbab8283dde09"],  // checkbox type
   },
-  "rev_no":8　//現在のrevison番号
+  "rev_no":8,　//現在のrevison番号
+  "related_ds_items" : {
+      "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
+      "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
+    },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
 }
+```
+* 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
+```javascript
+    "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
+      "RELATED_DS_1" : [
+        {
+          "operation" : 1,  // new
+          "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID2" : "data",
+            "FIELD_ID3" : "data",
+            "FIELD_ID4" : "data",
+          },
+          "related_ds_items" : {  // related_ds_itemsをネストさせることも可能。（同一Datastoreの複数ネストさせることは不可）
+              "関連データストアID_3" : [{ },{ },{ },{ }... ] ,
+          }
+        },{
+          "operation" : 2,  // update
+          "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID3" : "data"
+          }
+        },{
+          "operation" : 3,  // delete
+          "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        }
+      ]
+      "RELATED_DS_2" : [ // sample 省略 ]
+      "RELATED_DS_3" : [ // sample 省略 ]
+    }
+```
+
+
+* 更新用Valueは`changes` プロパティへ配列で指定することも可能です。　
+```
+"changes": [
+    {
+      "id": "5e256923aeae8e212cb2e03b",
+      "value": "value"
+    },
+    {
+      "id": "58bbaa27fbfcba6098746061", 
+      "value": "5d4c058baa39555618ac9e98",
+    },
+    {
+      "id": "58bbaa27fbfcba6098746067",
+      "value": [ "58bbaa27fbfcba6098746015", "596e2327fbfcbab8283dde09"],  // checkbox type
+    },
+  ]
 ```
 
 **Request Sample**
@@ -2997,897 +3061,6 @@ POST https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-
 
 ```text
 null
-```
-
-#### GetLinkedItems
-
-アイテムに関連するアイテム一覧を取得
-
-**Description**
-
-指定したアイテムに関連するアイテム一覧と、関連先のデータベース情報（フィールド、アクションなど）を取得します
-
-**Method**
-
-GET
-
-**Request URL Format**
-
-```text
-/api/v0/datastores/:datastore-id/items/:item-id/links/:linked-datastore-id
-```
-
-**URL Params**
-
-```text
-datastore-id : 関連元のデータストアID
-item-id  :  アイテムのID
-linked-datastore-id  :  関連先のデータストアID
-```
-
-**Request URL Sample**
-
-```text
-GET https://api.xxx.com/api/v0/items/58cd1e5bfbfcba2ebcaf0b1e/links/58cbf6cbfbfcba78dc71228d
-```
-
-**Response Sample**
-
-```javascript
-{
- "datastore_id": "5cc25d1e84f4be574418d580",
-  "fields": {
-    "294c2cf8-c64c-4b0f-8d2d-4adaf64477e0": {
-      "id": "294c2cf8-c64c-4b0f-8d2d-4adaf64477e0",
-      "f_id": "294c2cf8-c64c-4b0f-8d2d-4adaf64477e0",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "重要度",
-      "names": {
-        "en": "重要度",
-        "ja": "重要度"
-      },
-      "display_id": "重要度",
-      "dataType": "text",
-      "search": true,
-      "show_list": true,
-      "as_title": false,
-      "status": false,
-      "fieldIndex": 5,
-      "title_order": 0,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false
-    },
-    "3e9a47e1-ec41-477a-8b18-f324c67d9116": {
-      "id": "3e9a47e1-ec41-477a-8b18-f324c67d9116",
-      "f_id": "3e9a47e1-ec41-477a-8b18-f324c67d9116",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "担当者",
-      "names": {
-        "en": "担当者",
-        "ja": "担当者"
-      },
-      "display_id": "担当者",
-      "dataType": "text",
-      "search": true,
-      "show_list": true,
-      "as_title": false,
-      "status": false,
-      "fieldIndex": 2,
-      "title_order": 0,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false
-    },
-    "46564f59-fbf4-40f0-a5a1-2edaee92a9c7": {
-      "id": "46564f59-fbf4-40f0-a5a1-2edaee92a9c7",
-      "f_id": "46564f59-fbf4-40f0-a5a1-2edaee92a9c7",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "開始日",
-      "names": {
-        "en": "開始日",
-        "ja": "開始日"
-      },
-      "display_id": "開始日",
-      "dataType": "text",
-      "search": true,
-      "show_list": true,
-      "as_title": false,
-      "status": false,
-      "fieldIndex": 3,
-      "title_order": 0,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false
-    },
-    "5cc4dbb284f4be926c491d96": {
-      "id": "5cc4dbb284f4be926c491d96",
-      "f_id": "5cc4dbb284f4be926c491d96",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "Num1",
-      "names": {
-        "en": "Num1",
-        "ja": "Num1"
-      },
-      "display_id": "Fld-fjpeoxrY",
-      "dataType": "number",
-      "search": true,
-      "show_list": true,
-      "as_title": false,
-      "status": false,
-      "fieldIndex": 0,
-      "title_order": 0,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false,
-      "access_keys": [
-        "5c6363da84f4be7de035044a",
-        "5c6363da84f4be7de035044c",
-        "5ca5561484f4be19cc01d378",
-        "5ca5562084f4be19cc01d37a"
-      ],
-      "num_info": {
-        "prefix": "Code:",
-        "suffix": "",
-        "no_comma": true
-      }
-    },
-    "5cc4dbc084f4be926c491d97": {
-      "id": "5cc4dbc084f4be926c491d97",
-      "f_id": "5cc4dbc084f4be926c491d97",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "Num2",
-      "names": {
-        "en": "Num2",
-        "ja": "Num2"
-      },
-      "display_id": "Fld-xGx9u6A2",
-      "dataType": "number",
-      "search": true,
-      "show_list": true,
-      "as_title": false,
-      "status": false,
-      "fieldIndex": 7,
-      "title_order": 0,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false,
-      "access_keys": [
-        "5c6363da84f4be7de035044a",
-        "5c6363da84f4be7de035044c",
-        "5ca5561484f4be19cc01d378",
-        "5ca5562084f4be19cc01d37a"
-      ]
-    },
-    "5cc4dbcd84f4be926c491d98": {
-      "id": "5cc4dbcd84f4be926c491d98",
-      "f_id": "5cc4dbcd84f4be926c491d98",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "Calc",
-      "names": {
-        "en": "Calc",
-        "ja": "Calc"
-      },
-      "display_id": "Fld-fAcrbFfs",
-      "dataType": "number",
-      "search": true,
-      "show_list": true,
-      "as_title": false,
-      "status": false,
-      "fieldIndex": 0,
-      "title_order": 0,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false,
-      "access_keys": [
-        "5c6363da84f4be7de035044a",
-        "5c6363da84f4be7de035044c",
-        "5ca5561484f4be19cc01d378",
-        "5ca5562084f4be19cc01d37a"
-      ],
-      "num_info": {
-        "prefix": "\\",
-        "suffix": "yen",
-        "no_comma": false
-      }
-    },
-    "5cc4dbf484f4be926c491d99": {
-      "id": "5cc4dbf484f4be926c491d99",
-      "f_id": "5cc4dbf484f4be926c491d99",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "This is a Label",
-      "names": {
-        "en": "This is a Label",
-        "ja": "This is a Label"
-      },
-      "display_id": "Fld-XbOD2IvT",
-      "dataType": "label",
-      "search": false,
-      "show_list": false,
-      "as_title": false,
-      "status": false,
-      "fieldIndex": 0,
-      "title_order": 0,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false,
-      "access_keys": [
-        "5c6363da84f4be7de035044a",
-        "5c6363da84f4be7de035044c",
-        "5ca5561484f4be19cc01d378",
-        "5ca5562084f4be19cc01d37a"
-      ]
-    },
-    "5cc8fa5484f4be926c491d9a": {
-      "id": "5cc8fa5484f4be926c491d9a",
-      "f_id": "5cc8fa5484f4be926c491d9a",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "計算式フィールド",
-      "names": {
-        "en": "計算式フィールド",
-        "ja": "計算式フィールド"
-      },
-      "display_id": "Fld-1hfacFJP",
-      "dataType": "calc",
-      "search": true,
-      "show_list": true,
-      "as_title": false,
-      "status": false,
-      "fieldIndex": 0,
-      "title_order": 0,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false,
-      "access_keys": [
-        "5c6363da84f4be7de035044a",
-        "5c6363da84f4be7de035044c",
-        "5ca5561484f4be19cc01d378",
-        "5ca5562084f4be19cc01d37a"
-      ],
-      "calc_info": {
-        "formula": "{Fld-xGx9u6A2}   /   {Fld-fAcrbFfs}+{Fld-xGx9u6A2}",
-        "calc_target_fields": [
-          "5cc4dbc084f4be926c491d97",
-          "5cc4dbcd84f4be926c491d98"
-        ],
-        "prefix": "\\",
-        "suffix": "",
-        "no_comma": false
-      }
-    },
-    "5cda5ac384f4bec92c8b8d03": {
-      "id": "5cda5ac384f4bec92c8b8d03",
-      "f_id": "5cda5ac384f4bec92c8b8d03",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "NoCalc",
-      "names": {
-        "en": "NoCalc",
-        "ja": "NoCalc"
-      },
-      "display_id": "Fld-7ANOlTq4",
-      "dataType": "calc",
-      "search": true,
-      "show_list": true,
-      "as_title": false,
-      "status": false,
-      "fieldIndex": 0,
-      "title_order": 0,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false,
-      "access_keys": [
-        "5c6363da84f4be7de035044a",
-        "5c6363da84f4be7de035044c",
-        "5ca5561484f4be19cc01d378",
-        "5ca5562084f4be19cc01d37a"
-      ],
-      "calc_info": {
-        "formula": "",
-        "calc_target_fields": [],
-        "prefix": "",
-        "suffix": "",
-        "no_comma": false
-      }
-    },
-    "6f5779f7-6d34-46ce-afd1-9e83c77260b9": {
-      "id": "6f5779f7-6d34-46ce-afd1-9e83c77260b9",
-      "f_id": "6f5779f7-6d34-46ce-afd1-9e83c77260b9",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "完了予定日",
-      "names": {
-        "en": "完了予定日",
-        "ja": "完了予定日"
-      },
-      "display_id": "完了予定日",
-      "dataType": "text",
-      "search": true,
-      "show_list": true,
-      "as_title": false,
-      "status": false,
-      "fieldIndex": 4,
-      "title_order": 0,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false
-    },
-    "a38850be-4fb9-4025-a297-4c500c793716": {
-      "id": "a38850be-4fb9-4025-a297-4c500c793716",
-      "f_id": "a38850be-4fb9-4025-a297-4c500c793716",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "ステータス",
-      "names": {
-        "en": "ステータス",
-        "ja": "ステータス"
-      },
-      "display_id": "ステータス",
-      "dataType": "status",
-      "search": true,
-      "show_list": true,
-      "as_title": false,
-      "status": true,
-      "fieldIndex": 0,
-      "title_order": 0,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false
-    },
-    "f99f6b08-dd8b-4816-adc7-9b28555a1e93": {
-      "id": "f99f6b08-dd8b-4816-adc7-9b28555a1e93",
-      "f_id": "f99f6b08-dd8b-4816-adc7-9b28555a1e93",
-      "w_id": "5c5fa7da84f4be4250aaee27",
-      "p_id": "5c6363d984f4be7de0350445",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "field_csv_name": "",
-      "name": "タスク",
-      "names": {
-        "en": "タスク",
-        "ja": "タスク"
-      },
-      "display_id": "タスク",
-      "dataType": "text",
-      "search": true,
-      "show_list": true,
-      "as_title": true,
-      "status": false,
-      "fieldIndex": 1,
-      "title_order": 1,
-      "full_text": false,
-      "unique": false,
-      "min_value": "",
-      "max_value": "",
-      "hideOnInput": false
-    }
-  },
-
-  "column_settings": [
-    {
-      "as_title": false,
-      "autonum_info": null,
-      "calc_info": null,
-      "dataType": "label",
-      "displayID": "Fld-XbOD2IvT",
-      "displayName": "This is a Label",
-      "dslookup_info": null,
-      "field": "5cc4dbf484f4be926c491d99",
-      "field_index": 0,
-      "file_info": null,
-      "names": {
-        "en": "This is a Label",
-        "ja": "This is a Label"
-      },
-      "num_info": null,
-      "order": 6,
-      "search": false,
-      "show_list": false,
-      "users_info": null
-    },
-    {
-      "as_title": false,
-      "autonum_info": null,
-      "calc_info": {
-        "formula": "{Fld-xGx9u6A2}   /   {Fld-fAcrbFfs}+{Fld-xGx9u6A2}",
-        "calc_target_fields": [
-          "5cc4dbc084f4be926c491d97",
-          "5cc4dbcd84f4be926c491d98"
-        ],
-        "prefix": "\\",
-        "suffix": "",
-        "no_comma": false
-      },
-      "dataType": "calc",
-      "displayID": "Fld-1hfacFJP",
-      "displayName": "計算式フィールド",
-      "dslookup_info": null,
-      "field": "5cc8fa5484f4be926c491d9a",
-      "field_index": 0,
-      "file_info": null,
-      "names": {
-        "en": "計算式フィールド",
-        "ja": "計算式フィールド"
-      },
-      "num_info": null,
-      "order": 7,
-      "search": true,
-      "show_list": true,
-      "users_info": null
-    },
-    {
-      "as_title": false,
-      "autonum_info": null,
-      "calc_info": {
-        "formula": "",
-        "calc_target_fields": [],
-        "prefix": "",
-        "suffix": "",
-        "no_comma": false
-      },
-      "dataType": "calc",
-      "displayID": "Fld-7ANOlTq4",
-      "displayName": "NoCalc",
-      "dslookup_info": null,
-      "field": "5cda5ac384f4bec92c8b8d03",
-      "field_index": 0,
-      "file_info": null,
-      "names": {
-        "en": "NoCalc",
-        "ja": "NoCalc"
-      },
-      "num_info": null,
-      "order": 8,
-      "search": true,
-      "show_list": true,
-      "users_info": null
-    },
-    {
-      "as_title": false,
-      "autonum_info": null,
-      "calc_info": null,
-      "dataType": "number",
-      "displayID": "Fld-fjpeoxrY",
-      "displayName": "Num1",
-      "dslookup_info": null,
-      "field": "5cc4dbb284f4be926c491d96",
-      "field_index": 0,
-      "file_info": null,
-      "names": {
-        "en": "Num1",
-        "ja": "Num1"
-      },
-      "num_info": {
-        "prefix": "Code:",
-        "suffix": "",
-        "no_comma": true
-      },
-      "order": 3,
-      "search": true,
-      "show_list": true,
-      "users_info": null
-    },
-    {
-      "as_title": false,
-      "autonum_info": null,
-      "calc_info": null,
-      "dataType": "status",
-      "displayID": "ステータス",
-      "displayName": "ステータス",
-      "dslookup_info": null,
-      "field": "a38850be-4fb9-4025-a297-4c500c793716",
-      "field_index": 0,
-      "file_info": null,
-      "names": {
-        "en": "ステータス",
-        "ja": "ステータス"
-      },
-      "num_info": null,
-      "order": 10,
-      "search": true,
-      "show_list": true,
-      "statuses": [
-        {
-          "id": "5cc25d2584f4bed46001b75f",
-          "color": "",
-          "s_id": "5cc25d2584f4bed46001b75f",
-          "name": "進行中"
-        },
-        {
-          "id": "5cc25d2584f4bed46001b75e",
-          "color": "",
-          "s_id": "5cc25d2584f4bed46001b75e",
-          "name": "未着手"
-        },
-        {
-          "id": "5cc25d2584f4bed46001b75c",
-          "color": "",
-          "s_id": "5cc25d2584f4bed46001b75c",
-          "name": "完了"
-        },
-        {
-          "id": "5cc25d2584f4bed46001b75d",
-          "color": "",
-          "s_id": "5cc25d2584f4bed46001b75d",
-          "name": "承認待ち"
-        }
-      ],
-      "users_info": null
-    },
-    {
-      "as_title": false,
-      "autonum_info": null,
-      "calc_info": null,
-      "dataType": "number",
-      "displayID": "Fld-fAcrbFfs",
-      "displayName": "Calc",
-      "dslookup_info": null,
-      "field": "5cc4dbcd84f4be926c491d98",
-      "field_index": 0,
-      "file_info": null,
-      "names": {
-        "en": "Calc",
-        "ja": "Calc"
-      },
-      "num_info": {
-        "prefix": "\\",
-        "suffix": "yen",
-        "no_comma": false
-      },
-      "order": 5,
-      "search": true,
-      "show_list": true,
-      "users_info": null
-    },
-    {
-      "as_title": true,
-      "autonum_info": null,
-      "calc_info": null,
-      "dataType": "text",
-      "displayID": "タスク",
-      "displayName": "タスク",
-      "dslookup_info": null,
-      "field": "f99f6b08-dd8b-4816-adc7-9b28555a1e93",
-      "field_index": 1,
-      "file_info": null,
-      "names": {
-        "en": "タスク",
-        "ja": "タスク"
-      },
-      "num_info": null,
-      "order": 11,
-      "search": true,
-      "show_list": true,
-      "users_info": null
-    },
-    {
-      "as_title": false,
-      "autonum_info": null,
-      "calc_info": null,
-      "dataType": "text",
-      "displayID": "担当者",
-      "displayName": "担当者",
-      "dslookup_info": null,
-      "field": "3e9a47e1-ec41-477a-8b18-f324c67d9116",
-      "field_index": 2,
-      "file_info": null,
-      "names": {
-        "en": "担当者",
-        "ja": "担当者"
-      },
-      "num_info": null,
-      "order": 1,
-      "search": true,
-      "show_list": true,
-      "users_info": null
-    },
-    {
-      "as_title": false,
-      "autonum_info": null,
-      "calc_info": null,
-      "dataType": "text",
-      "displayID": "開始日",
-      "displayName": "開始日",
-      "dslookup_info": null,
-      "field": "46564f59-fbf4-40f0-a5a1-2edaee92a9c7",
-      "field_index": 3,
-      "file_info": null,
-      "names": {
-        "en": "開始日",
-        "ja": "開始日"
-      },
-      "num_info": null,
-      "order": 2,
-      "search": true,
-      "show_list": true,
-      "users_info": null
-    },
-    {
-      "as_title": false,
-      "autonum_info": null,
-      "calc_info": null,
-      "dataType": "text",
-      "displayID": "完了予定日",
-      "displayName": "完了予定日",
-      "dslookup_info": null,
-      "field": "6f5779f7-6d34-46ce-afd1-9e83c77260b9",
-      "field_index": 4,
-      "file_info": null,
-      "names": {
-        "en": "完了予定日",
-        "ja": "完了予定日"
-      },
-      "num_info": null,
-      "order": 9,
-      "search": true,
-      "show_list": true,
-      "users_info": null
-    },
-    {
-      "as_title": false,
-      "autonum_info": null,
-      "calc_info": null,
-      "dataType": "text",
-      "displayID": "重要度",
-      "displayName": "重要度",
-      "dslookup_info": null,
-      "field": "294c2cf8-c64c-4b0f-8d2d-4adaf64477e0",
-      "field_index": 5,
-      "file_info": null,
-      "names": {
-        "en": "重要度",
-        "ja": "重要度"
-      },
-      "num_info": null,
-      "order": 0,
-      "search": true,
-      "show_list": true,
-      "users_info": null
-    },
-    {
-      "as_title": false,
-      "autonum_info": null,
-      "calc_info": null,
-      "dataType": "number",
-      "displayID": "Fld-xGx9u6A2",
-      "displayName": "Num2",
-      "dslookup_info": null,
-      "field": "5cc4dbc084f4be926c491d97",
-      "field_index": 7,
-      "file_info": null,
-      "names": {
-        "en": "Num2",
-        "ja": "Num2"
-      },
-      "num_info": null,
-      "order": 4,
-      "search": true,
-      "show_list": true,
-      "users_info": null
-    }
-  ],
-  "items": [
-    {
-      "294c2cf8-c64c-4b0f-8d2d-4adaf64477e0": "高",
-      "3e9a47e1-ec41-477a-8b18-f324c67d9116": "",
-      "46564f59-fbf4-40f0-a5a1-2edaee92a9c7": "",
-      "5cc8fa5484f4be926c491d9a": null,
-      "6f5779f7-6d34-46ce-afd1-9e83c77260b9": "",
-      "_id": "5cc25d3584f4be574418d58b",
-      "access_keys": [
-        "5c5fa7da84f4be4250aaee29",
-        "5c5fa7da84f4be4250aaee26"
-      ],
-      "created_at": "2019-04-26T01:21:57.008Z",
-      "created_by": "IMPORT",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "f99f6b08-dd8b-4816-adc7-9b28555a1e93": "H",
-      "i_id": "5cc25d3584f4be574418d58b",
-      "labeled_at": "2019-05-02T13:20:57.652Z",
-      "labels": [
-        {
-          "c6934716-9bab-4f35-b2a5-aff9169d3a1a": "高"
-        }
-      ],
-      "p_id": "5c6363d984f4be7de0350445",
-      "rev_no": 2,
-      "status_id": "5cc25d2584f4bed46001b75f",
-      "title": "H",
-      "updated_at": "2019-05-02T13:20:57.61Z",
-      "updated_by": "5c5fa7aa84f4be4250aaee25"
-    },
-    {
-      "294c2cf8-c64c-4b0f-8d2d-4adaf64477e0": "高",
-      "3e9a47e1-ec41-477a-8b18-f324c67d9116": "",
-      "46564f59-fbf4-40f0-a5a1-2edaee92a9c7": "",
-      "5cc8fa5484f4be926c491d9a": null,
-      "6f5779f7-6d34-46ce-afd1-9e83c77260b9": "",
-      "_id": "5cc25d3584f4be574418d58c",
-      "access_keys": [
-        "5c5fa7da84f4be4250aaee29",
-        "5c5fa7da84f4be4250aaee26"
-      ],
-      "created_at": "2019-04-26T01:21:57.008Z",
-      "created_by": "IMPORT",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "f99f6b08-dd8b-4816-adc7-9b28555a1e93": "G",
-      "i_id": "5cc25d3584f4be574418d58c",
-      "labeled_at": "2019-05-02T13:20:56.403Z",
-      "labels": [
-        {
-          "c6934716-9bab-4f35-b2a5-aff9169d3a1a": "高"
-        }
-      ],
-      "p_id": "5c6363d984f4be7de0350445",
-      "rev_no": 2,
-      "status_id": "5cc25d2584f4bed46001b75c",
-      "title": "G",
-      "updated_at": "2019-05-02T13:20:56.366Z",
-      "updated_by": "5c5fa7aa84f4be4250aaee25"
-    },
-    {
-      "294c2cf8-c64c-4b0f-8d2d-4adaf64477e0": "高",
-      "3e9a47e1-ec41-477a-8b18-f324c67d9116": "",
-      "46564f59-fbf4-40f0-a5a1-2edaee92a9c7": "",
-      "5cc4dbb284f4be926c491d96": 57007,
-      "5cc4dbc084f4be926c491d97": 1233,
-      "5cc4dbcd84f4be926c491d98": 1264,
-      "5cc8fa5484f4be926c491d9a": 55608,
-      "6f5779f7-6d34-46ce-afd1-9e83c77260b9": "",
-      "_id": "5cc25d3584f4be574418d58d",
-      "access_keys": [
-        "5c5fa7da84f4be4250aaee29",
-        "5c5fa7da84f4be4250aaee26"
-      ],
-      "created_at": "2019-04-26T01:21:57.008Z",
-      "created_by": "IMPORT",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "f99f6b08-dd8b-4816-adc7-9b28555a1e93": "F",
-      "i_id": "5cc25d3584f4be574418d58d",
-      "labeled_at": "2019-05-07T01:46:49.749Z",
-      "labels": [
-        {
-          "c6934716-9bab-4f35-b2a5-aff9169d3a1a": "高"
-        }
-      ],
-      "p_id": "5c6363d984f4be7de0350445",
-      "rev_no": 18,
-      "status_id": "5cc25d2584f4bed46001b75f",
-      "title": "F",
-      "updated_at": "2019-05-07T01:46:49.69Z",
-      "updated_by": "5c5fa7aa84f4be4250aaee25"
-    }
-  ],
-  "stateflowActions": [
-    {
-      "_id": "5cc25d2584f4bed46001b761",
-      "a_id": "5cc25d2584f4bed46001b761",
-      "access_keys": [],
-      "created_at": "2019-04-26T01:21:41.656Z",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "description": "",
-      "display_order": 0,
-      "isOwnedBySystem": true,
-      "is_status_action": false,
-      "name": "DEFAULTS_FOR_IMPORTER.DEFAULT_ACTION_NAME_UPDATE",
-      "operation": "2",
-      "p_id": "5c6363d984f4be7de0350445",
-      "set_status": "",
-      "slack_channels": [],
-      "updated_at": "2019-04-26T01:21:41.656Z",
-      "user_slack_channels": {},
-      "w_id": "5c5fa7da84f4be4250aaee27"
-    },
-    {
-      "_id": "5cc25d2584f4bed46001b762",
-      "a_id": "5cc25d2584f4bed46001b762",
-      "access_keys": [],
-      "created_at": "2019-04-26T01:21:41.656Z",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "description": "",
-      "display_order": 1,
-      "isOwnedBySystem": true,
-      "is_status_action": false,
-      "name": "DEFAULTS_FOR_IMPORTER.DEFAULT_ACTION_NAME_COPY",
-      "operation": "4",
-      "p_id": "5c6363d984f4be7de0350445",
-      "set_status": "",
-      "slack_channels": [],
-      "updated_at": "2019-04-26T01:21:41.656Z",
-      "user_slack_channels": {},
-      "w_id": "5c5fa7da84f4be4250aaee27"
-    },
-    {
-      "_id": "5cc25d2584f4bed46001b763",
-      "a_id": "5cc25d2584f4bed46001b763",
-      "access_keys": [],
-      "created_at": "2019-04-26T01:21:41.656Z",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "description": "",
-      "display_order": 2,
-      "isOwnedBySystem": true,
-      "is_status_action": false,
-      "name": "DEFAULTS_FOR_IMPORTER.DEFAULT_ACTION_NAME_NEW",
-      "operation": "1",
-      "p_id": "5c6363d984f4be7de0350445",
-      "set_status": "5cc25d2584f4bed46001b75f",
-      "slack_channels": [],
-      "updated_at": "2019-04-26T01:21:41.656Z",
-      "user_slack_channels": {},
-      "w_id": "5c5fa7da84f4be4250aaee27"
-    },
-    {
-      "_id": "5cc25d2584f4bed46001b764",
-      "a_id": "5cc25d2584f4bed46001b764",
-      "access_keys": [],
-      "created_at": "2019-04-26T01:21:41.656Z",
-      "d_id": "5cc25d1e84f4be574418d580",
-      "description": "",
-      "display_order": 3,
-      "isOwnedBySystem": true,
-      "is_status_action": false,
-      "name": "DEFAULTS_FOR_IMPORTER.DEFAULT_ACTION_NAME_DELETE",
-      "operation": "3",
-      "p_id": "5c6363d984f4be7de0350445",
-      "set_status": "",
-      "slack_channels": [],
-      "updated_at": "2019-04-26T01:21:41.656Z",
-      "user_slack_channels": {},
-      "w_id": "5c5fa7da84f4be4250aaee27"
-    }
-  ]
-}
 ```
 
 #### ExecuteActionByActionID
@@ -3919,20 +3092,88 @@ action-id    : アクションID
 
 `Content-Type : application/json`
 
-```text
+```javascript
 {
- "rev_no":2, // "is_force_update": trueの場合、省略可能
+  "rev_no":2, // "is_force_update": trueの場合、省略可能
   "is_force_update": true, // "rev_no"を指定した場合、省略可能
-  "history": {
-    "datastore_id": "59ad2d890e247927638e7619",
-    "comment": ""
+  "datastore_id": "59ad2d890e247927638e7619",
+  "comment": "comment..."
+  "item": {
+    "5a26722e0e24794c979fa5b6": "更新データサンプル",  // field_id : 更新value
+    "5ab84bfecce5fe5c983ea184": [   // user type Fieldの場合
+        "58272f4efb90a148d8508d9c", // user_id   
+        "5846636efb90a1024d2982fa"  // user_id
+      ],
+    "5ab0c239cce5fed3a859a910": [    // attachment file type Fieldの場合
+        "5ab84c1fcce5fe5c983ea185",  // file_id
+        "5ab84c1fcce5fe5c983ea186"   // file_id
+      ]
   },
-  "changes": [
+  "related_ds_items" : {
+      "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
+      "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
+    },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
+}
+```
+* 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
+```javascript
+    "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
+      "RELATED_DS_1" : [
+        {
+          "operation" : 1,  // new
+          "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID2" : "data",
+            "FIELD_ID3" : "data",
+            "FIELD_ID4" : "data",
+          },
+          "related_ds_items" : {  // related_ds_itemsをネストさせることも可能。（同一Datastoreの複数ネストさせることは不可）
+            "関連データストアID_3" : [{ },{ },{ },{ }... ] ,
+          }
+        },{
+          "operation" : 2,  // update
+          "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
+          "item": {
+            "FIELD_ID1" : "data",
+            "FIELD_ID3" : "data"
+          }
+        },{
+          "operation" : 3,  // delete
+          "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
+          "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        },{
+          // 関連する複数アイテムを指定可能。sample 省略
+        }
+      ]
+      "RELATED_DS_2" : [ // sample 省略 ]
+      "RELATED_DS_3" : [ // sample 省略 ]
+    }
+```
+
+* rev\_noは排他チェックに利用しています。/api/v0/datastores/:datastore-id/items/searchで返されるrev\_noを指定します。指定したrev\_noとデータベース内のrev\_noが異なる場合は、エラーとなります。（排他制御）
+* rev\_noのエラーチェックをせず、強制的にデータ更新を行う場合は、 `is_force_update` フラグを `true` にして実行します。その場合はrev\_noのフィールドは指定不要。最後に更新されたデータで上書きされます。
+* フィールドのデータタイプがユーザータイプ、添付ファイルタイプの場合、valueにはそれぞれuser\_id、file\_id の配列を指定します。
+* フィールドのデータタイプが日付の場合、以下のフォーマットで指定します。
+
+    yyyy-mm-ddThh:mm:ss.SSSZ \(.SSSは省略可\)  
+
+    TZ間に指定する時刻は、UTC時刻を指定  
+
+    例\) 2018年1月11日を指定する場合、"2018-01-10T15:00:00.000Z"
+* 更新用Valueは`changes` プロパティへ配列で指定することも可能です。　
+```
+"changes": [
     {
       "id": "5a26722e0e24794c979fa5b6",
       "value": "更新データサンプル"
-  },
-  {
+    },
+    {
       "id": "5ab84bfecce5fe5c983ea184",  // user type Fieldの場合
       "value": [
         "58272f4efb90a148d8508d9c", // user_id
@@ -3947,19 +3188,7 @@ action-id    : アクションID
       ],
     },
   ]
-}
 ```
-
-* rev\_noは排他チェックに利用している。/api/v0/datastores/:datastore-id/items/searchで返されるrev\_noを指定。指定したrev\_noとデータベース内のrev\_noが異なる場合は、エラーとなる。（排他制御）
-* rev\_noのエラーチェックをせず、強制的にデータ更新を行う場合は、 `is_force_update` フラグを `true` にして実行する。その場合はrev\_noのフィールドは指定不要。最後に更新されたデータで上書きされる。
-* フィールドのデータタイプがユーザータイプ、添付ファイルタイプの場合、valueにはそれぞれuser\_id、file\_id の配列を指定する
-* フィールドのデータタイプが日付の場合、以下のフォーマットで指定する  
-
-    yyyy-mm-ddThh:mm:ss.SSSZ \(.SSSは省略可\)  
-
-    TZ間に指定する時刻は、UTC時刻を指定  
-
-    例\) 2018年1月11日を指定する場合、"2018-01-10T15:00:00.000Z"
 
 **Request URL Sample**
 
@@ -4007,14 +3236,30 @@ conditions の詳細については、[conditions](#conditions)を参照
         "5846636efb90a1024d29as12", // item_id
         "5846636efb90a1024d29asdf"  // item_id (複数件を指定可能)
       ]
-    },{
+    },
+    {
       "id": "5e5f334e8250710006078dbd", // StatusID のフィールドID
       "search_value": [
         "5e5f334e8250710006078dc0"   // status_id  (s_id)
       ]
     }
   ],
-  "changes": [　　// 変更フィールドと変更データ
+  "item": {
+    "5a26722e0e24794c979fa5b6": "更新データサンプル",  // field_id : 更新value
+    "5ab84bfecce5fe5c983eb654": ["5ab84c1fcce5fe5c983ea186","5846636efb90a1024d2982fa" ], // select type Fieldの場合 選択肢ID o_id の配列を指定
+    "5ab84bfecce5fe5c983ea184": ["58272f4efb90a148d8508d9c","5ab84c1fcce5fe5c983ea999" ], // user type Fieldの場合 user_id の配列を指定
+    "5ab0c239cce5fed3a859a910": ["5ab84c1fcce5fe5c983ea185","5ab84c1fcce5fe5c983ea789" ]　// attachment file type Fieldの場合、file_idの配列を指定
+  }
+  "comment": "一括承認", // アクション実行時にアイテムへ付加するコメントメッセージ
+  "max_items": 100, // 最大の処理実行件数. デフォルトは100.　最大300件まで。10件単位で指定する（10,20,30,...300)
+  "use_display_id" : false, // 画面IDを指定 trueの場合、フィールドIDに画面IDを利用可能
+  "continue_proc": true // true: 対象アイテム件数がmax_itemsを超えた場合、max_items件まで処理を実行する。false(default): 対象がmax_itemsを超えていたらエラー（処理しない）
+}
+```
+* 更新itemの情報は、変更点のみを指定します。
+* 更新用Valueは`changes` プロパティへ配列で指定することも可能です。　
+```
+"changes": [
     {
       "id": "5a26722e0e24794c979fa5b6",
       "value": "更新データサンプル"
@@ -4025,13 +3270,15 @@ conditions の詳細については、[conditions](#conditions)を参照
         "58272f4efb90a148d8508d9c", // user_id
         "5846636efb90a1024d2982fa"  // user_id
       ],
-    }
-  ],
-  "comment": "一括承認", // アクション実行時にアイテムへ付加するコメントメッセージ
-  "max_items": 100, // 最大の処理実行件数. デフォルトは100.　最大300件まで。10件単位で指定する（10,20,30,...300)
-  "use_display_id" : false, // 画面IDを指定 trueの場合、フィールドIDに画面IDを利用可能
-  "continue_proc": true // true: 対象アイテム件数がmax_itemsを超えた場合、max_items件まで処理を実行する。false(default): 対象がmax_itemsを超えていたらエラー（処理しない）
-}
+    },
+    {
+      "id": "5ab0c239cce5fed3a859a910", // attachment file type Fieldの場合
+      "value": [
+        "5ab84c1fcce5fe5c983ea185",  // file_id
+        "5ab84c1fcce5fe5c983ea186"   // file_id
+      ],
+    },
+  ]
 ```
 
 **Request URL Sample**
@@ -4607,7 +3854,7 @@ DELETE
 **Request URL Format**
 
 ```text
-/api/v0/items/:item-id/fields/:field-id/attachments/:attachment-id
+/api/v0/items/:item-id/fields/:field-id/attachments/:file-id
 ```
 
 **Params**
