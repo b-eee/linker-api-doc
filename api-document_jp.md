@@ -3929,12 +3929,15 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
 
 **Response Sample**
 
+- 出力フィールドに画面ID(display_id)が指定されている場合は、report_result はdisplay_id が使用されます。
+
 ```javascript
 {
     "report_fields": [
         {
             "title": "Title",
             "rpf_id": "4a0b2f8a-f332-4579-a2d4-e9b5971d9e80",
+            "display_id" : "TITLE",
             "data_type": "text",
             "display_type": "",
             "align": "",
@@ -3958,6 +3961,7 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
         {
             "title": "Due Date",
             "rpf_id": "b752bf7f-9f0d-4370-ac34-45b9be01453f",
+            "display_id" : "DUE_DATE",
             "data_type": "date",
             "display_type": "",
             "align": "",
@@ -3981,6 +3985,7 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
         {
             "title": "Category",
             "rpf_id": "7b9db4bb-3516-4cd7-946a-97c1ddcdca2a",
+            "display_id" : "CATEGORY",
             "data_type": "select",
             "display_type": "text",
             "align": "left",
@@ -4053,6 +4058,7 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
         {
             "title": "Status",
             "rpf_id": "85c15eca-1b7a-4423-9969-55f363efc4c1",
+            "display_id" : "STATUS",
             "data_type": "status",
             "display_type": "text",
             "align": "left",
@@ -4109,6 +4115,7 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
         {
             "title": "note",
             "rpf_id": "4552a666-508d-419c-ba99-7c9a16b24894",
+            "display_id" : "NOTE",
             "data_type": "textarea",
             "display_type": "",
             "align": "",
@@ -4132,6 +4139,7 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
         {
             "title": "Num",
             "rpf_id": "8a20643b-fe36-45f1-bbd6-b2b6e4296a54",
+            "display_id" : "NUM",
             "data_type": "number",
             "display_type": "number",
             "align": "right",
@@ -4263,58 +4271,58 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
     ],
     "report_results": [
         {
-            "4552a666-508d-419c-ba99-7c9a16b24894": "B",
-            "4a0b2f8a-f332-4579-a2d4-e9b5971d9e80": "タスクC",
-            "7b9db4bb-3516-4cd7-946a-97c1ddcdca2a": "B",
-            "85c15eca-1b7a-4423-9969-55f363efc4c1": "New",
-            "8a20643b-fe36-45f1-bbd6-b2b6e4296a54": 0,
-            "b752bf7f-9f0d-4370-ac34-45b9be01453f": "2016/01/01"
+            "NOTE": "B",
+            "TITLE": "タスクC",
+            "CATEGORY": "B",
+            "STATUS": "New",
+            "NUM": 0,
+            "DUE_DATE": "2016/01/01"
         },
         {
-            "4552a666-508d-419c-ba99-7c9a16b24894": "B",
-            "4a0b2f8a-f332-4579-a2d4-e9b5971d9e80": "案件（明細あり）",
-            "7b9db4bb-3516-4cd7-946a-97c1ddcdca2a": "B",
-            "85c15eca-1b7a-4423-9969-55f363efc4c1": "In Review",
-            "8a20643b-fe36-45f1-bbd6-b2b6e4296a54": 0,
-            "b752bf7f-9f0d-4370-ac34-45b9be01453f": "2016/01/01"
+            "NOTE": "B",
+            "TITLE": "案件（明細あり）",
+            "CATEGORY": "B",
+            "STATUS": "In Review",
+            "NUM": 0,
+            "DUE_DATE": "2016/01/01"
         },
         {
-            "4552a666-508d-419c-ba99-7c9a16b24894": "B",
-            "4a0b2f8a-f332-4579-a2d4-e9b5971d9e80": "",
-            "7b9db4bb-3516-4cd7-946a-97c1ddcdca2a": "B",
-            "85c15eca-1b7a-4423-9969-55f363efc4c1": "New",
-            "8a20643b-fe36-45f1-bbd6-b2b6e4296a54": 0,
+            "NOTE": "B",
+            "TITLE": "",
+            "CATEGORY": "B",
+            "STATUS": "New",
+            "NUM": 0,
         },
         {
-            "4552a666-508d-419c-ba99-7c9a16b24894": "B",
-            "4a0b2f8a-f332-4579-a2d4-e9b5971d9e80": "１１１新規起票",
-            "7b9db4bb-3516-4cd7-946a-97c1ddcdca2a": "B",
-            "85c15eca-1b7a-4423-9969-55f363efc4c1": "New",
-            "8a20643b-fe36-45f1-bbd6-b2b6e4296a54": 0,
+            "NOTE": "B",
+            "TITLE": "１１１新規起票",
+            "CATEGORY": "B",
+            "STATUS": "New",
+            "NUM": 0,
         },
         {
-            "4552a666-508d-419c-ba99-7c9a16b24894": "B",
-            "4a0b2f8a-f332-4579-a2d4-e9b5971d9e80": "タスクB",
-            "7b9db4bb-3516-4cd7-946a-97c1ddcdca2a": "B",
-            "85c15eca-1b7a-4423-9969-55f363efc4c1": "New",
-            "8a20643b-fe36-45f1-bbd6-b2b6e4296a54": 0,
-            "b752bf7f-9f0d-4370-ac34-45b9be01453f": "2016/01/01"
+            "NOTE": "B",
+            "TITLE": "タスクB",
+            "CATEGORY": "B",
+            "STATUS": "New",
+            "NUM": 0,
+            "DUE_DATE": "2016/01/01"
         },
         {
-            "4552a666-508d-419c-ba99-7c9a16b24894": "B",
-            "4a0b2f8a-f332-4579-a2d4-e9b5971d9e80": "タスクE",
-            "7b9db4bb-3516-4cd7-946a-97c1ddcdca2a": "B",
-            "85c15eca-1b7a-4423-9969-55f363efc4c1": "In Review",
-            "8a20643b-fe36-45f1-bbd6-b2b6e4296a54": 0,
-            "b752bf7f-9f0d-4370-ac34-45b9be01453f": "2016/01/01"
+            "NOTE": "B",
+            "TITLE": "タスクE",
+            "CATEGORY": "B",
+            "STATUS": "In Review",
+            "NUM": 0,
+            "DUE_DATE": "2016/01/01"
         },
         {
-            "4552a666-508d-419c-ba99-7c9a16b24894": "B",
-            "4a0b2f8a-f332-4579-a2d4-e9b5971d9e80": "案件（明細あり）",
-            "7b9db4bb-3516-4cd7-946a-97c1ddcdca2a": "B",
-            "85c15eca-1b7a-4423-9969-55f363efc4c1": "New",
-            "8a20643b-fe36-45f1-bbd6-b2b6e4296a54": 0,
-            "b752bf7f-9f0d-4370-ac34-45b9be01453f": "2016/01/01"
+            "NOTE": "B",
+            "TITLE": "案件（明細あり）",
+            "CATEGORY": "B",
+            "STATUS": "New",
+            "NUM": 0,
+            "DUE_DATE": "2016/01/01"
         }
     ],
     "report_title": "SimpleJoin",
