@@ -173,7 +173,7 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 | 19 | [ItemList](api-document_jp.md#ItemList) | アイテム一覧 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/search | アイテム一覧を取得 | v0 | ✓ |
 | 68 | [GetItemSearchConditions](api/items/GetItemSearchConditions.md#GetItemSearchConditions) | アイテム検索条件取得 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/conditions | アイテムの検索条件を取得する | v0 | ✓ |
 | 70 | [GetUserQueries](api/items/GetUserQueries.md#GetUserQueries) | よく使う一覧の取得 | GET | /api/v0/applications/:app-id/queries | ユーザーごとに記憶された検索条件一覧を返す| v0 | ✓ |
-| 27 | [GetItemDetails](api/items/GetItemDetails.md#GetItemDetails) | アイテム詳細 | GET | /api/v0/applications/:project-id/datastores/:datastore-id/items/:item-id | アイテムの詳細情報、アクションリストを取得 | v0 | ✓ |
+| 27 | [GetItemDetails](api/items/GetItemDetails.md#GetItemDetails) | アイテム詳細 | GET | /api/v0/applications/:project-id/datastores/:datastore-id/items/details/:item-id | アイテムの詳細情報、アクションリストを取得 | v0 | ✓ |
 
 #### アイテムの登録、更新、削除
 
