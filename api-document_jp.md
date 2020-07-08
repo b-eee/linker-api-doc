@@ -150,8 +150,8 @@ Hexabaseでは、「アプリケーション」ごとに、データベース・
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 65 | [AddRoleToUser](api-document_jp.md#AddRoleToUser) | ユーザーへロール付与 | POST | /api/v0/applications/:project-id/userroles | ユーザーにアプリケーションのロールを付与する | v0 | - |
-| 66 | [RemoveRoleFromUser](api-document_jp.md#RemoveRoleFromUser) | ユーザからロールを削除 | DELETE | /api/v0/applications/:project-id/userroles | ユーザーからアプリケーションのロールを外す | v0 | - |
+| 65 | [AddRoleToUser](api-document_jp.md#AddRoleToUser) | ユーザーへロール付与 | POST | /api/v0/applications/:app-id/userroles | ユーザーにアプリケーションのロールを付与する | v0 | - |
+| 66 | [RemoveRoleFromUser](api-document_jp.md#RemoveRoleFromUser) | ユーザからロールを削除 | DELETE | /api/v0/applications/:app-id/userroles | ユーザーからアプリケーションのロールを外す | v0 | - |
 | 71 | [GetRoleUsers](api/applications/GetRoleUsers.md#GetRoleUsers) | ロールをもつユーザーの取得 | GET | /api/v0/applications/:app-id/roleusers/:role-id | 指定したロールを所有するユーザーを取得する | v0 | - |
 
 #### フィールド関連API
@@ -173,13 +173,13 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 | 19 | [ItemList](api-document_jp.md#ItemList) | アイテム一覧 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/search | アイテム一覧を取得 | v0 | ✓ |
 | 68 | [GetItemSearchConditions](api/items/GetItemSearchConditions.md#GetItemSearchConditions) | アイテム検索条件取得 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/conditions | アイテムの検索条件を取得する | v0 | ✓ |
 | 70 | [GetUserQueries](api/items/GetUserQueries.md#GetUserQueries) | よく使う一覧の取得 | GET | /api/v0/applications/:app-id/queries | ユーザーごとに記憶された検索条件一覧を返す| v0 | ✓ |
-| 27 | [GetItemDetails](api/items/GetItemDetails.md#GetItemDetails) | アイテム詳細 | GET | /api/v0/applications/:project-id/datastores/:datastore-id/items/details/:item-id | アイテムの詳細情報、アクションリストを取得 | v0 | ✓ |
+| 27 | [GetItemDetails](api/items/GetItemDetails.md#GetItemDetails) | アイテム詳細 | GET | /api/v0/applications/:app-id/datastores/:datastore-id/items/details/:item-id | アイテムの詳細情報、アクションリストを取得 | v0 | ✓ |
 
 #### アイテムの登録、更新、削除
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 69 | [GetAutoNumber](api/items/GetAutoNumber.md#GetAutoNumber) | 自動採番 | POST | /api/v0/applications/:project-id/datastores/:datastore-id/fields/:field-id/autonum | アイテムへ登録時に任意利用できる番号を採番する | v0 | ✓ |
+| 69 | [GetAutoNumber](api/items/GetAutoNumber.md#GetAutoNumber) | 自動採番 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/fields/:field-id/autonum | アイテムへ登録時に任意利用できる番号を採番する | v0 | ✓ |
 | 20 | [CreateItem](api-document_jp.md#CreateItem) | アイテム新規登録 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/new | 新規アイテムを作成する | v0 | ✓ |
 | 21 | [UpdateItem](api-document_jp.md#UpdateItem) | アイテム更新 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/edit/:item-id | アイテムを編集する | v0 | ✓ |
 | 22 | [DeleteItem](api-document_jp.md#DeleteItem) | アイテム削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/delete/:item-id | １アイテムを削除する | v0 | ✓ |
@@ -193,9 +193,9 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 | 48 | [CreateItemID](api-document_jp.md#CreateItemID) | 新規アイテムID取得 | POST | /api/v0/datastores/:datastore-id/items/create-id | 新規アイテム作成用のaction\_idを取得 | v0 | - |
 | 33 | [CreateItemWithItemID](api-document_jp.md#CreateItemWithItemID) | item\_idを指定して新規アイテムを作成 | POST | /api/v0/items/:item-id/new-actions/:action-id | action\_idを指定して、新規作成アクションを実行\(No.69の後に実行\) | v0 | - |
 | 13 | [GetActionFields](api-document_jp.md#GetActionFields) | アクション登録フォーム取得 | GET | /api/v0/datastores/:datastore-id/actions/:action-id/fields | アクションで利用可能なフィールド情報を取得する | v0 | - |
-| 62 | [ExecuteAction](api-document_jp.md#ExecuteAction) | アクションの実行 | POST | /api/v0/applications/:project-id/datastores/:datastore-id/items/action/:action-id | 指定アクションを実行する | v0 | ✓ |
+| 62 | [ExecuteAction](api-document_jp.md#ExecuteAction) | アクションの実行 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/action/:action-id | 指定アクションを実行する | v0 | ✓ |
 | 31 | [ExecuteActionByActionID](api-document_jp.md#ExecuteActionByActionID) | アクションの実行 | POST | /api/v0/items/:item-id/actions/:action-id | アクションを実行 | v0 | - |
-| 67 | [ExecuteBulkAction](#ExecuteBulkAction) | 条件を指定してアクションを実行 | POST | /api/v0/applications/:project-id/datastores/:datastore-id/items/bulkaction/:action-id | 指定アクションを実行する | v0 | ✓ |
+| 67 | [ExecuteBulkAction](#ExecuteBulkAction) | 条件を指定してアクションを実行 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/bulkaction/:action-id | 指定アクションを実行する | v0 | ✓ |
 
 #### アイテムの関連
 
@@ -225,24 +225,24 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 16 | [ImportItems](api-document_jp.md#ImportItems) | アイテムCSVインポート | POST | /api/v0/applications/:project-id/datastores/:datastore-id/import | CSVデータをデータベースへインポート | v0 | ✓ |
+| 16 | [ImportItems](api-document_jp.md#ImportItems) | アイテムCSVインポート | POST | /api/v0/applications/:app-id/datastores/:datastore-id/import | CSVデータをデータベースへインポート | v0 | ✓ |
 | 17 | [GetImportResults](api-document_jp.md#GetImportResults) | インポート結果取得 | GET | /api/v0/datastores/:datastore-id/import/:id | CSVインポートの結果取得 | v0 | - |
 
 ### データレポート関連API
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 37 | [GetReportData](api-document_jp.md#GetReportData) | データレポート取得 | GET | /api/v0/applications/:project-id/reports/:report-id | レポートデータの取得 | v0 | ✓ |
-| 38 | [GetReportConditions](api-document_jp.md#GetReportConditions) | データレポート検索条件取得 | GET | /api/v0/applications/:project-id/reports/:report-id/conditions | レポートの検索条件を取得 | v0 | ✓ |
-| 39 | [GetReportDataByConditions](api-document_jp.md#GetReportDataByConditions) | 条件指定してデータレポート取得 | POST | /api/v0/applications/:project-id/reports/:report-id/filter | 条件を指定してレポートデータを取得 | v0 | ✓ |
+| 37 | [GetReportData](api-document_jp.md#GetReportData) | データレポート取得 | GET | /api/v0/applications/:app-id/reports/:report-id | レポートデータの取得 | v0 | ✓ |
+| 38 | [GetReportConditions](api-document_jp.md#GetReportConditions) | データレポート検索条件取得 | GET | /api/v0/applications/:app-id/reports/:report-id/conditions | レポートの検索条件を取得 | v0 | ✓ |
+| 39 | [GetReportDataByConditions](api-document_jp.md#GetReportDataByConditions) | 条件指定してデータレポート取得 | POST | /api/v0/applications/:app-id/reports/:report-id/filter | 条件を指定してレポートデータを取得 | v0 | ✓ |
 
 ### チャート\(ダッシュボード\)関連API
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 40 | [GetChartData](api-document_jp.md#GetChartData) | チャートデータ取得 | GET | /api/v0/applications/:project-id/charts/:chart-id | チャートデータの取得 | v0 | ✓ |
-| 41 | [GetChartConditions](api-document_jp.md#GetChartConditions) | チャート検索条件取得 | GET | /api/v0/applications/:project-id/charts/:chart-id/conditions | チャートの検索条件を取得 | v0 | ✓ |
-| 42 | [GetChartDataByConditions](api-document_jp.md#GetChartDataByConditions) | 条件指定してチャートデータ取得 | POST | /api/v0/applications/:project-id/charts/:chart-id/filter | 条件を指定してチャートデータを取得 | v0 | ✓ |
+| 40 | [GetChartData](api-document_jp.md#GetChartData) | チャートデータ取得 | GET | /api/v0/applications/:app-id/charts/:chart-id | チャートデータの取得 | v0 | ✓ |
+| 41 | [GetChartConditions](api-document_jp.md#GetChartConditions) | チャート検索条件取得 | GET | /api/v0/applications/:app-id/charts/:chart-id/conditions | チャートの検索条件を取得 | v0 | ✓ |
+| 42 | [GetChartDataByConditions](api-document_jp.md#GetChartDataByConditions) | 条件指定してチャートデータ取得 | POST | /api/v0/applications/:app-id/charts/:chart-id/filter | 条件を指定してチャートデータを取得 | v0 | ✓ |
 
 ## API仕様詳細
 
@@ -1462,13 +1462,13 @@ POST
 **Request URL Format**
 
 ```text
-/api/v0/applications/:project-id/userroles
+/api/v0/applications/:app-id/userroles
 ```
 
 **URL Params**
 
 ```text
-project-id: アプリケーション表示ID
+app-id: アプリケーション表示ID
 ```
 
 **Payload**
@@ -1483,7 +1483,7 @@ project-id: アプリケーション表示ID
 **Request URL Sample**
 
 ```text
-POST https://api.xxx.com/api/v0/applications/:project-id/userroles
+POST https://api.xxx.com/api/v0/applications/:app-id/userroles
 ```
 
 **Response Sample**
@@ -1518,13 +1518,13 @@ DELETE
 **Request URL Format**
 
 ```text
-/api/v0/applications/:project-id/userroles
+/api/v0/applications/:app-id/userroles
 ```
 
 **URL Params**
 
 ```text
-project-id: アプリケーション表示ID
+app-id: アプリケーション表示ID
 ```
 
 ```javascript
@@ -1537,7 +1537,7 @@ project-id: アプリケーション表示ID
 **Request URL Sample**
 
 ```text
-DELETE https://api.xxx.com/api/v0/applications/:project-id/userroles
+DELETE https://api.xxx.com/api/v0/applications/:app-id/userroles
 ```
 
 **Response Sample**
@@ -2969,7 +2969,7 @@ POST
 **Request Format**
 
 ```text
-/api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
+/api/v0/applications/:app-id/datastores/:datastore-id/items/action/:item-id/:action-id
 ```
 
 **Payload**
@@ -3054,7 +3054,7 @@ POST
 **Request Sample**
 
 ```text
-POST https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-id/items/action/:item-id/:action-id
+POST https://api.xxx.com//api/v0/applications/:app-id/datastores/:datastore-id/items/action/:item-id/:action-id
 ```
 
 **Response Sample**
@@ -3219,7 +3219,7 @@ POST
 
 **Request URL Format**
 ```
-/api/v0/applications/:project-id/datastores/:datastore-id/items/bulkaction/:action-id
+/api/v0/applications/:app-id/datastores/:datastore-id/items/bulkaction/:action-id
 ```
 
 **Payload**
@@ -3283,7 +3283,7 @@ conditions の詳細については、[conditions](#conditions)を参照
 
 **Request URL Sample**
 ```
-POST https://api.xxx.com//api/v0/applications/:project-id/datastores/:datastore-id/items/bulkaction/:action-id
+POST https://api.xxx.com//api/v0/applications/:app-id/datastores/:datastore-id/items/bulkaction/:action-id
 ```
 
 **Response Sample**
@@ -3671,13 +3671,13 @@ POST
 **Request URL Format**
 
 ```text
-/api/v0/applications/:project-id/datastores/:datastore-id/import
+/api/v0/applications/:app-id/datastores/:datastore-id/import
 ```
 
 **URL Params**
 
 ```text
-project-id    : アプリケーションID(画面から指定したアプリケーションID、または、p_id)
+app-id    : アプリケーションID(画面から指定したアプリケーションID、または、p_id)
 datastore-id    : データストアID(画面から指定したデータストアID、または、d_id)
 ```
 
@@ -3931,7 +3931,7 @@ GET
 **Request URL Format**
 
 ```text
-/api/v0/applications/:project-id/reports/:report-id
+/api/v0/applications/:app-id/reports/:report-id
 ```
 
 **Params**
@@ -4364,7 +4364,7 @@ GET
 **Request URL Format**
 
 ```text
-/api/v0/applications/:project-id/reports/:report-id/conditions
+/api/v0/applications/:app-id/reports/:report-id/conditions
 ```
 
 **Params**
@@ -4385,18 +4385,24 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
 [
     {
         "rpf_id": "4a0b2f8a-f332-4579-a2d4-e9b5971d9e80",
+        "display_id": "TITLE",
+        "f_id": "5c69148384f4be344c2ff0f1",
         "name": "Title",
         "dataType": "text",
         "order": 0
     },
     {
         "rpf_id": "b752bf7f-9f0d-4370-ac34-45b9be01453f",
+        "display_id": "DueDate",
+        "f_id": "5c69148384f4be344c2ff0f2",
         "name": "Due Date",
         "dataType": "date",
         "order": 4
     },
     {
         "rpf_id": "7b9db4bb-3516-4cd7-946a-97c1ddcdca2a",
+        "display_id": "CATEGORY",
+        "f_id": "5c6363ed84f4be7de0350452",
         "name": "Category",
         "dataType": "select",
         "order": 2,
@@ -4427,6 +4433,8 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
     {
         "rpf_id": "85c15eca-1b7a-4423-9969-55f363efc4c1",
         "name": "Status",
+        "display_id": "STATUS",
+        "f_id": "5c6363ed84f4be7de0350453",
         "dataType": "status",
         "order": 3,
         "statuses": [
@@ -4459,12 +4467,16 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
     },
     {
         "rpf_id": "4552a666-508d-419c-ba99-7c9a16b24894",
+        "display_id": "NOTE",
+        "f_id": "5c6459de84f4be4588a77288",
         "name": "note",
         "dataType": "textarea",
         "order": 5
     },
     {
         "rpf_id": "8a20643b-fe36-45f1-bbd6-b2b6e4296a54",
+        "display_id": "NUM",
+        "f_id": "5c91f38a84f4be29540c4e9c",
         "name": "Num",
         "dataType": "number",
         "order": 6
@@ -4487,19 +4499,35 @@ POST
 **Request URL Format**
 
 ```text
-/api/v0/applications/:project-id/reports/:report-id/filter
+/api/v0/applications/:app-id/reports/:report-id/filter
 ```
 
 **Payload**
 
 ```text
 conditions -  検索条件を指定
-             "rpf_id":/conditions APIで返されるレポートフィールドIDを指定,
+            DataReportフィールドのdisplay_id　または、 "rpf_id"(/conditions APIで返されるレポートフィールドID) を指定して絞り込む
             "search_value": 検索条件を配列で指定（サンプルを参照） ※アイテム一覧の指定と同様、フィールドタイプごとに指定内容が異なる
 ```
 
 **Request URL Sample**
 
+
+検索条件に画面IDを利用する場合　（id: にフィールドIDを指定します）
+```text
+POST https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
+
+{
+    "conditions":[
+        {
+            "id":"CATEGORY",
+            "search_value":["B"]
+        }
+  ]
+}
+```
+
+レポート用フィールドIDを利用する場合 （rpf_id: にレポートフィールドIDを指定します）
 ```text
 POST https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
 
@@ -4538,7 +4566,7 @@ GET
 **Request URL Format**
 
 ```text
-/api/v0/applications/:project-id/charts/:chart-id
+/api/v0/applications/:app-id/charts/:chart-id
 ```
 
 **Params**
@@ -4675,7 +4703,7 @@ GET
 **Request URL Format**
 
 ```text
-/api/v0/applications/:project-id/charts/:chart-id/conditions
+/api/v0/applications/:app-id/charts/:chart-id/conditions
 ```
 
 **Params**
@@ -4730,18 +4758,35 @@ POST
 **Request URL Format**
 
 ```text
-/api/v0/applications/:project-id/reports/:report-id/filter
+/api/v0/applications/:app-id/charts/:chart-id/filter
 ```
 
 **Payload**
 
 ```text
 conditions -  検索条件を指定
-             "rpf_id":/conditions APIで返されるレポートフィールドIDを指定,
+            DataReportフィールドのdisplay_id　または、 "rpf_id"(/conditions APIで返されるレポートフィールドID) を指定して絞り込む
             "search_value": 検索条件を配列で指定（サンプルを参照） ※アイテム一覧の指定と同様、フィールドタイプごとに指定内容が異なる
 ```
 
 **Request URL Sample**
+
+
+検索条件に画面IDを利用する場合　（id: にデータレポートフィールドの画面IDを指定します）
+```text
+POST https://api.xxx.com/api/v0/applications/APP_ID/charts/CHART_ID/conditions
+
+{
+    "conditions":[
+        {
+            "id":"CATEGORY",
+            "search_value":["B"]
+        }
+  ]
+}
+```
+
+レポート用フィールドIDを利用する場合 （rpf_id: にレポートフィールドIDを指定します）
 
 ```text
 POST https://api.xxx.com/api/v0/applications/APP_ID/charts/CHART_ID/conditions
@@ -4749,7 +4794,7 @@ POST https://api.xxx.com/api/v0/applications/APP_ID/charts/CHART_ID/conditions
 {
     "conditions":[
         {
-      "rpf_id": "9ac0d794-fc4a-473f-be36-647d22c7cfa2",
+          "rpf_id": "9ac0d794-fc4a-473f-be36-647d22c7cfa2",
           "search_value":["7"]
         }
     ]
