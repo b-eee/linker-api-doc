@@ -2275,11 +2275,12 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
       "field_id": "登録データ",
       "title": "タイトル",
       "assignee": "担当者",
-  }
+  },
+  "return_item_result": true, // true指定すると、登録されたアイテム情報を返します
   "related_ds_items" : {
       "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
       "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
-    },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
+  },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
 }
 ```
 * 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
@@ -2329,7 +2330,10 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
 {
     "error": null,
     "history_id": "5d661782aa39559a80479492",
-    "item_id": "5a2647410e24792d87451e34"
+    "item_id": "5a2647410e24792d87451e34",
+    "item": {
+      　// Payload に "return_item_result": true　を指定した場合、登録されたアイテム情報がもどる
+    }
 }
 ```
 
@@ -2372,6 +2376,7 @@ item-id         : 対象アイテムのID
     "groups_to_publish":["画面グループID", "システムのグループID"],　// item を閲覧可能とするグループIDを指定（省略可）
     "use_display_id" : true,  // IDに画面IDを利用。 groups_to_publishを利用する場合はtrueとする。
     "is_force_update": true,
+    "return_item_result": true, // true指定すると、登録されたアイテム情報を返します
     "related_ds_items" : {
       "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
       "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
@@ -2448,6 +2453,15 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
 
 ```text
 null
+```
+
+Payload に "return_item_result": true　を指定した場合、登録されたアイテム情報がもどる
+```javascript
+{
+  item: {
+    // 登録されたアイテム情報がもどる（関連アイテムの詳細は含まれない）
+  }
+}
 ```
 
 #### DeleteItem
@@ -2978,7 +2992,8 @@ POST
 
 ```javascript
 {
-  "comment": "test-comment"
+  "comment": "test-comment",
+  "return_item_result": true, // true指定すると、更新されたアイテム情報を返します
   "item": {
       "5e256923aeae8e212cb2e03b": "value", // text tyepe
       "58bbaa27fbfcba6098746061": "5d4c058baa39555618ac9e98", // select type
@@ -3063,13 +3078,23 @@ POST https://api.xxx.com//api/v0/applications/:app-id/datastores/:datastore-id/i
 null
 ```
 
+Payload に "return_item_result": true　を指定した場合、登録されたアイテム情報がもどる
+```javascript
+{
+  item: {
+    // 登録されたアイテム情報がもどる（関連アイテムの詳細は含まれない）
+  }
+}
+```
+
 #### ExecuteActionByActionID
 
-アクション実行
+アクション実行（旧仕様）
 
 **Description**
 
-アクションを実行します
+アクションを実行します（旧仕様）
+ExecuteActionの使用を推奨します
 
 **Method**
 
