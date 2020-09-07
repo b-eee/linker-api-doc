@@ -64,24 +64,17 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 49 | [GetGroup](api-document_jp.md#GetGroup) | グループ情報取得 | GET | /api/v0/groups/:group-id | 指定したグループ情報とその配下のグループ一覧を取得 | v0 | - |
-| 4 | [GetGroupTree](api-document_jp.md#GetGroupTree) | グループツリー情報取得 | GET | /api/v0/grouptree | ワークスペース内のグループ情報をJSONツリー形式で取得 | v0 | - |
+| 49 | [GetGroup](api/groups/GetGroup.md) | グループ情報取得 | GET | /api/v0/groups/:group-id | 指定したグループ情報とその配下のグループ一覧を取得 | v0 | - |
+| 4 | [GetGroupTree](api/groups/GetGroupTree.md) | グループツリー情報取得 | GET | /api/v0/grouptree | ワークスペース内のグループ情報をJSONツリー形式で取得 | v0 | - |
 
 #### グループの登録、変更、削除
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 5 | [CreateGroup](api-document_jp.md#CreateGroup) | 新規グループ作成 | POST | /api/v0/workspaces/:workspace-id/groups/:parent-group-id | 指定グループ配下に新規でグループを作成 | v0 | - |
-| 44 | [CreateTopGroup](api-document_jp.md#CreateTopGroup) | 新規グループ作成\(第1階層\) | POST | /api/v0/workspaces/:workspace-id/groups | 第1階層に新規グループを作成 | v0 | - |
-| 6 | [UpdateGroup](api-document_jp.md#UpdateGroup) | グループ更新 | PUT | /api/v0/groups/:group-id | 指定したグループ情報を更新する | v0 | - |
-| 7 | [DeleteGroup](api-document_jp.md#DeleteGroup) | グループ削除 | DELETE | /api/v0/groups/:group-id | 指定したグループを削除する | v0 | - |
-
-#### グループへのロール設定
-
-| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
-| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 63 | [UpdateGroupRoles](api-document_jp.md#UpdateGroupRoles) | グループロール更新 | POST | /api/v0/grouproles/:group-id | グループにひも付くロールをすべて削除し、新規付与（洗い変え）する | v0 | - |
-| 64 | [AddGroupRoles](api-document_jp.md#AddGroupRoles) | グループロール追加 | PUT | /api/v0/grouproles/:group-id | グループにロールを追加する | v0 | - |
+| 5 | [CreateGroup](api/groups/CreateGroup.md) | 新規グループ作成 | POST | /api/v0/workspaces/:workspace-id/groups/:parent-group-id | 指定グループ配下に新規でグループを作成 | v0 | - |
+| 44 | [CreateTopGroup](api/groups/CreateTopGroup.md) | 新規グループ作成\(第1階層\) | POST | /api/v0/workspaces/:workspace-id/groups | 第1階層に新規グループを作成 | v0 | - |
+| 6 | [UpdateGroup](api/groups/UpdateGroup.md) | グループ更新 | PUT | /api/v0/groups/:group-id | 指定したグループ情報を更新する | v0 | - |
+| 7 | [DeleteGroup](api/groups/DeleteGroup.md) | グループ削除 | DELETE | /api/v0/groups/:group-id | 指定したグループを削除する | v0 | - |
 
 ### ユーザー関連API
 
@@ -93,32 +86,32 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 43 | [GetUserInfo](api-document_jp.md#GetUserInfo) | ユーザー情報取得 | GET | /api/v0/userinfo | ユーザーの関連情報取得 | v0 | - |
-| 61 | [UpdateUserInfo](api-document_jp.md#UpdateUserInfo) | ユーザー情報更新 | PUT | /api/v0/userinfo | ユーザー名、情報の更新 | v0 | - |
+| 43 | [GetUserInfo](api/userinfo/GetUserInfo.md) | ユーザー情報取得 | GET | /api/v0/userinfo | ユーザーの関連情報取得 | v0 | - |
+| 61 | [UpdateUserInfo](api/userinfo/UpdateUserInfo.md) | ユーザー情報更新 | PUT | /api/v0/userinfo | ユーザー名、情報の更新 | v0 | - |
 
 #### パスワード変更
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 56 | [ResetPassword](api-document_jp.md#ResetPassword) | パスワード初期化リクエスト | POST | /api/v0/users/password/forgot | ログイン前、パスワード初期化 開始 | v0 | - |
-| 57 | [SetNewPassword](api-document_jp.md#SetNewPassword) | パスワード再登録 | PUT | /api/v0/users/password/forgot | ログイン前、パスワード初期化 パスワードを変更 | v0 | - |
-| 58 | [ValidatePassword](api-document_jp.md#ValidatePassword) | パスワード変更確認 | GET | /api/v0/users/password/validate | ログイン前、パスワード初期化　パスワー変更状態の確認 | v0 | - |
-| 59 | [SetPassword](api-document_jp.md#SetPassword) | パスワード変更登録 | PUT | /api/v0/users/password | ログイン後、パスワード変更 | v0 | - |
+| 56 | [ResetPassword](api/userinfo/ResetPassword.md) | パスワード初期化リクエスト | POST | /api/v0/users/password/forgot | ログイン前、パスワード初期化 開始 | v0 | - |
+| 57 | [SetNewPassword](api/userinfo/SetNewPassword.md) | パスワード再登録 | PUT | /api/v0/users/password/forgot | ログイン前、パスワード初期化 パスワードを変更 | v0 | - |
+| 58 | [ValidatePassword](api/userinfo/ValidatePassword.md) | パスワード変更確認 | GET | /api/v0/users/password/validate | ログイン前、パスワード初期化　パスワー変更状態の確認 | v0 | - |
+| 59 | [SetPassword](api/userinfo/SetPassword.md) | パスワード変更登録 | PUT | /api/v0/users/password | ログイン後、パスワード変更 | v0 | - |
 
 #### ユーザー一覧
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 46 | [GetUsersInGroup](api-document_jp.md#GetUsersInGroup) | グループ内ユーザー取得 | GET | /api/v0/groups/:group-id/users | 指定されたグループのユーザー一覧の取得 | v0 | - |
-| 50 | [GetUsersInWorkspace](api-document_jp.md#GetUsersInWorkspace) | グループ内ユーザー取得 | GET | /api/v0/workspaces/:workspace-id/users | 指定されたワークスペースのユーザー一覧の取得 | \(old\) | - |
-| 10 | [GetAllUsersInWorkspace](api-document_jp.md#GetAllUsersInWorkspace) | ワークスペース全ユーザー取得 | GET | /api/v0/users/all/g/:group-id | ワークスペース内全ユーザー一覧の取得 | v0 | - |
+| 46 | [GetUsersInGroup](api/users/GetUsersInGroup.md) | グループ内ユーザー取得 | GET | /api/v0/groups/:group-id/users | 指定されたグループのユーザー一覧の取得 | v0 | - |
+| 50 | [GetUsersInWorkspace](api/users/GetUsersInWorkspace.md) | グループ内ユーザー取得 | GET | /api/v0/workspaces/:workspace-id/users | 指定されたワークスペースのユーザー一覧の取得 | \(old\) | - |
+| 10 | [GetAllUsersInWorkspace](api/users/GetAllUsersInWorkspace.md) | ワークスペース全ユーザー取得 | GET | /api/v0/users/all/g/:group-id | ワークスペース内全ユーザー一覧の取得 | v0 | - |
 
 #### ユーザーの追加、削除
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 47 | [AddUser](api-document_jp.md#AddUser) | ユーザー追加 | POST | /api/v0/users | グループに新規ユーザーを作成 | v0 | - |
-| 51 | [RemoveUser](api-document_jp.md#RemoveUser) | ユーザー削除 | DELETE | /api/v0/users | グループからユーザーを削除 | v0 | - |
+| 47 | [AddUser](api/users/AddUser.md) | ユーザー追加 | POST | /api/v0/users | グループに新規ユーザーを作成 | v0 | - |
+| 51 | [RemoveUser](api/users/RemoveUser.md) | ユーザー削除 | DELETE | /api/v0/users | グループからユーザーを削除 | v0 | - |
 
 #### ユーザーの招待～初期登録
 
@@ -126,16 +119,16 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 52 | [UserInvite](api-document_jp.md#UserInvite) | ユーザー招待 | POST | /api/v0/userinvite | ユーザーを招待 | v0 | - |
-| 53 | [UserRegistration](api-document_jp.md#UserRegistration) | 初回ユーザー登録 | POST | /api/v0/users/registration | ユーザーの初期登録用リクエスト | v0 | - |
-| 54 | [ConfirmRegistration](api-document_jp.md#ConfirmRegistration) | ユーザー情報確認 | GET | /api/v0/users/registration/confirm | ConfirmIDからユーザーの初期登録情報の確認 | v0 | - |
-| 55 | [RegisterUser](api-document_jp.md#RegisterUser) | ユーザー初期登録 | POST | /api/v0/users/registration/confirm | ユーザーの初期登録、パスワード登録 | v0 | - |
+| 52 | [UserInvite](api/users/UserInvite.md) | ユーザー招待 | POST | /api/v0/userinvite | ユーザーを招待 | v0 | - |
+| 53 | [UserRegistration](api/user-registration/UserRegistration.md) | 初回ユーザー登録 | POST | /api/v0/users/registration | ユーザーの初期登録用リクエスト | v0 | - |
+| 54 | [ConfirmRegistration](api/user-registration/ConfirmRegistration.md) | ユーザー情報確認 | GET | /api/v0/users/registration/confirm | ConfirmIDからユーザーの初期登録情報の確認 | v0 | - |
+| 55 | [RegisterUser](api/user-registration/RegisterUser.md) | ユーザー初期登録 | POST | /api/v0/users/registration/confirm | ユーザーの初期登録、パスワード登録 | v0 | - |
 
 #### CSVデータによるユーザー一括登録
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 9 | [UserImport](api-document_jp.md#UserImport) |  | POST | /api/v0/userimport | ユーザーをCSVで一括インポート | α版 | - |
+| 9 | [UserImport](api/users/UserImport.md) |  | POST | /api/v0/userimport | ユーザーをCSVで一括インポート | α版 | - |
 
 ### アプリケーション関連API
 
@@ -150,9 +143,15 @@ Hexabaseでは、「アプリケーション」ごとに、データベース・
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 65 | [AddRoleToUser](api-document_jp.md#AddRoleToUser) | ユーザーへロール付与 | POST | /api/v0/applications/:app-id/userroles | ユーザーにアプリケーションのロールを付与する | v0 | - |
-| 66 | [RemoveRoleFromUser](api-document_jp.md#RemoveRoleFromUser) | ユーザからロールを削除 | DELETE | /api/v0/applications/:app-id/userroles | ユーザーからアプリケーションのロールを外す | v0 | - |
+
+| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
+| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 71 | [GetRoleUsers](api/users/GetRoleUsers.md) | ロールをもつユーザーの取得 | GET | /api/v0/applications/:app-id/roleusers/:role-id | 指定したロールを所有するユーザーを取得する | v0 | - |
+| 65 | [AddRoleToUser](api/roles/AddRoleToUser.md) | ユーザーへロール付与 | POST | /api/v0/applications/:app-id/userroles | ユーザーにアプリケーションのロールを付与する | v0 | - |
+| 66 | [RemoveRoleFromUser](api/roles/RemoveRoleFromUser.md) | ユーザからロールを削除 | DELETE | /api/v0/applications/:app-id/userroles | ユーザーからアプリケーションのロールを外す | v0 | - |
+| 63 | [UpdateGroupRoles](api/roles/UpdateGroupRoles.md) | グループロール更新 | POST | /api/v0/grouproles/:group-id | グループにひも付くロールをすべて削除し、新規付与（洗い変え）する | v0 | - |
+| 64 | [AddGroupRoles](api/roles/AddGroupRoles.md) | グループロール追加 | PUT | /api/v0/grouproles/:group-id | グループにロールを追加する | v0 | - |
+
 
 #### フィールド関連API
 
