@@ -33,7 +33,10 @@ item-id  :  アイテムのID
 **Query Params**
 
 ```text
+linked_p_id : 関連先のp_idを画面ID指定
+linked_d_id : 関連先のd_idを画面ID指定
 use_display_id  : true を指定すると画面IDのmap形式で返される
+
 ```
 
 **Response Sample**
