@@ -159,7 +159,7 @@ Hexabaseでは、「アイテム」のカラムを「フィールド」または
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 15 | [GetDatastoreFields](api-document_jp.md#GetDatastoreFields) | フィールド一覧 | GET | /api/v0/applications/:app-id/datastores/:datastore-id/fields | フィールド一覧を取得 | v0 | ✓ |
+| 15 | [GetDatastoreFields](api/datastores/GetDatastoreFields.md) | フィールド一覧 | GET | /api/v0/applications/:app-id/datastores/:datastore-id/fields | フィールド一覧を取得 | v0 | ✓ |
 
 ### アイテム関連API
 
@@ -169,76 +169,76 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 19 | [ItemList](api-document_jp.md#ItemList) | アイテム一覧 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/search | アイテム一覧を取得 | v0 | ✓ |
-| 68 | [GetItemSearchConditions](api/items/GetItemSearchConditions.md#GetItemSearchConditions) | アイテム検索条件取得 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/conditions | アイテムの検索条件を取得する | v0 | ✓ |
-| 70 | [GetUserQueries](api/items/GetUserQueries.md#GetUserQueries) | よく使う一覧の取得 | GET | /api/v0/applications/:app-id/queries | ユーザーごとに記憶された検索条件一覧を返す| v0 | ✓ |
-| 27 | [GetItemDetails](api/items/GetItemDetails.md#GetItemDetails) | アイテム詳細 | GET | /api/v0/applications/:app-id/datastores/:datastore-id/items/details/:item-id | アイテムの詳細情報、アクションリストを取得 | v0 | ✓ |
+| 19 | [ItemList](api/items/ItemList.md) | アイテム一覧 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/search | アイテム一覧を取得 | v0 | ✓ |
+| 68 | [GetItemSearchConditions](api/items-search/GetItemSearchConditions.md) | アイテム検索条件取得 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/conditions | アイテムの検索条件を取得する | v0 | ✓ |
+| 70 | [GetUserQueries](api/items-search/GetUserQueries.md) | よく使う一覧の取得 | GET | /api/v0/applications/:app-id/queries | ユーザーごとに記憶された検索条件一覧を返す| v0 | ✓ |
+| 27 | [GetItemDetails](api/items/GetItemDetails.md) | アイテム詳細 | GET | /api/v0/applications/:app-id/datastores/:datastore-id/items/details/:item-id | アイテムの詳細情報、アクションリストを取得 | v0 | ✓ |
 
 #### アイテムの登録、更新、削除
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 69 | [GetAutoNumber](api/items/GetAutoNumber.md#GetAutoNumber) | 自動採番 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/fields/:field-id/autonum | アイテムへ登録時に任意利用できる番号を採番する | v0 | ✓ |
-| 20 | [CreateItem](api-document_jp.md#CreateItem) | アイテム新規登録 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/new | 新規アイテムを作成する | v0 | ✓ |
-| 21 | [UpdateItem](api-document_jp.md#UpdateItem) | アイテム更新 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/edit/:item-id | アイテムを編集する | v0 | ✓ |
-| 22 | [DeleteItem](api-document_jp.md#DeleteItem) | アイテム削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/delete/:item-id | １アイテムを削除する | v0 | ✓ |
-| 23 | [DeleteItemByConditions](api-document_jp.md#DeleteItemByConditions) | 条件指定してアイテム削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/delete | 条件を指定してアイテムを一括削除する | v0 | ✓ |
+| 69 | [GetAutoNumber](api/items/GetAutoNumber.md) | 自動採番 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/fields/:field-id/autonum | アイテムへ登録時に任意利用できる番号を採番する | v0 | ✓ |
+| 20 | [CreateItem](api/items/CreateItem.md) | アイテム新規登録 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/new | 新規アイテムを作成する | v0 | ✓ |
+| 21 | [UpdateItem](api/items/UpdateItem.md) | アイテム更新 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/edit/:item-id | アイテムを編集する | v0 | ✓ |
+| 22 | [DeleteItem](api/items/DeleteItem.md) | アイテム削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/delete/:item-id | １アイテムを削除する | v0 | ✓ |
+| 23 | [DeleteItemByConditions](api/items/DeleteItemByConditions.md) | 条件指定してアイテム削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/delete | 条件を指定してアイテムを一括削除する | v0 | ✓ |
 
 #### アイテムに対するアクション実行
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 12 | [GetNewActions](api-document_jp.md#GetNewActions) | 新規登録アクションの一覧 | GET | /api/v0/datastores/:datastore-id/new-action | 新規アイテム作成アクション一覧を取得 | v0 | - |
-| 48 | [CreateNewItemID](api-document_jp.md#CreateNewItemID) | 新規アイテムID取得 | POST | /api/v0/datastores/:datastore-id/items/create-id | 新規アイテム作成用のaction\_idを取得 | v0 | - |
-| 33 | [CreateItemWithItemID](api-document_jp.md#CreateItemWithItemID) | item\_idを指定して新規アイテムを作成 | POST | /api/v0/items/:item-id/new-actions/:action-id | action\_idを指定して、新規作成アクションを実行\(No.69の後に実行\) | v0 | - |
-| 13 | [GetInputFields](api-document_jp.md#GetInputFields) | アクション登録フォーム取得 | GET | /api/v0/datastores/:datastore-id/actions/:action-id/fields | アクションで利用可能なフィールド情報を取得する | v0 | - |
-| 62 | [ExecuteAction](api-document_jp.md#ExecuteAction) | アクションの実行 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/action/:action-id | 指定アクションを実行する | v0 | ✓ |
-| 31 | [ExecuteActionByActionID](api-document_jp.md#ExecuteActionByActionID) | アクションの実行 | POST | /api/v0/items/:item-id/actions/:action-id | アクションを実行 | v0 | - |
-| 67 | [ExecuteBulkAction](#ExecuteBulkAction) | 条件を指定してアクションを実行 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/bulkaction/:action-id | 指定アクションを実行する | v0 | ✓ |
+| 12 | [GetNewActions](api/item-actions/GetNewActions.md) | 新規登録アクションの一覧 | GET | /api/v0/datastores/:datastore-id/new-action | 新規アイテム作成アクション一覧を取得 | v0 | - |
+| 48 | [CreateNewItemID](api/item-actions/CreateNewItemID.md) | 新規アイテムID取得 | POST | /api/v0/datastores/:datastore-id/items/create-id | 新規アイテム作成用のaction\_idを取得 | v0 | - |
+| 33 | [CreateItemWithItemID](api/item-actions/CreateItemWithItemID.md) | item\_idを指定して新規アイテムを作成 | POST | /api/v0/items/:item-id/new-actions/:action-id | action\_idを指定して、新規作成アクションを実行\(No.69の後に実行\) | v0 | - |
+| 13 | [GetInputFields](api/item-actions/GetInputFields.md) | アクション登録フォーム取得 | GET | /api/v0/datastores/:datastore-id/actions/:action-id/fields | アクションで利用可能なフィールド情報を取得する | v0 | - |
+| 62 | [ExecuteAction](api/item-actions/ExecuteAction.md) | アクションの実行 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/action/:action-id | 指定アクションを実行する | v0 | ✓ |
+| 31 | [ExecuteActionByActionID](api/item-actions/ExecuteActionByActionID.md) | アクションの実行 | POST | /api/v0/items/:item-id/actions/:action-id | アクションを実行 | v0 | - |
+| 67 | [ExecuteBulkAction](api/item-actions/ExecuteBulkAction.md) | 条件を指定してアクションを実行 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/bulkaction/:action-id | 指定アクションを実行する | v0 | ✓ |
 
 #### アイテムの関連
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 28 | [GetLinkedItems](api/items/GetLinkedItems.md#GetLinkedItems) | 関連アイテム取得 | GET | /api/v0/applications/:app-id/datastores/:datastore-id/items/links/:item-id | アイテムに関連するアイテム一覧を取得 | v0 | ✓ |
-| 24 | [AddItemLink](api-document_jp.md#AddItemLink) | アイテムリンク作成 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/addlink/:item-id | 関連アイテムとのリンクを追加 | v0 | ✓ |
-| 25 | [UpdateItemLink](api-document_jp.md#UpdateItemLink) | アイテムリンク更新 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/updatelink/:item-id | 関連アイテムとのリンクを更新 | v0 | ✓ |
-| 26 | [DeleteItemLink](api-document_jp.md#DeleteItemLink) | アイテムリンク削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/dellink/:item-id | 関連アイテムとのリンクを削除 | v0 | ✓ |
+| 28 | [GetLinkedItems](api/item-links/GetLinkedItems.md) | 関連アイテム取得 | GET | /api/v0/applications/:app-id/datastores/:datastore-id/items/links/:item-id | アイテムに関連するアイテム一覧を取得 | v0 | ✓ |
+| 24 | [AddItemLink](api/item-links/AddItemLink.md) | アイテムリンク作成 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/addlink/:item-id | 関連アイテムとのリンクを追加 | v0 | ✓ |
+| 25 | [UpdateItemLink](api/item-links/UpdateItemLink.md) | アイテムリンク更新 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/updatelink/:item-id | 関連アイテムとのリンクを更新 | v0 | ✓ |
+| 26 | [DeleteItemLink](api/item-links/DeleteItemLink.md) | アイテムリンク削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/dellink/:item-id | 関連アイテムとのリンクを削除 | v0 | ✓ |
 
 #### 添付ファイル関連API
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 29 | [UploadFile](api-document_jp.md#UploadFile) | 添付ファイルUpload | POST | /api/v0/items/:item-id/fields/:field-id/attachments | 添付ファイルフィールドにファイルをアップロード | v0 | - |
-| 30 | [DeleteFile](api-document_jp.md#DeleteFile) | 添付ファイル削除 | DELETE | /api/v0/items/:item-id/fields/:field-id/attachments/:file-id | 添付ファイルフィールドのファイルを削除 | v0 | - |
-| 35 | [GetFile](api-document_jp.md#GetFile) | ファイルデータの取得 | GET | /api/v0/files/:file-id | 添付ファイルデータを取得 | v0 | - |
+| 29 | [UploadFile](api/item-files/UploadFile.md) | 添付ファイルUpload | POST | /api/v0/items/:item-id/fields/:field-id/attachments | 添付ファイルフィールドにファイルをアップロード | v0 | - |
+| 30 | [DeleteFile](api/item-files/DeleteFile.md) | 添付ファイル削除 | DELETE | /api/v0/items/:item-id/fields/:field-id/attachments/:file-id | 添付ファイルフィールドのファイルを削除 | v0 | - |
+| 35 | [GetFile](api/item-files/GetFile.md) | ファイルデータの取得 | GET | /api/v0/files/:file-id | 添付ファイルデータを取得 | v0 | - |
 
 #### アイテムの履歴
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 34 | [GetItemHistories](api-document_jp.md#GetItemHistories) | アイテム履歴取得 | GET | /api/v0/datastores/:datastore-id/items/:item-id/histories | 履歴を取得 | v0 | - |
-| 45 | [PostItemComment](api-document_jp.md#PostItemComment) | アイテムコメント投稿 | POST | /api/v0/datastores/:datastore-id/items/histories | コメント履歴を登録 | v0 | - |
+| 34 | [GetItemHistories](api/item-histories/GetItemHistories.md) | アイテム履歴取得 | GET | /api/v0/datastores/:datastore-id/items/:item-id/histories | 履歴を取得 | v0 | - |
+| 45 | [PostItemComment](api/item-histories/PostItemComment.md) | アイテムコメント投稿 | POST | /api/v0/datastores/:datastore-id/items/histories | コメント履歴を登録 | v0 | - |
 
 ### CSVデータインポート関連API
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 16 | [ImportItems](api-document_jp.md#ImportItems) | アイテムCSVインポート | POST | /api/v0/applications/:app-id/datastores/:datastore-id/import | CSVデータをデータベースへインポート | v0 | ✓ |
-| 17 | [GetImportResults](api-document_jp.md#GetImportResults) | インポート結果取得 | GET | /api/v0/datastores/:datastore-id/import/:id | CSVインポートの結果取得 | v0 | - |
+| 16 | [ImportItems](api/items-import/ImportItems.md) | アイテムCSVインポート | POST | /api/v0/applications/:app-id/datastores/:datastore-id/import | CSVデータをデータベースへインポート | v0 | ✓ |
+| 17 | [GetImportResults](api/items-import/GetImportResults.md) | インポート結果取得 | GET | /api/v0/datastores/:datastore-id/import/:id | CSVインポートの結果取得 | v0 | - |
 
 ### データレポート関連API
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 37 | [GetReportData](api-document_jp.md#GetReportData) | データレポート取得 | GET | /api/v0/applications/:app-id/reports/:report-id | レポートデータの取得 | v0 | ✓ |
-| 38 | [GetReportSearchConditions](api-document_jp.md#GetReportSearchConditions) | データレポート検索条件取得 | GET | /api/v0/applications/:app-id/reports/:report-id/conditions | レポートの検索条件を取得 | v0 | ✓ |
-| 39 | [GetReportDataByConditions](api-document_jp.md#GetReportDataByConditions) | 条件指定してデータレポート取得 | POST | /api/v0/applications/:app-id/reports/:report-id/filter | 条件を指定してレポートデータを取得 | v0 | ✓ |
+| 37 | [GetReportData](api/reports/GetReportData.md) | データレポート取得 | GET | /api/v0/applications/:app-id/reports/:report-id | レポートデータの取得 | v0 | ✓ |
+| 38 | [GetReportSearchConditions](api/reports/GetReportSearchConditions.md) | データレポート検索条件取得 | GET | /api/v0/applications/:app-id/reports/:report-id/conditions | レポートの検索条件を取得 | v0 | ✓ |
+| 39 | [GetReportDataByConditions](api/reports/GetReportDataByConditions.md) | 条件指定してデータレポート取得 | POST | /api/v0/applications/:app-id/reports/:report-id/filter | 条件を指定してレポートデータを取得 | v0 | ✓ |
 
 ### チャート\(ダッシュボード\)関連API
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 40 | [GetChartData](api-document_jp.md#GetChartData) | チャートデータ取得 | GET | /api/v0/applications/:app-id/charts/:chart-id | チャートデータの取得 | v0 | ✓ |
-| 41 | [GetChartSearchConditions](api-document_jp.md#GetChartSearchConditions) | チャート検索条件取得 | GET | /api/v0/applications/:app-id/charts/:chart-id/conditions | チャートの検索条件を取得 | v0 | ✓ |
-| 42 | [GetChartDataByConditions](api-document_jp.md#GetChartDataByConditions) | 条件指定してチャートデータ取得 | POST | /api/v0/applications/:app-id/charts/:chart-id/filter | 条件を指定してチャートデータを取得 | v0 | ✓ |
+| 40 | [GetChartData](api/charts/GetChartData.md) | チャートデータ取得 | GET | /api/v0/applications/:app-id/charts/:chart-id | チャートデータの取得 | v0 | ✓ |
+| 41 | [GetChartSearchConditions](api/charts/GetChartSearchConditions.md) | チャート検索条件取得 | GET | /api/v0/applications/:app-id/charts/:chart-id/conditions | チャートの検索条件を取得 | v0 | ✓ |
+| 42 | [GetChartDataByConditions](api/charts/GetChartDataByConditions.md) | 条件指定してチャートデータ取得 | POST | /api/v0/applications/:app-id/charts/:chart-id/filter | 条件を指定してチャートデータを取得 | v0 | ✓ |
