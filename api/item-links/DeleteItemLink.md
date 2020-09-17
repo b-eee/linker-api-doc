@@ -27,10 +27,10 @@ item-id         : 対象アイテムのID
 
 **Payload**
 
-```text
+```javascript
 {
     "link_datastore_id": "DATABASE_2",
-    "link_item_id": "5d4c055eaa39555618ac9e6a"
+    "link_item_id": "5d4c055eaa39555618ac9e6a"  //省略すると、link_datastore_idに関連するすべてのItemのリンクが削除されます
 }
 ```
 
