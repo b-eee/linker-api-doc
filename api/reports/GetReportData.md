@@ -50,6 +50,7 @@ formatを省略した場合
 {
     "error": ""
     "report_title": "SimpleJoin", // レポート名
+    "totalItems": 40932, // 全データ件数
     "report_results": [ // 取得データ
         {
             "NOTE": "B",
