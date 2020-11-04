@@ -20,22 +20,113 @@ GET
 **Params**
 
 ```text
-特になし
+per_page : 1ページたあたりの件数
+page : ページ数
+format: 省略可能。　"csv" を指定すると、CSV形式で出力する
 ```
 
 **Request URL Sample**
 
 ```text
-GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
+GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID&page=1&per_page=7
 ```
 
 **Response Sample**
 
 - 出力フィールドに画面ID(display_id)が指定されている場合は、report_result はdisplay_id が使用されます。
 
+format="csv"の場合
+```csv
+NOTE,TITLE,CATEGORY,STATUS,NUM,DUE_DATE
+B,タスクＣ,B,New,0,2016/01/01
+B,タスクＣ,案件（明細あり）,B,In Review,0,2016/01/01
+B,,B,New,0,2016/01/01
+B,１１１新規起票,B,New,0,2016/01/01
+B,タスクB,B,New,0,2016/01/01
+```
+
+formatを省略した場合
 ```javascript
 {
-    "report_fields": [
+    "error": ""
+    "report_title": "SimpleJoin", // レポート名
+    "totalItems": 40932, // 全データ件数
+    "report_results": [ // 取得データ
+        {
+            "NOTE": "B",
+            "TITLE": "タスクC",
+            "CATEGORY": "B",
+            "STATUS": "New",
+            "NUM": 0,
+            "DUE_DATE": "2016/01/01",
+            "items": [　 // 集計レポートの場合、集計結果に含まれる該当Item,DatasstoreのIDが含まれる
+                {
+                    "d_id": "5f267f1028dc5c6988bc2fe0",
+                    "i_id": "5f267f1628dc5c6988bc2ff0"
+                },
+                {
+                    "d_id": "5f267f1028dc5c6988bc2fe0",
+                    "i_id": "5f267f1628dc5c6988bc2ff2"
+                }
+            ],
+            "i_id": "5f267f1628dc5c6988bc2fef" // 集計されていないレポートの場合は、該当アイテムのIDが含まれる
+        },
+        {
+            "NOTE": "B",
+            "TITLE": "案件（明細あり）",
+            "CATEGORY": "B",
+            "STATUS": "In Review",
+            "NUM": 0,
+            "DUE_DATE": "2016/01/01"
+            "items": [ 
+                {
+                    "d_id": "5f267f1028dc5c6988bc2fe0",
+                    "i_id": "5f267f1628dc5c6988bc2ff1"
+                }
+            ]
+        },
+        {
+            "NOTE": "B",
+            "TITLE": "",
+            "CATEGORY": "B",
+            "STATUS": "New",
+            "NUM": 0,,
+            "items": [
+                {
+                    "d_id": "5f267f1028dc5c6988bc2fe0",
+                    "i_id": "5f267f1628dc5c6988bc2fef"
+                }
+            ]
+        },
+        {
+            "NOTE": "B",
+            "TITLE": "１１１新規起票",
+            "CATEGORY": "B",
+            "STATUS": "New",
+            "NUM": 0,,
+            "items": [
+                {
+                    "d_id": "5f267f1028dc5c6988bc2fe0",
+                    "i_id": "5f267f1628dc5c6988bc2fee"
+                }
+            ]
+        },
+        {
+            "NOTE": "B",
+            "TITLE": "タスクB",
+            "CATEGORY": "B",
+            "STATUS": "New",
+            "NUM": 0,
+            "DUE_DATE": "2016/01/01",
+            "items": [
+                {
+                    "d_id": "5f267f1028dc5c6988bc2fe0",
+                    "i_id": "5f267f1628dc5c6988bc2fbb"
+                }
+            ]
+        }
+    ],
+    "report_fields": [ // 取得レポートのfield情報
         {
             "title": "Title",
             "rpf_id": "4a0b2f8a-f332-4579-a2d4-e9b5971d9e80",
@@ -370,65 +461,7 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID
             "use_integrated_report": false,
             "is_cross_key": true
         }
-    ],
-    "report_results": [
-        {
-            "NOTE": "B",
-            "TITLE": "タスクC",
-            "CATEGORY": "B",
-            "STATUS": "New",
-            "NUM": 0,
-            "DUE_DATE": "2016/01/01"
-        },
-        {
-            "NOTE": "B",
-            "TITLE": "案件（明細あり）",
-            "CATEGORY": "B",
-            "STATUS": "In Review",
-            "NUM": 0,
-            "DUE_DATE": "2016/01/01"
-        },
-        {
-            "NOTE": "B",
-            "TITLE": "",
-            "CATEGORY": "B",
-            "STATUS": "New",
-            "NUM": 0,
-        },
-        {
-            "NOTE": "B",
-            "TITLE": "１１１新規起票",
-            "CATEGORY": "B",
-            "STATUS": "New",
-            "NUM": 0,
-        },
-        {
-            "NOTE": "B",
-            "TITLE": "タスクB",
-            "CATEGORY": "B",
-            "STATUS": "New",
-            "NUM": 0,
-            "DUE_DATE": "2016/01/01"
-        },
-        {
-            "NOTE": "B",
-            "TITLE": "タスクE",
-            "CATEGORY": "B",
-            "STATUS": "In Review",
-            "NUM": 0,
-            "DUE_DATE": "2016/01/01"
-        },
-        {
-            "NOTE": "B",
-            "TITLE": "案件（明細あり）",
-            "CATEGORY": "B",
-            "STATUS": "New",
-            "NUM": 0,
-            "DUE_DATE": "2016/01/01"
-        }
-    ],
-    "report_title": "SimpleJoin",
-    "error": ""
+    ]
 }
 ```
 
