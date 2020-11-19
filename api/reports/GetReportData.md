@@ -17,7 +17,7 @@ GET
 /api/v0/applications/:app-id/reports/:report-id
 ```
 
-**Params**
+**Query Params**
 
 ```text
 per_page : 1ページたあたりの件数
@@ -28,7 +28,7 @@ format: 省略可能。　"csv" を指定すると、CSV形式で出力する
 **Request URL Sample**
 
 ```text
-GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID&page=1&per_page=7
+GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID?per_page=5&page=1
 ```
 
 **Response Sample**
@@ -51,6 +51,8 @@ formatを省略した場合
     "error": ""
     "report_title": "SimpleJoin", // レポート名
     "totalItems": 40932, // 全データ件数
+    "item_index_from": 0, // 結果データの最初のIndex番号
+    "item_index_to": 4,　// 結果データの最後のIndex番号
     "report_results": [ // 取得データ
         {
             "NOTE": "B",
