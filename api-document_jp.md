@@ -137,7 +137,7 @@ Hexabaseでは、「アプリケーション」ごとに、データベース・
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 11 | [GetApplicationsAndDatastores](api-document_jp.md#GetApplicationsAndDatastores) | アプリケーションとデータベース一覧 | GET | /api/v0/workspaces/:workspace-id/applications | アプリケーション一覧のとデータストア一覧を取得 | v0 | - |
+| 11 | [GetApplicationsAndDatastores](api/applications/GetApplicationsAndDatastores.md) | アプリケーションとデータベース一覧 | GET | /api/v0/workspaces/:workspace-id/applications | アプリケーション一覧のとデータストア一覧を取得 | v0 | - |
 
 #### ロール関連API
 

@@ -32,15 +32,32 @@ GET https://api.xxx.com/api/v0/workspaces/582b26d7fb90a15e0c24ad80/applications
 **Response Sample**
 
 ```javascript
-{
-    "application_id": "59bf424c0e247918255de008",
-    "name": "アプリケーション1",
-    "display_id": "Prj-U0QgJxXl",
-    "datastores": [
-        {
-            "datastore_id": "59bf42550e2479186a6c6c70",
-            "name": "データストア1"
-        }
-    ]
-}
+[
+    {
+        "application_id": "59bf424c0e247918255de008",
+        "name": "アプリケーション1",
+        "display_id": "App1",
+        "datastores": [
+            {
+                "datastore_id": "59bf42550e2479186a6c6c70",
+                "name": "データストア1"
+            }
+        ]
+    },
+    {
+        "application_id": "59bf424c0e247918255de008",
+        "name": "アプリケーション2",
+        "display_id": "App2",
+        "datastores": [
+            {
+                "datastore_id": "59bf42550e2479186a6c6c70",
+                "name": "データストア2"
+            },
+            {
+                "datastore_id": "59bf42550e2479186a6c6c70",
+                "name": "データストア3"
+            }
+        ]
+    }
+]
 ```

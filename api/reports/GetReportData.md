@@ -20,8 +20,9 @@ GET
 **Query Params**
 
 ```text
-per_page : 一度のCallで返す結果件数
-page : ページ番号
+per_page : 1ページたあたりの件数
+page : ページ数
+format: 省略可能。　"csv" を指定すると、CSV形式で出力する
 ```
 
 **Request URL Sample**
@@ -34,6 +35,17 @@ GET https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID?per_page=5&
 
 - 出力フィールドに画面ID(display_id)が指定されている場合は、report_result はdisplay_id が使用されます。
 
+format="csv"の場合
+```csv
+NOTE,TITLE,CATEGORY,STATUS,NUM,DUE_DATE
+B,タスクＣ,B,New,0,2016/01/01
+B,タスクＣ,案件（明細あり）,B,In Review,0,2016/01/01
+B,,B,New,0,2016/01/01
+B,１１１新規起票,B,New,0,2016/01/01
+B,タスクB,B,New,0,2016/01/01
+```
+
+formatを省略した場合
 ```javascript
 {
     "error": ""
