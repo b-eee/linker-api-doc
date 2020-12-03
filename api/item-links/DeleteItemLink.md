@@ -9,7 +9,7 @@
 
 **Method**
 
-POST
+DELETE
 
 **Request URL Format**
 
@@ -37,7 +37,7 @@ item-id         : 対象アイテムのID
 **Request URL Sample**
 
 ```text
-POST http://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/items/dellink/5d4c058baa39555618ac9e8b
+DELETE http://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/items/dellink/5d4c058baa39555618ac9e8b
 ```
 
 **Response Sample**
