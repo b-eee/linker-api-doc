@@ -49,6 +49,8 @@ POST
 ```text
 POST https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
 ```
+**Payload Sample**
+
 検索条件に画面IDを利用する場合　（id: にフィールドIDを指定します）
 ```javascript
 {
