@@ -80,6 +80,11 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 
 「ユーザー」はEmailアドレスをIDとした、ログイン可能なアカウントです。必ずワークスペース内のいずれかのグループに属します。Hexabaseへユーザーを追加するには、グループへユーザーを登録した後に、ワークスペースへ招待する必要があります。
 
+
+#### ユーザーの招待～初期登録
+
+初期ユーザの登録に関しては、[こちら](api/user-registration/README.md)のページを参照してください。
+
 #### ログインユーザー情報
 
 ログインしているユーザーに関する情報を取得します。
@@ -112,17 +117,7 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 47 | [AddUser](api/users/AddUser.md) | ユーザー追加 | POST | /api/v0/users | グループに新規ユーザーを作成 | v0 | - |
 | 51 | [RemoveUser](api/users/RemoveUser.md) | ユーザー削除 | DELETE | /api/v0/users | グループからユーザーを削除 | v0 | - |
-
-#### ユーザーの招待～初期登録
-
-ユーザーをワークスペースへ招待するには、登録されたユーザーに対して招待メールを送信\([UserInvite](api-document_jp.md#UserInvite)\)します。 受け取ったメールに含まれるリンクをクリックすることでユーザー登録の確認ページへ遷移させます。遷移先画面では確認ID\(ConfirmID\)をもとにユーザー情報を取得\([ConfirmRegistration](api-document_jp.md#ConfirmRegistration)\)し、ユーザー情報を登録する\([RegisterUser](api-document_jp.md#RegisterUser)\)ことではじめてユーザーが作成されます。
-
-| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
-| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 52 | [UserInvite](api/users/UserInvite.md) | ユーザー招待 | POST | /api/v0/userinvite | ユーザーを招待 | v0 | - |
-| 53 | [UserRegistration](api/user-registration/UserRegistration.md) | 初回ユーザー登録 | POST | /api/v0/users/registration | ユーザーの初期登録用リクエスト | v0 | - |
-| 54 | [ConfirmRegistration](api/user-registration/ConfirmRegistration.md) | ユーザー情報確認 | GET | /api/v0/users/registration/confirm | ConfirmIDからユーザーの初期登録情報の確認 | v0 | - |
-| 55 | [RegisterUser](api/user-registration/RegisterUser.md) | ユーザー初期登録 | POST | /api/v0/users/registration/confirm | ユーザーの初期登録、パスワード登録 | v0 | - |
 
 #### CSVデータによるユーザー一括登録
 
