@@ -6,22 +6,25 @@
 
 アイテムに関連するデータストアと、リンクされたアイテムの一覧を返す
 
-利用用途に従って、2週類のURLがあります。
-##### 
-- [(1) 画面IDを利用する場合](#画面IDを利用する場合) 
-- [(2) 画面IDを利用しない場合](#画面IDを利用しない場合) 
+利用用途に従って、2 週類の URL があります。
+
+#####
+
+- [(1) 画面 ID を利用する場合](#画面IDを利用する場合)
+- [(2) 画面 ID を利用しない場合](#画面IDを利用しない場合)
 
 **Method**
 
 GET
 
-##### 画面IDを利用する場合
+##### 画面 ID を利用する場合
 
 **Request URL Format**
 
 ```text
 /api/v0/applications/:app-id/datastores/:datastore-id/items/links/:item-id
 ```
+
 **URL Params**
 
 ```text
@@ -40,9 +43,11 @@ use_display_id  : true を指定すると画面IDのmap形式で返される
 ```
 
 **Response Sample**
+
 ```text
 GET https://api.xxx.com/api/v0/applications/APPNAME/datastores/DSNAME/items/links/5cbd75d984f4bef6c0ed8591?use_display_id=true
 ```
+
 ```javascript
 {
     "has_error": false,
@@ -939,7 +944,7 @@ GET https://api.xxx.com/api/v0/applications/APPNAME/datastores/DSNAME/items/link
 }
 ```
 
-##### 画面IDを利用しない場合
+##### 画面 ID を利用しない場合
 
 **Request URL Format**
 
@@ -958,7 +963,7 @@ linked-datastore-id  :  関連先のデータストアID
 **Request URL Sample**
 
 ```text
-GET https://api.xxx.com/api/v0/items/58cd1e5bfbfcba2ebcaf0b1e/links/58cbf6cbfbfcba78dc71228d
+GET https://api.xxx.com/api/v0/datastores/5cc25d1e84f4be574418d580/items/58cd1e5bfbfcba2ebcaf0b1e/links/58cbf6cbfbfcba78dc71228d
 ```
 
 **Response Sample**
