@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/roles/RemoveRoleFromUser",
+  "id": "API/v1/roles/RemoveRoleFromUser",
+  "isDocsHomePage": false,
+  "title": "RemoveRoleFromUser",
+  "description": "RemoveRoleFromUser",
+  "source": "@site/docs\\API\\v1\\roles\\RemoveRoleFromUser.md",
+  "slug": "/API/v1/roles/RemoveRoleFromUser",
+  "permalink": "/docs/API/v1/roles/RemoveRoleFromUser",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/roles/RemoveRoleFromUser.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "AddRoleToUser",
+    "permalink": "/docs/API/v1/roles/AddRoleToUser"
+  },
+  "next": {
+    "title": "UpdateGroupRoles",
+    "permalink": "/docs/API/v1/roles/UpdateGroupRoles"
+  }
+}

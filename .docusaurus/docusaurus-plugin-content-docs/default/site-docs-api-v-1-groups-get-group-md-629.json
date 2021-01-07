@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/groups/GetGroup",
+  "id": "API/v1/groups/GetGroup",
+  "isDocsHomePage": false,
+  "title": "GetGroup",
+  "description": "GetGroup",
+  "source": "@site/docs\\API\\v1\\groups\\GetGroup.md",
+  "slug": "/API/v1/groups/GetGroup",
+  "permalink": "/docs/API/v1/groups/GetGroup",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/groups/GetGroup.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "DeleteGroup",
+    "permalink": "/docs/API/v1/groups/DeleteGroup"
+  },
+  "next": {
+    "title": "GetGroupTree",
+    "permalink": "/docs/API/v1/groups/GetGroupTree"
+  }
+}

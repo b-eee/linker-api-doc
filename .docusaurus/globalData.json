@@ -1,0 +1,368 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "API/v1/Applications/GetApplicationsAndDatastores",
+          "docs": [
+            {
+              "id": "API/v1/Applications/GetApplicationsAndDatastores",
+              "path": "/docs/",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/charts/GetChartData",
+              "path": "/docs/API/v1/charts/GetChartData",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/charts/GetChartDataByConditions",
+              "path": "/docs/API/v1/charts/GetChartDataByConditions",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/charts/GetChartSearchConditions",
+              "path": "/docs/API/v1/charts/GetChartSearchConditions",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/datastores/GetDatastoreFields",
+              "path": "/docs/API/v1/datastores/GetDatastoreFields",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/groups/CreateGroup",
+              "path": "/docs/API/v1/groups/CreateGroup",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/groups/CreateTopGroup",
+              "path": "/docs/API/v1/groups/CreateTopGroup",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/groups/DeleteGroup",
+              "path": "/docs/API/v1/groups/DeleteGroup",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/groups/GetGroup",
+              "path": "/docs/API/v1/groups/GetGroup",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/groups/GetGroupTree",
+              "path": "/docs/API/v1/groups/GetGroupTree",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/groups/UpdateGroup",
+              "path": "/docs/API/v1/groups/UpdateGroup",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-actions/CreateItemWithItemID",
+              "path": "/docs/API/v1/item-actions/CreateItemWithItemID",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-actions/CreateNewItemID",
+              "path": "/docs/API/v1/item-actions/CreateNewItemID",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-actions/ExecuteAction",
+              "path": "/docs/API/v1/item-actions/ExecuteAction",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-actions/ExecuteActionByActionID",
+              "path": "/docs/API/v1/item-actions/ExecuteActionByActionID",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-actions/ExecuteBulkAction",
+              "path": "/docs/API/v1/item-actions/ExecuteBulkAction",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-actions/GetInputFields",
+              "path": "/docs/API/v1/item-actions/GetInputFields",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-actions/GetNewActions",
+              "path": "/docs/API/v1/item-actions/GetNewActions",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-files/DeleteFile",
+              "path": "/docs/API/v1/item-files/DeleteFile",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-files/GetFile",
+              "path": "/docs/API/v1/item-files/GetFile",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-files/UploadFile",
+              "path": "/docs/API/v1/item-files/UploadFile",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-histories/GetItemHistories",
+              "path": "/docs/API/v1/item-histories/GetItemHistories",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-histories/PostItemComment",
+              "path": "/docs/API/v1/item-histories/PostItemComment",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-links/AddItemLink",
+              "path": "/docs/API/v1/item-links/AddItemLink",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-links/DeleteItemLink",
+              "path": "/docs/API/v1/item-links/DeleteItemLink",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-links/GetLinkedItems",
+              "path": "/docs/API/v1/item-links/GetLinkedItems",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/item-links/UpdateItemLink",
+              "path": "/docs/API/v1/item-links/UpdateItemLink",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/items-import/GetImportResults",
+              "path": "/docs/API/v1/items-import/GetImportResults",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/items-import/ImportItems",
+              "path": "/docs/API/v1/items-import/ImportItems",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/items-search/GetItemSearchConditions",
+              "path": "/docs/API/v1/items-search/GetItemSearchConditions",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/items-search/GetUserQueries",
+              "path": "/docs/API/v1/items-search/GetUserQueries",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/items/CreateItem",
+              "path": "/docs/API/v1/items/CreateItem",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/items/DeleteItem",
+              "path": "/docs/API/v1/items/DeleteItem",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/items/DeleteItemByConditions",
+              "path": "/docs/API/v1/items/DeleteItemByConditions",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/items/GetAutoNumber",
+              "path": "/docs/API/v1/items/GetAutoNumber",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/items/GetItemDetails",
+              "path": "/docs/API/v1/items/GetItemDetails",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/items/ItemList",
+              "path": "/docs/API/v1/items/ItemList",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/items/UpdateItem",
+              "path": "/docs/API/v1/items/UpdateItem",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/login/Login",
+              "path": "/docs/API/v1/login/Login",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/login/Logout",
+              "path": "/docs/API/v1/login/Logout",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/reports/GetReportData",
+              "path": "/docs/API/v1/reports/GetReportData",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/reports/GetReportDataByConditions",
+              "path": "/docs/API/v1/reports/GetReportDataByConditions",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/reports/GetReportSearchConditions",
+              "path": "/docs/API/v1/reports/GetReportSearchConditions",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/roles/AddGroupRoles",
+              "path": "/docs/API/v1/roles/AddGroupRoles",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/roles/AddRoleToUser",
+              "path": "/docs/API/v1/roles/AddRoleToUser",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/roles/RemoveRoleFromUser",
+              "path": "/docs/API/v1/roles/RemoveRoleFromUser",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/roles/UpdateGroupRoles",
+              "path": "/docs/API/v1/roles/UpdateGroupRoles",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/user-registration/ConfirmRegistration",
+              "path": "/docs/API/v1/user-registration/ConfirmRegistration",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/user-registration/RegisterUser",
+              "path": "/docs/API/v1/user-registration/RegisterUser",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/user-registration/UserRegistration",
+              "path": "/docs/API/v1/user-registration/UserRegistration",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/userinfo/GetUserInfo",
+              "path": "/docs/API/v1/userinfo/GetUserInfo",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/userinfo/ResetPassword",
+              "path": "/docs/API/v1/userinfo/ResetPassword",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/userinfo/SetNewPassword",
+              "path": "/docs/API/v1/userinfo/SetNewPassword",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/userinfo/SetPassword",
+              "path": "/docs/API/v1/userinfo/SetPassword",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/userinfo/UpdateUserInfo",
+              "path": "/docs/API/v1/userinfo/UpdateUserInfo",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/userinfo/ValidatePassword",
+              "path": "/docs/API/v1/userinfo/ValidatePassword",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/users/AddUser",
+              "path": "/docs/API/v1/users/AddUser",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/users/GetAllUsersInWorkspace",
+              "path": "/docs/API/v1/users/GetAllUsersInWorkspace",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/users/GetRoleUsers",
+              "path": "/docs/API/v1/users/GetRoleUsers",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/users/GetUsersInGroup",
+              "path": "/docs/API/v1/users/GetUsersInGroup",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/users/GetUsersInWorkspace",
+              "path": "/docs/API/v1/users/GetUsersInWorkspace",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/users/RemoveUser",
+              "path": "/docs/API/v1/users/RemoveUser",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/users/UserImport",
+              "path": "/docs/API/v1/users/UserImport",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/users/UserInvite",
+              "path": "/docs/API/v1/users/UserInvite",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/workspaces/GetWorkspaces",
+              "path": "/docs/API/v1/workspaces/GetWorkspaces",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "API/v1/workspaces/SelectWorkspace",
+              "path": "/docs/API/v1/workspaces/SelectWorkspace",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "doc1",
+              "path": "/docs/doc1",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "doc2",
+              "path": "/docs/doc2",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "doc3",
+              "path": "/docs/doc3",
+              "sidebar": "someSidebar"
+            },
+            {
+              "id": "mdx",
+              "path": "/docs/mdx",
+              "sidebar": "someSidebar"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

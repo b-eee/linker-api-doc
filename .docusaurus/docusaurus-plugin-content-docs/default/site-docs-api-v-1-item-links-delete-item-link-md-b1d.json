@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/item-links/DeleteItemLink",
+  "id": "API/v1/item-links/DeleteItemLink",
+  "isDocsHomePage": false,
+  "title": "DeleteItemLink",
+  "description": "DeleteItemLink",
+  "source": "@site/docs\\API\\v1\\item-links\\DeleteItemLink.md",
+  "slug": "/API/v1/item-links/DeleteItemLink",
+  "permalink": "/docs/API/v1/item-links/DeleteItemLink",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/item-links/DeleteItemLink.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "AddItemLink",
+    "permalink": "/docs/API/v1/item-links/AddItemLink"
+  },
+  "next": {
+    "title": "GetLinkedItems",
+    "permalink": "/docs/API/v1/item-links/GetLinkedItems"
+  }
+}

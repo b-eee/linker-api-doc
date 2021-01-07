@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/items-search/GetItemSearchConditions",
+  "id": "API/v1/items-search/GetItemSearchConditions",
+  "isDocsHomePage": false,
+  "title": "GetItemSearchConditions",
+  "description": "GetItemSearchConditions",
+  "source": "@site/docs\\API\\v1\\items-search\\GetItemSearchConditions.md",
+  "slug": "/API/v1/items-search/GetItemSearchConditions",
+  "permalink": "/docs/API/v1/items-search/GetItemSearchConditions",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/items-search/GetItemSearchConditions.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "ImportItems",
+    "permalink": "/docs/API/v1/items-import/ImportItems"
+  },
+  "next": {
+    "title": "GetUserQueries",
+    "permalink": "/docs/API/v1/items-search/GetUserQueries"
+  }
+}

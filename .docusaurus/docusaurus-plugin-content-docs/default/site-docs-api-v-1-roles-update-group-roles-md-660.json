@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/roles/UpdateGroupRoles",
+  "id": "API/v1/roles/UpdateGroupRoles",
+  "isDocsHomePage": false,
+  "title": "UpdateGroupRoles",
+  "description": "UpdateGroupRoles",
+  "source": "@site/docs\\API\\v1\\roles\\UpdateGroupRoles.md",
+  "slug": "/API/v1/roles/UpdateGroupRoles",
+  "permalink": "/docs/API/v1/roles/UpdateGroupRoles",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/roles/UpdateGroupRoles.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "RemoveRoleFromUser",
+    "permalink": "/docs/API/v1/roles/RemoveRoleFromUser"
+  },
+  "next": {
+    "title": "ConfirmRegistration",
+    "permalink": "/docs/API/v1/user-registration/ConfirmRegistration"
+  }
+}

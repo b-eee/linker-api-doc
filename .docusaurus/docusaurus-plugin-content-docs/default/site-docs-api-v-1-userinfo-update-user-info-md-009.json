@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/userinfo/UpdateUserInfo",
+  "id": "API/v1/userinfo/UpdateUserInfo",
+  "isDocsHomePage": false,
+  "title": "UpdateUserInfo",
+  "description": "UpdateUserInfo",
+  "source": "@site/docs\\API\\v1\\userinfo\\UpdateUserInfo.md",
+  "slug": "/API/v1/userinfo/UpdateUserInfo",
+  "permalink": "/docs/API/v1/userinfo/UpdateUserInfo",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/userinfo/UpdateUserInfo.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "SetPassword",
+    "permalink": "/docs/API/v1/userinfo/SetPassword"
+  },
+  "next": {
+    "title": "ValidatePassword",
+    "permalink": "/docs/API/v1/userinfo/ValidatePassword"
+  }
+}

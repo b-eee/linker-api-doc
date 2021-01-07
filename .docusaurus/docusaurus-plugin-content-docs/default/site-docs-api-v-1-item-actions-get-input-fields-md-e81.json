@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/item-actions/GetInputFields",
+  "id": "API/v1/item-actions/GetInputFields",
+  "isDocsHomePage": false,
+  "title": "GetInputFields",
+  "description": "GetInputFields",
+  "source": "@site/docs\\API\\v1\\item-actions\\GetInputFields.md",
+  "slug": "/API/v1/item-actions/GetInputFields",
+  "permalink": "/docs/API/v1/item-actions/GetInputFields",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/item-actions/GetInputFields.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "ExecuteBulkAction",
+    "permalink": "/docs/API/v1/item-actions/ExecuteBulkAction"
+  },
+  "next": {
+    "title": "GetNewActions",
+    "permalink": "/docs/API/v1/item-actions/GetNewActions"
+  }
+}

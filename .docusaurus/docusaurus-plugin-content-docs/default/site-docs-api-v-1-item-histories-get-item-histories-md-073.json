@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/item-histories/GetItemHistories",
+  "id": "API/v1/item-histories/GetItemHistories",
+  "isDocsHomePage": false,
+  "title": "GetItemHistories",
+  "description": "GetItemHistories",
+  "source": "@site/docs\\API\\v1\\item-histories\\GetItemHistories.md",
+  "slug": "/API/v1/item-histories/GetItemHistories",
+  "permalink": "/docs/API/v1/item-histories/GetItemHistories",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/item-histories/GetItemHistories.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "UploadFile",
+    "permalink": "/docs/API/v1/item-files/UploadFile"
+  },
+  "next": {
+    "title": "PostItemComment",
+    "permalink": "/docs/API/v1/item-histories/PostItemComment"
+  }
+}

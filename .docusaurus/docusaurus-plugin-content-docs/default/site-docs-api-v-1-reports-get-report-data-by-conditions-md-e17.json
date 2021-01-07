@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/reports/GetReportDataByConditions",
+  "id": "API/v1/reports/GetReportDataByConditions",
+  "isDocsHomePage": false,
+  "title": "GetReportDataByConditions",
+  "description": "GetReportDataByConditions",
+  "source": "@site/docs\\API\\v1\\reports\\GetReportDataByConditions.md",
+  "slug": "/API/v1/reports/GetReportDataByConditions",
+  "permalink": "/docs/API/v1/reports/GetReportDataByConditions",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/reports/GetReportDataByConditions.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "GetReportData",
+    "permalink": "/docs/API/v1/reports/GetReportData"
+  },
+  "next": {
+    "title": "GetReportSearchConditions",
+    "permalink": "/docs/API/v1/reports/GetReportSearchConditions"
+  }
+}

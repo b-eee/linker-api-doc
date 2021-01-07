@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/userinfo/GetUserInfo",
+  "id": "API/v1/userinfo/GetUserInfo",
+  "isDocsHomePage": false,
+  "title": "GetUserInfo",
+  "description": "GetUserInfo",
+  "source": "@site/docs\\API\\v1\\userinfo\\GetUserInfo.md",
+  "slug": "/API/v1/userinfo/GetUserInfo",
+  "permalink": "/docs/API/v1/userinfo/GetUserInfo",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/userinfo/GetUserInfo.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "UserRegistration",
+    "permalink": "/docs/API/v1/user-registration/UserRegistration"
+  },
+  "next": {
+    "title": "ResetPassword",
+    "permalink": "/docs/API/v1/userinfo/ResetPassword"
+  }
+}

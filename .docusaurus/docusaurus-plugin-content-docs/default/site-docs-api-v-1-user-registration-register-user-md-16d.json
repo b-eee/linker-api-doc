@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/user-registration/RegisterUser",
+  "id": "API/v1/user-registration/RegisterUser",
+  "isDocsHomePage": false,
+  "title": "RegisterUser",
+  "description": "RegisterUser",
+  "source": "@site/docs\\API\\v1\\user-registration\\RegisterUser.md",
+  "slug": "/API/v1/user-registration/RegisterUser",
+  "permalink": "/docs/API/v1/user-registration/RegisterUser",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/user-registration/RegisterUser.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "ConfirmRegistration",
+    "permalink": "/docs/API/v1/user-registration/ConfirmRegistration"
+  },
+  "next": {
+    "title": "UserRegistration",
+    "permalink": "/docs/API/v1/user-registration/UserRegistration"
+  }
+}

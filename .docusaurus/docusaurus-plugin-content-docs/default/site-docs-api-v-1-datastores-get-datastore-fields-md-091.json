@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/datastores/GetDatastoreFields",
+  "id": "API/v1/datastores/GetDatastoreFields",
+  "isDocsHomePage": false,
+  "title": "GetDatastoreFields",
+  "description": "GetDatastoreFields",
+  "source": "@site/docs\\API\\v1\\datastores\\GetDatastoreFields.md",
+  "slug": "/API/v1/datastores/GetDatastoreFields",
+  "permalink": "/docs/API/v1/datastores/GetDatastoreFields",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/datastores/GetDatastoreFields.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "GetChartSearchConditions",
+    "permalink": "/docs/API/v1/charts/GetChartSearchConditions"
+  },
+  "next": {
+    "title": "CreateGroup",
+    "permalink": "/docs/API/v1/groups/CreateGroup"
+  }
+}

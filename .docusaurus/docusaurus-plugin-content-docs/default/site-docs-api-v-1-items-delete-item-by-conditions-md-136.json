@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/items/DeleteItemByConditions",
+  "id": "API/v1/items/DeleteItemByConditions",
+  "isDocsHomePage": false,
+  "title": "DeleteItemByConditions",
+  "description": "DeleteItemByConditions",
+  "source": "@site/docs\\API\\v1\\items\\DeleteItemByConditions.md",
+  "slug": "/API/v1/items/DeleteItemByConditions",
+  "permalink": "/docs/API/v1/items/DeleteItemByConditions",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/items/DeleteItemByConditions.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "DeleteItem",
+    "permalink": "/docs/API/v1/items/DeleteItem"
+  },
+  "next": {
+    "title": "GetAutoNumber",
+    "permalink": "/docs/API/v1/items/GetAutoNumber"
+  }
+}

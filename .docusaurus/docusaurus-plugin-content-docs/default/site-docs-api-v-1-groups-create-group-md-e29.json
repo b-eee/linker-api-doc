@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/groups/CreateGroup",
+  "id": "API/v1/groups/CreateGroup",
+  "isDocsHomePage": false,
+  "title": "CreateGroup",
+  "description": "CreateGroup",
+  "source": "@site/docs\\API\\v1\\groups\\CreateGroup.md",
+  "slug": "/API/v1/groups/CreateGroup",
+  "permalink": "/docs/API/v1/groups/CreateGroup",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/groups/CreateGroup.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "GetDatastoreFields",
+    "permalink": "/docs/API/v1/datastores/GetDatastoreFields"
+  },
+  "next": {
+    "title": "CreateTopGroup",
+    "permalink": "/docs/API/v1/groups/CreateTopGroup"
+  }
+}

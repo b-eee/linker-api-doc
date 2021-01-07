@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/item-files/GetFile",
+  "id": "API/v1/item-files/GetFile",
+  "isDocsHomePage": false,
+  "title": "GetFile",
+  "description": "GetFile",
+  "source": "@site/docs\\API\\v1\\item-files\\GetFile.md",
+  "slug": "/API/v1/item-files/GetFile",
+  "permalink": "/docs/API/v1/item-files/GetFile",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/item-files/GetFile.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "DeleteFile",
+    "permalink": "/docs/API/v1/item-files/DeleteFile"
+  },
+  "next": {
+    "title": "UploadFile",
+    "permalink": "/docs/API/v1/item-files/UploadFile"
+  }
+}

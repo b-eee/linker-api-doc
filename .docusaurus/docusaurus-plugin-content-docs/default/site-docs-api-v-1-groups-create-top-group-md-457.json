@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/groups/CreateTopGroup",
+  "id": "API/v1/groups/CreateTopGroup",
+  "isDocsHomePage": false,
+  "title": "CreateTopGroup",
+  "description": "CreateTopGroup",
+  "source": "@site/docs\\API\\v1\\groups\\CreateTopGroup.md",
+  "slug": "/API/v1/groups/CreateTopGroup",
+  "permalink": "/docs/API/v1/groups/CreateTopGroup",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/groups/CreateTopGroup.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "CreateGroup",
+    "permalink": "/docs/API/v1/groups/CreateGroup"
+  },
+  "next": {
+    "title": "DeleteGroup",
+    "permalink": "/docs/API/v1/groups/DeleteGroup"
+  }
+}

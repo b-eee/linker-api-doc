@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/users/GetRoleUsers",
+  "id": "API/v1/users/GetRoleUsers",
+  "isDocsHomePage": false,
+  "title": "GetRoleUsers",
+  "description": "GetRoleUsers",
+  "source": "@site/docs\\API\\v1\\users\\GetRoleUsers.md",
+  "slug": "/API/v1/users/GetRoleUsers",
+  "permalink": "/docs/API/v1/users/GetRoleUsers",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/users/GetRoleUsers.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "GetAllUsersInWorkspace",
+    "permalink": "/docs/API/v1/users/GetAllUsersInWorkspace"
+  },
+  "next": {
+    "title": "GetUsersInGroup",
+    "permalink": "/docs/API/v1/users/GetUsersInGroup"
+  }
+}

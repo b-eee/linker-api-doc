@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/item-links/GetLinkedItems",
+  "id": "API/v1/item-links/GetLinkedItems",
+  "isDocsHomePage": false,
+  "title": "GetLinkedItems",
+  "description": "GetLinkedItems",
+  "source": "@site/docs\\API\\v1\\item-links\\GetLinkedItems.md",
+  "slug": "/API/v1/item-links/GetLinkedItems",
+  "permalink": "/docs/API/v1/item-links/GetLinkedItems",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/item-links/GetLinkedItems.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "DeleteItemLink",
+    "permalink": "/docs/API/v1/item-links/DeleteItemLink"
+  },
+  "next": {
+    "title": "UpdateItemLink",
+    "permalink": "/docs/API/v1/item-links/UpdateItemLink"
+  }
+}

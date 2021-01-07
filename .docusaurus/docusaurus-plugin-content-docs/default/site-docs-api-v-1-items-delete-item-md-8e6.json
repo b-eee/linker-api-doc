@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/items/DeleteItem",
+  "id": "API/v1/items/DeleteItem",
+  "isDocsHomePage": false,
+  "title": "DeleteItem",
+  "description": "DeleteItem",
+  "source": "@site/docs\\API\\v1\\items\\DeleteItem.md",
+  "slug": "/API/v1/items/DeleteItem",
+  "permalink": "/docs/API/v1/items/DeleteItem",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/items/DeleteItem.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "CreateItem",
+    "permalink": "/docs/API/v1/items/CreateItem"
+  },
+  "next": {
+    "title": "DeleteItemByConditions",
+    "permalink": "/docs/API/v1/items/DeleteItemByConditions"
+  }
+}

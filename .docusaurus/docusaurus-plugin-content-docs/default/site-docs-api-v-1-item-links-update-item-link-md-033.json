@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/item-links/UpdateItemLink",
+  "id": "API/v1/item-links/UpdateItemLink",
+  "isDocsHomePage": false,
+  "title": "UpdateItemLink",
+  "description": "UpdateItemLink",
+  "source": "@site/docs\\API\\v1\\item-links\\UpdateItemLink.md",
+  "slug": "/API/v1/item-links/UpdateItemLink",
+  "permalink": "/docs/API/v1/item-links/UpdateItemLink",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/item-links/UpdateItemLink.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "GetLinkedItems",
+    "permalink": "/docs/API/v1/item-links/GetLinkedItems"
+  },
+  "next": {
+    "title": "GetImportResults",
+    "permalink": "/docs/API/v1/items-import/GetImportResults"
+  }
+}

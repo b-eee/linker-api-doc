@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/item-actions/ExecuteBulkAction",
+  "id": "API/v1/item-actions/ExecuteBulkAction",
+  "isDocsHomePage": false,
+  "title": "ExecuteBulkAction",
+  "description": "ExecuteBulkAction",
+  "source": "@site/docs\\API\\v1\\item-actions\\ExecuteBulkAction.md",
+  "slug": "/API/v1/item-actions/ExecuteBulkAction",
+  "permalink": "/docs/API/v1/item-actions/ExecuteBulkAction",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/item-actions/ExecuteBulkAction.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "ExecuteActionByActionID",
+    "permalink": "/docs/API/v1/item-actions/ExecuteActionByActionID"
+  },
+  "next": {
+    "title": "GetInputFields",
+    "permalink": "/docs/API/v1/item-actions/GetInputFields"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/item-actions/CreateNewItemID",
+  "id": "API/v1/item-actions/CreateNewItemID",
+  "isDocsHomePage": false,
+  "title": "CreateNewItemID",
+  "description": "CreateNewItemID",
+  "source": "@site/docs\\API\\v1\\item-actions\\CreateNewItemID.md",
+  "slug": "/API/v1/item-actions/CreateNewItemID",
+  "permalink": "/docs/API/v1/item-actions/CreateNewItemID",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/item-actions/CreateNewItemID.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "CreateItemWithItemID",
+    "permalink": "/docs/API/v1/item-actions/CreateItemWithItemID"
+  },
+  "next": {
+    "title": "ExecuteAction",
+    "permalink": "/docs/API/v1/item-actions/ExecuteAction"
+  }
+}

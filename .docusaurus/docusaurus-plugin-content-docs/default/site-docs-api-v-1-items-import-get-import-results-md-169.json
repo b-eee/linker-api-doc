@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/items-import/GetImportResults",
+  "id": "API/v1/items-import/GetImportResults",
+  "isDocsHomePage": false,
+  "title": "GetImportResults",
+  "description": "GetImportResults",
+  "source": "@site/docs\\API\\v1\\items-import\\GetImportResults.md",
+  "slug": "/API/v1/items-import/GetImportResults",
+  "permalink": "/docs/API/v1/items-import/GetImportResults",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/items-import/GetImportResults.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "UpdateItemLink",
+    "permalink": "/docs/API/v1/item-links/UpdateItemLink"
+  },
+  "next": {
+    "title": "ImportItems",
+    "permalink": "/docs/API/v1/items-import/ImportItems"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "unversionedId": "API/v1/Applications/GetApplicationsAndDatastores",
+  "id": "API/v1/Applications/GetApplicationsAndDatastores",
+  "isDocsHomePage": false,
+  "title": "GetApplicationsAndDatastores",
+  "description": "GetApplicationsAndDatastores",
+  "source": "@site/docs\\API\\v1\\Applications\\GetApplicationsAndDatastores.md",
+  "slug": "/",
+  "permalink": "/docs/",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/Applications/GetApplicationsAndDatastores.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "next": {
+    "title": "GetChartData",
+    "permalink": "/docs/API/v1/charts/GetChartData"
+  }
+}

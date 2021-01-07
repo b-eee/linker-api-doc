@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/item-actions/GetNewActions",
+  "id": "API/v1/item-actions/GetNewActions",
+  "isDocsHomePage": false,
+  "title": "GetNewActions",
+  "description": "GetNewActions",
+  "source": "@site/docs\\API\\v1\\item-actions\\GetNewActions.md",
+  "slug": "/API/v1/item-actions/GetNewActions",
+  "permalink": "/docs/API/v1/item-actions/GetNewActions",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/item-actions/GetNewActions.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "GetInputFields",
+    "permalink": "/docs/API/v1/item-actions/GetInputFields"
+  },
+  "next": {
+    "title": "DeleteFile",
+    "permalink": "/docs/API/v1/item-files/DeleteFile"
+  }
+}

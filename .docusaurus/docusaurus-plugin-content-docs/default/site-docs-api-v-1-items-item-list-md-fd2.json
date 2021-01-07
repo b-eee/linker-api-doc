@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/items/ItemList",
+  "id": "API/v1/items/ItemList",
+  "isDocsHomePage": false,
+  "title": "ItemList",
+  "description": "ItemList",
+  "source": "@site/docs\\API\\v1\\items\\ItemList.md",
+  "slug": "/API/v1/items/ItemList",
+  "permalink": "/docs/API/v1/items/ItemList",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/items/ItemList.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "GetItemDetails",
+    "permalink": "/docs/API/v1/items/GetItemDetails"
+  },
+  "next": {
+    "title": "UpdateItem",
+    "permalink": "/docs/API/v1/items/UpdateItem"
+  }
+}

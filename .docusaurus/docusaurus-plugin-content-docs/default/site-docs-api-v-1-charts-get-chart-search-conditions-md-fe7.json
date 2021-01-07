@@ -1,0 +1,21 @@
+{
+  "unversionedId": "API/v1/charts/GetChartSearchConditions",
+  "id": "API/v1/charts/GetChartSearchConditions",
+  "isDocsHomePage": false,
+  "title": "GetChartSearchConditions",
+  "description": "GetChartSearchConditions",
+  "source": "@site/docs\\API\\v1\\charts\\GetChartSearchConditions.md",
+  "slug": "/API/v1/charts/GetChartSearchConditions",
+  "permalink": "/docs/API/v1/charts/GetChartSearchConditions",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/API/v1/charts/GetChartSearchConditions.md",
+  "version": "current",
+  "sidebar": "someSidebar",
+  "previous": {
+    "title": "GetChartDataByConditions",
+    "permalink": "/docs/API/v1/charts/GetChartDataByConditions"
+  },
+  "next": {
+    "title": "GetDatastoreFields",
+    "permalink": "/docs/API/v1/datastores/GetDatastoreFields"
+  }
+}
