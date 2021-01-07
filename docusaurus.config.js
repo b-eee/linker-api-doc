@@ -11,8 +11,8 @@ module.exports = {
   title: 'Hexabase Platform Documentation',
   tagline: 'タイトル',
   url: 'https://b-eee.github.io',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
+  baseUrl: '/linker-api-doc/',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'b-eee', // Usually your GitHub org/user name.
