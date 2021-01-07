@@ -39,3 +39,20 @@ Some common defaults for linting/formatting have been set for you. If you integr
 ```
 $ yarn ci
 ```
+
+### How to add new docs
+- add `.md` files under `docs` with desired directory structure
+```
+// example
+`API/v1/NewDocs/Newdoc.md`
+```
+- open `sidebar.js`, then add new entry 
+```
+      , {
+        type: 'category',
+        label: 'NewDocs',
+        items: [
+            'API/v1/NewDocs/NewDoc'
+        ]
+      }
+```
