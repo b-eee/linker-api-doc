@@ -9,6 +9,8 @@
 
 module.exports = {
   someSidebar: {
+    'GettingStarted': ['index', 'wordings', 'doc1'],
+    Features: ['mdx'],
     'Hexabase API v1.0': [
       // template for new category
       // do not delete -jp
@@ -17,6 +19,14 @@ module.exports = {
       //   label: '',
       //   items: []
       // }
+      
+      // {
+      //   type: 'category',
+      //   label: 'Index',
+      //   items: [
+      //     'API/v1/index/'
+      //   ]
+      // },
       {
         type: 'category',
         label: 'Applications',
@@ -192,8 +202,6 @@ module.exports = {
           , 'API/v1/workspaces/SelectWorkspace'
         ]
       }      
-    ],
-    Docusaurus: ['doc1', 'doc2', 'doc3'],
-    Features: ['mdx'],
+    ]
   },
 };

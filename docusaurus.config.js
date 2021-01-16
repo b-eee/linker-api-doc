@@ -8,8 +8,8 @@
  */
 
 module.exports = {
-  title: 'Hexabase Platform Documentation',
-  tagline: 'タイトル',
+  title: 'Hexabase Documentation',
+  tagline: 'Hexabase API Reference',
   url: 'https://b-eee.github.io',
   baseUrl: '/linker-api-doc/',
   onBrokenLinks: 'warn',
@@ -19,22 +19,40 @@ module.exports = {
   projectName: 'linker-api-doc', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'Hexabase Platform',
+      title: 'Hexabase Documentation',
       logo: {
-        alt: 'My Facebook Project Logo',
-        src: 'img/logo.svg',
+        alt: 'Hexabase',
+        src: 'img/hexabase_logo.jpg',
       },
       items: [
         {
           to: 'docs/',
           activeBasePath: 'docs',
           label: 'Docs',
-          position: 'left',
+          position: 'right',
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
+        {
+          to: 'docs/',
+          activeBasePath: 'docs',
+          label: 'API',
+          position: 'right',
+        },
+        {
+          to: 'docs/',
+          activeBasePath: 'docs',
+          label: 'SDK',
+          position: 'right',
+        },
+        {
+          to: 'docs/',
+          activeBasePath: 'docs',
+          label: 'CLI',
+          position: 'right',
+        },
+        // {to: 'blog', label: 'Tips', position: 'left'},
         // Please keep GitHub link to the right for consistency.
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/b-eee/linker-api-doc',
           label: 'GitHub',
           position: 'right',
         },
@@ -60,16 +78,8 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-            {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://community.hexabase.com',
             },
           ],
         },
@@ -77,12 +87,8 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/hexabase',
             },
           ],
         },

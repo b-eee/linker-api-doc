@@ -1,5 +1,5 @@
 ---
-id: doc2
+id: wordings
 title: Document Number 2
 ---
 
