@@ -1,7 +1,3 @@
----
-slug: /
----
-
 #### GetApplicationsAndDatastores
 
 アプリケーション一覧、データストア一覧の取得

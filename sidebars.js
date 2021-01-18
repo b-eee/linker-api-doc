@@ -8,10 +8,11 @@
  */
 
 module.exports = {
-  someSidebar: {
-    'GettingStarted': ['index', 'wordings', 'doc1'],
-    Features: ['mdx'],
-    'Hexabase API v1.0': [
+  default: {
+    'Getting Started': ['index','doc1'],
+    'Examples Apps': ['Examples/index'],
+    'API': [
+      'API/index',
       // template for new category
       // do not delete -jp
       // , {
@@ -31,7 +32,7 @@ module.exports = {
         type: 'category',
         label: 'Applications',
         items: [
-          'API/v1/Applications/GetApplicationsAndDatastores'
+          'API/v1/Applications/GetApplicationsAndDatastores',
         ]
       }
       , {
@@ -202,6 +203,11 @@ module.exports = {
           , 'API/v1/workspaces/SelectWorkspace'
         ]
       }      
-    ]
+    ],
+    'SDK':['SDK/index'],
+    'CLI':['CLI/index'],
   },
+  examples: {
+    'GettingStarted': ['Examples/examples'],
+  }
 };

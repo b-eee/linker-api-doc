@@ -9,7 +9,7 @@
 
 module.exports = {
   title: 'Hexabase Documentation',
-  tagline: 'Hexabase API Reference',
+  tagline: 'References for Developers',
   url: 'https://b-eee.github.io',
   baseUrl: '/linker-api-doc/',
   onBrokenLinks: 'warn',
@@ -19,7 +19,7 @@ module.exports = {
   projectName: 'linker-api-doc', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'Hexabase Documentation',
+      title: '',
       logo: {
         alt: 'Hexabase',
         src: 'img/hexabase_logo.jpg',
@@ -29,27 +29,34 @@ module.exports = {
           to: 'docs/',
           activeBasePath: 'docs',
           label: 'Docs',
-          position: 'right',
+          position: 'left',
         },
         {
-          to: 'docs/',
+          to: 'docs/Examples/index',
+          activeBasePath: 'docs',
+          label: 'Example Apps',
+          position: 'left',
+        },
+        {
+          to: 'docs/API/index',
           activeBasePath: 'docs',
           label: 'API',
-          position: 'right',
+          position: 'left',
         },
         {
-          to: 'docs/',
+          to: 'docs/SDK/index',
           activeBasePath: 'docs',
           label: 'SDK',
-          position: 'right',
+          position: 'left',
         },
         {
-          to: 'docs/',
+          to: 'docs/CLI/index',
           activeBasePath: 'docs',
           label: 'CLI',
-          position: 'right',
+          position: 'left',
         },
-        // {to: 'blog', label: 'Tips', position: 'left'},
+        {to: 'blog', label: 'Releases', position: 'right'},
+        {to: 'community', label: 'Community', position: 'right'},
         // Please keep GitHub link to the right for consistency.
         {
           href: 'https://github.com/b-eee/linker-api-doc',
