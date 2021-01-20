@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>Hexabase Platform Documentation Blog</title>
+        <title>Hexabase Documentation Blog</title>
         <link>https://b-eee.github.io/blog</link>
-        <description>Hexabase Platform Documentation Blog</description>
+        <description>Hexabase Documentation Blog</description>
         <lastBuildDate>Thu, 30 May 2019 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
@@ -22,7 +22,7 @@
             <description><![CDATA[Welcome to this blog. This blog is created with Docusaurus 2 alpha.]]></description>
         </item>
         <item>
-            <title><![CDATA[Hola]]></title>
+            <title><![CDATA[Release Note]]></title>
             <link>https://b-eee.github.io/linker-api-doc/blog/hola</link>
             <guid>hola</guid>
             <pubDate>Tue, 28 May 2019 00:00:00 GMT</pubDate>

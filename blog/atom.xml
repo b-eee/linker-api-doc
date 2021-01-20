@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://b-eee.github.io/blog</id>
-    <title>Hexabase Platform Documentation Blog</title>
+    <title>Hexabase Documentation Blog</title>
     <updated>2019-05-30T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://b-eee.github.io/blog"/>
-    <subtitle>Hexabase Platform Documentation Blog</subtitle>
+    <subtitle>Hexabase Documentation Blog</subtitle>
     <icon>https://b-eee.github.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
@@ -22,7 +22,7 @@
         <summary type="html"><![CDATA[Welcome to this blog. This blog is created with Docusaurus 2 alpha.]]></summary>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Hola]]></title>
+        <title type="html"><![CDATA[Release Note]]></title>
         <id>hola</id>
         <link href="https://b-eee.github.io/linker-api-doc/blog/hola"/>
         <updated>2019-05-28T00:00:00.000Z</updated>
