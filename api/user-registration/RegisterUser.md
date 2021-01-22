@@ -27,7 +27,7 @@ POST
   "password": "設定するパスワード",　// 必須
 　"workspace":"作成するワークスペース名", 
   "additional_info":{
-      "field_name1": "value",  // field_name, value 共に事由に指定可能
+      "field_name1": "value",  // field_name, value 共に自由な値を指定可能 
       "field_name2": "value"
   }
 }
