@@ -36,7 +36,8 @@ sort_fields         : ソートキーが複数ある場合に指定します。 
                       idにフィールド画面ID、orderにソート順を指定します。orderを省略できます。省略すると昇順となります。
                       配列で指定した順番で第1ソートキー、第2ソートキーという形で適用されます。
 use_default_search  : true or false デフォルト検索条件(注)を適用する場合、trueを指定
-include_links       : true をしていすると、関連するアイテムのIDの配列を取得できます
+include_links       : true を指定すると、関連するアイテムのIDの配列を取得できます
+include_lookups     : true を指定すると、データベース参照型の参照先アイテム情報を結果に含めます
 format              : "csv"を指定すると、結果をCSV形式で出力されます
 ```
  (注：`デフォルト検索条件`はHexabase UIの一覧画面で、検索条件ダイアログでチェックを入れて指定します。)
@@ -180,5 +181,182 @@ POST https://api.xxx.com/api/v0/applications/5c6363d984f4be7de0350445/datastores
         }
     ],
     "totalItems": 2
+}
+```
+
+### include_links : true　を指定した場合の例
+"item_links" フィールドに、関連アイテムのリンク先d_id, i_id情報が付与されます
+
+```javascript
+{
+    "items": [
+        {
+            "Assignee": "",
+            "AutoNum1": "PREFIX_4",
+            "Category": "A",
+            "Checkbox": "C,A",
+            "DateTime": "2020-12-23T01:41:14Z",
+            "DueDate": null,
+            "Fld-cPfc91aX": "h.iwasaki",
+            "LU2": "タスクB",
+            "Lookup1": "タスクE",
+            "Status": "受付",
+            "Title": "Title sample AA",
+            "_id": "5f38b12aaa39558bfca2964f",
+            "access_keys": "5f25956428dc5c55b463bc77,5f25956528dc5c55b463bc7a,5f48b5b728dc5c4ef46efb1c,5f4528c828dc5ca3a826371b",
+            "created_at": "2020-08-16T04:08:11Z",
+            "created_by": "5f25952c28dc5c55b463bc76",
+            "d_id": "5f38a11baa395581685afdb4",
+            "i_id": "5f38b12aaa39558bfca2964f",
+            "item_links": {
+                "db_count": 1,
+                "item_count": 3,
+                "links": [
+                    {
+                        "d_id": "5f38b0afaa395581685afdf6",
+                        "item_count": 3,
+                        "items": [
+                            {
+                                "i_id": "5f38b0b6aa395581685afdff",
+                                "type": "lookup"
+                            },
+                            {
+                                "i_id": "5f38b0b6aa395581685afdff",
+                                "type": "lookup"
+                            },
+                            {
+                                "i_id": "5f38b0b6aa395581685afe02",
+                                "type": "lookup"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "p_id": "TestApp",
+            "rev_no": "10",
+            "status_id": "5f38a11baa39556e74845a40",
+            "title": "Title sample AA",
+            "unread": "0",
+            "updated_at": "2021-01-22T16:55:59Z",
+            "updated_by": "5f25952c28dc5c55b463bc76"
+        }
+    ],
+    "totalItems": 1
+}
+```
+
+### include_lookups : true　を指定した場合の例
+"lookup_items" フィールドに、該当データベース参照(Lookup)先のアイテム情報が展開されます。
+Lookup先のItemが再帰的に自分のItemを参照しているようなケースでは、最大で2回まで展開されますが、（無限ループを避けるため）それ以上の呼び出しはされません。
+```javascript
+{
+    "items": [
+        {
+            "Assignee": "",
+            "AutoNum1": "PREFIX_4",
+            "Category": "A",
+            "Checkbox": "C,A",
+            "DateTime": "2020-12-23T01:41:14Z",
+            "DueDate": null,
+            "LU2": "タスクB", // Lookup type 1
+            "Lookup1": "タスクE", // Lookup type 2 
+            "Status": "受付",
+            "Title": "Title sample AA",
+            "_id": "5f38b12aaa39558bfca2964f",
+            "access_keys": "5f25956428dc5c55b463bc77,5f25956528dc5c55b463bc7a,5f48b5b728dc5c4ef46efb1c,5f4528c828dc5ca3a826371b",
+            "created_at": "2020-08-16T04:08:11Z",
+            "created_by": "5f25952c28dc5c55b463bc76",
+            "d_id": "5f38a11baa395581685afdb4",
+            "i_id": "5f38b12aaa39558bfca2964f",
+            "lookup_items": {
+                "LU2": { // Item values for Lookup type 1
+                    "Assignee": "Y",
+                    "Category": "A",
+                    "DueDate": "2015-12-31T15:00:00Z",
+                    "Fld-tSWAyL4f": "0",
+                    "Status": "受付",
+                    "Title": "タスクB",
+                    "created_at": "2020-08-16T04:06:14Z",
+                    "created_by": "IMPORT",
+                    "d_id": "5f38b0afaa395581685afdf6",
+                    "i_id": "5f38b0b6aa395581685afe02",
+                    "p_id": "5f25956528dc5c55b463bc7b",
+                    "rev_no": "2",
+                    "status_id": "5f38b0afaa39558bfca2963e",
+                    "title": "タスクB",
+                    "updated_at": "2021-01-22T07:50:24Z",
+                    "updated_by": "5f25952c28dc5c55b463bc76"
+                },
+                "Lookup1": { // Item values for Lookup type 2
+                    "Assignee": "X",
+                    "Category": "B",
+                    "DueDate": "2015-12-31T15:00:00Z",
+                    "Fld-tSWAyL4f": "3",
+                    "LookupMySelf": "タスクE",  // Lookup type 3 (LookupField in the Lookup Item)
+                    "Status": "完了",
+                    "Title": "タスクE",
+                    "created_at": "2020-08-16T04:06:14Z",
+                    "created_by": "IMPORT",
+                    "d_id": "5f38b0afaa395581685afdf6",
+                    "i_id": "5f38b0b6aa395581685afdff",
+                    "lookup_items": {
+                        "LookupMySelf": { // Items for Lookup Item 3 
+                            "Assignee": "X",
+                            "Category": "B",
+                            "DueDate": "2015-12-31T15:00:00Z",
+                            "Fld-tSWAyL4f": "3",
+                            "LookupMySelf": "タスクE",  // Lookup Item 3 (Recursive Link... )
+                            "Status": "完了",
+                            "Title": "タスクE",
+                            "created_at": "2020-08-16T04:06:14Z",
+                            "created_by": "IMPORT",
+                            "d_id": "5f38b0afaa395581685afdf6",
+                            "i_id": "5f38b0b6aa395581685afdff",
+                            "lookup_items": {
+                                "LookupMySelf": {  // Recursive call will be limited by twice for the same datastores in the result
+                                    "Assignee": "X",
+                                    "Category": "B",
+                                    "DueDate": "2015-12-31T15:00:00Z",
+                                    "Fld-tSWAyL4f": "3",
+                                    "LookupMySelf": "5f38b0b6aa395581685afdff",
+                                    "Title": "タスクE",
+                                    "created_at": "2020-08-16T04:06:14Z",
+                                    "created_by": "IMPORT",
+                                    "d_id": "5f38b0afaa395581685afdf6",
+                                    "i_id": "5f38b0b6aa395581685afdff",
+                                    "p_id": "5f25956528dc5c55b463bc7b",
+                                    "rev_no": "4",
+                                    "status_id": "5f38b0afaa39558bfca2963c",
+                                    "title": "タスクE",
+                                    "updated_at": "2021-01-22T17:10:37Z",
+                                    "updated_by": "5f25952c28dc5c55b463bc76"
+                                }
+                            },
+                            "p_id": "5f25956528dc5c55b463bc7b",
+                            "rev_no": "4",
+                            "status_id": "5f38b0afaa39558bfca2963c",
+                            "title": "タスクE",
+                            "updated_at": "2021-01-22T17:10:37Z",
+                            "updated_by": "5f25952c28dc5c55b463bc76"
+                        }
+                    },
+                    "p_id": "5f25956528dc5c55b463bc7b",
+                    "rev_no": "4",
+                    "status_id": "5f38b0afaa39558bfca2963c",
+                    "title": "タスクE",
+                    "updated_at": "2021-01-22T17:10:37Z",
+                    "updated_by": "5f25952c28dc5c55b463bc76"
+                }
+            },
+            "p_id": "TestApp",
+            "rev_no": "10",
+            "status_id": "5f38a11baa39556e74845a40",
+            "title": "Title sample AA",
+            "unread": "0",
+            "updated_at": "2021-01-22T16:55:59Z",
+            "updated_by": "5f25952c28dc5c55b463bc76"
+        }
+    ],
+    "totalItems": 1
 }
 ```
