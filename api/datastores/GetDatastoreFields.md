@@ -123,13 +123,15 @@ GET https://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/fields
               "option_id": "dc236a0d-58b0-400e-88c7-9276207438cb",
               "sort_id": 0,
               "value": "選択1",
-              "enabled": true
+              "enabled": true,
+              "display_id": "Option1"
             },
             {
               "option_id": "a355531b-c80f-40e8-b6d7-3dc75cc9f3c5",
               "sort_id": 1,
               "value": "選択2",
-              "enabled": true
+              "enabled": true,
+              "display_id": "Option2"
             }
           ]
         }

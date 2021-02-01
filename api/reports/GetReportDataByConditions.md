@@ -40,14 +40,17 @@ POST
 "sort_field_id": "No",　// display_id または rpf_idを指定
 "sort_order": "desc",  // asc または descを指定
 
-// 結果をCSV形式取得する場合、"csv"と指定（省略するとJSON形式となる）
-"format": "csv" 
-
 // 検索結果に作成日、更新日を含める場合は以下を指定します。データソースに指定したデータの作成日、更新日が結果に含まれます。（関連先を結合した場合、関連先アイテムの作成日、更新日は含まれません）
 "include_date_at": true,
 
 // 検索結果にデータベース参照(Lookup)先アイテムの値を含める場合、以下を指定します。
 "include_lookups": true,
+
+// "include_lookups": trueのとき、参照先Itemの数値型データがNumberとして出力する場合は、以下を指定します（defaultでは、数値は文字列("123")で返却される）
+"return_number_value": true,
+
+// 結果をCSV形式取得する場合、"csv"と指定（省略するとJSON形式となる）
+"format": "csv" 
 
 ```
 

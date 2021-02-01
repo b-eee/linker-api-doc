@@ -45,6 +45,7 @@ format                : "map"　を指定すると、field_valuesの結果が画
 use_display_id        : true を指定すると、画面IDを利用した結果で返される。（format="map"が適用される）
 include_linked_items  : true を指定すると、関連アイテム一覧データを含む。use_display_id=true または format=mapの場合は、画面IDの形式で返される
 include_lookups　　　　: true を指定すると、データベース参照型Itemのデータまで含まれる
+return_number_value   : 関連Itemやデータベース参照詳細がある場合(include_linked_items:true, または include_lookups:trueの場合)にtrue を指定すると、数値型データがNumberとして出力されます（defaultでは、関連アイテムの数値は文字列("123")で返却される）
 ```
 
 **Request URL Sample**

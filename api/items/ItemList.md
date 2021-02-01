@@ -38,6 +38,7 @@ sort_fields         : ソートキーが複数ある場合に指定します。 
 use_default_search  : true or false デフォルト検索条件(注)を適用する場合、trueを指定
 include_links       : true を指定すると、関連するアイテムのIDの配列を取得できます
 include_lookups     : true を指定すると、データベース参照型の参照先アイテム情報を結果に含めます
+return_number_value : true を指定すると、数値型データがNumberとして出力されます（defaultでは、数値は文字列("123")で返却される）
 format              : "csv"を指定すると、結果をCSV形式で出力されます
 ```
  (注：`デフォルト検索条件`はHexabase UIの一覧画面で、検索条件ダイアログでチェックを入れて指定します。)
@@ -142,51 +143,88 @@ POST https://api.xxx.com/api/v0/applications/5c6363d984f4be7de0350445/datastores
 
 **Response Sample**
 
+```
+"use_display_id": true,
+"return_number_value":true
+を指定して検索した例
+```
 ```javascript
 {
     "items": [
         {
-            "58bbaa27fbfcba773851339f": "fadfa",
-            "58bbaa27fbfcba77385133a2": "新規",
-            "_id": "596e2327fbfcbab8283dde09",
-            "a_id": "58bbaa27fbfcba77385133ac",
-            "access_keys": "",
-            "created_at": "2017-07-19T00:03:06+09:00",
-            "created_by": "58272f4efb90a148d8508d9c",
-            "d_id": "58bbaa27fbfcba6098746061",
-            "i_id": "596e2327fbfcbab8283dde09",
-            "p_id": "586f6c2ccce5fe6ad071b1d4",
-            "rev_no": "1",
-            "status_id": "58bbaa27fbfcba77385133a4",
-            "title": "fadfa",
-            "unread": "0"
+            "Assignee": "Y",
+            "Category": "C",
+            "Checkbox": "A,B,C",
+            "DueDate": "2015-12-31T15:00:00Z",
+            "Status": "作業中",
+            "Title": "TaskC",
+            "User": "hi-hexabase",
+            "created_at": "2020-08-16T02:59:45Z",
+            "created_by": "IMPORT",
+            "d_id": "5f38a11baa395581685afdb4",
+            "i_id": "5f38a121aa395581685afdc2",
+            "p_id": "5f25956528dc5c55b463bc7b",
+            "rev_no": 4,
+            "status_id": "5f38a11baa39556e74845a42",
+            "title": "TaskC",
+            "unread": 0,
+            "updated_at": "2020-09-02T17:48:04Z",
+            "updated_by": "5f25952c28dc5c55b463bc76"
         },
         {
-            "58bbaa27fbfcba773851339f": "ｆｈｓｆｇｓｄｆｇdadfa",
-            "58bbaa27fbfcba77385133a2": "受付",
-            "_id": "594255b8cce5fe234076d7d4",
-            "a_id": "58bbaa27fbfcba77385133ac",
-            "access_keys": "",
-            "created_at": "2017-06-15T18:39:08+09:00",
-            "created_by": "58272f4efb90a148d8508d9c",
-            "d_id": "58bbaa27fbfcba6098746061",
-            "i_id": "594255b8cce5fe234076d7d4",
-            "p_id": "586f6c2ccce5fe6ad071b1d4",
-            "rev_no": "2",
-            "status_id": "58bbaa27fbfcba77385133a7",
-            "title": "ｆｈｓｆｇｓｄｆｇdadfa",
-            "unread": "0",
-            "updated_at": "2017-07-19T00:02:57+09:00",
-            "updated_by": "58272f4efb90a148d8508d9c"
+            "Assignee": "X",
+            "Category": "B",
+            "Checkbox": "B",
+            "DueDate": "2015-12-31T15:00:00Z",
+            "Status": "確認",
+            "Title": "TaskD",
+            "User": "hi-hexabase",
+            "created_at": "2020-08-16T02:59:45Z",
+            "created_by": "IMPORT",
+            "d_id": "5f38a11baa395581685afdb4",
+            "i_id": "5f38a121aa395581685afdc1",
+            "p_id": "5f25956528dc5c55b463bc7b",
+            "rev_no": 4,
+            "status_id": "5f38a11baa39556e74845a41",
+            "title": "TaskD",
+            "unread": 0,
+            "updated_at": "2020-09-30T14:04:30Z",
+            "updated_by": "5f25952c28dc5c55b463bc76"
+        },
+        {
+            "Assignee": "X",
+            "AutoNum1": "PREFIX_6",
+            "Category": "A",
+            "Checkbox": "A",
+            "DueDate": "2015-12-31T15:00:00Z",
+            "LU2": null,
+            "Lookup1": "タスクC",
+            "Num1": 5,
+            "Num2": 12,
+            "Status": "完了",
+            "Title": "TaskE",
+            "Total": 17,
+            "created_at": "2020-08-16T02:59:45Z",
+            "created_by": "IMPORT",
+            "d_id": "5f38a11baa395581685afdb4",
+            "i_id": "5f38a121aa395581685afdc0",
+            "p_id": "5f25956528dc5c55b463bc7b",
+            "rev_no": 7,
+            "status_id": "5f38a11baa39556e74845a3e",
+            "title": "TaskE",
+            "unread": 0,
+            "updated_at": "2021-02-01T13:25:24Z",
+            "updated_by": "5f25952c28dc5c55b463bc76"
         }
     ],
-    "totalItems": 2
+    "totalItems": 3
 }
 ```
 
 ### include_links : true　を指定した場合の例
 "item_links" フィールドに、関連アイテムのリンク先d_id, i_id情報が付与されます
 
+"return_number_value": true を指定しない場合、数値は文字列に変換されて返されます
 ```javascript
 {
     "items": [
@@ -197,13 +235,11 @@ POST https://api.xxx.com/api/v0/applications/5c6363d984f4be7de0350445/datastores
             "Checkbox": "C,A",
             "DateTime": "2020-12-23T01:41:14Z",
             "DueDate": null,
-            "Fld-cPfc91aX": "h.iwasaki",
+            "User": "h.iwasaki",
             "LU2": "タスクB",
             "Lookup1": "タスクE",
             "Status": "受付",
             "Title": "Title sample AA",
-            "_id": "5f38b12aaa39558bfca2964f",
-            "access_keys": "5f25956428dc5c55b463bc77,5f25956528dc5c55b463bc7a,5f48b5b728dc5c4ef46efb1c,5f4528c828dc5ca3a826371b",
             "created_at": "2020-08-16T04:08:11Z",
             "created_by": "5f25952c28dc5c55b463bc76",
             "d_id": "5f38a11baa395581685afdb4",
@@ -247,7 +283,7 @@ POST https://api.xxx.com/api/v0/applications/5c6363d984f4be7de0350445/datastores
 
 ### include_lookups : true　を指定した場合の例
 "lookup_items" フィールドに、該当データベース参照(Lookup)先のアイテム情報が展開されます。
-Lookup先のItemが再帰的に自分のItemを参照しているようなケースでは、最大で2回まで展開されますが、（無限ループを避けるため）それ以上の呼び出しはされません。
+Lookup先のItemが再帰的に同一のデータベースを参照しているようなケースでは、最大で2回まで展開されますが、（無限ループを避けるため）それ以上の呼び出しはされません。
 ```javascript
 {
     "items": [
@@ -262,8 +298,6 @@ Lookup先のItemが再帰的に自分のItemを参照しているようなケー
             "Lookup1": "タスクE", // Lookup type 2 
             "Status": "受付",
             "Title": "Title sample AA",
-            "_id": "5f38b12aaa39558bfca2964f",
-            "access_keys": "5f25956428dc5c55b463bc77,5f25956528dc5c55b463bc7a,5f48b5b728dc5c4ef46efb1c,5f4528c828dc5ca3a826371b",
             "created_at": "2020-08-16T04:08:11Z",
             "created_by": "5f25952c28dc5c55b463bc76",
             "d_id": "5f38a11baa395581685afdb4",

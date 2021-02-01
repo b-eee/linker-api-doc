@@ -40,6 +40,7 @@ linked_p_id : 関連先のp_idを画面ID指定 linked_d_idと一緒に設定し
 linked_d_id : 関連先のd_idを画面ID指定 指定すると、対象のデータストアのみに結果を絞りこみ出来ます。
 use_display_id  : true を指定すると画面IDのmap形式で返される
 include_lookups : true を指定すると関連Item内のデータベース参照型の参照先Itemが含まれる　（include_lookupsの詳細については、ItemList APIを参照）
+return_number_value : true を指定すると、数値型データがNumberとして出力されます（defaultでは、数値は文字列("123")で返却される）
 ```
 
 **Response Sample**
