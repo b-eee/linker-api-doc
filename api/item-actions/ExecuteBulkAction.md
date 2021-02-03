@@ -34,17 +34,17 @@ conditions の詳細については、[conditions](#conditions)を参照
       ]
     },
     {
-      "id": "5e5f334e8250710006078dbd", // StatusID のフィールドID
+      "id": "STATUS_FLD", // StatusID のフィールドID
       "search_value": [
-        "5e5f334e8250710006078dc0"   // status_id  (s_id)
+        "New"   // status_id 
       ]
     }
   ],
-  "item": {
-    "5a26722e0e24794c979fa5b6": "更新データサンプル",  // field_id : 更新value
-    "5ab84bfecce5fe5c983eb654": ["5ab84c1fcce5fe5c983ea186","5846636efb90a1024d2982fa" ], // select type Fieldの場合 選択肢ID o_id の配列を指定
-    "5ab84bfecce5fe5c983ea184": ["58272f4efb90a148d8508d9c","5ab84c1fcce5fe5c983ea999" ], // user type Fieldの場合 user_id の配列を指定
-    "5ab0c239cce5fed3a859a910": ["5ab84c1fcce5fe5c983ea185","5ab84c1fcce5fe5c983ea789" ]　// attachment file type Fieldの場合、file_idの配列を指定
+  "item": { // Itemを更新するフィールドと値を指定します
+    "TEXT_FIELD_1": "更新データサンプル",  // field_id : 更新value
+    "SELECT_FIELD_1": ["5ab84c1fcce5fe5c983ea186","5846636efb90a1024d2982fa" ], // select type Fieldの場合 選択肢ID o_id の配列を指定
+    "USER_FIELD_1": ["58272f4efb90a148d8508d9c","5ab84c1fcce5fe5c983ea999" ], // user type Fieldの場合 user_id の配列を指定
+    "FILE_FIELD_1": ["5ab84c1fcce5fe5c983ea185","5ab84c1fcce5fe5c983ea789" ]　// attachment file type Fieldの場合、file_idの配列を指定
   },
   "item_revisions": {  // item_revisionsを指定すると、該当するItemについて排他エラーチェックをかけます。省略、またはRevisionの指定のないItemは、指定した値で更新されます（is_force_update: trueが適用される）
      "58272f4efb90a148d850qwer": 1,  // item_id : rev_no
@@ -53,7 +53,7 @@ conditions の詳細については、[conditions](#conditions)を参照
   },
   "comment": "一括承認", // アクション実行時にアイテムへ付加するコメントメッセージ
   "max_items": 100, // 最大の処理実行件数. デフォルトは100.　最大300件まで。10件単位で指定する（10,20,30,...300)
-  "use_display_id" : false, // 画面IDを指定 trueの場合、フィールドIDに画面IDを利用可能
+  "use_display_id" : true, // 画面IDを指定 trueの場合、フィールドIDに画面IDを利用可能
   "continue_proc": true // (default)false: 対象がmax_itemsを超えていたらエラー（1件も処理しない）, trueの場合、対象アイテム件数がmax_itemsを超えた場合、max_items件まで処理を実行する。
 }
 ```
