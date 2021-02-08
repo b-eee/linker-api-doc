@@ -58,7 +58,7 @@ format              : "csv"を指定すると、結果をCSV形式で出力さ�
 
 
 ##### "conditions"のネスト
-conditions内にconditionsを指定可能です。use_or_conditionフラグと共に利用することで、条件のネストも可能です。
+conditions内にconditionsを指定可能です。use_or_conditionフラグと共に利用することで、AND/OR条件を組み合わせた条件指定が可能です。
 例）例えば、以下のようなロジックの場合、
 ```
 AND : {
