@@ -22,6 +22,10 @@ GET
 ```text
 per_page : 1ページたあたりの件数
 page : ページ数
+include_date_at: trueを指定すると、検索結果に作成日、更新日が含まれます。データソースに指定したデータの作成日、更新日が結果に含まれます。（関連先を結合した場合、関連先アイテムの作成日、更新日は含まれません）
+include_lookups　　　　: true を指定すると、データベース参照型Itemのデータまで含まれる
+return_number_value   : "include_lookups": trueのときtrue を指定すると、参照先Itemの数値型データがNumberとして出力されます（defaultでは、数値は文字列("123")で返却される）
+omit_fields_data : 取得結果から、"report_fields"部分を省略できます（report_fields情報が不要の際にデータ量を削減できます）※注：2021年/2月リリース予定の機能
 format: 省略可能。　"csv" を指定すると、CSV形式で出力する
 ```
 
