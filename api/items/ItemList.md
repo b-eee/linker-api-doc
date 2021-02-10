@@ -54,10 +54,10 @@ format              : "csv"を指定すると、結果をCSV形式で出力さ�
 - テキスト型または複数行テキストの場合、`search_value`は正規表現を指定可能です。正規表現はPerl互換形式(PCRE)による指定となります。例えば、"|"で区切ると、OR検索が可能です。
 - テキスト型または複数行テキストの場合、"exact_match": trueとした場合、完全一致による検索となります。
 - "exact_match": trueとした場合、serach_valueの配列に複数文字列を指定するとOR検索となります。search_value: ["A","B","C"] => AまたはBまたはCにマッチ
-- "not_match": true とすると、指定した値に対してNOT条件が適用されます。
+- "not_match": true とすると、指定した値に対してNOT条件が適用されます。　※注：2021年/2月リリース予定の機能
 
 
-##### "conditions"のネスト
+##### "conditions"のネスト  ※注：2021年/2月リリース予定の機能
 conditions内にconditionsを指定可能です。use_or_conditionフラグと共に利用することで、AND/OR条件を組み合わせた条件指定が可能です。
 例）例えば、以下のようなロジックの場合、
 ```
