@@ -20,13 +20,24 @@ GET
 **Params**
 
 ```text
-なし
+from_item_index : 最新コメントから何番目を取得するか、を指定
+to_item_index : 最新コメントから何番目まで取得するか、を指定
 ```
+（例）
+1ページ目の取得
+from_item_index=0
+to_item_index=9
+
+2ページ目の取得
+from_item_index=10
+to_item_index=19
+
 
 **Request URL Sample**
 
+最初の30件の更新コメントを取得します
 ```text
-GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/59ad2d8a0e247927638e761a/histories
+GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/59ad2d8a0e247927638e761a/histories?from_item_index=0&to_item_index=29
 ```
 
 **Response Sample**
