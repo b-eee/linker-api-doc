@@ -31,6 +31,7 @@ conditions          : 検索条件を指定
 use_or_condition    : conditionsの条件に対してOR条件で検索します（falseまたは指定しない場合は、AND条件が適用されます）
 per_page            : 検索結果の件数(省略、または、0を指定すると、全件取得されます）
 page                : ページ数
+unread_only         : trueを指定すると、「未読履歴をもつItem」のみの絞込条件がconditionsへ追加されます。
 sort_field_id       : ソートするフィールドIDを指定(ソートキーが1fieldのみの場合)
 sort_order          : 昇順の場合"asc" 降順の場合"desc"(ソートキーが1fieldのみの場合)
 sort_fields         : ソートキーが複数ある場合に指定します。 sort_field_idに優先してソートに利用されます。 [{id: "FIELD_A", order: "asc"},{id: "FIELD_B", order: "desc"}]
