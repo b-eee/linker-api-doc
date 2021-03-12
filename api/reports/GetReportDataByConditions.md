@@ -49,6 +49,9 @@ POST
 // "include_lookups": trueのとき、参照先Itemの数値型データがNumberとして出力する場合は、以下を指定します（defaultでは、数値は文字列("123")で返却される）
 "return_number_value": true,
 
+// 取得結果から、"report_fields"部分を省略できます（report_fields情報が不要の際にデータ量を削減できます）
+"omit_fields_data" : true,
+
 // 結果をCSV形式取得する場合、"csv"と指定（省略するとJSON形式となる）
 "format": "csv" 
 
@@ -106,7 +109,7 @@ Lookup先のItemが再帰的に自分のItemを参照しているようなケー
 ```javascript
 {
     "report_fields": [
-        // (省略)
+        // (省略)  // omit_fields_data : true 指定すると、この"report_fields"を省くことが可能です。
     ],
     "report_results": [
         {
