@@ -31,6 +31,7 @@ conditions          : 検索条件を指定
 use_or_condition    : conditionsの条件に対してOR条件で検索します（falseまたは指定しない場合は、AND条件が適用されます）
 per_page            : 検索結果の件数(省略、または、0を指定すると、全件取得されます）
 page                : ページ数
+unread_only         : trueを指定すると、「未読履歴をもつItem」のみの絞込条件がconditionsへ追加されます。
 sort_field_id       : ソートするフィールドIDを指定(ソートキーが1fieldのみの場合)
 sort_order          : 昇順の場合"asc" 降順の場合"desc"(ソートキーが1fieldのみの場合)
 sort_fields         : ソートキーが複数ある場合に指定します。 sort_field_idに優先してソートに利用されます。 [{id: "FIELD_A", order: "asc"},{id: "FIELD_B", order: "desc"}]
@@ -47,17 +48,18 @@ format              : "csv"を指定すると、結果をCSV形式で出力さ�
 #### conditions
 
 ##### conditions パラメータの指定について
-- 日付型、時刻型、数値型フィールドの場合、 `search_value` の一番目の値がFrom、2番目の値がToを意味します。
-- どちらかにnullを指定すると、From～、To～のような検索が可能となります。
-- 日付型の場合、値に `"TODAY"`という文字列を入れると、本日～のような検索が可能です。
+- 日時型、時刻型、数値型フィールドの場合、 `search_value` の一番目の値がFrom、2番目の値がToを意味します。
+- 日時型へ指定する値は、必ずUTC時刻（世界標準時刻）、ISO 8601 に基づいたフォーマット[ YYYY-MM-DDThh:mm:ss.uuuZ ]にて指定する必要があります。 ISO formatでの時刻取得例 : `new Date(Date.UTC(2020, 1, 2, 3, 4, 5)).toISOString(); `
+- 日時型、時刻型、数値型フィールドの場合、どちらかにnullを指定すると、From～、To～のような検索が可能となります。
+- 日時型の場合、値に `"TODAY"`という文字列を入れると、本日～のような検索が可能です。
 - テキスト型または複数行テキストの場合、`search_value`に指定した文字列は部分一致によりマッチします。
 - テキスト型または複数行テキストの場合、`search_value`は正規表現を指定可能です。正規表現はPerl互換形式(PCRE)による指定となります。例えば、"|"で区切ると、OR検索が可能です。
 - テキスト型または複数行テキストの場合、"exact_match": trueとした場合、完全一致による検索となります。
 - "exact_match": trueとした場合、serach_valueの配列に複数文字列を指定するとOR検索となります。search_value: ["A","B","C"] => AまたはBまたはCにマッチ
-- "not_match": true とすると、指定した値に対してNOT条件が適用されます。　※注：2021年/2月リリース予定の機能
+- "not_match": true とすると、指定した値に対してNOT条件が適用されます。　
 
 
-##### "conditions"のネスト  ※注：2021年/2月リリース予定の機能
+##### "conditions"のネスト 
 conditions内にconditionsを指定可能です。use_or_conditionフラグと共に利用することで、AND/OR条件を組み合わせた条件指定が可能です。
 例）例えば、以下のようなロジックの場合、
 ```
