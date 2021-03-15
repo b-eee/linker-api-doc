@@ -19,19 +19,22 @@ module.exports = {
   projectName: 'linker-api-doc', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'APIガイド',
+      title: 'Hexabase APIガイド',
       logo: {
         alt: 'Hexabase',
         src: 'img/hexabase_logo.png',
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
-          label: 'Documents',
-          position: 'left',
+            to: 'docs/',
+            activeBasePath: 'docs',
+            label: 'リファレンス',
+            position: 'left',
         },
-        {to: 'blog', label: 'Releases', position: 'left'},
+        {   to: 'blog',
+            label: 'リリースノート',
+            position: 'left'
+        },
         {
             label: '開発ガイド^',
             href: 'https://b-eee.github.io/development_guide/',
@@ -85,61 +88,65 @@ module.exports = {
         disableSwitch: true,
     },
     footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Learn',
-          items: [
-            {
-              label: 'Style Guide',
-              to: 'docs/',
-            },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Discord',
-              href: 'https://community.hexabase.com',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/hexabase',
-            },
-          ],
-        },
-        {
-          title: 'Legal',
-          // Please do not remove the privacy and terms, it's a legal requirement.
-          items: [
-            {
-              label: 'Privacy',
-              href: 'https://opensource.facebook.com/legal/privacy/',
-            },
-            {
-              label: 'Terms',
-              href: 'https://opensource.facebook.com/legal/terms/',
-            },
-          ],
-        },
-      ],
-      logo: {
-        alt: 'Facebook Open Source Logo',
-        src: 'img/oss_logo.png',
-        href: 'https://opensource.facebook.com',
-      },
-      // Please do not remove the credits, help to publicize Docusaurus :)
-      copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc. Built with Docusaurus.`,
+        style: 'dark',
+        links: [
+          {
+            title: 'APIガイド',
+            items: [
+              {
+                label: 'リファレンス',
+                to: 'docs/',
+              },
+              {
+                label: 'リリースノート',
+                to: 'blog/',
+              },
+            ],
+          },
+          {
+            title: 'リソース',
+            items: [
+              {
+                label: '開発ガイド',
+                href: 'https://b-eee.github.io/development_guide/',
+              },
+              {
+                label: 'CLI',
+                href: 'https://www.npmjs.com/package/hexabase-cli',
+              },
+              {
+                label: 'SDK',
+                href: 'https://b-eee.github.io/hexabase-sdk-docs/',
+              },
+            ],
+          },
+          {
+            title: 'Hexabase',
+            items: [
+              {
+                label: 'サービス',
+                to: 'https://www.hexabase.com/service/',
+              },
+              {
+                label: 'ニュース',
+                to: 'https://www.hexabase.com/news/',
+              },
+              {
+                label: 'コミュニティ',
+                href: 'https://community.hexabase.com/',
+              },
+              {
+                label: '企業情報',
+                to: 'https://www.hexabase.com/company-background/',
+              },
+              {
+                label: 'お問い合わせ',
+                href: 'https://www.hexabase.com/contact-us/',
+              },
+            ],
+          },
+        ],
+        copyright: `Copyright ${new Date().getFullYear()} Hexabase, Inc. Built with Docusaurus.`,
     },
   },
   presets: [
@@ -149,14 +156,14 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+          // editUrl:
+          //   'https://github.com/facebook/docusaurus/edit/master/website/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+          // editUrl:
+          //   'https://github.com/facebook/docusaurus/edit/master/website/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
