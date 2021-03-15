@@ -72,11 +72,6 @@ module.exports = {
         searchParameters: {},
         //... other Algolia params
     },
-    googleAnalytics: {
-        trackingID: '',
-        // Champs facultatifs.
-        anonymizeIP: true, // Les IP doivent-elles être anonymisées ?
-    },
     colorMode: {
         // https://v2.docusaurus.io/docs/api/themes/configuration#color-mode---dark-mode
         
