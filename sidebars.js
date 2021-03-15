@@ -9,10 +9,8 @@
 
 module.exports = {
   default: {
-    'Getting Started': ['index','doc1'],
-    'Examples Apps': ['Examples/index'],
-    'API': [
-      'API/index',
+    'API Reference': [
+      'index',
       // template for new category
       // do not delete -jp
       // , {
@@ -25,55 +23,55 @@ module.exports = {
       //   type: 'category',
       //   label: 'Index',
       //   items: [
-      //     'API/v1/index/'
+      //     'v1/index/'
       //   ]
       // },
       {
         type: 'category',
         label: 'Applications',
         items: [
-          'API/v1/Applications/GetApplicationsAndDatastores',
+          'v1/Applications/GetApplicationsAndDatastores',
         ]
       }
       , {
         type: 'category',
         label: 'Charts',
         items: [
-          'API/v1/charts/GetChartData'
-          , 'API/v1/charts/GetChartDataByConditions'
-          , 'API/v1/charts/GetChartSearchConditions'    
+          'v1/charts/GetChartData'
+          , 'v1/charts/GetChartDataByConditions'
+          , 'v1/charts/GetChartSearchConditions'    
         ]
       }
       , {
         type: 'category',
         label: 'Datastores',
         items: [
-          'API/v1/datastores/GetDatastoreFields'
+          'v1/datastores/GetDatastoreFields'
         ]
       }      
       , {
         type: 'category',
         label: 'Groups',
         items: [
-          'API/v1/groups/CreateGroup'
-          , 'API/v1/groups/CreateTopGroup'
-          , 'API/v1/groups/DeleteGroup'
-          , 'API/v1/groups/GetGroup'
-          , 'API/v1/groups/GetGroupTree'
-          , 'API/v1/groups/UpdateGroup'
+          'v1/groups/CreateGroup'
+          , 'v1/groups/CreateTopGroup'
+          , 'v1/groups/DeleteGroup'
+          , 'v1/groups/GetGroup'
+          , 'v1/groups/GetGroupTree'
+          , 'v1/groups/UpdateGroup'
         ]
       }   
       , {
         type: 'category',
         label: 'ItemActions',
         items: [
-          'API/v1/item-actions/CreateItemWithItemID'
-          , 'API/v1/item-actions/CreateNewItemID'
-          , 'API/v1/item-actions/ExecuteAction'
-          , 'API/v1/item-actions/ExecuteActionByActionID'
-          , 'API/v1/item-actions/ExecuteBulkAction'
-          , 'API/v1/item-actions/GetInputFields'
-          , 'API/v1/item-actions/GetNewActions'
+          'v1/item-actions/CreateItemWithItemID'
+          , 'v1/item-actions/CreateNewItemID'
+          , 'v1/item-actions/ExecuteAction'
+          , 'v1/item-actions/ExecuteActionByActionID'
+          , 'v1/item-actions/ExecuteBulkAction'
+          , 'v1/item-actions/GetInputFields'
+          , 'v1/item-actions/GetNewActions'
     
         ]
       }
@@ -81,133 +79,128 @@ module.exports = {
         type: 'category',
         label: 'ItemFiles',
         items: [
-          'API/v1/item-files/DeleteFile'
-          , 'API/v1/item-files/GetFile'
-          , 'API/v1/item-files/UploadFile'
+          'v1/item-files/DeleteFile'
+          , 'v1/item-files/GetFile'
+          , 'v1/item-files/UploadFile'
         ]
       }
       , {
         type: 'category',
         label: 'ItemHistories',
         items: [
-          'API/v1/item-histories/GetItemHistories'
-          , 'API/v1/item-histories/PostItemComment'
+          'v1/item-histories/GetItemHistories'
+          , 'v1/item-histories/PostItemComment'
         ]
       }
       , {
         type: 'category',
         label: 'ItemLinks',
         items: [
-          'API/v1/item-links/AddItemLink'
-          , 'API/v1/item-links/DeleteItemLink'
-          , 'API/v1/item-links/GetLinkedItems'
-          , 'API/v1/item-links/UpdateItemLink'
+          'v1/item-links/AddItemLink'
+          , 'v1/item-links/DeleteItemLink'
+          , 'v1/item-links/GetLinkedItems'
+          , 'v1/item-links/UpdateItemLink'
         ]
       }
       , {
         type: 'category',
         label: 'ItemsImport',
         items: [
-          'API/v1/items-import/GetImportResults'
-          , 'API/v1/items-import/ImportItems'
+          'v1/items-import/GetImportResults'
+          , 'v1/items-import/ImportItems'
         ]
       }
       , {
         type: 'category',
         label: 'ItemsSearch',
         items: [
-          'API/v1/items-search/GetItemSearchConditions'
-          , 'API/v1/items-search/GetUserQueries'
+          'v1/items-search/GetItemSearchConditions'
+          , 'v1/items-search/GetUserQueries'
         ]
       }
       , {
         type: 'category',
         label: 'Items',
         items: [
-          'API/v1/items/CreateItem'
-          , 'API/v1/items/DeleteItem'
-          , 'API/v1/items/DeleteItemByConditions'
-          , 'API/v1/items/GetAutoNumber'
-          , 'API/v1/items/GetItemDetails'
-          , 'API/v1/items/ItemList'
-          , 'API/v1/items/UpdateItem'
+          'v1/items/CreateItem'
+          , 'v1/items/DeleteItem'
+          , 'v1/items/DeleteItemByConditions'
+          , 'v1/items/GetAutoNumber'
+          , 'v1/items/GetItemDetails'
+          , 'v1/items/ItemList'
+          , 'v1/items/UpdateItem'
         ]
       }      
       , {
         type: 'category',
         label: 'Login',
         items: [
-          'API/v1/login/Login'
-          , 'API/v1/login/Logout'
+          'v1/login/Login'
+          , 'v1/login/Logout'
         ]
       }
       , {
         type: 'category',
         label: 'Reports',
         items: [
-          'API/v1/reports/GetReportData'
-          , 'API/v1/reports/GetReportDataByConditions'
-          , 'API/v1/reports/GetReportSearchConditions'
+          'v1/reports/GetReportData'
+          , 'v1/reports/GetReportDataByConditions'
+          , 'v1/reports/GetReportSearchConditions'
         ]
       }
       , {
         type: 'category',
         label: 'Roles',
         items: [
-          'API/v1/roles/AddGroupRoles'
-          , 'API/v1/roles/AddRoleToUser'
-          , 'API/v1/roles/RemoveRoleFromUser'
-          , 'API/v1/roles/UpdateGroupRoles'
+          'v1/roles/AddGroupRoles'
+          , 'v1/roles/AddRoleToUser'
+          , 'v1/roles/RemoveRoleFromUser'
+          , 'v1/roles/UpdateGroupRoles'
         ]
       }
       , {
         type: 'category',
         label: 'UserRegistration',
         items: [
-          'API/v1/user-registration/ConfirmRegistration'
-          , 'API/v1/user-registration/RegisterUser'
-          , 'API/v1/user-registration/UserRegistration'
+          'v1/user-registration/ConfirmRegistration'
+          , 'v1/user-registration/RegisterUser'
+          , 'v1/user-registration/UserRegistration'
         ]
       }
       , {
         type: 'category',
         label: 'UserInfo',
         items: [
-          'API/v1/userinfo/GetUserInfo'
-          , 'API/v1/userinfo/ResetPassword'
-          , 'API/v1/userinfo/SetNewPassword'
-          , 'API/v1/userinfo/SetPassword'
-          , 'API/v1/userinfo/UpdateUserInfo'
-          , 'API/v1/userinfo/ValidatePassword'
+          'v1/userinfo/GetUserInfo'
+          , 'v1/userinfo/ResetPassword'
+          , 'v1/userinfo/SetNewPassword'
+          , 'v1/userinfo/SetPassword'
+          , 'v1/userinfo/UpdateUserInfo'
+          , 'v1/userinfo/ValidatePassword'
         ]
       }
       , {
         type: 'category',
         label: 'Users',
         items: [
-          'API/v1/users/AddUser'
-          , 'API/v1/users/GetAllUsersInWorkspace'
-          , 'API/v1/users/GetRoleUsers'
-          , 'API/v1/users/GetUsersInGroup'
-          , 'API/v1/users/GetUsersInWorkspace'
-          , 'API/v1/users/RemoveUser'
-          , 'API/v1/users/UserImport'
-          , 'API/v1/users/UserInvite'
+          'v1/users/AddUser'
+          , 'v1/users/GetAllUsersInWorkspace'
+          , 'v1/users/GetRoleUsers'
+          , 'v1/users/GetUsersInGroup'
+          , 'v1/users/GetUsersInWorkspace'
+          , 'v1/users/RemoveUser'
+          , 'v1/users/UserImport'
+          , 'v1/users/UserInvite'
         ]
       }
       , {
         type: 'category',
         label: 'Workspaces',
         items: [
-          'API/v1/workspaces/GetWorkspaces'
-          , 'API/v1/workspaces/SelectWorkspace'
+          'v1/workspaces/GetWorkspaces'
+          , 'v1/workspaces/SelectWorkspace'
         ]
       }      
     ],
-    'SDK':['SDK/index'],
-    'CLI':['CLI/index'],
-  },
-  examples: {
-    'GettingStarted': ['Examples/examples'],
   }
 };
