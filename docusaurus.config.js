@@ -8,8 +8,8 @@
  */
 
 module.exports = {
-  title: 'Hexabase Documentation',
-  tagline: 'References for Developers',
+  title: 'Hexabase API ガイド',
+  tagline: 'Hexabase APIの情報をまとめています',
   url: 'https://b-eee.github.io',
   baseUrl: '/linker-api-doc/',
   onBrokenLinks: 'warn',
