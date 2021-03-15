@@ -37,7 +37,7 @@ POST
 **Request URL Sample**
 
 ```text
-POST https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/histories
+POST https://api.xxx.com/api/v0/applications/AppID/datastores/DS-ID/items/histories/59ad2d8a0e247927638e761a
 ```
 
 ```text

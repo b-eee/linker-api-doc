@@ -28,7 +28,7 @@ DELETE
   app-id: アプリケーションID（画面ID、または、システム内部ID p_id）
   datastore-id: データベースID（画面ID、または、システム内部ID d_id）
   item-id: コメント登録する対象Itemのitem_id
-  history-id: 履歴ID
+  history-id: 削除する履歴ID
 ```
 
 **Payload**

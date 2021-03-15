@@ -197,10 +197,10 @@ Hexabaseでは、データベースの各データを「アイテム」と呼び
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 34 | [GetItemHistories](api/item-histories/GetItemHistories.md) | アイテム履歴取得 | GET | /api/v0/applications/:app-id/datastores/:datastore-id/items/:item-id/histories | 履歴を取得 | v0 | ✓ |
-| 45 | [PostItemComment](api/item-histories/PostItemComment.md) | アイテムコメント投稿 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/histories | コメント履歴を登録 | v0 | ✓ |
-| 72 | [UpdateItemComment](api/item-histories/UpdateItemComment.md) | アイテムコメント編集 | PUT | /api/v0/applications/:app-id/datastores/:datastore-id/items/histories/:history-id | コメント履歴を修正 | v0 | ✓ |
-| 73 | [DeleteItemComment](api/item-histories/DeleteItemComment.md) | アイテムコメント削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/histories/:history-id | コメント履歴を削除 | v0 | ✓ |
+| 34 | [GetItemHistories](api/item-histories/GetItemHistories.md) | アイテム履歴取得 | GET | /api/v0/applications/:app-id/datastores/:datastore-id/items/histories/:item-id | 履歴を取得 | v0 | ✓ |
+| 45 | [PostItemComment](api/item-histories/PostItemComment.md) | アイテムコメント投稿 | POST | /api/v0/applications/:app-id/datastores/:datastore-id/items/histories/:item-id | コメント履歴を登録 | v0 | ✓ |
+| 72 | [UpdateItemComment](api/item-histories/UpdateItemComment.md) | アイテムコメント編集 | PUT | /api/v0/applications/:app-id/datastores/:datastore-id/items/histories/:item-id/:history-id | コメント履歴を修正 | v0 | ✓ |
+| 73 | [DeleteItemComment](api/item-histories/DeleteItemComment.md) | アイテムコメント削除 | DELETE | /api/v0/applications/:app-id/datastores/:datastore-id/items/histories/:item-id/:history-id | コメント履歴を削除 | v0 | ✓ |
 
 ### CSVデータインポート関連API
 

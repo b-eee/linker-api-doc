@@ -18,7 +18,7 @@ GET
 **Request URL Format**
 
 ```text
-/api/v0/applications/:app-id/datastores/:datastore-id/items/:item-id/histories
+/api/v0/applications/:app-id/datastores/:datastore-id/items/histories/:item-id
 ```
 
 **Query Params**
@@ -35,7 +35,7 @@ GET
 **Request URL Sample**
 
 ```text
-GET https://api.xxx.com/api/v0/applications/AppID/datastores/DS-ID/items/59ad2d8a0e247927638e761a/histories
+GET https://api.xxx.com/api/v0/applications/AppID/datastores/DS-ID/items/histories/59ad2d8a0e247927638e761a
 ```
 
 **Response Sample**
