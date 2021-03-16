@@ -11,6 +11,7 @@ module.exports = {
   default: {
     'API Reference': [
       'index',
+      'getstart', 
       // template for new category
       // do not delete -jp
       // , {

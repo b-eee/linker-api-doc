@@ -6,6 +6,8 @@ slug: /
 
 Hexabase APIは、エンタープライズBaaS(Backend as a Service)を制御するための、Application Programming Interfaceです。
 
+- [**使い方**](/docs/getstart)
+
 ## Applications
 
 Hexabase では、アプリケーション(プロジェクト)ごとに、データベース・データレポート・ダッシュボードなどをまとめています。
