@@ -42,7 +42,10 @@ item-id  :  アイテムのID
 
 ```text
 format                : "map"　を指定すると、field_valuesの結果が画面IDのmap形式で返される
-include_linked_items  : true を指定すると、関連アイテム一覧データを含む。format=mapの場合は、画面IDの形式で返される
+use_display_id        : true を指定すると、画面IDを利用した結果で返される。（format="map"が適用される）
+include_linked_items  : true を指定すると、関連アイテム一覧データを含む。use_display_id=true または format=mapの場合は、画面IDの形式で返される
+include_lookups　　　　: true を指定すると、データベース参照型Itemのデータまで含まれる
+return_number_value   : 関連Itemやデータベース参照詳細がある場合(include_linked_items:true, または include_lookups:trueの場合)にtrue を指定すると、数値型データがNumberとして出力されます（defaultでは、関連アイテムの数値は文字列("123")で返却される）
 ```
 
 **Request URL Sample**
@@ -50,918 +53,745 @@ include_linked_items  : true を指定すると、関連アイテム一覧デー
 
 **Response Sample**
 
-(1) 画面ID利用時、format=map指定、関連アイテム一覧を含む
+(1) 画面ID利用（use_display_id=true)指定、(関連アイテム一覧をふくまない）
 
 ```text
 GET https://api.xxx.com/api/v0/applications/APPNAME/datastores/DSNAME/items/details/5cd3bde884f4be40c092ecb8?format=map&include_linked_items=true
 ```
 ```javascript
 {
-    "title": "タスクE",
+    "title": "TaskA2233",
+    "rev_no": 20,
     "field_values": {
-        "AutoNo": {
-            "field_id": "AutoNo",
-            "field_name": "AutoNo",
-            "dataType": "autonum",
-            "value": "21",
-            "use_as_search": true,
-            "show_in_list": true
-        },
-        "Branch-No": {
-            "field_id": "Branch-No",
-            "field_name": "枝番",
-            "dataType": "autonum",
-            "value": null,
-            "use_as_search": true,
-            "show_in_list": false
-        },
-        "FILE": {
-            "field_id": "FILE",
-            "field_name": "File",
-            "dataType": "file",
-            "value": null,
-            "use_as_search": false,
-            "show_in_list": true
-        },
-        "Fld-BLoaNKjo": {
-            "field_id": "Fld-BLoaNKjo",
-            "field_name": "カテゴリ",
-            "dataType": "select",
-            "value": "5cd3bde884f4be40c092ecc5",
-            "use_as_search": true,
-            "show_in_list": true
-        },
-        "Fld-M9kSDGIY": {
-            "field_id": "Fld-M9kSDGIY",
-            "field_name": "ユーザー選択",
-            "dataType": "users",
-            "value": null,
-            "use_as_search": true,
-            "show_in_list": true
-        },
-        "Fld-NdC29Im0": {
-            "field_id": "Fld-NdC29Im0",
-            "field_name": "期限",
-            "dataType": "date",
-            "value": "2016-01-01T00:00:00Z",
-            "use_as_search": true,
-            "show_in_list": true
-        },
-        "Fld-cWyzLxb6": {
-            "field_id": "Fld-cWyzLxb6",
-            "field_name": "Radio",
-            "dataType": "radio",
-            "value": null,
-            "use_as_search": true,
-            "show_in_list": true
-        },
-        "Fld-d0g8UE7D": {
-            "field_id": "Fld-d0g8UE7D",
+        "Assignee": {
+            "field_id": "Assignee",
             "field_name": "担当",
             "dataType": "text",
-            "value": "X",
-            "use_as_search": true,
-            "show_in_list": true
+            "value": "X223322323",
+            "sizeX": 6,
+            "sizeY": 1,
+            "col": 0,
+            "row": 2
         },
-        "Fld-r2uIjvTP": {
-            "field_id": "Fld-r2uIjvTP",
-            "field_name": "NoCalc",
-            "dataType": "calc",
-            "value": null,
-            "use_as_search": true,
-            "show_in_list": true
+        "AutoNum1": {
+            "field_id": "AutoNum1",
+            "field_name": "AutoNumber1",
+            "dataType": "autonum",
+            "value": "PREFIX_1",
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 0,
+            "row": 4
         },
-        "Fld-u3PpPmne": {
-            "field_id": "Fld-u3PpPmne",
-            "field_name": "日付範囲",
-            "dataType": "date",
-            "value": null,
-            "use_as_search": true,
-            "show_in_list": true
+        "Category": {
+            "field_id": "Category",
+            "field_name": "カテゴリ",
+            "dataType": "select",
+            "value": "OptionA",
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 0,
+            "row": 1
         },
-        "Fld-v8ezNQB9": {
-            "field_id": "Fld-v8ezNQB9",
-            "field_name": "CheckBox",
+        "Checkbox": {
+            "field_id": "Checkbox",
+            "field_name": "Checkbox",
             "dataType": "checkbox",
             "value": [
-                "222"
+                "CCCCC",
+                "AAAAA"
             ],
-            "use_as_search": true,
-            "show_in_list": true
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 0,
+            "row": 3
         },
-        "Fld-xjKEyppI": {
-            "field_id": "Fld-xjKEyppI",
-            "field_name": "ステータス",
-            "dataType": "status",
-            "value": null,
-            "use_as_search": true,
-            "show_in_list": true
+        "DateTime": {
+            "field_id": "DateTime",
+            "field_name": "DateTime",
+            "dataType": "datetime",
+            "value": "2020-12-24T23:59:59Z",
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 5,
+            "row": 4
         },
-        "Fld-zXHEV5Rl": {
-            "field_id": "Fld-zXHEV5Rl",
-            "field_name": "数値範囲",
-            "dataType": "number",
-            "value": null,
-            "use_as_search": true,
-            "show_in_list": true
+        "DueDate": {
+            "field_id": "DueDate",
+            "field_name": "期限",
+            "dataType": "date",
+            "value": "2020-12-24T03:00:00Z",
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 7,
+            "row": 1
         },
-        "ImageFiles": {
-            "field_id": "ImageFiles",
-            "field_name": "FILE2",
+        "Fld-6V4agAYX": {
+            "field_id": "Fld-6V4agAYX",
+            "field_name": "AttachedFileA",
             "dataType": "file",
             "value": null,
-            "use_as_search": false,
-            "show_in_list": true
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 0,
+            "row": 6
         },
-        "LinkKEY": {
-            "field_id": "LinkKEY",
-            "field_name": "リンクキー",
-            "dataType": "text",
-            "value": "タスクE",
-            "use_as_search": true,
-            "show_in_list": true
+        "Fld-cPfc91aX": {
+            "field_id": "Fld-cPfc91aX",
+            "field_name": "第1承認者",
+            "dataType": "users",
+            "value": [
+                {
+                    "access_key": "5f25956428dc5c55b463bc77",
+                    "email": "hi@hexabase.com",
+                    "media_link": "https://storage.googleapis.com/linker/pub/default.png",
+                    "user_id": "5f25952c28dc5c55b463bc76",
+                    "user_name": "h.iwasaki"
+                },
+                {
+                    "access_key": "5fc9b4fbaa39557110839cf9",
+                    "email": "h.iwasaki@b-eee.com",
+                    "media_link": "https://storage.googleapis.com/linker/pub/default.png",
+                    "user_id": "5fc9b4aaaa39557110839cf7",
+                    "user_name": "h.iwasaki"
+                }
+            ],
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 5,
+            "row": 3
         },
-        "LookUP": {
-            "field_id": "LookUP",
-            "field_name": "DB参照",
+        "LU2": {
+            "field_id": "LU2",
+            "field_name": "LU2",
             "dataType": "dslookup",
             "value": null,
-            "use_as_search": true,
-            "show_in_list": true
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 5,
+            "row": 5
+        },
+        "Lookup1": {
+            "field_id": "Lookup1",
+            "field_name": "Lookup1",
+            "dataType": "dslookup",
+            "value": null,
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 0,
+            "row": 5
+        },
+        "Status": {
+            "field_id": "Status",
+            "field_name": "ステータス",
+            "dataType": "status",
+            "value": "Closed",
+            "sizeX": 0,
+            "sizeY": 0,
+            "col": 0,
+            "row": 0
+        },
+        "Title": {
+            "field_id": "Title",
+            "field_name": "タイトル",
+            "dataType": "text",
+            "value": "TaskA2233",
+            "sizeX": 10,
+            "sizeY": 1,
+            "col": 0,
+            "row": 0
         }
     },
     "status_list": {
-        "5cd3bde284f4be5808a6b3ac": {
-            "status_id": "5cd3bde284f4be5808a6b3ac",
-            "status_name": "完了"
-        },
-        "5cd3bde284f4be5808a6b3ad": {
-            "status_id": "5cd3bde284f4be5808a6b3ad",
-            "status_name": "新規"
-        },
-        "5cd3bde284f4be5808a6b3ae": {
-            "status_id": "5cd3bde284f4be5808a6b3ae",
+        "Assigned": {
+            "status_id": "Assigned",
+            "s_id": "5f38a11baa39556e74845a40",
             "status_name": "受付"
         },
-        "5cd3bde284f4be5808a6b3af": {
-            "status_id": "5cd3bde284f4be5808a6b3af",
+        "Closed": {
+            "status_id": "Closed",
+            "s_id": "5f38a11baa39556e74845a3e",
+            "status_name": "完了"
+        },
+        "InProgress": {
+            "status_id": "InProgress",
+            "s_id": "5f38a11baa39556e74845a42",
+            "status_name": "作業中"
+        },
+        "InReview": {
+            "status_id": "InReview",
+            "s_id": "5f38a11baa39556e74845a41",
             "status_name": "確認"
         },
-        "5cd3bde284f4be5808a6b3b0": {
-            "status_id": "5cd3bde284f4be5808a6b3b0",
-            "status_name": "作業中"
+        "New": {
+            "status_id": "New",
+            "s_id": "5f38a11baa39556e74845a3f",
+            "status_name": "新規"
         }
     },
     "status_actions": {
-        "5cd3bde284f4be5808a6b3b1": {
-            "action_id": "5cd3bde284f4be5808a6b3b1",
-            "action_name": "次のステータスに進める",
+        "BackToInReview": {
+            "action_id": "BackToInReview",
+            "a_id": "5f38a11caa39556e74845a44",
+            "action_name": "確認中へ戻す",
             "display_order": 0,
             "crud_type": "2",
-            "next_status_id": "5cd3bde284f4be5808a6b3ae"
+            "next_status_id": "InReview"
         }
     },
     "item_actions": {
-        "5cd3bde384f4be5808a6b3b9": {
-            "action_id": "5cd3bde384f4be5808a6b3b9",
-            "action_name": "内容を更新する",
-            "display_order": 0,
-            "crud_type": "2"
-        },
-        "5cd3bde384f4be5808a6b3ba": {
-            "action_id": "5cd3bde384f4be5808a6b3ba",
-            "action_name": "コピーして新規に登録する",
+        "CopyItem": {
+            "action_id": "CopyItem",
+            "a_id": "5f38a11daa39556e74845a4c",
+            "action_name": "コピーして新規登録する",
             "display_order": 0,
             "crud_type": "4"
         },
-        "5cd3bde384f4be5808a6b3bb": {
-            "action_id": "5cd3bde384f4be5808a6b3bb",
-            "action_name": "新規登録",
+        "CreateItem": {
+            "action_id": "CreateItem",
+            "a_id": "5f38a11daa39556e74845a4d",
+            "action_name": "新しいデータを登録する",
             "display_order": 0,
             "crud_type": "1"
         },
-        "5cd3bde384f4be5808a6b3bd": {
-            "action_id": "5cd3bde384f4be5808a6b3bd",
+        "DeleteItem": {
+            "action_id": "DeleteItem",
+            "a_id": "5f38a11eaa39556e74845a4f",
             "action_name": "このデータを削除する",
             "display_order": 0,
             "crud_type": "3"
         },
-        "5eaf86d8aa39554a445af4dd": {
-            "action_id": "5eaf86d8aa39554a445af4dd",
-            "action_name": "NewItem2",
-            "display_order": 4,
-            "crud_type": "1"
-        },
-        "5eaf94c7aa39551340a7b8f4": {
-            "action_id": "5eaf94c7aa39551340a7b8f4",
-            "action_name": "NewAction3",
-            "display_order": 5,
-            "crud_type": "1"
+        "UpdateItem": {
+            "action_id": "UpdateItem",
+            "a_id": "5f38a11daa39556e74845a4b",
+            "action_name": "内容を更新する",
+            "display_order": 0,
+            "crud_type": "2"
         }
     },
-    "linked_items": {
-        "ChildDB1": {
-            "d_id": "5cc25d1e84f4be574418d580",
-            "ds_name": "ChildDB1",
-            "display_id": "ChildDB1",
-            "fields": {
-                "Fld-1hfacFJP": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c",
-                        "5ca5561484f4be19cc01d378",
-                        "5ca5562084f4be19cc01d37a"
-                    ],
-                    "as_title": false,
-                    "calc_info": {
-                        "calc_target_fields": [
-                            "5cc4dbc084f4be926c491d97",
-                            "5cc4dbcd84f4be926c491d98"
-                        ],
-                        "formula": "{Fld-xGx9u6A2}   /   {Fld-fAcrbFfs}+{Fld-xGx9u6A2}",
-                        "no_comma": false,
-                        "prefix": "\\",
-                        "suffix": ""
-                    },
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "calc",
-                    "display_id": "Fld-1hfacFJP",
-                    "f_id": "5cc8fa5484f4be926c491d9a",
-                    "fieldIndex": 0,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "5cc8fa5484f4be926c491d9a",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "計算式フィールド",
-                    "names": {
-                        "en": "計算式フィールド",
-                        "ja": "計算式フィールド"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-7ANOlTq4": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c",
-                        "5ca5561484f4be19cc01d378",
-                        "5ca5562084f4be19cc01d37a"
-                    ],
-                    "as_title": false,
-                    "calc_info": {
-                        "calc_target_fields": [],
-                        "formula": "",
-                        "no_comma": false,
-                        "prefix": "",
-                        "suffix": ""
-                    },
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "calc",
-                    "display_id": "Fld-7ANOlTq4",
-                    "f_id": "5cda5ac384f4bec92c8b8d03",
-                    "fieldIndex": 0,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "5cda5ac384f4bec92c8b8d03",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "NoCalc",
-                    "names": {
-                        "en": "NoCalc",
-                        "ja": "NoCalc"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-DOURZoJP": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c",
-                        "5ca5561484f4be19cc01d378",
-                        "5ca5562084f4be19cc01d37a"
-                    ],
-                    "as_title": false,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "dslookup",
-                    "display_id": "Fld-DOURZoJP",
-                    "f_id": "5d27516faa39559de85d1408",
-                    "fieldIndex": 0,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "5d27516faa39559de85d1408",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "LkUp",
-                    "names": {
-                        "en": "LkUp",
-                        "ja": "LkUp"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-XbOD2IvT": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c",
-                        "5ca5561484f4be19cc01d378",
-                        "5ca5562084f4be19cc01d37a"
-                    ],
-                    "as_title": false,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "label",
-                    "display_id": "Fld-XbOD2IvT",
-                    "f_id": "5cc4dbf484f4be926c491d99",
-                    "fieldIndex": 0,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "5cc4dbf484f4be926c491d99",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "This is a Label",
-                    "names": {
-                        "en": "This is a Label",
-                        "ja": "This is a Label"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": false,
-                    "show_list": false,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-YBngOOkg": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c",
-                        "5ca5561484f4be19cc01d378",
-                        "5ca5562084f4be19cc01d37a"
-                    ],
-                    "as_title": false,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "text",
-                    "display_id": "Fld-YBngOOkg",
-                    "f_id": "5cfe3cc7aa39554fac8c1d0a",
-                    "fieldIndex": 8,
-                    "field_csv_name": "",
-                    "full_text": true,
-                    "hideOnInput": false,
-                    "id": "5cfe3cc7aa39554fac8c1d0a",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "Uniqe",
-                    "names": {
-                        "en": "Uniqe",
-                        "ja": "Uniqe"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": true,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-fAcrbFfs": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c",
-                        "5ca5561484f4be19cc01d378",
-                        "5ca5562084f4be19cc01d37a"
-                    ],
-                    "as_title": false,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "number",
-                    "display_id": "Fld-fAcrbFfs",
-                    "f_id": "5cc4dbcd84f4be926c491d98",
-                    "fieldIndex": 0,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "5cc4dbcd84f4be926c491d98",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "Calc",
-                    "names": {
-                        "en": "Calc",
-                        "ja": "Calc"
-                    },
-                    "num_info": {
-                        "no_comma": false,
-                        "prefix": "\\",
-                        "suffix": "yen"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-fjpeoxrY": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c",
-                        "5ca5561484f4be19cc01d378",
-                        "5ca5562084f4be19cc01d37a"
-                    ],
-                    "as_title": false,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "number",
-                    "display_id": "Fld-fjpeoxrY",
-                    "f_id": "5cc4dbb284f4be926c491d96",
-                    "fieldIndex": 0,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "5cc4dbb284f4be926c491d96",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "Num1",
-                    "names": {
-                        "en": "Num1",
-                        "ja": "Num1"
-                    },
-                    "num_info": {
-                        "no_comma": true,
-                        "prefix": "Code:",
-                        "suffix": ""
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-xGx9u6A2": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c",
-                        "5ca5561484f4be19cc01d378",
-                        "5ca5562084f4be19cc01d37a"
-                    ],
-                    "as_title": false,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "number",
-                    "display_id": "Fld-xGx9u6A2",
-                    "f_id": "5cc4dbc084f4be926c491d97",
-                    "fieldIndex": 7,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "5cc4dbc084f4be926c491d97",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "Num2",
-                    "names": {
-                        "en": "Num2",
-                        "ja": "Num2"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "ステータス": {
-                    "as_title": false,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "status",
-                    "display_id": "ステータス",
-                    "f_id": "a38850be-4fb9-4025-a297-4c500c793716",
-                    "fieldIndex": 0,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "a38850be-4fb9-4025-a297-4c500c793716",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "ステータス",
-                    "names": {
-                        "en": "ステータス",
-                        "ja": "ステータス"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": true,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "タスク": {
-                    "as_title": true,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "text",
-                    "display_id": "タスク",
-                    "f_id": "f99f6b08-dd8b-4816-adc7-9b28555a1e93",
-                    "fieldIndex": 1,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "f99f6b08-dd8b-4816-adc7-9b28555a1e93",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "タスク",
-                    "names": {
-                        "en": "タスク",
-                        "ja": "タスク"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 1,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "完了予定日": {
-                    "as_title": false,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "text",
-                    "display_id": "完了予定日",
-                    "f_id": "6f5779f7-6d34-46ce-afd1-9e83c77260b9",
-                    "fieldIndex": 4,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "6f5779f7-6d34-46ce-afd1-9e83c77260b9",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "完了予定日",
-                    "names": {
-                        "en": "完了予定日",
-                        "ja": "完了予定日"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "担当者": {
-                    "as_title": false,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "text",
-                    "display_id": "担当者",
-                    "f_id": "3e9a47e1-ec41-477a-8b18-f324c67d9116",
-                    "fieldIndex": 2,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "3e9a47e1-ec41-477a-8b18-f324c67d9116",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "担当者",
-                    "names": {
-                        "en": "担当者",
-                        "ja": "担当者"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "重要度": {
-                    "as_title": false,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "text",
-                    "display_id": "重要度",
-                    "f_id": "294c2cf8-c64c-4b0f-8d2d-4adaf64477e0",
-                    "fieldIndex": 5,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "294c2cf8-c64c-4b0f-8d2d-4adaf64477e0",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "重要度",
-                    "names": {
-                        "en": "重要度",
-                        "ja": "重要度"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "開始日": {
-                    "as_title": false,
-                    "d_id": "5cc25d1e84f4be574418d580",
-                    "dataType": "text",
-                    "display_id": "開始日",
-                    "f_id": "46564f59-fbf4-40f0-a5a1-2edaee92a9c7",
-                    "fieldIndex": 3,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "46564f59-fbf4-40f0-a5a1-2edaee92a9c7",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "開始日",
-                    "names": {
-                        "en": "開始日",
-                        "ja": "開始日"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                }
-            },
-            "items": []   // 関連アイテム　無し
-        },
-        "FieldTypeLineItems": {
-            "d_id": "5c6d32f784f4be1f241ff9ff",
-            "ds_name": "フィールドType明細",
-            "display_id": "FieldTypeLineItems",
-            "fields": {
-                "FK": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c"
-                    ],
-                    "as_title": true,
-                    "d_id": "5c6d32f784f4be1f241ff9ff",
-                    "dataType": "text",
-                    "display_id": "FK",
-                    "f_id": "5c6d32f784f4be70b8bd20b9",
-                    "fieldIndex": 0,
-                    "field_csv_name": "",
-                    "full_text": true,
-                    "hideOnInput": false,
-                    "id": "5c6d32f784f4be70b8bd20b9",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "外部キー",
-                    "names": {
-                        "en": "FK",
-                        "ja": "外部キー"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 3,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-677Ld02p": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c"
-                    ],
-                    "as_title": false,
-                    "d_id": "5c6d32f784f4be1f241ff9ff",
-                    "dataType": "users",
-                    "display_id": "Fld-677Ld02p",
-                    "f_id": "5c9e3f6d84f4be72e49097f3",
-                    "fieldIndex": 0,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "5c9e3f6d84f4be72e49097f3",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "User",
-                    "names": {
-                        "en": "User",
-                        "ja": "User"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "users_info": {
-                        "groups": [],
-                        "roles": [],
-                        "single_select": true,
-                        "users_publish_userfield": false,
-                        "users_show_mygroup": false,
-                        "users_show_workspacemembers": true
-                    },
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-BLoaNKjo": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c"
-                    ],
-                    "as_title": false,
-                    "d_id": "5c6d32f784f4be1f241ff9ff",
-                    "dataType": "select",
-                    "display_id": "Fld-BLoaNKjo",
-                    "f_id": "5c6d32f784f4be70b8bd20bb",
-                    "fieldIndex": 0,
-                    "field_csv_name": "",
-                    "full_text": true,
-                    "hideOnInput": false,
-                    "id": "5c6d32f784f4be70b8bd20bb",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "カテゴリ",
-                    "names": {
-                        "en": "Category",
-                        "ja": "カテゴリ"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "selected": "5c6d3bc284f4be1f241ffa21",
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-NdC29Im0": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c"
-                    ],
-                    "as_title": false,
-                    "d_id": "5c6d32f784f4be1f241ff9ff",
-                    "dataType": "date",
-                    "display_id": "Fld-NdC29Im0",
-                    "f_id": "5c6d32f784f4be70b8bd20bd",
-                    "fieldIndex": 4,
-                    "field_csv_name": "",
-                    "full_text": true,
-                    "hideOnInput": false,
-                    "id": "5c6d32f784f4be70b8bd20bd",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "期限",
-                    "names": {
-                        "en": "Due Date",
-                        "ja": "期限"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-d0g8UE7D": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c"
-                    ],
-                    "as_title": false,
-                    "d_id": "5c6d32f784f4be1f241ff9ff",
-                    "dataType": "text",
-                    "display_id": "Fld-d0g8UE7D",
-                    "f_id": "5c6d32f784f4be70b8bd20ba",
-                    "fieldIndex": 1,
-                    "field_csv_name": "",
-                    "full_text": true,
-                    "hideOnInput": false,
-                    "id": "5c6d32f784f4be70b8bd20ba",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "担当",
-                    "names": {
-                        "en": "Assignee",
-                        "ja": "担当"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-xjKEyppI": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c"
-                    ],
-                    "as_title": false,
-                    "d_id": "5c6d32f784f4be1f241ff9ff",
-                    "dataType": "status",
-                    "display_id": "Fld-xjKEyppI",
-                    "f_id": "5c6d32f784f4be70b8bd20bc",
-                    "fieldIndex": 3,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "5c6d32f784f4be70b8bd20bc",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "ステータス",
-                    "names": {
-                        "en": "Status",
-                        "ja": "ステータス"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "show_list": true,
-                    "status": true,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                },
-                "Fld-zto1YlDw": {
-                    "access_keys": [
-                        "5c6363da84f4be7de035044a",
-                        "5c6363da84f4be7de035044c"
-                    ],
-                    "as_title": false,
-                    "d_id": "5c6d32f784f4be1f241ff9ff",
-                    "dataType": "checkbox",
-                    "display_id": "Fld-zto1YlDw",
-                    "f_id": "5ca30ebd84f4be88ac61b172",
-                    "fieldIndex": 0,
-                    "field_csv_name": "",
-                    "full_text": false,
-                    "hideOnInput": false,
-                    "id": "5ca30ebd84f4be88ac61b172",
-                    "max_value": "",
-                    "min_value": "",
-                    "name": "CHECK",
-                    "names": {
-                        "en": "CHECK",
-                        "ja": "CHECK"
-                    },
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "search": true,
-                    "selected": [],
-                    "show_list": true,
-                    "status": false,
-                    "title_order": 0,
-                    "unique": false,
-                    "w_id": "5c5fa7da84f4be4250aaee27"
-                }
-            },
-            "items": [
-                {
-                    "FK": "タスクE",
-                    "Fld-677Ld02p": "h.iwasaki,BeeBot",
-                    "Fld-BLoaNKjo": "A",
-                    "Fld-NdC29Im0": "2015-12-31T15:00:00Z",
-                    "Fld-d0g8UE7D": "X",
-                    "Fld-xjKEyppI": "確認",
-                    "Fld-zto1YlDw": "AAAAA,DDDDD",
-                    "created_at": "2019-04-22T08:05:45Z",
-                    "created_by": "IMPORT",
-                    "d_id": "5c6d32f784f4be1f241ff9ff",
-                    "i_id": "5cbd75d984f4bef6c0ed8591",
-                    "labels": "",
-                    "p_id": "5c6363d984f4be7de0350445",
-                    "rev_no": "2",
-                    "status_id": "5c6d32f884f4be70b8bd20c2",
-                    "title": "タスクE",
-                    "updated_at": "2020-05-23T07:48:16Z",
-                    "updated_by": "5c5fa7aa84f4be4250aaee25"
-                }
-            ]
-        }
-    }
+    "status_order": [ // return status order
+        "New",
+        "Closed",
+        "InReview",
+        "Assigned",
+        "InProgress"
+    ],
+    "status_action_order": [
+        "BackToInReview"
+    ],
+    "item_action_order": [
+        "UpdateItem",
+        "CopyItem",
+        "CreateItem",
+        "DeleteItem"
+    ]
 }
 ```
 
 
-(2) 内部ID利用時　（パラメーターなし例）
+(2) use_display_id: ture ＋  include_linked_items: true の例
+```javascript
+{
+    "title": "Title sample AA",
+    "rev_no": 10,
+    "field_values": {
+        "Assignee": {
+            "field_id": "Assignee",
+            "field_name": "担当",
+            "dataType": "text",
+            "value": "",
+            "sizeX": 6,
+            "sizeY": 1,
+            "col": 0,
+            "row": 2
+        },
+        "AutoNum1": {
+            "field_id": "AutoNum1",
+            "field_name": "AutoNumber1",
+            "dataType": "autonum",
+            "value": "PREFIX_4",
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 0,
+            "row": 4
+        },
+        "Category": {
+            （....省略）
+        }
+    },
+    "status_list": {
+        "Assigned": {
+            "status_id": "Assigned",
+            "s_id": "5f38a11baa39556e74845a40",
+            "status_name": "受付"
+        },
+        "Closed": {
+            "status_id": "Closed",
+            "s_id": "5f38a11baa39556e74845a3e",
+            "status_name": "完了"
+        },
+        （....省略）
+        }
+    },
+    "status_actions": {
+        "BackToNew": {
+            "action_id": "BackToNew",
+            "a_id": "5f38a11daa39556e74845a48",
+            "action_name": "新規へ戻す",
+            "display_order": 1,
+            "crud_type": "2",
+            "next_status_id": "New"
+        },
+        （....省略）
+        }
+    },
+    "item_actions": {
+        "CopyItem": {
+            "action_id": "CopyItem",
+            "a_id": "5f38a11daa39556e74845a4c",
+            "action_name": "コピーして新規登録する",
+            "display_order": 0,
+            "crud_type": "4"
+        },
+        （....省略）
+        }
+    },
+    "linked_items": {
+        "TODORelated": {
+            "d_id": "5f38b0afaa395581685afdf6",
+            "ds_name": "TODO関連",
+            "display_id": "TODORelated",
+            "fields": {
+                "Assignee": {
+                    "as_title": false,
+                    "dataType": "text",
+                    "display_id": "Assignee",
+                    "f_id": "5f38b0afaa39558bfca29637",
+                    "fieldIndex": 0,
+                    "full_text": false,
+                    "hideOnInput": false,
+                    "id": "5f38b0afaa39558bfca29637",
+                    "name": "担当",
+                    "search": true,
+                    "show_list": true,
+                    "status": false,
+                    "title_order": 0,
+                    "unique": false
+                },
+                "Category": {
+                    "as_title": false,
+                    "dataType": "select",
+                    "display_id": "Category",
+                    "f_id": "5f38b0afaa39558bfca29638",
+                    "fieldIndex": 0,
+                    "full_text": false,
+                    "hideOnInput": false,
+                    "id": "5f38b0afaa39558bfca29638",
+                    "name": "カテゴリ",
+                    "search": true,
+                    "show_list": true,
+                    "status": false,
+                    "title_order": 0,
+                    "unique": false
+                },
+                "DueDate": {
+                    "as_title": false,
+                    "dataType": "date",
+                    "display_id": "DueDate",
+                    "f_id": "5f38b0afaa39558bfca2963a",
+                    "fieldIndex": 4,
+                    "full_text": false,
+                    "hideOnInput": false,
+                    "id": "5f38b0afaa39558bfca2963a",
+                    "name": "期限",
+                    "search": true,
+                    "show_list": true,
+                    "status": false,
+                    "title_order": 0,
+                    "unique": false
+                },
+                "Fld-tSWAyL4f": {
+                    "as_title": false,
+                    "dataType": "text",
+                    "display_id": "Fld-tSWAyL4f",
+                    "f_id": "600a83b728dc5c3e9cd7e7df",
+                    "fieldIndex": 5,
+                    "full_text": false,
+                    "hideOnInput": false,
+                    "id": "600a83b728dc5c3e9cd7e7df",
+                    "name": "ID",
+                    "search": true,
+                    "show_list": true,
+                    "status": false,
+                    "title_order": 0,
+                    "unique": true
+                },
+                "LookupMySelf": {
+                    "as_title": false,
+                    "dataType": "dslookup",
+                    "display_id": "LookupMySelf",
+                    "dslookup_info": {
+                        "dslookup_datastore_id": "5f38b0afaa395581685afdf6",
+                        "dslookup_field_id": "600a83b728dc5c3e9cd7e7df",
+                        "dslookup_project_id": "5f25956528dc5c55b463bc7b"
+                    },
+                    "f_id": "600b054628dc5c4aa0e5209c",
+                    "fieldIndex": 0,
+                    "full_text": false,
+                    "hideOnInput": false,
+                    "id": "600b054628dc5c4aa0e5209c",
+                    "name": "LookupMySelf",
+                    "search": true,
+                    "show_list": true,
+                    "status": false,
+                    "title_order": 0,
+                    "unique": false
+                },
+                "Status": {
+                    "as_title": false,
+                    "dataType": "status",
+                    "display_id": "Status",
+                    "f_id": "5f38b0afaa39558bfca29639",
+                    "fieldIndex": 3,
+                    "full_text": false,
+                    "hideOnInput": false,
+                    "id": "5f38b0afaa39558bfca29639",
+                    "name": "ステータス",
+                    "search": true,
+                    "show_list": true,
+                    "status": true,
+                    "title_order": 0,
+                    "unique": false
+                },
+                "Title": {
+                    "as_title": true,
+                    "dataType": "text",
+                    "display_id": "Title",
+                    "f_id": "5f38b0afaa39558bfca29636",
+                    "fieldIndex": 0,
+                    "full_text": false,
+                    "hideOnInput": false,
+                    "id": "5f38b0afaa39558bfca29636",
+                    "name": "タイトル",
+                    "search": true,
+                    "show_list": true,
+                    "status": false,
+                    "title_order": 3,
+                    "unique": false
+                }
+            },
+            "items": [
+                {
+                    "Assignee": "X",
+                    "Category": "B",
+                    "DueDate": "2015-12-31T15:00:00Z",
+                    "Fld-tSWAyL4f": "3",
+                    "LookupMySelf": "3",
+                    "Status": "完了",
+                    "Title": "タスクE",
+                    "created_at": "2020-08-16T04:06:14Z",
+                    "created_by": "IMPORT",
+                    "d_id": "5f38b0afaa395581685afdf6",
+                    "i_id": "5f38b0b6aa395581685afdff",
+                    "labels": "",
+                    "links": "",
+                    "p_id": "5f25956528dc5c55b463bc7b",
+                    "rev_no": "4",
+                    "status_id": "5f38b0afaa39558bfca2963c",
+                    "title": "タスクE",
+                    "updated_at": "2021-01-22T17:10:37Z",
+                    "updated_by": "5f25952c28dc5c55b463bc76"
+                },
+                {
+                    "Assignee": "Y",
+                    "Category": "A",
+                    "DueDate": "2015-12-31T15:00:00Z",
+                    "Fld-tSWAyL4f": "0",
+                    "Status": "受付",
+                    "Title": "タスクB",
+                    "created_at": "2020-08-16T04:06:14Z",
+                    "created_by": "IMPORT",
+                    "d_id": "5f38b0afaa395581685afdf6",
+                    "i_id": "5f38b0b6aa395581685afe02",
+                    "labels": "",
+                    "p_id": "5f25956528dc5c55b463bc7b",
+                    "rev_no": "2",
+                    "status_id": "5f38b0afaa39558bfca2963e",
+                    "title": "タスクB",
+                    "updated_at": "2021-01-22T07:50:24Z",
+                    "updated_by": "5f25952c28dc5c55b463bc76"
+                }
+            ]
+        },
+        "TestDB": {
+            "d_id": "5f263b7628dc5c6af0b1206a",
+            "ds_name": "TestDB",
+            "display_id": "TestDB",
+            "fields": {
+                "Fld-DtS3DOcO": {
+                    "as_title": true,
+                    "dataType": "text",
+                    "display_id": "Fld-DtS3DOcO",
+                    "f_id": "5f263b7628dc5c5dcc669033",
+                    "fieldIndex": 0,
+                    "full_text": true,
+                    "hideOnInput": false,
+                    "id": "5f263b7628dc5c5dcc669033",
+                    "name": "タイトル",
+                    "search": true,
+                    "show_list": true,
+                    "status": false,
+                    "title_order": 2,
+                    "unique": false
+                },
+                "Fld-cwCrrWGn": {
+                    "as_title": false,
+                    "dataType": "status",
+                    "display_id": "Fld-cwCrrWGn",
+                    "f_id": "5f263b7628dc5c5dcc669034",
+                    "fieldIndex": 1,
+                    "full_text": false,
+                    "hideOnInput": false,
+                    "id": "5f263b7628dc5c5dcc669034",
+                    "name": "ステータス",
+                    "search": true,
+                    "show_list": true,
+                    "status": true,
+                    "title_order": 0,
+                    "unique": false
+                },
+                "Lookup1": {
+                    "as_title": false,
+                    "dataType": "dslookup",
+                    "display_id": "Lookup1",
+                    "dslookup_info": {
+                        "dslookup_datastore_id": "5f38b0afaa395581685afdf6",
+                        "dslookup_field_id": "600a83b728dc5c3e9cd7e7df",
+                        "dslookup_project_id": "5f25956528dc5c55b463bc7b"
+                    },
+                    "f_id": "60158e6a28dc5c5264d96a3b",
+                    "fieldIndex": 0,
+                    "full_text": false,
+                    "hideOnInput": false,
+                    "id": "60158e6a28dc5c5264d96a3b",
+                    "name": "Lookup1",
+                    "search": true,
+                    "show_list": true,
+                    "status": false,
+                    "title_order": 0,
+                    "unique": false
+                }
+            },
+            "items": [
+                {
+                    "Fld-DtS3DOcO": "サンプルデータ",
+                    "Fld-cwCrrWGn": "ステータス１",
+                    "created_at": "2020-08-02T04:05:16Z",
+                    "created_by": "IMPORT",
+                    "d_id": "5f263b7628dc5c6af0b1206a",
+                    "i_id": "5f263b7c28dc5c6af0b12075",
+                    "p_id": "5f25956528dc5c55b463bc7b",
+                    "rev_no": "1",
+                    "status_id": "5f263b7628dc5c5dcc669037",
+                    "title": "サンプルデータ"
+                },
+                {
+                    "Fld-DtS3DOcO": "サンプルデータ",
+                    "Fld-cwCrrWGn": "ステータス２",
+                    "Lookup1": "3",
+                    "created_at": "2020-08-02T04:05:16Z",
+                    "created_by": "IMPORT",
+                    "d_id": "5f263b7628dc5c6af0b1206a",
+                    "i_id": "5f263b7c28dc5c6af0b12076",
+                    "labels": "",
+                    "links": "",
+                    "p_id": "5f25956528dc5c55b463bc7b",
+                    "rev_no": "2",
+                    "status_id": "5f263b7628dc5c5dcc669036",
+                    "title": "サンプルデータ",
+                    "updated_at": "2021-01-30T16:51:55Z",
+                    "updated_by": "5f25952c28dc5c55b463bc76"
+                }
+            ]
+        }
+    },
+    "status_order": [
+        "New",
+        "Closed",
+        "InReview",
+        "Assigned",
+        "InProgress"
+    ],
+    "status_action_order": [
+        "MoveToInProgress",
+        "BackToNew"
+    ],
+    "item_action_order": [
+        "UpdateItem",
+        "CopyItem",
+        "CreateItem",
+        "DeleteItem"
+    ]
+}
+```
+
+(3) データベース参照型を含む例  include_lookups=true
+
+```javascript
+{
+    "title": "Title sample AA",
+    "rev_no": 10,
+    "field_values": {
+        "Assignee": {
+            "field_id": "Assignee",
+            "field_name": "担当",
+            "dataType": "text",
+            "value": "",
+            "sizeX": 6,
+            "sizeY": 1,
+            "col": 0,
+            "row": 2
+        },
+        "AutoNum1": {
+            "field_id": "AutoNum1",
+            "field_name": "AutoNumber1",
+            "dataType": "autonum",
+            "value": "PREFIX_4",
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 0,
+            "row": 4
+        },
+        "LU2": { // LookUp field 
+            "field_id": "LU2",
+            "field_name": "LU2",
+            "dataType": "dslookup",
+            "value": {
+                "d_id": "5f38b0afaa395581685afdf6",
+                "item_id": "5f38b0b6aa395581685afe02",
+                "lookup_item": {  // added lookup_item
+                    "Assignee": "Y",
+                    "Category": "",
+                    "DueDate": "2015-12-31T15:00:00Z",
+                    "Fld-tSWAyL4f": "0",
+                    "Status": "受付",
+                    "Title": "タスクB",
+                    "created_at": "2020-08-16T04:06:14Z",
+                    "created_by": "IMPORT",
+                    "d_id": "5f38b0afaa395581685afdf6",
+                    "i_id": "5f38b0b6aa395581685afe02",
+                    "p_id": "5f25956528dc5c55b463bc7b",
+                    "rev_no": "2",
+                    "status_id": "5f38b0afaa39558bfca2963e",
+                    "title": "タスクB",
+                    "updated_at": "2021-01-22T07:50:24Z",
+                    "updated_by": "5f25952c28dc5c55b463bc76"
+                },
+                "title": "タスクB"
+            },
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 5,
+            "row": 5
+        },
+        "Lookup1": {
+            "field_id": "Lookup1",
+            "field_name": "Lookup1",
+            "dataType": "dslookup",
+            "value": {
+                "d_id": "5f38b0afaa395581685afdf6",
+                "item_id": "5f38b0b6aa395581685afdff",
+                "lookup_item": { // added lookup_item
+                    "Assignee": "X",
+                    "Category": "",
+                    "DueDate": "2015-12-31T15:00:00Z",
+                    "Fld-tSWAyL4f": "3",
+                    "LookupMySelf": "3",
+                    "Status": "完了",
+                    "Title": "タスクE",
+                    "created_at": "2020-08-16T04:06:14Z",
+                    "created_by": "IMPORT",
+                    "d_id": "5f38b0afaa395581685afdf6",
+                    "i_id": "5f38b0b6aa395581685afdff",
+                    "lookup_items": { //  lookup_item in lookup_item (limited by 2 times per datastore)
+                        "LookupMySelf": {
+                            "Assignee": "X",
+                            "Category": "B",
+                            "DueDate": "2015-12-31T15:00:00Z",
+                            "Fld-tSWAyL4f": "3",
+                            "LookupMySelf": "5f38b0b6aa395581685afdff",
+                            "Title": "タスクE",
+                            "created_at": "2020-08-16T04:06:14Z",
+                            "created_by": "IMPORT",
+                            "d_id": "5f38b0afaa395581685afdf6",
+                            "i_id": "5f38b0b6aa395581685afdff",
+                            "p_id": "5f25956528dc5c55b463bc7b",
+                            "rev_no": "4",
+                            "status_id": "5f38b0afaa39558bfca2963c",
+                            "title": "タスクE",
+                            "updated_at": "2021-01-22T17:10:37Z",
+                            "updated_by": "5f25952c28dc5c55b463bc76"
+                        }
+                    },
+                    "p_id": "5f25956528dc5c55b463bc7b",
+                    "rev_no": "4",
+                    "status_id": "5f38b0afaa39558bfca2963c",
+                    "title": "タスクE",
+                    "updated_at": "2021-01-22T17:10:37Z",
+                    "updated_by": "5f25952c28dc5c55b463bc76"
+                },
+                "title": "タスクE"
+            },
+            "sizeX": 5,
+            "sizeY": 1,
+            "col": 0,
+            "row": 5
+        },
+        "Category": {
+            （....省略）
+        }
+    },
+    "status_list": {
+        "Assigned": {
+            "status_id": "Assigned",
+            "s_id": "5f38a11baa39556e74845a40",
+            "status_name": "受付"
+        },
+        "Closed": {
+            "status_id": "Closed",
+            "s_id": "5f38a11baa39556e74845a3e",
+            "status_name": "完了"
+        },
+        （....省略）
+        }
+    },
+    "status_actions": {
+        "BackToNew": {
+            "action_id": "BackToNew",
+            "a_id": "5f38a11daa39556e74845a48",
+            "action_name": "新規へ戻す",
+            "display_order": 1,
+            "crud_type": "2",
+            "next_status_id": "New"
+        },
+        （....省略）
+        }
+    },
+    "item_actions": {
+        "CopyItem": {
+            "action_id": "CopyItem",
+            "a_id": "5f38a11daa39556e74845a4c",
+            "action_name": "コピーして新規登録する",
+            "display_order": 0,
+            "crud_type": "4"
+        },
+        （....省略）
+        }
+    },
+
+```
+
+(4) 内部ID利用時　（パラメーターなし例）
 
 ```text
 GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/58cd1e5bfbfcba2ebcaf0b1e

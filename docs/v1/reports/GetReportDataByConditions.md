@@ -40,8 +40,21 @@ POST
 "sort_field_id": "No",　// display_id または rpf_idを指定
 "sort_order": "desc",  // asc または descを指定
 
+// 検索結果に作成日、更新日を含める場合は以下を指定します。データソースに指定したデータの作成日、更新日が結果に含まれます。（関連先を結合した場合、関連先アイテムの作成日、更新日は含まれません）
+"include_date_at": true,
+
+// 検索結果にデータベース参照(Lookup)先アイテムの値を含める場合、以下を指定します。
+"include_lookups": true,
+
+// "include_lookups": trueのとき、参照先Itemの数値型データがNumberとして出力する場合は、以下を指定します（defaultでは、数値は文字列("123")で返却される）
+"return_number_value": true,
+
+// 取得結果から、"report_fields"部分を省略できます（report_fields情報が不要の際にデータ量を削減できます）
+"omit_fields_data" : true,
+
 // 結果をCSV形式取得する場合、"csv"と指定（省略するとJSON形式となる）
 "format": "csv" 
+
 ```
 
 **Request URL Sample**
@@ -84,9 +97,81 @@ POST https://api.xxx.com/api/v0/applications/APP_ID/reports/REPORT_ID/conditions
 
 **Response Sample**
 
+通常の結果サンプルについては、[GetReportData](GetReportData.md) を参照
 ```javascript
-（省略） 
 ※　JSON形式は、データレポート取得サンプルと同様
 ※　format="csv"の場合は、1行目がヘッダ行、2行目以降にデータをカンマ区切りで出力される
 ```
 
+### "include_lookups": trueを指定した場合
+"lookup_items" フィールドに、該当データベース参照(Lookup)先のアイテム情報が展開されます。
+Lookup先のItemが再帰的に自分のItemを参照しているようなケースでは、最大で2回まで展開されますが、（無限ループを避けるため）それ以上の呼び出しはされません。
+```javascript
+{
+    "report_fields": [
+        // (省略)  // omit_fields_data : true 指定すると、この"report_fields"を省くことが可能です。
+    ],
+    "report_results": [
+        {
+            "ChildID": "3",
+            "LookupMySelf": "タスクE", // Lookup type 1
+            "Status1": "確認",
+            "Status2": "完了",
+            "Title": "TaskD",
+            "Title2": "タスクE",
+            "created_at": "2020/08/16 11:59:45",
+            "items": [
+                {
+                    "d_id": "5f38a11baa395581685afdb4",
+                    "i_id": "5f38a121aa395581685afdc1"
+                }
+            ],
+            "lookup_items": {
+                "LookupMySelf": { // Item values of Lookup type 1
+                    "Assignee": "X",
+                    "Category": "B",
+                    "DueDate": "2015-12-31T15:00:00Z",
+                    "LookupMySelf": "3",   // Item values of Lookup type 1 (LookupField in the Lookup Item)
+                    "Status": "完了",
+                    "Title": "タスクE",
+                    "created_at": "2020-08-16T04:06:14Z",
+                    "created_by": "IMPORT",
+                    "d_id": "5f38b0afaa395581685afdf6",
+                    "i_id": "5f38b0b6aa395581685afdff",
+                    "lookup_items": {
+                        "LookupMySelf": { // Item values of Lookup type 1 (Recursive Link... )
+                            "Assignee": "X",
+                            "Category": "B",
+                            "DueDate": "2015-12-31T15:00:00Z",
+                            "LookupMySelf": "4", // Recursive call will be limited by twice for the same datastores in the result
+                            "Title": "タスクE",
+                            "created_at": "2020-08-16T04:06:14Z",
+                            "created_by": "IMPORT",
+                            "d_id": "5f38b0afaa395581685afdf6",
+                            "i_id": "5f38b0b6aa395581685afdff",
+                            "p_id": "5f25956528dc5c55b463bc7b",
+                            "rev_no": "4",
+                            "status_id": "5f38b0afaa39558bfca2963c",
+                            "title": "タスクE",
+                            "updated_at": "2021-01-22T17:10:37Z",
+                            "updated_by": "5f25952c28dc5c55b463bc76"
+                        }
+                    },
+                    "p_id": "5f25956528dc5c55b463bc7b",
+                    "rev_no": "4",
+                    "status_id": "5f38b0afaa39558bfca2963c",
+                    "title": "タスクE",
+                    "updated_at": "2021-01-22T17:10:37Z",
+                    "updated_by": "5f25952c28dc5c55b463bc76"
+                }
+            },
+            "updated_at": "2020/09/30 23:04:30"
+        }
+    ],
+    "report_title": "LookupJoin",
+    "error": "",
+    "totalItems": 9,
+    "item_index_from": 0,
+    "item_index_to": 0
+}
+```
