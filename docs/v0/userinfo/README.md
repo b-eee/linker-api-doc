@@ -11,7 +11,7 @@ sidebar_label: 使い方
 ログイン済ユーザ情報の検索、更新などのフローと利用APIを説明します。
 メールを送信するため、SendGridサービスを利用します。
 
-## Prerequisites
+## Pre Requisites
 
 ログイン可能なHexabaseアカウントがすでに存在すること
 
