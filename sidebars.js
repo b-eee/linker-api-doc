@@ -30,7 +30,7 @@ module.exports = {
         type: 'category',
         label: 'Applications',
         items: [
-          'v1/Applications/GetApplicationsAndDatastores',
+          'v1/applications/GetApplicationsAndDatastores',
         ]
       }
       , {

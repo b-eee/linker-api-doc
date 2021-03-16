@@ -4,7 +4,7 @@
 
 **Description**
 
-ユーザーの名前、画像を更新する
+ユーザーの名前を更新する
 
 **Method**
 
@@ -34,6 +34,6 @@ PUT https://api.xxx.com/api/v0/userinfo
 
 **Response Sample**
 
-```text
+```javascript
 {"error": null //エラーの有無}
 ```
