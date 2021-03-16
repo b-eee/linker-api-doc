@@ -1,5 +1,9 @@
+---
+id: README
+title: UserRegistration API
+sidebar_label: 使い方
+---
 
-# UserRegistration API
 新規ユーザを登録し、最初のワークスペースを作成する
 
 ## Overview

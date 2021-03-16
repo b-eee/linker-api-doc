@@ -1,5 +1,5 @@
 
-#### PostItemComment
+#### UpdateItemComment
 
 コメント登録
 

@@ -1,5 +1,9 @@
+---
+id: README
+title: UserInvitation API
+sidebar_label: 使い方
+---
 
-# UserInvitation API
 既存のワークスペース（グループ）へユーザを招待する
 
 ## Overview

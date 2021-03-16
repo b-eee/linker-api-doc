@@ -1,5 +1,9 @@
+---
+id: README
+title: UserInfo API
+sidebar_label: 使い方
+---
 
-# LoginUser API
 ログインユーザの情報取得や更新に関連するAPI
 
 ## Overview

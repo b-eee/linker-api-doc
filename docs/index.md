@@ -38,7 +38,7 @@ Hexabase では、データベース(データストア)に業務データを格
 - [**GetGroupTree**](/docs/v1/groups/GetGroupTree)
 - [**UpdateGroup**](/docs/v1/groups/UpdateGroup)
 
-## ItemActions
+## Item Actions
 
 Hexabase では、アクションにより、アイテムに対して指定した操作を実行できます。
 
@@ -50,7 +50,7 @@ Hexabase では、アクションにより、アイテムに対して指定し�
 - [**GetInputFields**](/docs/v1/item-actions/GetInputFields)
 - [**GetNewActions**](/docs/v1/item-actions/GetNewActions)
 
-## ItemFiles
+## Item Files
 
 アイテムの添付ファイルを操作するAPIです。
 
@@ -58,14 +58,18 @@ Hexabase では、アクションにより、アイテムに対して指定し�
 - [**GetFile**](/docs/v1/item-files/GetFile)
 - [**UploadFile**](/docs/v1/item-files/UploadFile)
 
-## ItemHistories
+## Item Histories
 
 アイテムの履歴とコメントに関するAPIです。
 
+- [**DeleteItemComment**](/docs/v1/item-histories/DeleteItemComment)
 - [**GetItemHistories**](/docs/v1/item-histories/GetItemHistories)
+- [**GetItemHistoriesOld**](/docs/v1/item-histories/GetItemHistoriesOld)
 - [**PostItemComment**](/docs/v1/item-histories/PostItemComment)
+- [**UpdateItemComment**](/docs/v1/item-histories/UpdateItemComment)
 
-## ItemLinks
+
+## Item Links
 
 他データベースのアイテムとの関連付けを操作するAPIです。
 
@@ -74,14 +78,14 @@ Hexabase では、アクションにより、アイテムに対して指定し�
 - [**GetLinkedItems**](/docs/v1/item-links/GetLinkedItems)
 - [**UpdateItemLink**](/docs/v1/item-links/UpdateItemLink)
 
-## ItemsImport
+## Items Import
 
 データをインポートするためのAPIです。
 
 - [**GetImportResults**](/docs/v1/items-import/GetImportResults)
 - [**ImportItems**](/docs/v1/items-import/ImportItems)
 
-## ItemsSearch
+## Items Search
 
 アイテムの検索に関するAPIです。
 
@@ -126,37 +130,40 @@ Hexabase では、データベースの各データを「アイテム」と呼�
 - [**RemoveRoleFromUser**](/docs/v1/roles/RemoveRoleFromUser)
 - [**UpdateGroupRoles**](/docs/v1/roles/UpdateGroupRoles)
 
-## UserRegistration
+## User Registration
 
-ユーザー登録に関するAPIです。
+ユーザー登録に関するAPIです >> [**使い方**](/docs/v1/user-registration/README)
 
 - [**ConfirmRegistration**](/docs/v1/user-registration/ConfirmRegistration)
 - [**RegisterUser**](/docs/v1/user-registration/RegisterUser)
 - [**UserRegistration**](/docs/v1/user-registration/UserRegistration)
 
-## UserInfo
+## User Info
 
-ユーザーの関連情報とパスワードについてのAPIです。
+ログインしているユーザーの情報とパスワードについてのAPIです >> [**使い方**](/docs/v1/userinfo/README)
 
+- [**ConfirmUserEmail**](/docs/v1/userinfo/ConfirmUserEmail)
 - [**GetUserInfo**](/docs/v1/userinfo/GetUserInfo)
 - [**ResetPassword**](/docs/v1/userinfo/ResetPassword)
 - [**SetNewPassword**](/docs/v1/userinfo/SetNewPassword)
 - [**SetPassword**](/docs/v1/userinfo/SetPassword)
+- [**UpdateUserEmail**](/docs/v1/userinfo/UpdateUserEmail)
+- [**UpdateUserEmailRequest**](/docs/v1/userinfo/UpdateUserEmailRequest)
 - [**UpdateUserInfo**](/docs/v1/userinfo/UpdateUserInfo)
 - [**ValidatePassword**](/docs/v1/userinfo/ValidatePassword)
 
-## Users
+## User Invitation
 
-ユーザーを操作するためのAPIです。
+ユーザーを操作するためのAPIです >> [**使い方**](/docs/v1/users-invitation/README)
 
-- [**AddUser**](/docs/v1/users/AddUser)
-- [*GetAllUsersInWorkspace**](/docs/v1/users/GetAllUsersInWorkspace)
-- [**GetRoleUsers**](/docs/v1/users/GetRoleUsers)
-- [**GetUsersInGroup**](/docs/v1/users/GetUsersInGroup)
-- [**GetUsersInWorkspace**](/docs/v1/users/GetUsersInWorkspace)
-- [**RemoveUser**](/docs/v1/users/RemoveUser)
-- [**UserImport**](/docs/v1/users/UserImport)
-- [**UserInvite**](/docs/v1/users/UserInvite)
+- [**AddUser**](/docs/v1/users-invitation/AddUser)
+- [**GetAllUsersInWorkspace**](/docs/v1/users-invitation/GetAllUsersInWorkspace)
+- [**GetRoleUsers**](/docs/v1/users-invitation/GetRoleUsers)
+- [**GetUsersInGroup**](/docs/v1/users-invitation/GetUsersInGroup)
+- [**GetUsersInWorkspace**](/docs/v1/users-invitation/GetUsersInWorkspace)
+- [**RemoveUser**](/docs/v1/users-invitation/RemoveUser)
+- [**UserImport**](/docs/v1/users-invitation/UserImport)
+- [**UserInvite**](/docs/v1/users-invitation/UserInvite)
 
 ## Workspaces
 

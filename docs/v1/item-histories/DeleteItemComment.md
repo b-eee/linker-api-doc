@@ -1,5 +1,5 @@
 
-#### PostItemComment
+#### DeleteItemComment
 
 コメント削除
 

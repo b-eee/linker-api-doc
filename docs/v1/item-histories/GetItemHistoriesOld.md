@@ -1,5 +1,5 @@
 
-#### GetItemHistories
+#### GetItemHistoriesOld
 
 履歴取得
 

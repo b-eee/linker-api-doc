@@ -63,7 +63,7 @@ module.exports = {
       }   
       , {
         type: 'category',
-        label: 'ItemActions',
+        label: 'Item Actions',
         items: [
           'v1/item-actions/CreateItemWithItemID'
           , 'v1/item-actions/CreateNewItemID'
@@ -77,7 +77,7 @@ module.exports = {
       }
       , {
         type: 'category',
-        label: 'ItemFiles',
+        label: 'Item Files',
         items: [
           'v1/item-files/DeleteFile'
           , 'v1/item-files/GetFile'
@@ -86,15 +86,18 @@ module.exports = {
       }
       , {
         type: 'category',
-        label: 'ItemHistories',
+        label: 'Item Histories',
         items: [
-          'v1/item-histories/GetItemHistories'
+          'v1/item-histories/DeleteItemComment'
+          , 'v1/item-histories/GetItemHistories'
+          , 'v1/item-histories/GetItemHistoriesOld'
           , 'v1/item-histories/PostItemComment'
+          , 'v1/item-histories/UpdateItemComment'
         ]
       }
       , {
         type: 'category',
-        label: 'ItemLinks',
+        label: 'Item Links',
         items: [
           'v1/item-links/AddItemLink'
           , 'v1/item-links/DeleteItemLink'
@@ -104,7 +107,7 @@ module.exports = {
       }
       , {
         type: 'category',
-        label: 'ItemsImport',
+        label: 'Items Import',
         items: [
           'v1/items-import/GetImportResults'
           , 'v1/items-import/ImportItems'
@@ -112,7 +115,7 @@ module.exports = {
       }
       , {
         type: 'category',
-        label: 'ItemsSearch',
+        label: 'Items Search',
         items: [
           'v1/items-search/GetItemSearchConditions'
           , 'v1/items-search/GetUserQueries'
@@ -141,7 +144,7 @@ module.exports = {
       }
       , {
         type: 'category',
-        label: 'Reports',
+        label: 'Data Reports',
         items: [
           'v1/reports/GetReportData'
           , 'v1/reports/GetReportDataByConditions'
@@ -160,37 +163,43 @@ module.exports = {
       }
       , {
         type: 'category',
-        label: 'UserRegistration',
+        label: 'User Registration',
         items: [
-          'v1/user-registration/ConfirmRegistration'
+          'v1/user-registration/README'
+          , 'v1/user-registration/ConfirmRegistration'
           , 'v1/user-registration/RegisterUser'
           , 'v1/user-registration/UserRegistration'
         ]
       }
       , {
         type: 'category',
-        label: 'UserInfo',
+        label: 'User Info',
         items: [
-          'v1/userinfo/GetUserInfo'
+          'v1/userinfo/README'
+          , 'v1/userinfo/ConfirmUserEmail'
+          , 'v1/userinfo/GetUserInfo'
           , 'v1/userinfo/ResetPassword'
           , 'v1/userinfo/SetNewPassword'
           , 'v1/userinfo/SetPassword'
+          , 'v1/userinfo/UpdateUserEmail'
+          , 'v1/userinfo/UpdateUserEmailRequest'
           , 'v1/userinfo/UpdateUserInfo'
           , 'v1/userinfo/ValidatePassword'
         ]
       }
       , {
         type: 'category',
-        label: 'Users',
+        label: 'User Invitation',
         items: [
-          'v1/users/AddUser'
-          , 'v1/users/GetAllUsersInWorkspace'
-          , 'v1/users/GetRoleUsers'
-          , 'v1/users/GetUsersInGroup'
-          , 'v1/users/GetUsersInWorkspace'
-          , 'v1/users/RemoveUser'
-          , 'v1/users/UserImport'
-          , 'v1/users/UserInvite'
+          'v1/users-invitation/README'
+          , 'v1/users-invitation/AddUser'
+          , 'v1/users-invitation/GetAllUsersInWorkspace'
+          , 'v1/users-invitation/GetRoleUsers'
+          , 'v1/users-invitation/GetUsersInGroup'
+          , 'v1/users-invitation/GetUsersInWorkspace'
+          , 'v1/users-invitation/RemoveUser'
+          , 'v1/users-invitation/UserImport'
+          , 'v1/users-invitation/UserInvite'
         ]
       }
       , {
