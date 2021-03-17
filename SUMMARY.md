@@ -1,5 +1,4 @@
 # Table of contents
 
-* [Read Me](README.md)
-* [API Document\_jp](api-document_jp.md)
-
+- [Read Me](README.md)
+- [API Document_jp](https://b-eee.github.io/linker-api-doc/)
