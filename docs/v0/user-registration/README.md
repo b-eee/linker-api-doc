@@ -11,7 +11,7 @@ sidebar_label: 使い方
 システムへはじめてのユーザを登録するためのフローと利用APIを説明します。
 メールを送信するために、SendGridサービスの利用が必須です。
 
-## Prerequisites
+## Pre Requisites
 
 Hexabase社へEmail送信用のSendGridのAPI_KEY、テンプレートIDを連絡し、email_template_idの発行を受けます。
 (Optional) Hexabaseデフォルトのメールテンプレートを利用すればemail_template_idの発行をしなくても開発を進めることができます。
@@ -26,9 +26,11 @@ Hexabase社へEmail送信用のSendGridのAPI_KEY、テンプレートIDを連�
 
 ## Sequence Diagram
 
-このページを参照するためには、Webブラウザへ[Mermaid Extension](https://chrome.google.com/webstore/detail/github-%2B-mermaid/goiiopgdnkogdbjmncgedmgpoajilohe/related) をインストールしてください
+![User Registration Sequence](/img/docs/v0/user-registration.png)
 
-```mermaid
+<!-- このページを参照するためには、Webブラウザへ[Mermaid Extension](https://chrome.google.com/webstore/detail/github-%2B-mermaid/goiiopgdnkogdbjmncgedmgpoajilohe/related) をインストールしてください -->
+
+``` mermaid
 sequenceDiagram
     participant br as Browser
     participant ml as Mailer

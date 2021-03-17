@@ -11,7 +11,7 @@ sidebar_label: 使い方
 ログイン済ユーザ情報の検索、更新などのフローと利用APIを説明します。
 メールを送信するため、SendGridサービスを利用します。
 
-## Prerequisites
+## Pre Requisites
 
 ログイン可能なHexabaseアカウントがすでに存在すること
 
@@ -24,7 +24,7 @@ sidebar_label: 使い方
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 43 | [GetUserInfo](GetUserInfo.md) | ユーザー情報取得 | GET | /api/v0/userinfo | ユーザーの関連情報取得 | v0 | - |
-| 61 | [UpdateUserInfo](api/userinfo/UpdateUserInfo.md) | ユーザー情報更新 | PUT | /api/v0/userinfo | ユーザー名、情報の更新 | v0 | - |
+| 61 | [UpdateUserInfo](UpdateUserInfo.md) | ユーザー情報更新 | PUT | /api/v0/userinfo | ユーザー名、情報の更新 | v0 | - |
 
 ### パスワード変更
 
@@ -32,15 +32,17 @@ sidebar_label: 使い方
 
 | No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 56 | [ResetPassword](api/userinfo/ResetPassword.md) | パスワード初期化リクエスト | POST | /api/v0/users/password/forgot | ログイン前、パスワード初期化 開始 | v0 | - |
-| 57 | [SetNewPassword](api/userinfo/SetNewPassword.md) | パスワード再登録 | PUT | /api/v0/users/password/forgot | ログイン前、パスワード初期化 パスワードを変更 | v0 | - |
-| 58 | [ValidatePassword](api/userinfo/ValidatePassword.md) | パスワード変更確認 | GET | /api/v0/users/password/validate | ログイン前、パスワード初期化　パスワー変更状態の確認 | v0 | - |
-| 59 | [SetPassword](api/userinfo/SetPassword.md) | パスワード変更登録 | PUT | /api/v0/users/password | ログイン後、パスワード変更 | v0 | - |
+| 56 | [ResetPassword](ResetPassword.md) | パスワード初期化リクエスト | POST | /api/v0/users/password/forgot | ログイン前、パスワード初期化 開始 | v0 | - |
+| 57 | [SetNewPassword](SetNewPassword.md) | パスワード再登録 | PUT | /api/v0/users/password/forgot | ログイン前、パスワード初期化 パスワードを変更 | v0 | - |
+| 58 | [ValidatePassword](ValidatePassword.md) | パスワード変更確認 | GET | /api/v0/users/password/validate | ログイン前、パスワード初期化　パスワー変更状態の確認 | v0 | - |
+| 59 | [SetPassword](SetPassword.md) | パスワード変更登録 | PUT | /api/v0/users/password | ログイン後、パスワード変更 | v0 | - |
 
 
 #### Sequence Diagram
 
-シーケンス図を参照するためには、Webブラウザへ[Mermaid Extension](https://chrome.google.com/webstore/detail/github-%2B-mermaid/goiiopgdnkogdbjmncgedmgpoajilohe/related) をインストールしてください
+![password_update Sequence](/img/docs/v0/userinfo_password_update.png)
+
+<!-- シーケンス図を参照するためには、Webブラウザへ[Mermaid Extension](https://chrome.google.com/webstore/detail/github-%2B-mermaid/goiiopgdnkogdbjmncgedmgpoajilohe/related) をインストールしてください -->
 
 ```mermaid
 sequenceDiagram
@@ -88,6 +90,8 @@ sequenceDiagram
 
 
 #### Sequence Diagram
+
+![email_update Sequence](/img/docs/v0/userinfo_email_update.png)
 
 ```mermaid
 sequenceDiagram

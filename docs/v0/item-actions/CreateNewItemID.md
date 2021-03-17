@@ -6,7 +6,7 @@
 
 新規アイテムの入力フォームを表示する際に、あらかじめアイテムIDを取得する際に利用します。  
  取得したアイテムIDは、アイテム登録前に添付ファイルのアップロードすることが必要な場合に利用します。  
- このAPIで取得したitem\_idは、[PostNewAction](api-document_jp.md#PostNewAction) APIで新規アイテムを登録する際に利用します。
+ このAPIで取得したitem\_idは、[CreateItemWithItemID API](/docs/v0/item-actions/CreateItemWithItemID)で新規アイテムを登録する際に利用します。
 
 **Method**
 
