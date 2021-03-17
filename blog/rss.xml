@@ -4,29 +4,15 @@
         <title>Hexabase API ガイド Blog</title>
         <link>https://b-eee.github.io/blog</link>
         <description>Hexabase API ガイド Blog</description>
-        <lastBuildDate>Thu, 30 May 2019 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 15 Mar 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
-            <title><![CDATA[Welcome]]></title>
-            <link>https://b-eee.github.io/linker-api-doc/blog/welcome</link>
-            <guid>welcome</guid>
-            <pubDate>Thu, 30 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[Blog features are powered by the blog plugin. Simply add files to the blog directory. It supports tags as well!]]></description>
-        </item>
-        <item>
-            <title><![CDATA[Hello]]></title>
-            <link>https://b-eee.github.io/linker-api-doc/blog/hello-world</link>
-            <guid>hello-world</guid>
-            <pubDate>Wed, 29 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[Welcome to this blog. This blog is created with Docusaurus 2 alpha.]]></description>
-        </item>
-        <item>
-            <title><![CDATA[Release Note]]></title>
-            <link>https://b-eee.github.io/linker-api-doc/blog/hola</link>
-            <guid>hola</guid>
-            <pubDate>Tue, 28 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet]]></description>
+            <title><![CDATA[API Update 20210315]]></title>
+            <link>https://b-eee.github.io/linker-api-doc/blog/API</link>
+            <guid>API</guid>
+            <pubDate>Mon, 15 Mar 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[- DeleteItemComment アイテムコメント削除のhistory-id: を、削除する履歴IDとする]]></description>
         </item>
     </channel>
 </rss>
