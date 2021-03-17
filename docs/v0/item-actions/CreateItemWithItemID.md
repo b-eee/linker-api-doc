@@ -7,7 +7,7 @@ item\_idを指定して新規アイテムを作成
 
 item\_idを指定して新規アイテムを作成します。  
  このAPIは、`アイテム登録前`に`添付ファイルのアップロードが必要`な場合で利用します。  
- 新規に添付ファイルを持ったアイテムを作成するためには、あらかじめ添付ファイルの登録が必要です。添付ファイルの登録にはitem\_idが必要なため、item\_idを取得した後に添付ファイルを登録し、変換されたfile\_idを指定して、このAPIでアイテムを新規作成します。item\_idは、[CreateNewItemID](api-document_jp.md#CreateNewItemID) APIを利用して事前に取得できます。
+ 新規に添付ファイルを持ったアイテムを作成するためには、あらかじめ添付ファイルの登録が必要です。添付ファイルの登録にはitem\_idが必要なため、item\_idを取得した後に添付ファイルを登録し、変換されたfile\_idを指定して、このAPIでアイテムを新規作成します。item\_idは、[CreateNewItemID API](/docs/v0/item-actions/CreateNewItemID)を利用して事前に取得できます。
 
 **Method**
 

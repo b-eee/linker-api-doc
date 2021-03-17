@@ -8,7 +8,7 @@
 添付ファイルフィールドにファイルをアップロードします
 
 * アップロードされたファイルはStorageに保存されますが、Itemへは登録されません。
-* 該当Itemへ登録するためには、Responseにふくまれる`file_id`を使って、アクション実行API（[CreateItemWithItemID](api-document_jp.md#CreateItemWithItemID)や[ExecuteAction](api-document_jp.md#ExecuteAction)など）をcallする必要があります。
+* 該当Itemへ登録するためには、Responseにふくまれる`file_id`を使って、アクション実行API（[CreateItemWithItemID](/docs/v0/item-actions/CreateItemWithItemID)や[ExecuteAction](/docs/v0/item-actions/ExecuteAction)など）をcallする必要があります。
 
 **Method**
 
