@@ -26,9 +26,11 @@ Hexabase社へEmail送信用のSendGridのAPI_KEY、テンプレートIDを連�
 
 ## Sequence Diagram
 
-このページを参照するためには、Webブラウザへ[Mermaid Extension](https://chrome.google.com/webstore/detail/github-%2B-mermaid/goiiopgdnkogdbjmncgedmgpoajilohe/related) をインストールしてください
+![User Registration Sequence](/img/docs/v0/user-registration.png)
 
-```mermaid
+<!-- このページを参照するためには、Webブラウザへ[Mermaid Extension](https://chrome.google.com/webstore/detail/github-%2B-mermaid/goiiopgdnkogdbjmncgedmgpoajilohe/related) をインストールしてください -->
+
+``` mermaid
 sequenceDiagram
     participant br as Browser
     participant ml as Mailer

@@ -40,7 +40,9 @@ sidebar_label: 使い方
 
 #### Sequence Diagram
 
-シーケンス図を参照するためには、Webブラウザへ[Mermaid Extension](https://chrome.google.com/webstore/detail/github-%2B-mermaid/goiiopgdnkogdbjmncgedmgpoajilohe/related) をインストールしてください
+![password_update Sequence](/img/docs/v0/userinfo_password_update.png)
+
+<!-- シーケンス図を参照するためには、Webブラウザへ[Mermaid Extension](https://chrome.google.com/webstore/detail/github-%2B-mermaid/goiiopgdnkogdbjmncgedmgpoajilohe/related) をインストールしてください -->
 
 ```mermaid
 sequenceDiagram
@@ -88,6 +90,8 @@ sequenceDiagram
 
 
 #### Sequence Diagram
+
+![email_update Sequence](/img/docs/v0/userinfo_email_update.png)
 
 ```mermaid
 sequenceDiagram
