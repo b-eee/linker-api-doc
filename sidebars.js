@@ -206,8 +206,13 @@ module.exports = {
         type: 'category',
         label: 'Workspaces',
         items: [
-          'v0/workspaces/GetWorkspaces'
+          'v0/workspaces/README'
+          , 'v0/workspaces/GetWorkspaces'
           , 'v0/workspaces/SelectWorkspace'
+          , 'v0/workspaces/CreateNewWorkspace'
+          , 'v0/workspaces/GetPasswordPolicy'
+          , 'v0/workspaces/GetWorkspaceUsage'
+          , 'v0/workspaces/GetWorkspaceFunctionality'
         ]
       }      
     ],
