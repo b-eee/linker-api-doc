@@ -56,11 +56,7 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 ### ワークスペース関連API
 
 「ワークスペース」は、Hexabaseのアプリケーションをまとめる領域です。業務の種類や内容に合わせてワークスペースを用意して、複数の業務アプリケーションをまとめておきます。
-
-| No | API Name | API名 | Method | URI | 目的 | version | 画面ID\(display\_id\)への対応 |
-| :---: | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 2 | [GetWorkspaces](/docs/v0/workspaces/GetWorkspaces) | ワークスペース一覧 | GET | /api/v0/workspaces | ワークスペースの一覧を取得する | v0 | - |
-| 3 | [SelectWorkspace](/docs/v0/workspaces/SelectWorkspace) | ワークスペース選択 | POST | /api/v0/workspaces/:workspace-id/select | 現在ワークスペースを選択する | v0 | - |
+ワークスペース関連APIは、[こちら](/docs/v0/workspaces/README)のページを参照してください。
 
 ### グループ関連API
 
