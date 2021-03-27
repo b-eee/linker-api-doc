@@ -56,7 +56,9 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 ### ワークスペース関連API
 
 「ワークスペース」は、Hexabaseのアプリケーションをまとめる領域です。業務の種類や内容に合わせてワークスペースを用意して、複数の業務アプリケーションをまとめておきます。
-ワークスペース関連APIは、[こちら](/docs/v0/workspaces/README)のページを参照してください。
+ワークスペース関連APIは、[**こちら**](/docs/v0/workspaces/README)のページを参照してください。
+
+- [**Workspace API**](/docs/v0/workspaces/README)
 
 ### グループ関連API
 
@@ -84,11 +86,15 @@ Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX(�
 
 #### ユーザーの招待 ～ 初期登録
 
-初期ユーザの登録に関しては、[こちら](/docs/v0/user-registration/README)のページを参照してください。
+初期ユーザの登録に関しては、[**こちら**](/docs/v0/user-registration/README)のページを参照してください。
+
+- [**UserRegistration API**](/docs/v0/user-registration/README)
 
 #### ログインユーザAPI
 
-ログイン済ユーザの参照・変更に関するAPIは、[こちら](/docs/v0/userinfo/README)のページを参照してください。
+ログイン済ユーザの参照・変更に関するAPIは、[**こちら**](/docs/v0/userinfo/README)のページを参照してください。
+
+- [**UserInfo API**](/docs/v0/userinfo/README)
 
 #### ユーザー一覧
 
