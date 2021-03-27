@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[97],{167:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"API Update 2021-03-25","permalink":"/linker-api-doc/blog/2021/03/25/API_update"},{"title":"API Update 2021-03-15","permalink":"/linker-api-doc/blog/API"}]}')}}]);
