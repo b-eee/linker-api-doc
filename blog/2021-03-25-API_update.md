@@ -1,5 +1,4 @@
 ---
-slug: API
 title: API Update 2021-03-25
 author: iwask
 author_title: iwask
@@ -8,7 +7,9 @@ tags: [API, update, 2021]
 ---
 
 Workspace関連APIを追加しました。
-ワークスペース関連APIは、[こちら](/docs/v0/workspaces/README)のページを参照してください。
+ワークスペース関連APIは、[**こちら**](/docs/v0/workspaces/README)のページを参照してください。
+
+- [**Workspace API**](/docs/v0/workspaces/README)
 
 |  | API Name | Method | URI | Description |
 | :---: | :--- | :--- | :--- | :--- | 
