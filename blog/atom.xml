@@ -9,8 +9,8 @@
     <icon>https://b-eee.github.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[API Update 2021-03-25]]></title>
-        <id>API</id>
-        <link href="https://b-eee.github.io/linker-api-doc/blog/API"/>
+        <id>API Update 2021-03-25</id>
+        <link href="https://b-eee.github.io/linker-api-doc/blog/2021/03/25/API_update"/>
         <updated>2021-03-25T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Workspace関連APIを追加しました。]]></summary>
     </entry>

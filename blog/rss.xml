@@ -9,8 +9,8 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[API Update 2021-03-25]]></title>
-            <link>https://b-eee.github.io/linker-api-doc/blog/API</link>
-            <guid>API</guid>
+            <link>https://b-eee.github.io/linker-api-doc/blog/2021/03/25/API_update</link>
+            <guid>API Update 2021-03-25</guid>
             <pubDate>Thu, 25 Mar 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[Workspace関連APIを追加しました。]]></description>
         </item>
