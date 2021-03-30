@@ -49,6 +49,16 @@ POST
 // "include_lookups": trueのとき、参照先Itemの数値型データがNumberとして出力する場合は、以下を指定します（defaultでは、数値は文字列("123")で返却される）
 "return_number_value": true,
 
+// 
+"return_count_only": 
+
+// 
+"total_count_timeout_sec": 
+
+// totalItemsを計算を省略します。totalItemsにはかならず0が返ります。データ量が多い場合は顕著に影響します。検索結果の処理速度改善します。
+"omit_total_items": false, // default false
+
+
 // 取得結果から、"report_fields"部分を省略できます（report_fields情報が不要の際にデータ量を削減できます）
 "omit_fields_data" : true,
 
