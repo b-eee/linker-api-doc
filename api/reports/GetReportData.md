@@ -24,10 +24,12 @@ per_page : 1ページたあたりの件数
 page : ページ数
 include_date_at: trueを指定すると、検索結果に作成日、更新日が含まれます。データソースに指定したデータの作成日、更新日が結果に含まれます。（関連先を結合した場合、関連先アイテムの作成日、更新日は含まれません）
 include_lookups　　　　: true を指定すると、データベース参照型Itemのデータまで含まれる
+include_item_ref  : true を指定すると、フィールドの参照先ItemのID(d_id, i_id,rev_no) 情報を取得できる
 return_number_value   : "include_lookups": trueのときtrue を指定すると、参照先Itemの数値型データがNumberとして出力されます（defaultでは、数値は文字列("123")で返却される）
-return_count_only :
-omit_total_items :
-total_count_timeout_sec : 
+return_count_only : totalItemsのみ情報を返す。 report_resultsはnullとなる。
+omit_total_items : totalItemsを省略します。　（件数のカウントを省略すると、より高速に動作します）
+total_count_timeout_sec : totalItemsの取得にタイムアウト秒数を指定します。指定した秒数を超過するとtotalItemsの取得を省略(-1がかえる)します。default:60s
+data_result_timeout_sec : report_results取得時のタイムアウト秒数を指定できます。タイムアウトするとreport_resultsの取得が省略(null)されます。default:60s
 omit_fields_data : 取得結果から、"report_fields"部分を省略できます（report_fields情報が不要の際にデータ量を削減できます）
 format: 省略可能。　"csv" を指定すると、CSV形式で出力する
 ```
