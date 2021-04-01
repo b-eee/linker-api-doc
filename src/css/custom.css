@@ -1,0 +1,67 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @format
+ */
+
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+
+    --ifm-color-black: #18191a;
+    --ifm-color-black-light: #202026;
+    --ifm-color-black-lighter: #2a2a32;
+    --ifm-color-white: #ffffff;
+    --ifm-color-white-dark: #f0f0fd;
+    --ifm-color-white-darker: #e6e6fd;
+    --ifm-color-white-darkest: #C5E9E5;
+    --ifm-color-purple-lightest: #9ABFBD;
+    --ifm-color-purple-lighter: #81AFAD;
+    --ifm-color-purple-light: #79AAA8;
+    --ifm-color-purple: #69A09E;
+    --ifm-color-purple-dark: #5f5c92;
+    --ifm-color-purple-darker: #578A88;
+    --ifm-color-purple-darkest: #487270;
+    --ifm-color-orange: #ee8030;
+    --ifm-color-green: #2FCC00;
+    --ifm-color-green-dark: #2BB800;
+    --ifm-color-red: #ff6262;
+    --ifm-color-redDark: #de5b5b;
+    --ifm-color-yellow: #feec4c;
+    --ifm-color-gray-darkest: #262630;
+    --ifm-color-gray-dark: #3c3c4c;
+  
+    /* // Primary Colors */
+    --ifm-color-primary: var(--ifm-color-purple);
+    --ifm-color-primary-dark: var(--ifm-color-purple-dark);
+    --ifm-color-primary-darker: var(--ifm-color-purple-darker);
+    --ifm-color-primary-darkest: var(--ifm-color-purple-derkest);
+    --ifm-color-primary-light: var(--ifm-color-purple-light);
+    --ifm-color-primary-lighter: var(--ifm-color-purple-lighter);
+    --ifm-color-primary-lightest: var(--ifm-color-purple-lightest);
+    --ifm-code-font-size: 95%;
+
+  /* --ifm-color-primary: rgb(50, 50, 50);
+  --ifm-color-primary-dark: rgb(40, 40, 40);
+  --ifm-color-primary-darker: rgb(30, 30, 30);
+  --ifm-color-primary-darkest: rgb(0, 0, 0);
+  --ifm-color-primary-light: rgb(49, 134, 214);
+  --ifm-color-primary-lighter: rgb(49, 140, 214);
+  --ifm-color-primary-lightest: rgb(49, 181, 214);
+  --ifm-code-font-size: 95%; */
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(72, 77, 91);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
