@@ -40,6 +40,11 @@ sort_fields         : ソートキーが複数ある場合に指定します。 
 use_default_search  : true or false デフォルト検索条件(注)を適用する場合、trueを指定
 include_links       : true を指定すると、関連するアイテムのIDの配列を取得できます
 include_lookups     : true を指定すると、データベース参照型の参照先アイテム情報を結果に含めます
+return_count_only   : trueを指定すると、totalItemsのみ返却します。 itemsは[] (空配列)となります。
+omit_fields_data    : 結果から、fieldsの情報を含めません。（不要な通信データ量を省略できます）
+omit_total_items    : trueを指定すると、totalItemsをカウントしません（より高速になります） totalItemsは0となります。
+data_result_timeout_sec    : 一覧結果取得までのタイムアウト秒数を指定します。タイムアウトした場合は、itemsは[] (空配列)となります。
+total_count_timeout_sec    : 件数取得までのタイムアウト秒数を指定します。タイムアウトした場合は-1が返ります。
 return_number_value : true を指定すると、数値型データがNumberとして出力されます（defaultでは、数値は文字列("123")で返却される）
 format              : "csv"を指定すると、結果をCSV形式で出力されます
 ```
