@@ -15,7 +15,7 @@ variables:
   - name: dockerRegistryServiceConnection
     value: '5b2c1a86-adaf-4fe6-84f9-536f844827fc'
   - name: imageRepository
-    value: 'beee-linker-doc'
+    value: 'beee-linker-api-doc'
   - name: containerRegistry
     value: 'hexabase.azurecr.io'
   - name: dockerfilePath
@@ -75,7 +75,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployments/linker-doc-deploy-stg.yml
-                $(Pipeline.Workspace)/manifests/services/linker-doc-svc.yml
+                $(Pipeline.Workspace)/manifests/deployments/linker-api-doc-deploy-stg.yml
+                $(Pipeline.Workspace)/manifests/services/linker-api-doc-svc.yml
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
