@@ -9,6 +9,8 @@ trigger:
     include:
     - develop
 
+pr: none
+
 resources:
 - repo: self
 
