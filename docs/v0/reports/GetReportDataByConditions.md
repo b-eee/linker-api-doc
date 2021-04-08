@@ -44,10 +44,26 @@ POST
 "include_date_at": true,
 
 // 検索結果にデータベース参照(Lookup)先アイテムの値を含める場合、以下を指定します。
-"include_lookups": true,
+"include_lookups": true, // default false
+
+// 検索結果にフィールドの参照先ItemのID(d_id, i_id,rev_no) を含める場合、以下を指定します。
+"include_item_ref": true, // default false
 
 // "include_lookups": trueのとき、参照先Itemの数値型データがNumberとして出力する場合は、以下を指定します（defaultでは、数値は文字列("123")で返却される）
 "return_number_value": true,
+
+// totalItems（ヒットした件数）のみを返却します。report_resultsにはnullが返却されます。
+"return_count_only": true, // default false
+
+// totalItemsの検索のタイムアウト時間を秒で指定します。タイムアウトした場合、totalCountは-1が返ります。
+"total_count_timeout_sec": 10 // default 60(s)
+
+// data_result_timeout_sec  report_results取得時のタイムアウト秒数を指定できます。タイムアウトするとreport_resultsの取得が省略(null)されます。
+"data_result_timeout_sec": 20 // default 60(s)
+
+// totalItemsを計算を省略します。totalItemsにはかならず0が返ります。データ量が多い場合は顕著に影響します。検索結果の処理速度改善します。
+"omit_total_items": false, // default false
+
 
 // 取得結果から、"report_fields"部分を省略できます（report_fields情報が不要の際にデータ量を削減できます）
 "omit_fields_data" : true,
@@ -173,5 +189,21 @@ Lookup先のItemが再帰的に自分のItemを参照しているようなケー
     "totalItems": 9,
     "item_index_from": 0,
     "item_index_to": 0
+}
+```
+
+### エラーケース
+
+totalItemsの検索でタイムアウトした場合
+```
+{
+    "report_results": [
+        ...(省略)
+    ],
+    "report_title": "ReportTitle",
+    "error": "error totalItems count process timeout. (3 sec elapsed)",
+    "totalItems": -1,
+    "item_index_from": 0,
+    "item_index_to": 4
 }
 ```
