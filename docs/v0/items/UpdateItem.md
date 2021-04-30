@@ -59,7 +59,7 @@ item-id         : 対象アイテムのID
       "RELATED_DS_1" : [
         {
           "operation" : 1,  // new
-          "link_to_parent": true,  // 親Itemとのデータリンクを作成する default: false
+          "link_to_parent": true,  // 親Itemとのデータリンクを作成する  default: false(親→指定したi_idへのリンクのみ)
           "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
           "item": {
             "FIELD_ID1" : "data",
@@ -72,7 +72,7 @@ item-id         : 対象アイテムのID
           }
         },{
           "operation" : 2,  // update
-          "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
+          "action_id" : "Update2", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
           "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
           "item": {
             "FIELD_ID1" : "data",
