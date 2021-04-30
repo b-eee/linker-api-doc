@@ -102,7 +102,8 @@ GET https://api.xxx.com/api/v0/datastores/59bf42550e2479186a6c6c70/5a2671ec0e247
                   "value": "選択2",
                   "enabled": true
                 }
-            ]
+            ],
+            "selected": "c742f7f6-0339-4240-a1ea-66543fc504ca"  // select,radio type has default value
         },
         "5a26722e0e24794c979fa5b6": {
             "field_id": "5a26722e0e24794c979fa5b6",

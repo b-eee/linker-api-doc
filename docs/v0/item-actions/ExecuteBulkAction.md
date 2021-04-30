@@ -22,7 +22,7 @@ POST
 conditions の詳細については、[conditions](#conditions)を参照
 
 `Content-Type : application/json`
-```text
+```javascript
 {
   "conditions": [
     {
@@ -54,7 +54,15 @@ conditions の詳細については、[conditions](#conditions)を参照
   "comment": "一括承認", // アクション実行時にアイテムへ付加するコメントメッセージ
   "max_items": 100, // 最大の処理実行件数. デフォルトは100.　最大300件まで。10件単位で指定する（10,20,30,...300)
   "use_display_id" : true, // 画面IDを指定 trueの場合、フィールドIDに画面IDを利用可能
-  "continue_proc": true // (default)false: 対象がmax_itemsを超えていたらエラー（1件も処理しない）, trueの場合、対象アイテム件数がmax_itemsを超えた場合、max_items件まで処理を実行する。
+  "continue_proc": true, // (default)false: 対象がmax_itemsを超えていたらエラー（1件も処理しない）, trueの場合、対象アイテム件数がmax_itemsを超えた場合、max_items件まで処理を実行する。
+　"access_key_updates": {　　// アクセスキーを指定
+      "overwrite": true,　 // アクセスキーを上書き保存（デフォルトはfalse：既存のキーに追加する）
+      "ignore_action_settings": true, // アクションに設定された公開設定を利用しない（このPayloadで指定したキーのみを付与する）
+      "apply_related_ds": true,  // related_ds_itemsに指定したアイテムにも同様の設定を利用する
+      "groups_to_publish": ["GROUP1", "GROUP2"],  // group display_idを指定（実行ユーザが保持するキーのみ指定可能）
+      "roles_to_publish": ["ADMIN", "MEMBER"], // role display_idを指定（実行ユーザが保持するキーのみ指定可能）
+      "users_to_publish": ["607c2a25844887b6855a12a9", "5f25956428dc5c55b463bc77" ] // user_idを指定（ワークスペース内に存在するuser_idを指定可能）
+  }
 }
 ```
 * 更新itemの情報は、変更点のみを指定します。
