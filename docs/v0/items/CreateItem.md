@@ -62,6 +62,7 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
       "RELATED_DS_1" : [
         {
           "operation" : 1,  // new
+          "link_to_parent": true,  // 親Itemとのデータリンクを作成する（双方のリンクが作成される） default: false(親→指定したi_idへのリンクのみ)
           "action_id" : "", // new actionID　※省略可 (省略するとデフォルトの新規アクションが利用される)
           "item": {
             "FIELD_ID1" : "data",
@@ -84,6 +85,13 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
           "operation" : 3,  // delete
           "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
           "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
+        },{
+          "operation" : 11,  // add link :リンクを作成
+          "link_to_parent": true,  // 親Itemとのデータリンクを作成する（双方のリンクが作成される） default: false(親→指定したi_idへのリンクのみ)
+          "i_id" : "58bbaa27fbfcba609874aqr46", // 対象アイテムID
+        },{
+          "operation" : 12,  // remove link :リンクを削除
+          "i_id" : "58bbaa27fbfcba609874aqr47", // 対象アイテムID
         },{
           // 関連する複数アイテムを指定可能。sample 省略
         },{
