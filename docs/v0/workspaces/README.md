@@ -19,6 +19,7 @@ sidebar_label: 使い方
 | 1 | [GetWorkspaces](GetWorkspaces.md) | GET | /api/v0/workspaces | ワークスペースの一覧を取得する |
 | 2 | [SelectWorkspace](SelectWorkspace.md) | POST | /api/v0/workspaces/:workspace-id/select | 現在ワークスペースを選択する |
 | 3 | [CreateNewWorkspace](CreateNewWorkspace.md) | POST | /api/v0/workspaces | 新規ワークスペースを作成する |
-| 4 | [GetPasswordPolicy](GetPasswordPolicy.md) | GET | /api/v0/workspaces/:workspace-id/password-policy | ワークスペースに指定されたパスワードポリシーを取得する |
-| 5 | [GetWorkspaceUsage](GetWorkspaceUsage.md) | GET | /api/v0/workspaces/:workspace-id/usages | ワークスペースの利用状況(ユーザ数、DB数など)を取得する |
-| 6 | [GetWorkspaceFunctionality](GetWorkspaceFunctionality.md) | GET | /api/v0/workspaces/:workspace-id/functionalities | ワークスペースが利用できる機能設定を取得する |
+| 4 | [GlobalSearch](GlobalSearch.md) | POST | /api/v0/globalsearch | ワークスペース内のデータを全文検索する |
+| 5 | [GetPasswordPolicy](GetPasswordPolicy.md) | GET | /api/v0/workspaces/:workspace-id/password-policy | ワークスペースに指定されたパスワードポリシーを取得する |
+| 6 | [GetWorkspaceUsage](GetWorkspaceUsage.md) | GET | /api/v0/workspaces/:workspace-id/usages | ワークスペースの利用状況(ユーザ数、DB数など)を取得する |
+| 7 | [GetWorkspaceFunctionality](GetWorkspaceFunctionality.md) | GET | /api/v0/workspaces/:workspace-id/functionalities | ワークスペースが利用できる機能設定を取得する |
