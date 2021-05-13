@@ -4,9 +4,16 @@
         <title>Hexabase API ガイド Blog</title>
         <link>https://b-eee.github.io/blog</link>
         <description>Hexabase API ガイド Blog</description>
-        <lastBuildDate>Fri, 30 Apr 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 14 May 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[Feature Update 2021-05-14]]></title>
+            <link>https://b-eee.github.io/linker-api-doc/blog/2021/05/14/feature_update</link>
+            <guid>Feature Update 2021-05-14</guid>
+            <pubDate>Fri, 14 May 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[API：全文検索APIを追加]]></description>
+        </item>
         <item>
             <title><![CDATA[API Update 2021-04-30]]></title>
             <link>https://b-eee.github.io/linker-api-doc/blog/2021/04/30/API_update</link>
