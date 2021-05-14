@@ -25,6 +25,7 @@ POST
 {
   "comment": "test-comment",
   "return_item_result": true, // true指定すると、更新されたアイテム情報を返します
+  "return_actionscript_logs": false, // default false. true指定すると、ActionScript実行ログを返却します
   "item": {
       "5e256923aeae8e212cb2e03b": "value", // text tyepe
       "58bbaa27fbfcba6098746061": "5d4c058baa39555618ac9e98", // select type
