@@ -125,11 +125,39 @@ POST https://api.xxx.com//api/v0/applications/:app-id/datastores/:datastore-id/i
 null
 ```
 
-Payload に "return_item_result": true　を指定した場合、登録されたアイテム情報がもどる
+Payload に "return_item_result": true　を指定した場合、登録されたアイテム情報がもどります。
 ```javascript
 {
   item: {
     // 登録されたアイテム情報がもどる（関連アイテムの詳細は含まれない）
   }
+}
+```
+- エラー発生時、以下のようにエラーが返ります。
+- エラーコードは[こちら](/docs/errors)を参照ください。
+
+```
+{
+    "error": [
+        {
+            "description": "item:601978f228dc5c3c64e5b895(d_id:5f38b0afaa395581685afdf6) has rev_no:14 but specified rev_no:0",
+            "error": "Revision number mismatch",
+            "error_code": "ITEM_REV_CONFLICT",
+            "error_level": "ERROR",
+            "reference_id": "601978f228dc5c3c64e5b895"
+        }
+    ],
+    "history_id": "609e6016f3d4d143baa13070",
+    "item": {
+        // (itemの値)
+    },
+    "item_id": "609e6015f3d4d143baa1306e"
+}
+```
+
+指定したデータベース、アクションIDが見つからない場合は以下のエラーとなります。
+```
+{
+    "error": "no available actions to create new item in the database"
 }
 ```

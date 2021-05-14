@@ -20,13 +20,80 @@ ExecuteAction APIによりアクションを呼び出した場合、アクショ
 
 この機能により、API呼び出しの実行結果を元にして、エラー処理などを実現できるようになりました。
 
-- 現在、対象となるのは ActionScriptのPreScript です。PostScriptでは動作しません。
+- 現在、値を返却できる対象となるのは ActionScriptのPreScript です。PostScriptでは、値の返却はされません。
 - 結果は、resolve() / reject() により返します。
-- PostScriptの同期実行は、Sync execオプションで可能になります。
 
 対象API
 
+- [CreateItem](/docs/v0/item-actions/CreateItem)
+- [UpdateItem](/docs/v0/item-actions/UpdateItem)
 - [ExecuteAction API](/docs/v0/item-actions/ExecuteAction)
+
+サンプルコードも更新されています
+```
+(async function(data) {
+    return new Promise((resolve, reject) => {
+
+        const appId = "TestApp";
+        const datastoreId = "TODO-SAMPLE"
+    
+        logger.log("Process starting...")
+    
+        // first call
+        const url = `api/v0/applications/${appId}/datastores/${datastoreId}/items/search`;
+        const payload = {
+            use_display_id: true,
+            omit_fields_data: true,
+            conditions: [],
+            per_page: 1,
+            page: 1
+        }
+        callAPIAsync('POST', url, payload).then(res => {
+            logger.log("Proc1 Called")
+
+            // next call
+            const url = `api/v0/applications/${appId}/datastores/${datastoreId}/items/search`;
+            const payload = {
+                use_display_id: true,
+                omit_fields_data: true,
+                conditions: [],
+                per_page: 1,
+                page: 1
+            } 
+            return callAPIAsync('POST', url, payload)  // you can return promise
+        }).then(res => {
+            logger.log("Proc2 Called")
+
+            // call resolve() if you want to proceed
+            resolve(); 
+
+        }).catch(e => {
+            logger.error("ERR !!")
+
+            // call reject() if you want to stop action execution
+            reject({
+                 "result":  "Stopped", 
+                 "error" : "error messages"
+            });  // result object will be returned to Hexabase's API result 
+        });    
+
+    });
+})
+```
+各APIの返却値（PreActionScriptで、reject()をコールした場合）
+```
+{
+    "details": {
+        "result": {
+            "error": "error messages",
+            "result": "Stopped"
+        },
+        "status": "REJECTED",
+        "stop_execution": true
+    },
+    "error": ""
+}
+```
 
 ### CLI：コマンドエイリアスの追加
 
@@ -99,5 +166,18 @@ $ npm update -g hexabase-cli
 ### 機能改善：画面項目IDのエラーチェックを強化
 
 画面項目IDの設定時、特定のIDや既存IDを利用できないようエラーチェックを強化しました。
+画面項目のIDに以下の値は利用できません。
+- _id
+- a_id
+- access_keys
+- created_at
+- created_by
+- d_id
+- i_id
+- p_id
+- rev_no
+- status_id
+- title
+- unread
 
 

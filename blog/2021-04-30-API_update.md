@@ -36,8 +36,8 @@ tags: [API, web-ui, update, 2021]
 
 対象となるのは、以下のAPIです。
 
-- [CreateItem](/docs/v0/items/CreateItem)
-- [UpdateItem](/docs/v0/items/UpdateItem)
+- [CreateItem](/docs/v0/item-actions/CreateItem)
+- [UpdateItem](/docs/v0/item-actions/UpdateItem)
 - [ExecuteAction](/docs/v0/item-actions/ExecuteAction)
 - [ExecuteBulkAction](/docs/v0/item-actions/ExecuteBulkAction)
 
