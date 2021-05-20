@@ -76,6 +76,7 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
         },{
           "operation" : 2,  // update
           "action_id" : "", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
+          "link_to_parent": true,  // 親Itemとのデータリンクを作成する（双方のリンクが作成される） default: false(親→指定したi_idへのリンクのみ)
           "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
           "item": {
             "FIELD_ID1" : "data",

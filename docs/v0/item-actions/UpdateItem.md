@@ -73,6 +73,7 @@ item-id         : 対象アイテムのID
         },{
           "operation" : 2,  // update
           "action_id" : "Update2", // update actionID　※省略可 (省略するとデフォルトの更新アクションが利用される)
+          "link_to_parent": true,  // 親Itemとのデータリンクを作成する（双方のリンクが作成される） default: false(親→指定したi_idへのリンクのみ)
           "i_id" : "58bbaa27fbfcba609874aaa3f", // 対象アイテムID
           "item": {
             "FIELD_ID1" : "data",
