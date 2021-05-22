@@ -27,6 +27,7 @@ include_lookups　　　　: true を指定すると、データベース参照�
 include_item_ref  : true を指定すると、フィールドの参照先ItemのID(d_id, i_id,rev_no) 情報を取得できる
 return_number_value   : "include_lookups": trueのときtrue を指定すると、参照先Itemの数値型データがNumberとして出力されます（defaultでは、数値は文字列("123")で返却される）
 return_count_only : totalItemsのみ情報を返す。 report_resultsはnullとなる。
+return_utc_datetime: 日付型のフィールドの場合、戻り値をUTC時刻(ISO format)で返す. ただし、HexabaseUIのレポート設定でこの設定がONになっていた場合は、フラグ指定に限らずUTCとなります。この設定はDate型（Datetime型ではない）に対してのみ有効です。
 omit_total_items : totalItemsを省略します。　（件数のカウントを省略すると、より高速に動作します）
 total_count_timeout_sec : totalItemsの取得にタイムアウト秒数を指定します。指定した秒数を超過するとtotalItemsの取得を省略(-1がかえる)します。default:60s
 data_result_timeout_sec : report_results取得時のタイムアウト秒数を指定できます。タイムアウトするとreport_resultsの取得が省略(null)されます。default:60s
