@@ -55,6 +55,9 @@ POST
 // totalItems（ヒットした件数）のみを返却します。report_resultsにはnullが返却されます。
 "return_count_only": true, // default false
 
+// 日付型のフィールドの場合、戻り値をUTC時刻(ISO format)で返す. ただし、HexabaseUIのレポート設定でこの設定がONになっていた場合は、フラグ指定に限らずUTCとなります。この設定はDate型（Datetime型ではない）に対してのみ有効です。
+"return_utc_datetime" : true
+
 // totalItemsの検索のタイムアウト時間を秒で指定します。タイムアウトした場合、totalCountは-1が返ります。
 "total_count_timeout_sec": 10 // default 60(s)
 
