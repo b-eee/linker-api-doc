@@ -24,6 +24,7 @@ POST
   app-id: アプリケーションID（画面ID、または、システム内部ID p_id）
   datastore-id: データベースID（画面ID、または、システム内部ID d_id）
   item-id: コメント登録する対象Itemのitem_id
+  is_send_item_unread: true を指定すると、送信先にそのアイテム履歴の未読件数を送信する (item_unread)　※通知先がSSEイベントをSubscribeをしている必要があります。（件数によっては通知が数秒遅延する可能性があります）
 ```
 
 **Payload**
