@@ -36,6 +36,7 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
 
 ```javascript
 {
+  "action_id": "NewAction2", // （省略可）省略すると、デフォルトで指定されている新規登録Actionにより、登録されます。 アクションの画面ID(display_id)または 内部ID（a_id）を指定可能です。
   "item": {
       "field_id": "登録データ",
       "title": "タイトル",
