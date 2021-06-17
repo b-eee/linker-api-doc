@@ -25,7 +25,7 @@ POST
 {
   "email":"パスワードをリセットしたいユーザーのemail",　//必須
   "host": ""  //(任意) メール内のリンク先URLに利用するホスト名を指定します。省略するとHexabase管理UIが指定されます。 実装例= `https://${window.location.host}` (SPA UI内に用意されたページへ遷移する場合) email_templates_idを指定した場合、必須となります。
-  "base_path":  "(reset_password に相当する部分のURL内のパス)" ,  // （任意） 
+  "root_path":  "(reset_password に相当する部分のURL内のパス)" ,  // （任意） 
   "query_params": "(一意キーの後続くGETパラメータを指定)"  // （任意）  ? より後を指定する
   "email_templates_id" : "5fb205b03545feade82dxxxx",  // （任意）Hexabase社より発行されたemail設定ID。あらかじめ定義されたSendgridアカウントの利用を指定できます。 省略するとHexabaseのデフォルトのパスワード変更画面が利用されます。
 }
@@ -56,7 +56,7 @@ https://app.hexabase.com/reset_password/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 {
   "email": "dummy@dummy.com",
   "host": `https://${window.location.host}`,
-  "base_path":  "pwd_reset" ,
+  "root_path":  "pwd_reset" ,
   "query_params": "param1=AAA&param2=BBB"
 }
 ```
