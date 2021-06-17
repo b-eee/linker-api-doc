@@ -71,7 +71,7 @@ module.exports = {
       } 
       , {
         type: 'category',
-        label: 'Group Users',
+        label: 'Users',
         items: [
           'v0/group-users/README'
           , 'v0/group-users/GetAllUsersInWorkspace'
@@ -85,7 +85,7 @@ module.exports = {
       }   
       , {
         type: 'category',
-        label: 'User Info',
+        label: 'UserInfo',
         items: [
           'v0/userinfo/README'
           , 'v0/userinfo/ConfirmUserEmail'
@@ -126,7 +126,7 @@ module.exports = {
       }    
       , {
         type: 'category',
-        label: 'Item Search & Details',
+        label: 'Item Search, Details',
         items: [
           'v0/items-search/ItemList'
           , 'v0/items-search/GlobalSearch'
