@@ -49,6 +49,9 @@ POST
 // 検索結果にフィールドの参照先ItemのID(d_id, i_id,rev_no) を含める場合、以下を指定します。
 "include_item_ref": true, // default false
 
+// 検索結果に選択肢型やステータス、ユーザーに関するID,Valueの値を含める場合、以下を指定します。
+"return_id_value_results": true, // default false
+
 // "include_lookups": trueのとき、参照先Itemの数値型データがNumberとして出力する場合は、以下を指定します（defaultでは、数値は文字列("123")で返却される）
 "return_number_value": true,
 
@@ -194,6 +197,127 @@ Lookup先のItemが再帰的に自分のItemを参照しているようなケー
     "item_index_to": 0
 }
 ```
+
+### "return_id_value_results": true 指定した場合
+選択肢型（Select,Radio,Checkbox）、ステータス型、ユーザー型それぞれのフィールドに対する、IDとValueのMap情報を付加します。
+```javascript
+{
+    "report_fields": [
+        // (省略)  // omit_fields_data : true 指定すると、この"report_fields"を省くことが可能です。
+    ],
+    "report_results": [
+        {
+            {
+            "AssigneeText": "Y",
+            "Category": "B",
+            "DueDate": "2016/01/01",
+            "Lookup1": "",
+            "Number": 5,
+            "TextArea": "aあああ",
+            "Title": "タスクA",
+            "UserType": "hi__test2",
+            "i_id": "5f267f1628dc5c6988bc2ff2",
+            "id_value_results": {   // <---- 該当するフィールドに、選択肢型またはステータス、またはユーザー型がある場合、付加されます。
+                "Category": {
+                    "id": "B",
+                    "value": "B"
+                },
+                "UserType": [
+                    {
+                        "id": "6028ed8628dc5c0e38b86c22",
+                        "value": "hi__test2"
+                    }
+                ],
+                "status1": {
+                    "id": "Assigned",
+                    "value": "Assigned"
+                }
+            },
+            "rev_no": 6,
+            "status1": "Assigned"
+        },
+        {
+            "AssigneeText": "X",
+            "Category": "A",
+            "Checkbox": "22",
+            "DateOld": "2021/05/26",
+            "DateTime1": "2021-05-27T18:38:13Z",
+            "DueDate": "2016/01/22",
+            "Lookup1": "",
+            "Number": 11,
+            "Radio": "B",
+            "Title": "タスクE",
+            "UserType": "",
+            "i_id": "5f267f1628dc5c6988bc2fee",
+            "id_value_results": { // <---- 該当するフィールドに、選択肢型またはステータス、またはユーザー型がある場合、付加されます
+                "Category": {
+                    "id": "A",
+                    "value": "A"
+                },
+                "Checkbox": [　 // <---- Checkboxの場合、複数選択肢に対する配列が返ります
+                    {
+                        "id": "3ce8c186-89a6-455c-8b80-f962333b3eb0",
+                        "value": "22"
+                    }
+                ],
+                "Radio": {
+                    "id": "OptionB",
+                    "value": "B"
+                },
+                "status1": {
+                    "id": "InReview",
+                    "value": "In Review"
+                }
+            },
+            "rev_no": 24,
+            "status1": "In Review"
+        },
+        {
+            "AssigneeText": "Y2",
+            "Category": "A",
+            "DateOld": "2021/05/18",
+            "DateTime1": "2021-05-26T18:47:51Z",
+            "DueDate": "2016/01/01",
+            "Lookup1": "タスクE",
+            "Number": 45,
+            "Radio": "A",
+            "Title": "タスクXXX",
+            "UserType": "hi-hexabase, hi__test3",
+            "i_id": "5f267f1628dc5c6988bc2ff1",
+            "id_value_results": { // <---- 該当するフィールドに、選択肢型またはステータス、またはユーザー型がある場合、付加されます。
+                "Category": {
+                    "id": "A",
+                    "value": "A"
+                },
+                "Radio": {
+                    "id": "OptionA",
+                    "value": "A"
+                },
+                "UserType": [　　// <---- User型の場合、複数選択肢に対する配列が返ります
+                    {
+                        "id": "5f25952c28dc5c55b463bc76",
+                        "value": "hi-hexabase"
+                    },
+                    {
+                        "id": "5fb20308aa39557714afd53a",
+                        "value": "hi__test3"
+                    }
+                ],
+                "status1": {
+                    "id": "IN_PROGRESS",
+                    "value": "In Progress"
+                }
+            },
+        }
+    ],
+    "report_title": "TestReport",
+    "error": "",
+    "totalItems": 3,
+    "item_index_from": 0,
+    "item_index_to": 2
+}
+```
+
 
 ### エラーケース
 
