@@ -8,9 +8,9 @@
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
-            <title><![CDATA[update]]></title>
+            <title><![CDATA[Feature Update 2021-06-18]]></title>
             <link>https://b-eee.github.io/linker-api-doc/blog/2021/06/21/update</link>
-            <guid>update</guid>
+            <guid>Feature Update 2021-06-18</guid>
             <pubDate>Mon, 21 Jun 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[ResetPassword APIの改善]]></description>
         </item>
