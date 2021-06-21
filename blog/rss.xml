@@ -4,9 +4,16 @@
         <title>Hexabase API ガイド Blog</title>
         <link>https://b-eee.github.io/blog</link>
         <description>Hexabase API ガイド Blog</description>
-        <lastBuildDate>Fri, 14 May 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 21 Jun 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[update]]></title>
+            <link>https://b-eee.github.io/linker-api-doc/blog/2021/06/21/update</link>
+            <guid>update</guid>
+            <pubDate>Mon, 21 Jun 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[ResetPassword APIの改善]]></description>
+        </item>
         <item>
             <title><![CDATA[Feature Update 2021-05-14]]></title>
             <link>https://b-eee.github.io/linker-api-doc/blog/2021/05/14/feature_update</link>
