@@ -17,6 +17,9 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'b-eee', // Usually your GitHub org/user name.
   projectName: 'linker-api-doc', // Usually your repo name.
+  // If you have installed @docusaurus/preset-classic, you don't need to install it as a dependency.
+  // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-analytics
+  // plugins: ['@docusaurus/plugin-google-analytics'], 
   themeConfig: {
     navbar: {
       title: 'Hexabase APIガイド',
@@ -62,6 +65,11 @@ module.exports = {
         },
 
       ],
+    },
+    googleAnalytics: {
+        trackingID: 'G-L7EXQF8LM9',
+        // Champs facultatifs.
+        anonymizeIP: true, // Les IP doivent-elles être anonymisées ?
     },
     colorMode: {
         // https://v2.docusaurus.io/docs/api/themes/configuration#color-mode---dark-mode
