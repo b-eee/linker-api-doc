@@ -27,7 +27,7 @@ POST
   "host": ""  //(任意) メール内のリンク先URLに利用するホスト名を指定します。省略するとHexabase管理UIが指定されます。 実装例= `https://${window.location.host}` (SPA UI内に用意されたページへ遷移する場合) email_templates_idを指定した場合、必須となります。
   "root_path":  "(reset_password に相当する部分のURL内のパス)" ,  // （任意） 
   "query_params": "(一意キーの後続くGETパラメータを指定)"  // （任意）  ? より後を指定する
-  "email_templates_id" : "5fb205b03545feade82dxxxx",  // （任意）Hexabase社より発行されたemail設定ID。あらかじめ定義されたSendgridアカウントの利用を指定できます。 省略するとHexabaseのデフォルトのパスワード変更画面が利用されます。
+  "email_templates_id" : "5fb205b03545feade82dxxxx",  // （任意）招待メールを送信する際にお客様用のSendgridテンプレートを使用する場合に設定します。事前にHexabase社へ必要事項を連絡し、Hexabase社より発行されたemail設定IDを指定します。 省略するとHexabaseのデフォルトのパスワード変更画面が利用されます。
 }
 ```
 **PayloadとEメール内のURL Sample**
