@@ -30,7 +30,7 @@ action-id    : 新規作成アクションID（Payload内の`use_display_id`がt
 
 `Content-Type : application/json`
 
-```text
+```json
 {
   "item": {
     "項目ID1": "作成アイテム項目の値１",
@@ -48,7 +48,7 @@ action-id    : 新規作成アクションID（Payload内の`use_display_id`がt
 POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/アクションID
 ```
 
-```text
+```json
 {
   "item": {
     "Locaton": "北極",
@@ -72,7 +72,7 @@ null
 POST https://api.xxx.com/api/v0/items/5a2671ef0e24794cb08e6200/new-actions/5e99e6a8aeae8e9af01ec366
 ```
 
-```text
+```json
 {
   "item": {
     "5e99e2e3aeae8e9af01ec35b": "北極",

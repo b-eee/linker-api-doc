@@ -21,7 +21,7 @@ POST
 
 `Content-Type : application/json`
 
-```javascript
+```json
 {
   "comment": "test-comment",
   "return_item_result": true, // true指定すると、更新されたアイテム情報を返します
@@ -29,12 +29,12 @@ POST
   "item": {
       "5e256923aeae8e212cb2e03b": "value", // text tyepe
       "58bbaa27fbfcba6098746061": "5d4c058baa39555618ac9e98", // select type
-      "58bbaa27fbfcba6098746067" : [ "58bbaa27fbfcba6098746015", "596e2327fbfcbab8283dde09"],  // checkbox type
+      "58bbaa27fbfcba6098746067" : [ "58bbaa27fbfcba6098746015", "596e2327fbfcbab8283dde09"]  // checkbox type
   },
   "rev_no":8,　//現在のrevison番号
   "related_ds_items" : {
       "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
-      "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
+      "関連データストアID_2" : [{ },{ },{ },{ }... ] 
     },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
   "access_key_updates": {　　// アクセスキーを指定
       "overwrite": true,　 // アクセスキーを上書き保存（デフォルトはfalse：既存のキーに追加する）
@@ -46,8 +46,9 @@ POST
   }
 }
 ```
+
 * 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
-```javascript
+```json
     "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
       "RELATED_DS_1" : [
         {
@@ -127,7 +128,7 @@ null
 ```
 
 Payload に "return_item_result": true　を指定した場合、登録されたアイテム情報がもどります。
-```javascript
+```
 {
   item: {
     // 登録されたアイテム情報がもどる（関連アイテムの詳細は含まれない）
@@ -137,7 +138,7 @@ Payload に "return_item_result": true　を指定した場合、登録された
 - エラー発生時、以下のようにエラーが返ります。
 - エラーコードは[こちら](/docs/errors)を参照ください。
 
-```
+```json
 {
     "error": [
         {

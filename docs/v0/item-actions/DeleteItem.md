@@ -33,7 +33,7 @@ item-id         : 対象アイテムのID
 - target_datastoresには、画面IDまたはd_idを指定可能です。孫データベースなど、関連をたどって指定可能です。
 - このAPIが削除可能な１アイテムに関連するアイテムの上限は`100件`です。100件を超えた場合、その関連アイテムは削除されません。
 
-```javascript
+```json
 {
   delete_linked_items : true,                                     // true : 関連したアイテムも削除
   target_datastores: [ "DATASTORE_A", "DATASTORE_B", ...] // delete_linked_items: trueの場合、削除する関連データストアの画面ID(またはd_id)を指定します。（同一アプリケーション内のみ指定可能）注意：指定しない場合は、削除されません。
@@ -51,8 +51,8 @@ Payload (空のJSONを指定する必要があります)
 
 **Response Sample**
 
-```javascript
+```json
 {
-    "error": null,
+    "error": null
 }
 ```

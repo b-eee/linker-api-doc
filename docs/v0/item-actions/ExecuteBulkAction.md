@@ -22,7 +22,7 @@ POST
 conditions の詳細については、[conditions](#conditions)を参照
 
 `Content-Type : application/json`
-```javascript
+```json
 {
   "conditions": [
     {
@@ -96,7 +96,7 @@ POST https://api.xxx.com//api/v0/applications/TestApp/datastores/SampleDB/items/
 ```
 
 **Response Sample**
-```text
+```json
 // 成功時
 {
     "has_error": false,
