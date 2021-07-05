@@ -154,3 +154,18 @@ GET https://api.xxx.com/api/v0/applications/APPNAME/datastores/RESERVES/fields
     }
 }
 ```
+
+
+**Errors**
+- エラー発生時、以下のようにエラーが返ります。
+- エラーコードは[こちら](/docs/errors)を参照ください。
+
+#### 該当データストアが見つかりません
+- datastore_idに誤りがあるか、削除された、またはアクセス権限がない場合、いずれもNOT_FOUNDエラーが返ります。
+```
+HTTP 404 (Not Found)
+{
+    "description": "fields for d_id: TODO-SAMPLE___X is not found",
+    "error": "NOT_FOUND"
+}
+```

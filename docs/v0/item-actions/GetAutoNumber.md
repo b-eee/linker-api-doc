@@ -79,3 +79,27 @@ GET https://api.xxx.com/api/v0/applications/APP_NAME/datastores/DS_NAME/fields/B
 ```
 
 
+
+**Errors**
+- エラー発生時、以下のようにエラーが返ります。
+- エラーコードは[こちら](/docs/errors)を参照ください。
+
+#### 該当Fieldが見つかりません
+- 指定したデータストア、フィールドIDに誤りがあるか、見つからない場合、エラーとなります。
+```
+HTTP 403(Bad Request)
+
+{
+    "errors": [
+        {
+            "description": "invalid fieldID in the datastore",
+            "error": "could not find field for AutoNum1",
+            "error_code": "INVALID_PARAMS",
+            "error_level": "ERROR",
+            "reference_id": "f_id:AutoNum1"
+        }
+    ],
+    "has_error": true,
+    "result": null
+}
+```

@@ -246,3 +246,17 @@ GET https://api.xxx.com/api/v0/datastores/59bf42550e2479186a6c6c70/5a2671ec0e247
     }
 }
 ```
+
+**Errors**
+- エラー発生時、以下のようにエラーが返ります。
+- エラーコードは[こちら](/docs/errors)を参照ください。
+
+#### 該当Actionが見つかりません
+- ActionIDに誤りがあるか、削除された、またはアクセス権限がない場合、いずれもNOT_FOUNDエラーが返ります。
+```
+HTTP 404 (Not Found)
+{
+    "description": "action_id not found. 5f38a11caa39556e74845a43X",
+    "error": "NOT_FOUND"
+}
+```

@@ -119,3 +119,7 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
     }
 }
 ```
+
+**Errors**
+- エラー発生時のエラー情報については、[ExecuteAction](ExecuteAction)のエラー説明部分を参照ください。
+- エラーコードは[こちら](/docs/errors)を参照ください。

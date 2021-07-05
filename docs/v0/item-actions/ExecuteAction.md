@@ -134,10 +134,15 @@ Payload に "return_item_result": true　を指定した場合、登録された
   }
 }
 ```
+
+**Errors**
 - エラー発生時、以下のようにエラーが返ります。
 - エラーコードは[こちら](/docs/errors)を参照ください。
 
+#### itemのリビジョン整合エラー
+- Itemを更新するためには、 リクエストpayload内にrev_noを与えるか、is_force_update: trueを渡して強制アップデートを指示する必要があります。他のユーザーが先に該当Itemを更新していた場合、Revisionエラーが発生します。
 ```
+HTTP 409 または 200( Related datastoreのみ本エラーが発生した場合は、errorメッセージを含む200が返ります)
 {
     "error": [
         {
@@ -156,9 +161,49 @@ Payload に "return_item_result": true　を指定した場合、登録された
 }
 ```
 
-指定したデータベース、アクションIDが見つからない場合は以下のエラーとなります。
+#### ActionID指定エラー
+- 指定したデータベース、アクションIDが見つからない場合は以下のエラーとなります。
+- 例えばログインユーザーのカレントワークスペースが異なるワークスペースを向いている場合、該当Actionが見つからず、本エラーとなることがあります。
 ```
 {
-    "error": "no available actions to create new item in the database"
+    "error": "no available actions to create new item in the database. you should check settings or check if you are in your current workspace[ xxxxxxxxxxxxxxxxxx ]"
 }
+```
+
+　※注意）ここより以下のエラーは、下位互換性維持のため、2021年7月以降に作成されたワークスペースのみエラーチェックが適用されます。それ以前のワークスペースに対してこのチェックを有効化したい場合は、個別に有効化するため、Hexabase社へお問合せください。
+
+#### Actionの権限エラー
+- 該当するActionに対する権限がない場合、以下のエラーとなります。
+```
+HTTP403
+{
+    "error": "invalid action_id or has no privileges to the user or current item status. a_id:MoveToAssigned(5f38a11caa39556e74845a43) d_id:SAMPLEDB(5f38a11baa395581685afdb4)",
+    "error_code": "NO_PRIVILEGES"
+}
+```
+
+#### 対象Itemが見つかりません
+- 更新対象のItemIDに誤りがある、または、他のユーザーが該当Itemを削除した場合、このエラーとなります。
+```
+HTTP404
+{
+    "description": "item is not found for i_id:601e5c3728dc5c447cfbc3b1",
+    "error": "target item was not found",
+    "error_code": "NOT_FOUND"
+}
+```
+
+#### 関連Itemが見つかりません
+- 関連するItemに対して、該当Itemが見つからない場合、error配列内にエラーが返ります。親Itemの更新が成功している場合はHTTPレスポンスは200となります。
+```
+HTTP 200
+    "error": [
+        {
+            "description": "couldn't check rev_no or item not found. ds:5f38a11baa395581685afdb4 i:609d0a6de59c442b85b0fed0 ",
+            "error": "couldn't check rev_no",
+            "error_code": "NOT_FOUND",
+            "error_level": "ERROR",
+            "reference_id": "d_id:5f38b0afaa395581685afdf6"
+        }
+    ],
 ```

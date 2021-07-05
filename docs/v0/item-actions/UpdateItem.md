@@ -141,3 +141,6 @@ Payload に "return_item_result": true　を指定した場合、登録された
 }
 ```
 
+**Errors**
+- エラー発生時のエラー情報については、[ExecuteAction](ExecuteAction)のエラー説明部分を参照ください。
+- エラーコードは[こちら](/docs/errors)を参照ください。

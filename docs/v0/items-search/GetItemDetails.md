@@ -898,3 +898,27 @@ GET https://api.xxx.com/api/v0/datastores/58cbf6cbfbfcba78dc71228d/items/58cd1e5
     ]
 }
 ```
+
+
+
+**Errors**
+- エラー発生時、以下のようにエラーが返ります。
+- エラーコードは[こちら](/docs/errors)を参照ください。
+
+#### 該当アイテムが見つかりません
+- ItemIDに誤りがあるか、削除された、または該当Itemへのアクセス権限がない場合、いずれもNOT_FOUNDエラーが返ります。
+```
+HTTP404
+{
+    "error": "NOT_FOUND",
+    "errors": [
+        {
+            "description": "item not found for i_id:5f38b027aa39558bfca29",
+            "error": "not found",
+            "error_code": "NOT_FOUND",
+            "error_level": "ERROR",
+            "reference_id": "5f38b027aa39558bfca29"
+        }
+    ]
+}
+```

@@ -44,3 +44,19 @@ GET https://api.xxx.com/api/v0/datastores/59bf42550e2479186a6c6c70/new-action
     ]
 }
 ```
+
+
+**Errors**
+- エラー発生時、以下のようにエラーが返ります。
+- エラーコードは[こちら](/docs/errors)を参照ください。
+
+#### 該当Actionが見つかりません
+- 該当のデータストアが見つからないか、利用可能なActionIDがない場合、エラーとなります
+```
+HTTP 404 (Not Found)
+{
+    "code": 101,
+    "error_code": "INVALID_PARAMS",
+    "message": "new action is not found for 5f38a11baa395581685afdb"
+}
+```
