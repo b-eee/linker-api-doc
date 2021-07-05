@@ -32,7 +32,7 @@ GET https://api.xxx.com/api/v0/datastores/59bf42550e2479186a6c6c70/5a2671ec0e247
 
 **Response Sample**
 
-```javascript
+```json
 {
     "action": {
         "action_id": "5a2671ec0e24794c979fa5b1",

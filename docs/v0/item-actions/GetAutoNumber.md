@@ -52,7 +52,8 @@ GET https://api.xxx.com/api/v0/applications/APP_NAME/datastores/DS_NAME/fields/B
   - `branch_key=SUBCODE_`
   - `zero_padding=true`
   - `digit=3`
-```javascript
+
+```json
 {
     "has_error": false,
     "result": {
@@ -68,7 +69,8 @@ GET https://api.xxx.com/api/v0/applications/APP_NAME/datastores/DS_NAME/fields/B
   - `branch_key`は指定なし
   - `zero_padding=true`
   - `digit=5`
-```javascript
+
+```json
 {
     "has_error": false,
     "result": {

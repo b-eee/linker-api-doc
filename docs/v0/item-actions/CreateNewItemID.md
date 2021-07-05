@@ -32,7 +32,7 @@ POST https://api.xxx.com/api/v0/datastores/58bbaa27fbfcba6098746061/items/create
 
 **Response Sample**
 
-```javascript
+```json
 {
     "item_id": "5a2647410e24792d87451e34"
 }
