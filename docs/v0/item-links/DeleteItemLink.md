@@ -46,3 +46,12 @@ DELETE http://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASE_1/item
 null
 ```
 
+**Error Sample**
+削除対象が見つからない場合
+```
+HTTP 404
+{
+    "error": "item links not found for {DATABASE_1 5d4c058baa39555618ac9e8b DATABASE_2 5d4c055eaa39555618ac9e6a  }",
+    "error_code": "NOT_FOUND"
+}
+```
