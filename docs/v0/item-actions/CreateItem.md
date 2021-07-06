@@ -34,18 +34,18 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
 
 （例） `Content-Type : application/json`
 
-```javascript
+```json
 {
   "action_id": "NewAction2", // （省略可）省略すると、デフォルトで指定されている新規登録Actionにより、登録されます。 アクションの画面ID(display_id)または 内部ID（a_id）を指定可能です。
   "item": {
       "field_id": "登録データ",
       "title": "タイトル",
-      "assignee": "担当者",
+      "assignee": "担当者"
   },
   "return_item_result": true, // true指定すると、登録されたアイテム情報を返します
   "related_ds_items" : {
       "関連データストアID_1" : [{ },{ },{ },{ }... ] ,
-      "関連データストアID_2" : [{ },{ },{ },{ }... ] ,
+      "関連データストアID_2" : [{ },{ },{ },{ }... ] 
   },  // 関連するデータストアの新規・更新・削除を指定  詳細は以下を参照
 　"access_key_updates": {　　// アクセスキーを指定
       "overwrite": true,　 // アクセスキーを上書き保存（デフォルトはfalse：既存のキーに追加する）
@@ -58,7 +58,7 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
 }
 ```
 * 関連するアイテムも同時に更新する場合は、以下フォーマットで指定
-```javascript
+```json
     "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
       "RELATED_DS_1" : [
         {
@@ -69,10 +69,10 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
             "FIELD_ID1" : "data",
             "FIELD_ID2" : "data",
             "FIELD_ID3" : "data",
-            "FIELD_ID4" : "data",
+            "FIELD_ID4" : "data"
           },
           "related_ds_items" : {  // related_ds_itemsをネストさせることも可能。（同一Datastoreの複数ネストさせることは不可）
-            "関連データストアID_3" : [{ },{ },{ },{ }... ] ,
+            "関連データストアID_3" : [{ },{ },{ },{ }... ] 
           }
         },{
           "operation" : 2,  // update
@@ -86,14 +86,14 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
         },{
           "operation" : 3,  // delete
           "action_id" : "", // delete actionID　※省略可 (省略するとデフォルトの削除アクションが利用される)
-          "i_id" : "58bbaa27fbfcba609874aqr45", // 対象アイテムID
+          "i_id" : "58bbaa27fbfcba609874aqr45" // 対象アイテムID
         },{
           "operation" : 11,  // add link :リンクを作成
           "link_to_parent": true,  // 親Itemとのデータリンクを作成する（双方のリンクが作成される） default: false(親→指定したi_idへのリンクのみ)
-          "i_id" : "58bbaa27fbfcba609874aqr46", // 対象アイテムID
+          "i_id" : "58bbaa27fbfcba609874aqr46" // 対象アイテムID
         },{
           "operation" : 12,  // remove link :リンクを削除
-          "i_id" : "58bbaa27fbfcba609874aqr47", // 対象アイテムID
+          "i_id" : "58bbaa27fbfcba609874aqr47" // 対象アイテムID
         },{
           // 関連する複数アイテムを指定可能。sample 省略
         },{
@@ -109,7 +109,7 @@ POST https://api.xxx.com/api/v0/applications/APPNAME/datastores/DATABASEID/items
 
 **Response Sample**
 
-```javascript
+```json
 {
     "error": null,
     "history_id": "5d661782aa39559a80479492",

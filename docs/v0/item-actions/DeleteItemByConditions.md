@@ -26,7 +26,7 @@ datastore-id    : データストアID（Hexabase画面から入力したIDま�
 
 `Content-Type : application/json`
 
-```javascript
+```json
 {
   "conditions": [
     {

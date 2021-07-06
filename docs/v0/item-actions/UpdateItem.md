@@ -27,13 +27,13 @@ item-id         : 対象アイテムのID
 
 **Payload**
 
-```javascript
+```json
 {
     "comment": "test-comment"
     "item": {
         "CAR_NAME": "value": "名前のデータ", // text tyepe
         "CAR_TYPE": "5d4c058baa39555618ac9e98", // select type
-        "OPTIONS" : [ "58bbaa27fbfcba6098746061", "596e2327fbfcbab8283dde09"],  // checkbox type
+        "OPTIONS" : [ "58bbaa27fbfcba6098746061", "596e2327fbfcbab8283dde09"] // checkbox type
     },
     "use_display_id" : true,  // IDに画面IDを利用。 groups_to_publishを利用する場合はtrueとする。
     "is_force_update": true,  // rev_noの指定を利用しない（排他制御を無視して、後勝ち登録を行う）
@@ -54,7 +54,7 @@ item-id         : 対象アイテムのID
 }
 ```
 * 関連するアイテムも同時に更新する場合は、以下フォーマットで指定　（新規、更新、削除、リンク追加、リンク削除のoperationが指定可能）
-```javascript
+```json
     "related_ds_items" : { // 関連するデータストアの新規・更新・削除を指定
       "RELATED_DS_1" : [
         {
@@ -65,7 +65,7 @@ item-id         : 対象アイテムのID
             "FIELD_ID1" : "data",
             "FIELD_ID2" : "data",
             "FIELD_ID3" : "data",
-            "FIELD_ID4" : "data",
+            "FIELD_ID4" : "data"
           },
           "related_ds_items" : {  // related_ds_itemsをネストさせることも可能。（同一Datastoreの複数ネストさせることは不可）
               "関連データストアID_3" : [{ },{ },{ },{ }... ] ,
@@ -96,7 +96,7 @@ item-id         : 対象アイテムのID
           // 関連する複数アイテムを指定可能。sample 省略
         }
       ]
-      "RELATED_DS_2" : [ // sample 省略 ]
+      "RELATED_DS_2" : [ // sample 省略 ],
       "RELATED_DS_3" : [ // sample 省略 ]
     }
 ```
@@ -133,7 +133,7 @@ null
 ```
 
 Payload に "return_item_result": true　を指定した場合、登録されたアイテム情報がもどる
-```javascript
+```json
 {
   item: {
     // 登録されたアイテム情報がもどる（関連アイテムの詳細は含まれない）
