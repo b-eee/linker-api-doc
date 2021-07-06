@@ -105,3 +105,21 @@ HTTP 403(Bad Request)
     "result": null
 }
 ```
+
+- 指定したフィールドはAutoNumber型である必要があります。そうでない場合、エラーとなります。
+```
+HTTP 403(Bad Request)
+{
+    "errors": [
+        {
+            "description": "invalid fieldID in the datastore",
+            "error": "specified field[600a839528dc5c3e9cd7e7de] is not the auto number type",
+            "error_code": "INVALID_PARAMS",
+            "error_level": "ERROR",
+            "reference_id": "f_id:600a839528dc5c3e9cd7e7de"
+        }
+    ],
+    "has_error": true,
+    "result": null
+}
+```
